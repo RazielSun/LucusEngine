@@ -13,6 +13,12 @@
 		7ADF914123E6D07A0094C83D /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7ADF913F23E6D07A0094C83D /* main.mm */; };
 		7ADF914523E6D36B0094C83D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADF914423E6D36B0094C83D /* Cocoa.framework */; };
 		7ADF914723E6D3B80094C83D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADF914623E6D3B80094C83D /* UIKit.framework */; };
+		7ADF914D23E704CB0094C83D /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADF914C23E704CB0094C83D /* Metal.framework */; };
+		7ADF914F23E704D10094C83D /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADF914E23E704D10094C83D /* MetalKit.framework */; };
+		7ADF915123E704DA0094C83D /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADF915023E704DA0094C83D /* Metal.framework */; };
+		7ADF915323E704E00094C83D /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADF915223E704E00094C83D /* MetalKit.framework */; };
+		7ADF916423E707580094C83D /* MetalRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7ADF916323E707580094C83D /* MetalRenderer.mm */; };
+		7ADF916523E707580094C83D /* MetalRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7ADF916323E707580094C83D /* MetalRenderer.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +33,12 @@
 		7ADF913F23E6D07A0094C83D /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		7ADF914423E6D36B0094C83D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		7ADF914623E6D3B80094C83D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		7ADF914C23E704CB0094C83D /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.2.sdk/System/Library/Frameworks/Metal.framework; sourceTree = DEVELOPER_DIR; };
+		7ADF914E23E704D10094C83D /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.2.sdk/System/Library/Frameworks/MetalKit.framework; sourceTree = DEVELOPER_DIR; };
+		7ADF915023E704DA0094C83D /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+		7ADF915223E704E00094C83D /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
+		7ADF916223E707580094C83D /* MetalRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MetalRenderer.h; sourceTree = "<group>"; };
+		7ADF916323E707580094C83D /* MetalRenderer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MetalRenderer.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +46,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7ADF914F23E704D10094C83D /* MetalKit.framework in Frameworks */,
+				7ADF914D23E704CB0094C83D /* Metal.framework in Frameworks */,
 				7ADF914723E6D3B80094C83D /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -42,6 +56,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7ADF915323E704E00094C83D /* MetalKit.framework in Frameworks */,
+				7ADF915123E704DA0094C83D /* Metal.framework in Frameworks */,
 				7ADF914523E6D36B0094C83D /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -52,6 +68,7 @@
 		7A83AE8523E6C3DE002E161C = {
 			isa = PBXGroup;
 			children = (
+				7ADF916123E7071F0094C83D /* Renderer */,
 				7ADF914223E6D3080094C83D /* Application */,
 				7ADF910F23E6CA810094C83D /* Products */,
 				7ADF914323E6D36A0094C83D /* Frameworks */,
@@ -100,10 +117,23 @@
 		7ADF914323E6D36A0094C83D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7ADF915223E704E00094C83D /* MetalKit.framework */,
+				7ADF915023E704DA0094C83D /* Metal.framework */,
+				7ADF914E23E704D10094C83D /* MetalKit.framework */,
+				7ADF914C23E704CB0094C83D /* Metal.framework */,
 				7ADF914623E6D3B80094C83D /* UIKit.framework */,
 				7ADF914423E6D36B0094C83D /* Cocoa.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7ADF916123E7071F0094C83D /* Renderer */ = {
+			isa = PBXGroup;
+			children = (
+				7ADF916223E707580094C83D /* MetalRenderer.h */,
+				7ADF916323E707580094C83D /* MetalRenderer.mm */,
+			);
+			path = Renderer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7ADF916423E707580094C83D /* MetalRenderer.mm in Sources */,
 				7ADF914023E6D07A0094C83D /* main.mm in Sources */,
 				7ADF911323E6CA810094C83D /* AppDelegateIOS.mm in Sources */,
 			);
@@ -209,6 +240,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7ADF916523E707580094C83D /* MetalRenderer.mm in Sources */,
 				7ADF914123E6D07A0094C83D /* main.mm in Sources */,
 				7ADF912823E6CA810094C83D /* AppDelegateOSX.mm in Sources */,
 			);

@@ -6,12 +6,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MetalKit/MetalKit.h>
+#import "MetalRenderer.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
-    UIView* mView;
+    MTKView *mView;
     UIWindow *mWindow;
     UIViewController *mViewController;
+    MetalRenderer *mRenderer;
 }
 
 @property (strong, nonatomic) UIWindow *window;

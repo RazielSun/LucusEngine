@@ -6,12 +6,15 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <MetalKit/MetalKit.h>
+#import "MetalRenderer.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 {
-    NSView* _view;
+    MTKView* _view;
     NSViewController* _viewController;
     NSWindow* _window;
+    MetalRenderer *_renderer;
 }
 
 @end

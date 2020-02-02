@@ -14,8 +14,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    id<MTLDevice> device = MTLCreateSystemDefaultDevice();
+    
     CGRect bounds = [[UIScreen mainScreen] bounds];
-    mView = [[UIView alloc] initWithFrame:bounds];
+    mView = [[MTKView alloc] initWithFrame:bounds device:device];
+    
+    mRenderer = [[MetalRenderer alloc] initWithMTKView:mView];
+    mView.delegate = mRenderer;
     
     mViewController = [[UIViewController alloc] init];
     mViewController.view = mView;

@@ -11,8 +11,13 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     
+    id<MTLDevice> device = MTLCreateSystemDefaultDevice();
+    
     NSRect bounds = NSMakeRect(0, 0, 1280, 720);
-    _view = [[NSView alloc] initWithFrame:bounds];
+    _view = [[MTKView alloc] initWithFrame:bounds device:device];
+    
+    _renderer = [[MetalRenderer alloc] initWithMTKView:_view];
+    _view.delegate = _renderer;
     
     _viewController = [[NSViewController alloc] init];
     _viewController.view = _view;
