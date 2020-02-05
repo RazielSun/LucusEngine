@@ -3,6 +3,7 @@
 //
 
 #include "pch.h"
+#include "DXRenderer.h"
 
 #include <ppltasks.h>
 
@@ -41,6 +42,8 @@ namespace Lucus
             CoreApplication::Suspending += ref new EventHandler<SuspendingEventArgs^>(this, &ViewProvider::OnSuspending);
 
             CoreApplication::Resuming += ref new EventHandler<Platform::Object^>(this, &ViewProvider::OnResuming);
+
+            m_renderer = std::make_shared<DX::DXRenderer>();
         }
 
 		virtual void SetWindow(CoreWindow^ window)
@@ -58,14 +61,13 @@ namespace Lucus
             currentDisplayInformation->OrientationChanged += ref new TypedEventHandler<DisplayInformation^, Object^>(this, &ViewProvider::OnOrientationChanged);
 
             DisplayInformation::DisplayContentsInvalidated += ref new TypedEventHandler<DisplayInformation^, Object^>(this, &ViewProvider::OnDisplayContentsInvalidated);
+            
+            m_renderer->CreateDeviceResources();
+            m_renderer->SetWindow(window);
         }
 
 		virtual void Load(Platform::String^ entryPoint)
         {
-            // if (m_main == nullptr)
-            // {
-            // 	m_main = std::unique_ptr<DirectX12TemplateMain>(new DirectX12TemplateMain());
-            // }
         }
 
 		virtual void Run()
@@ -74,6 +76,8 @@ namespace Lucus
             {
                 if (m_windowVisible)
                 {
+                    m_renderer->Tick();
+
                     CoreWindow::GetForCurrentThread()->Dispatcher->ProcessEvents(CoreProcessEventsOption::ProcessAllIfPresent);
 
                     // auto commandQueue = GetDeviceResources()->GetCommandQueue();
@@ -204,8 +208,7 @@ namespace Lucus
 // 	return m_deviceResources;
 // }
 
-		// std::shared_ptr<DeviceResources> m_deviceResources;
-		// std::unique_ptr<DirectX12TemplateMain> m_main;
+		std::shared_ptr<DX::DXRenderer> m_renderer;
 		bool m_windowClosed;
 		bool m_windowVisible;
 		

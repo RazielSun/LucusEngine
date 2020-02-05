@@ -9,20 +9,22 @@
 
 #include <wrl.h>
 
-// #include <dxgi1_6.h>
-// #include <d3d12.h>
+#include <dxgi1_4.h>
+#include <d3d12.h>
 // #include <DirectXMath.h>
 // #include <DirectXColors.h>
 
-// #include "d3dx12.h"
+#include "d3dx12.h"
 
 #include <algorithm>
 #include <memory> // for shared_ptr and etc
-#include <stdexcept> // out_of_range
+// #include <stdexcept> // out_of_range
+#include <chrono> // for time
+#include <agile.h>
 
-// #ifdef _DEBUG
-// #include <dxgidebug.h>
-// #endif
+//  #ifdef _DEBUG
+//  #include <dxgidebug.h>
+//  #endif
 
 namespace DX
 {
