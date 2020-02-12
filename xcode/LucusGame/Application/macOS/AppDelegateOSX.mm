@@ -6,18 +6,40 @@
 //
 
 #import "AppDelegateOSX.h"
+#import <MetalKit/MetalKit.h>
+//#import "MetalRenderer.h"
+//#import "MetalView.h"
+
+#include "host.h"
+#include "MetalView.h"
+
+//#include "LucusCore.h"
+//#include "MetalRenderSystem.h"
+
+@interface AppDelegate()
+{
+    NSViewController* _viewController;
+    NSWindow* _window;
+    MetalView* _view;
+//    MetalRenderer *_renderer;
+}
+
+@end
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     
-    id<MTLDevice> device = MTLCreateSystemDefaultDevice();
+    // Init Engine
+    AKUCoreCreate();
     
-    NSRect bounds = NSMakeRect(0, 0, 1280, 720);
-    _view = [[MTKView alloc] initWithFrame:bounds device:device];
+    NSUInteger width = 1280;
+    NSUInteger height = 720;
     
-    _renderer = [[MetalRenderer alloc] initWithMTKView:_view];
-    _view.delegate = _renderer;
+    _view = [[MetalView alloc] initMetalViewWithWidth:width height:height];
+    
+//    _renderer = [[MetalRenderer alloc] initWithMTKView:_view];
+//    _view.delegate = _renderer;
     
     _viewController = [[NSViewController alloc] init];
     _viewController.view = _view;

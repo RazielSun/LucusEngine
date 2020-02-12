@@ -7,6 +7,22 @@
 
 #import "AppDelegateIOS.h"
 
+#include "host.h"
+#include "MetalView.h"
+
+//#import <MetalKit/MetalKit.h>
+//#import "MetalRenderer.h"
+
+@interface AppDelegate()
+{
+    MetalView *mView;
+    UIWindow *mWindow;
+    UIViewController *mViewController;
+//    MetalRenderer *mRenderer;
+}
+
+@end
+
 @implementation AppDelegate
 
 @synthesize window = mWindow;
@@ -14,13 +30,27 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    id<MTLDevice> device = MTLCreateSystemDefaultDevice();
+    // Init Engine
+    AKUCoreCreate();
+        
+    NSUInteger width = 1280;
+    NSUInteger height = 720;
     
-    CGRect bounds = [[UIScreen mainScreen] bounds];
-    mView = [[MTKView alloc] initWithFrame:bounds device:device];
-    
-    mRenderer = [[MetalRenderer alloc] initWithMTKView:mView];
-    mView.delegate = mRenderer;
+    mView = [[MetalView alloc] initMetalViewWithWidth:width height:height];
+        
+    //    _renderer = [[MetalRenderer alloc] initWithMTKView:_view];
+    //    _view.delegate = _renderer;
+        
+//        _viewController = [[NSViewController alloc] init];
+//        _viewController.view = _view;
+//
+//    id<MTLDevice> device = MTLCreateSystemDefaultDevice();
+//
+//    CGRect bounds = [[UIScreen mainScreen] bounds];
+//    mView = [[MTKView alloc] initWithFrame:bounds device:device];
+//
+//    mRenderer = [[MetalRenderer alloc] initWithMTKView:mView];
+//    mView.delegate = mRenderer;
     
     mViewController = [[UIViewController alloc] init];
     mViewController.view = mView;
