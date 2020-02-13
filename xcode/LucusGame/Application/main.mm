@@ -7,13 +7,11 @@
 
 #if defined(TARGET_IOS)
 #import <UIKit/UIKit.h>
-#import "AppDelegateIOS.h"
 #else
 #import <Cocoa/Cocoa.h>
-#import "AppDelegateOSX.h"
 #endif
 
-
+#import "AppDelegate.h"
 
 #if defined(TARGET_IOS)
 

@@ -7,6 +7,9 @@
 #ifndef _LUCUS_ENGINE_RENDER_SYSTEM_H
 #define _LUCUS_ENGINE_RENDER_SYSTEM_H
 
+#include "LucusTypes.h"
+#include "LucusWindow.h"
+
 namespace LucusEngine
 {
 	class RenderSystem
@@ -15,11 +18,11 @@ namespace LucusEngine
 		RenderSystem();
 		virtual ~RenderSystem();
         
-        virtual void Init() = 0;
+        virtual Window* CreateWindow(u32 width, u32 height) = 0;
         virtual void Render() = 0;
 
 	protected:
-		//
+        WindowVector mWindows;
 	};
 }
 

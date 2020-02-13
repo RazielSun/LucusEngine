@@ -12,7 +12,7 @@
 
 @interface MetalView : MTKView
 
-- (nonnull instancetype)initMetalViewWithWidth:(NSUInteger)width height:(NSUInteger)height;
+- (nonnull instancetype)initWithFrame:(CGRect)frameRect device:(nullable id<MTLDevice>)device;
 
 - (void)renderInView;
 - (void)changeViewWidth:(NSUInteger)width height:(NSUInteger)height;

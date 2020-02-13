@@ -16,8 +16,14 @@
 		7A0C0DDD23F338BC00DE0B7D /* host.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A0C0DDB23F338BC00DE0B7D /* host.cpp */; };
 		7A0C0DE123F3CAAF00DE0B7D /* MetalView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7A0C0DE023F3CAAF00DE0B7D /* MetalView.mm */; };
 		7A0C0DE223F3CAB500DE0B7D /* MetalView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7A0C0DE023F3CAAF00DE0B7D /* MetalView.mm */; };
-		7ADF911323E6CA810094C83D /* AppDelegateIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7ADF911223E6CA810094C83D /* AppDelegateIOS.mm */; };
-		7ADF912823E6CA810094C83D /* AppDelegateOSX.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7ADF912723E6CA810094C83D /* AppDelegateOSX.mm */; };
+		7A0C0DE823F4812B00DE0B7D /* LucusWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A0C0DE623F4812B00DE0B7D /* LucusWindow.cpp */; };
+		7A0C0DE923F4812B00DE0B7D /* LucusWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A0C0DE623F4812B00DE0B7D /* LucusWindow.cpp */; };
+		7A0C0DED23F483E200DE0B7D /* MetalWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7A0C0DEB23F483E200DE0B7D /* MetalWindow.mm */; };
+		7A0C0DEE23F483E200DE0B7D /* MetalWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7A0C0DEB23F483E200DE0B7D /* MetalWindow.mm */; };
+		7A0C0DF123F4850500DE0B7D /* MetalDevice.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7A0C0DEF23F4850500DE0B7D /* MetalDevice.mm */; };
+		7A0C0DF223F4850500DE0B7D /* MetalDevice.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7A0C0DEF23F4850500DE0B7D /* MetalDevice.mm */; };
+		7A324B5B23F5CEF8000C49DB /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7A324B5A23F5CEF8000C49DB /* AppDelegate.mm */; };
+		7A324B5C23F5CEF8000C49DB /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7A324B5A23F5CEF8000C49DB /* AppDelegate.mm */; };
 		7ADF914023E6D07A0094C83D /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7ADF913F23E6D07A0094C83D /* main.mm */; };
 		7ADF914123E6D07A0094C83D /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7ADF913F23E6D07A0094C83D /* main.mm */; };
 		7ADF914523E6D36B0094C83D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADF914423E6D36B0094C83D /* Cocoa.framework */; };
@@ -26,8 +32,6 @@
 		7ADF914F23E704D10094C83D /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADF914E23E704D10094C83D /* MetalKit.framework */; };
 		7ADF915123E704DA0094C83D /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADF915023E704DA0094C83D /* Metal.framework */; };
 		7ADF915323E704E00094C83D /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADF915223E704E00094C83D /* MetalKit.framework */; };
-		7ADF916423E707580094C83D /* MetalRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7ADF916323E707580094C83D /* MetalRenderer.mm */; };
-		7ADF916523E707580094C83D /* MetalRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7ADF916323E707580094C83D /* MetalRenderer.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,13 +46,18 @@
 		7A0C0DDC23F338BC00DE0B7D /* host.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = host.h; sourceTree = "<group>"; };
 		7A0C0DDF23F3CAAF00DE0B7D /* MetalView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MetalView.h; sourceTree = "<group>"; };
 		7A0C0DE023F3CAAF00DE0B7D /* MetalView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MetalView.mm; sourceTree = "<group>"; };
+		7A0C0DE623F4812B00DE0B7D /* LucusWindow.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LucusWindow.cpp; sourceTree = "<group>"; };
+		7A0C0DE723F4812B00DE0B7D /* LucusWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LucusWindow.h; sourceTree = "<group>"; };
+		7A0C0DEA23F4815200DE0B7D /* LucusTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LucusTypes.h; sourceTree = "<group>"; };
+		7A0C0DEB23F483E200DE0B7D /* MetalWindow.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MetalWindow.mm; sourceTree = "<group>"; };
+		7A0C0DEC23F483E200DE0B7D /* MetalWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MetalWindow.h; sourceTree = "<group>"; };
+		7A0C0DEF23F4850500DE0B7D /* MetalDevice.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MetalDevice.mm; sourceTree = "<group>"; };
+		7A0C0DF023F4850500DE0B7D /* MetalDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MetalDevice.h; sourceTree = "<group>"; };
+		7A324B5923F5CEF8000C49DB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7A324B5A23F5CEF8000C49DB /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		7ADF910E23E6CA810094C83D /* LucusGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LucusGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7ADF911123E6CA810094C83D /* AppDelegateIOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegateIOS.h; sourceTree = "<group>"; };
-		7ADF911223E6CA810094C83D /* AppDelegateIOS.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegateIOS.mm; sourceTree = "<group>"; };
 		7ADF911D23E6CA810094C83D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7ADF912423E6CA810094C83D /* LucusGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LucusGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7ADF912623E6CA810094C83D /* AppDelegateOSX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegateOSX.h; sourceTree = "<group>"; };
-		7ADF912723E6CA810094C83D /* AppDelegateOSX.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegateOSX.mm; sourceTree = "<group>"; };
 		7ADF912F23E6CA810094C83D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7ADF913F23E6D07A0094C83D /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		7ADF914423E6D36B0094C83D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -57,8 +66,6 @@
 		7ADF914E23E704D10094C83D /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.2.sdk/System/Library/Frameworks/MetalKit.framework; sourceTree = DEVELOPER_DIR; };
 		7ADF915023E704DA0094C83D /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		7ADF915223E704E00094C83D /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
-		7ADF916223E707580094C83D /* MetalRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MetalRenderer.h; sourceTree = "<group>"; };
-		7ADF916323E707580094C83D /* MetalRenderer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MetalRenderer.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +100,7 @@
 				7A0C0DC323F1E83600DE0B7D /* LucusCore.h */,
 				7A0C0DC423F1E83600DE0B7D /* LucusCore.cpp */,
 				7A0C0DC523F1E83600DE0B7D /* LucusSingleton.h */,
+				7A0C0DEA23F4815200DE0B7D /* LucusTypes.h */,
 			);
 			name = "lucus-core";
 			path = "../../src/lucus-core";
@@ -104,6 +112,8 @@
 				7A0C0DCD23F1EBFD00DE0B7D /* Metal */,
 				7A0C0DC923F1E84200DE0B7D /* LucusRenderSystem.h */,
 				7A0C0DCA23F1E84200DE0B7D /* LucusRenderSystem.cpp */,
+				7A0C0DE723F4812B00DE0B7D /* LucusWindow.h */,
+				7A0C0DE623F4812B00DE0B7D /* LucusWindow.cpp */,
 			);
 			name = "lucus-render";
 			path = "../../src/lucus-render";
@@ -115,6 +125,10 @@
 				7A0C0DDE23F3CA8700DE0B7D /* Windowing */,
 				7A0C0DCF23F1EC1400DE0B7D /* MetalRenderSystem.h */,
 				7A0C0DCE23F1EC1400DE0B7D /* MetalRenderSystem.mm */,
+				7A0C0DEC23F483E200DE0B7D /* MetalWindow.h */,
+				7A0C0DEB23F483E200DE0B7D /* MetalWindow.mm */,
+				7A0C0DF023F4850500DE0B7D /* MetalDevice.h */,
+				7A0C0DEF23F4850500DE0B7D /* MetalDevice.mm */,
 			);
 			path = Metal;
 			sourceTree = "<group>";
@@ -133,7 +147,6 @@
 			children = (
 				7A0C0DC223F1E83600DE0B7D /* lucus-core */,
 				7A0C0DC823F1E84200DE0B7D /* lucus-render */,
-				7ADF916123E7071F0094C83D /* Renderer */,
 				7ADF914223E6D3080094C83D /* Application */,
 				7ADF910F23E6CA810094C83D /* Products */,
 				7ADF914323E6D36A0094C83D /* Frameworks */,
@@ -152,8 +165,6 @@
 		7ADF911023E6CA810094C83D /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				7ADF911123E6CA810094C83D /* AppDelegateIOS.h */,
-				7ADF911223E6CA810094C83D /* AppDelegateIOS.mm */,
 				7ADF911D23E6CA810094C83D /* Info.plist */,
 			);
 			path = iOS;
@@ -162,8 +173,6 @@
 		7ADF912523E6CA810094C83D /* macOS */ = {
 			isa = PBXGroup;
 			children = (
-				7ADF912623E6CA810094C83D /* AppDelegateOSX.h */,
-				7ADF912723E6CA810094C83D /* AppDelegateOSX.mm */,
 				7ADF912F23E6CA810094C83D /* Info.plist */,
 			);
 			path = macOS;
@@ -173,6 +182,8 @@
 			isa = PBXGroup;
 			children = (
 				7ADF913F23E6D07A0094C83D /* main.mm */,
+				7A324B5923F5CEF8000C49DB /* AppDelegate.h */,
+				7A324B5A23F5CEF8000C49DB /* AppDelegate.mm */,
 				7ADF911023E6CA810094C83D /* iOS */,
 				7ADF912523E6CA810094C83D /* macOS */,
 			);
@@ -190,15 +201,6 @@
 				7ADF914423E6D36B0094C83D /* Cocoa.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		7ADF916123E7071F0094C83D /* Renderer */ = {
-			isa = PBXGroup;
-			children = (
-				7ADF916223E707580094C83D /* MetalRenderer.h */,
-				7ADF916323E707580094C83D /* MetalRenderer.mm */,
-			);
-			path = Renderer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,11 +297,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A324B5B23F5CEF8000C49DB /* AppDelegate.mm in Sources */,
 				7A0C0DCB23F1E84200DE0B7D /* LucusRenderSystem.cpp in Sources */,
-				7ADF916423E707580094C83D /* MetalRenderer.mm in Sources */,
 				7A0C0DD023F1EC1400DE0B7D /* MetalRenderSystem.mm in Sources */,
 				7ADF914023E6D07A0094C83D /* main.mm in Sources */,
-				7ADF911323E6CA810094C83D /* AppDelegateIOS.mm in Sources */,
+				7A0C0DED23F483E200DE0B7D /* MetalWindow.mm in Sources */,
+				7A0C0DE823F4812B00DE0B7D /* LucusWindow.cpp in Sources */,
+				7A0C0DF123F4850500DE0B7D /* MetalDevice.mm in Sources */,
 				7A0C0DC623F1E83600DE0B7D /* LucusCore.cpp in Sources */,
 				7A0C0DE223F3CAB500DE0B7D /* MetalView.mm in Sources */,
 			);
@@ -310,12 +314,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A0C0DCC23F1E84200DE0B7D /* LucusRenderSystem.cpp in Sources */,
-				7ADF916523E707580094C83D /* MetalRenderer.mm in Sources */,
+				7A0C0DEE23F483E200DE0B7D /* MetalWindow.mm in Sources */,
 				7A0C0DDD23F338BC00DE0B7D /* host.cpp in Sources */,
+				7A0C0DE923F4812B00DE0B7D /* LucusWindow.cpp in Sources */,
 				7A0C0DE123F3CAAF00DE0B7D /* MetalView.mm in Sources */,
 				7A0C0DD123F1EC1400DE0B7D /* MetalRenderSystem.mm in Sources */,
 				7ADF914123E6D07A0094C83D /* main.mm in Sources */,
-				7ADF912823E6CA810094C83D /* AppDelegateOSX.mm in Sources */,
+				7A324B5C23F5CEF8000C49DB /* AppDelegate.mm in Sources */,
+				7A0C0DF223F4850500DE0B7D /* MetalDevice.mm in Sources */,
 				7A0C0DC723F1E83600DE0B7D /* LucusCore.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

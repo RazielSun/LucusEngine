@@ -16,8 +16,10 @@ namespace LucusEngine
 void AKUCoreCreate();
 void AKUCoreDestroy();
 
-void AKUUpdate();
-void AKURender();
+void AKUStartCoreLoop();
+void AKUTick();
+//void AKUUpdate();
+//void AKURender();
 
 void AKUSetRenderSystem(LucusEngine::RenderSystem* system);
 void AKUChangeViewSize(int width, int height);

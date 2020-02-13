@@ -22,9 +22,13 @@ namespace LucusEngine
         static Core* GetPtr();
         
         void SetRenderSystem(RenderSystem* system);
-        void Render();
+        
+        void StartCoreLoop();
+        
+        void Tick();
 
 	protected:
+        bool mIsActive = false;
 		
         RenderSystem* mActiveRenderSystem;
 	};

@@ -9,11 +9,8 @@
 #define _METAL_RENDER_SYSTEM_H
 
 #include "LucusRenderSystem.h"
-#include "MetalView.h"
-
-#include <Metal/MTLDevice.h>
-#include <Metal/MTLCommandQueue.h>
-
+#include "MetalWindow.h"
+#include "MetalDevice.h"
 
 namespace LucusEngine
 {
@@ -23,18 +20,15 @@ namespace LucusEngine
 		MetalRenderSystem();
 		virtual ~MetalRenderSystem();
         
-        virtual void Init() override;
+        virtual Window* CreateWindow(u32 width, u32 height) override;
         virtual void Render() override;
         
-        void RegisterView(MetalView* view);
-    
-        id<MTLDevice> mDevice;
-        id<MTLCommandQueue> mCommandQueue;
-        
     protected:
-        MetalView* mView;
+        MetalWindow* mWindow;
         
-        bool mSystemReady = false;
+        MetalDevice mDevice;
+        
+//        bool mSystemReady = false;
     };
 }
 

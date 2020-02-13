@@ -28,17 +28,25 @@ Core* Core::GetPtr()
 void Core::SetRenderSystem(RenderSystem* system)
 {
     mActiveRenderSystem = system;
-    
-//    if (mActiveRenderSystem != nullptr)
-//    {
-//        mActiveRenderSystem->InitWindow();
-//    }
 }
 
-void Core::Render()
+void Core::Tick()
 {
     if (mActiveRenderSystem != nullptr)
     {
         mActiveRenderSystem->Render();
+    }
+}
+
+void Core::StartCoreLoop()
+{
+    mIsActive = true;
+    
+    while(mIsActive)
+    {
+        if (mActiveRenderSystem != nullptr)
+        {
+            mActiveRenderSystem->Render();
+        }
     }
 }

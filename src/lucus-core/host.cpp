@@ -16,22 +16,44 @@ void AKUCoreCreate()
 
 void AKUCoreDestroy()
 {
-    //
+    LucusEngine::Core* core = new LucusEngine::Core();
+    if (core)
+    {
+        delete core;
+    }
 }
 
-void AKUUpdate()
-{
-    //
-}
-
-void AKURender()
+void AKUStartCoreLoop()
 {
     LucusEngine::Core* core = LucusEngine::Core::GetPtr();
     if (core != nullptr)
     {
-        core->Render();
+        core->StartCoreLoop();
     }
 }
+
+void AKUTick()
+{
+    LucusEngine::Core* core = LucusEngine::Core::GetPtr();
+    if (core != nullptr)
+    {
+        core->Tick();
+    }
+}
+
+//void AKUUpdate()
+//{
+//    //
+//}
+//
+//void AKURender()
+//{
+//    LucusEngine::Core* core = LucusEngine::Core::GetPtr();
+//    if (core != nullptr)
+//    {
+//        core->Render();
+//    }
+//}
 
 void AKUSetRenderSystem(LucusEngine::RenderSystem* system)
 {
