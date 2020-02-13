@@ -19,6 +19,8 @@ namespace LucusEngine
         Window(u32 width, u32 height);
         virtual ~Window();
         
+        virtual void ChangeViewportSize(u32 width, u32 height) = 0;
+        
     protected:
         u32 mWidth;
         u32 mHeight;

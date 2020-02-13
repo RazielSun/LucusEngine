@@ -12,6 +12,8 @@
 #include "MetalWindow.h"
 #include "MetalDevice.h"
 
+#include <Metal/MTLRenderPipeline.h>
+
 namespace LucusEngine
 {
     class MetalRenderSystem: public RenderSystem
@@ -21,12 +23,17 @@ namespace LucusEngine
 		virtual ~MetalRenderSystem();
         
         virtual Window* CreateWindow(u32 width, u32 height) override;
+        virtual void CreateBuffers() override;
         virtual void Render() override;
+        
+        virtual void ChangeViewportSize(u32 width, u32 height) override;
         
     protected:
         MetalWindow* mWindow;
         
         MetalDevice mDevice;
+        
+        id<MTLRenderPipelineState> mPipelineState;
         
 //        bool mSystemReady = false;
     };

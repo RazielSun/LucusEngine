@@ -40,30 +40,9 @@ static AppDelegate* mInstance = nil;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Init Engine
-    AKUCoreCreate();
-        
-    NSUInteger width = 1280;
-    NSUInteger height = 720;
+//    AKUCoreCreate();
     
-//    CGRect frame = [UIScreen]
-    
-//    mView = [[MetalView alloc] initMetalViewWithWidth:width height:height];
-        
-    //    _renderer = [[MetalRenderer alloc] initWithMTKView:_view];
-    //    _view.delegate = _renderer;
-        
-//        _viewController = [[NSViewController alloc] init];
-//        _viewController.view = _view;
-//
-//    id<MTLDevice> device = MTLCreateSystemDefaultDevice();
-//
-//    CGRect bounds = [[UIScreen mainScreen] bounds];
-//    mView = [[MTKView alloc] initWithFrame:bounds device:device];
-//
-//    mRenderer = [[MetalRenderer alloc] initWithMTKView:mView];
-//    mView.delegate = mRenderer;
-    
-    CGRect frame = CGRectMake(0, 0, width, height);
+    CGRect frame = [[UIScreen mainScreen] bounds];
     
     RootView = [[UIView alloc] initWithFrame:frame];
     
@@ -73,6 +52,9 @@ static AppDelegate* mInstance = nil;
     Window = [[UIWindow alloc] init];
     Window.rootViewController = RootVC;
     [Window makeKeyAndVisible];
+    
+    // Create MetalView
+    // Setup RenderSystem
     
     return YES;
 }

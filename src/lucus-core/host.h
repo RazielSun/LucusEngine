@@ -8,6 +8,8 @@
 #ifndef _LUCUS_ENGINE_HOST_H
 #define _LUCUS_ENGINE_HOST_H
 
+#include "LucusTypes.h"
+
 namespace LucusEngine
 {
     class RenderSystem;
@@ -22,6 +24,6 @@ void AKUTick();
 //void AKURender();
 
 void AKUSetRenderSystem(LucusEngine::RenderSystem* system);
-void AKUChangeViewSize(int width, int height);
+void AKUChangeViewportSize(u32 width, u32 height);
 
 #endif /* _LUCUS_ENGINE_HOST_H */

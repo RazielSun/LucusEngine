@@ -64,7 +64,11 @@ void AKUSetRenderSystem(LucusEngine::RenderSystem* system)
     }
 }
 
-void AKUChangeViewSize(int width, int height)
+void AKUChangeViewportSize(u32 width, u32 height)
 {
-    //
+    LucusEngine::Core* core = LucusEngine::Core::GetPtr();
+    if (core != nullptr)
+    {
+        core->ChangeViewportSize(width, height);
+    }
 }

@@ -44,3 +44,12 @@ MetalWindow::~MetalWindow()
     mCurrentDrawable = 0;
     mMetalLayer = 0;
 }
+
+void MetalWindow::ChangeViewportSize(u32 width, u32 height)
+{
+    // Change here viewport size for Window and View
+    
+    // CAMetalLayer drawableSize = width/ height
+    
+    // MetalView change buffers automatically with autoresizing mask properties
+}

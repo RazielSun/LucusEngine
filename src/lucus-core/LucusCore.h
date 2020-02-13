@@ -7,6 +7,7 @@
 #ifndef _LUCUS_ENGINE_CORE_H
 #define _LUCUS_ENGINE_CORE_H
 
+#include "LucusTypes.h"
 #include "LucusSingleton.h"
 #include "LucusRenderSystem.h"
 
@@ -22,6 +23,8 @@ namespace LucusEngine
         static Core* GetPtr();
         
         void SetRenderSystem(RenderSystem* system);
+        
+        void ChangeViewportSize(u32 width, u32 height);
         
         void StartCoreLoop();
         

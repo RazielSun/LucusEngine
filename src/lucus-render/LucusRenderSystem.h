@@ -19,7 +19,10 @@ namespace LucusEngine
 		virtual ~RenderSystem();
         
         virtual Window* CreateWindow(u32 width, u32 height) = 0;
+        virtual void CreateBuffers() = 0;
         virtual void Render() = 0;
+        
+        virtual void ChangeViewportSize(u32 width, u32 height) = 0;
 
 	protected:
         WindowVector mWindows;

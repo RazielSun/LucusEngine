@@ -26,6 +26,8 @@ namespace LucusEngine
         MetalWindow(u32 width, u32 height, MetalDevice* device);
         virtual ~MetalWindow();
         
+        virtual void ChangeViewportSize(u32 width, u32 height) override;
+        
     public:
         MetalView* mView;
         

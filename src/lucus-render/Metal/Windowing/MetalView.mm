@@ -16,7 +16,11 @@
     self = [super initWithFrame:frameRect device:device];
     if (self)
     {
-        //
+#if defined(TARGET_IOS)
+        [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+#elif defined(TARGET_OSX)
+        [self setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
+#endif
     }
     return self;
 }
@@ -30,7 +34,7 @@
 
 - (void)changeViewWidth:(NSUInteger)width height:(NSUInteger)height
 {
-//    AKUChangeViewSize(width, height);
+    AKUChangeViewportSize((u32)width, (u32)height);
 }
 
 #if defined(TARGET_IOS)
