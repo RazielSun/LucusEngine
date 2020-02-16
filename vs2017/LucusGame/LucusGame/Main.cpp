@@ -2,8 +2,8 @@
 // 
 //
 
-#include "pch.h"
-#include "DXRenderer.h"
+#include "host.h"
+#include "DirectX12/LucusD3D12RenderSystem.h"
 
 #include <ppltasks.h>
 
@@ -43,7 +43,12 @@ namespace Lucus
 
             CoreApplication::Resuming += ref new EventHandler<Platform::Object^>(this, &ViewProvider::OnResuming);
 
-            m_renderer = std::make_shared<DX::DXRenderer>();
+            AKUCoreCreate();
+
+            LucusEngine::D3D12RenderSystem* renderSystem = new LucusEngine::D3D12RenderSystem();
+            m_renderSystem = renderSystem;
+
+            AKUSetRenderSystem(static_cast<LucusEngine::RenderSystem*>(renderSystem));
         }
 
 		virtual void SetWindow(CoreWindow^ window)
@@ -61,9 +66,13 @@ namespace Lucus
             currentDisplayInformation->OrientationChanged += ref new TypedEventHandler<DisplayInformation^, Object^>(this, &ViewProvider::OnOrientationChanged);
 
             DisplayInformation::DisplayContentsInvalidated += ref new TypedEventHandler<DisplayInformation^, Object^>(this, &ViewProvider::OnDisplayContentsInvalidated);
+
+			//window->
             
-            m_renderer->CreateDeviceResources();
-            m_renderer->SetWindow(window);
+			if (m_renderSystem)
+			{
+				m_renderSystem->SetCoreWindow(window);
+			}
         }
 
 		virtual void Load(Platform::String^ entryPoint)
@@ -76,9 +85,9 @@ namespace Lucus
             {
                 if (m_windowVisible)
                 {
-                    m_renderer->Tick();
-
                     CoreWindow::GetForCurrentThread()->Dispatcher->ProcessEvents(CoreProcessEventsOption::ProcessAllIfPresent);
+
+					AKUTick();
 
                     // auto commandQueue = GetDeviceResources()->GetCommandQueue();
                     // PIXBeginEvent(commandQueue, 0, L"Update");
@@ -105,6 +114,9 @@ namespace Lucus
 
 		virtual void Uninitialize()
         {
+			m_renderSystem = nullptr;
+
+            AKUCoreDestroy();
         }
 
 	protected:
@@ -208,10 +220,10 @@ namespace Lucus
 // 	return m_deviceResources;
 // }
 
-		std::shared_ptr<DX::DXRenderer> m_renderer;
+        LucusEngine::D3D12RenderSystem* m_renderSystem;
+
 		bool m_windowClosed;
 		bool m_windowVisible;
-		
 	};
 
     ref class ViewProviderFactory sealed : IFrameworkViewSource

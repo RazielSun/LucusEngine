@@ -5,16 +5,83 @@
       <UniqueIdentifier>772a2456-77fb-440e-b445-4ee08c8eea09</UniqueIdentifier>
       <Extensions>bmp;fbx;gif;jpg;jpeg;tga;tiff;tif;png</Extensions>
     </Filter>
+    <Filter Include="lucus-core">
+      <UniqueIdentifier>{953d7fa6-e70b-40ec-9f6f-06315a81d2ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lucus-render">
+      <UniqueIdentifier>{e66b7865-c705-4a64-aee1-efb6971e749e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lucus-render\DirectX12">
+      <UniqueIdentifier>{b47ed00b-f4a4-4b3e-83c7-1833050790e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lucus-sim">
+      <UniqueIdentifier>{17856899-df62-4e8a-90e9-7eb725789cd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="d3d12">
+      <UniqueIdentifier>{53a294a5-ba88-44f4-9a82-079a9d53e5c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DeviceResources.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="..\..\..\src\lucus-core\host.cpp">
+      <Filter>lucus-core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-core\LucusCore.cpp">
+      <Filter>lucus-core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-render\LucusRenderSystem.cpp">
+      <Filter>lucus-render</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="..\..\..\src\lucus-render\LucusRenderWindow.cpp">
+      <Filter>lucus-render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12Device.cpp">
+      <Filter>lucus-render\DirectX12</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12RenderSystem.cpp">
+      <Filter>lucus-render\DirectX12</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12Window.cpp">
+      <Filter>lucus-render\DirectX12</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="d3dx12.h" />
-    <ClInclude Include="DeviceResources.h" />
-    <ClInclude Include="pch.h" />
+    <ClInclude Include="..\..\..\src\lucus-core\host.h">
+      <Filter>lucus-core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-core\LucusCore.h">
+      <Filter>lucus-core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-core\LucusSingleton.h">
+      <Filter>lucus-core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-core\LucusTypes.h">
+      <Filter>lucus-core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-render\LucusRenderSystem.h">
+      <Filter>lucus-render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-sim\LucusMath.h">
+      <Filter>lucus-sim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\d3d12\d3dx12.h">
+      <Filter>d3d12</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-render\LucusRenderWindow.h">
+      <Filter>lucus-render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12Device.h">
+      <Filter>lucus-render\DirectX12</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12Prerequisites.h">
+      <Filter>lucus-render\DirectX12</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12RenderSystem.h">
+      <Filter>lucus-render\DirectX12</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12Window.h">
+      <Filter>lucus-render\DirectX12</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\LockScreenLogo.scale-200.png">

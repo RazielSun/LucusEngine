@@ -1,12 +1,12 @@
 //
-//  MetalDevice.hpp
+//  MetalDevice.h
 //  LucusGame
 //
 //  Created by Alexander Kardakov on 12/02/2020.
 //
 
-#ifndef _METAL_DEVICE_H
-#define _METAL_DEVICE_H
+#ifndef _LUCUS_ENGINE_METAL_DEVICE_H
+#define _LUCUS_ENGINE_METAL_DEVICE_H
 
 #include <Metal/MTLDevice.h>
 #include <Metal/MTLCommandQueue.h>
@@ -29,4 +29,4 @@ namespace LucusEngine
     };
 }
 
-#endif /* _METAL_DEVICE_H */
+#endif /* _LUCUS_ENGINE_METAL_DEVICE_H */

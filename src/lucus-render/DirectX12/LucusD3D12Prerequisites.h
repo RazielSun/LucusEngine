@@ -1,11 +1,12 @@
-﻿//
-// pch.h
+//
+//  LucusD3D12Prerequisites.h
+//  LucusGame
+//
+//  Created by Alexander Kardakov on 15/02/2020.
 //
 
-#pragma once
-
-// Use the C++ standard templated min/max
-#define NOMINMAX
+#ifndef _LUCUS_ENGINE_D3D12_PREREQUISITES_H
+#define _LUCUS_ENGINE_D3D12_PREREQUISITES_H
 
 #include <wrl.h>
 
@@ -16,15 +17,12 @@
 
 #include "d3dx12.h"
 
-#include <algorithm>
-#include <memory> // for shared_ptr and etc
-// #include <stdexcept> // out_of_range
-#include <chrono> // for time
-#include <agile.h>
-
 //  #ifdef _DEBUG
 //  #include <dxgidebug.h>
 //  #endif
+
+#include <stdio.h>
+#include <exception>
 
 namespace DX
 {
@@ -54,3 +52,5 @@ namespace DX
         }
     }
 }
+
+#endif /* _LUCUS_ENGINE_D3D12_PREREQUISITES_H */

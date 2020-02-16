@@ -5,8 +5,8 @@
 //  Created by Alexander Kardakov on 12/02/2020.
 //
 
-#include "MetalDevice.h"
-#include "MetalRenderSystem.h"
+#include "LucusMetalDevice.h"
+#include "LucusMetalRenderSystem.h"
 
 using namespace LucusEngine;
 

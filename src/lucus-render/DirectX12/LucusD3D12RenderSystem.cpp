@@ -1,27 +1,96 @@
 
-#include "pch.h"
-#include "DXRenderer.h"
+#include "LucusD3D12RenderSystem.h"
+
+#include <chrono> // for time
 
 using namespace DX;
 
 using Microsoft::WRL::ComPtr;
 
-DXRenderer::DXRenderer() :
-	m_currentFrame(0),
+using namespace LucusEngine;
+
+D3D12RenderSystem::D3D12RenderSystem() :
+    mDevice(this),
+    m_currentFrame(0),
 	m_rtvDescriptorSize(0),
     m_d3dMinFeatureLevel(D3D_FEATURE_LEVEL_11_0)
 {
     //
 }
 
-DXRenderer::~DXRenderer()
+D3D12RenderSystem::~D3D12RenderSystem()
 {
     //
 }
 
-void DXRenderer::Tick()
+RenderWindow* D3D12RenderSystem::CreateRenderWindow(u32 width, u32 height)
 {
-	static uint64_t frameCounter = 0;
+    // Create Device
+    CreateDeviceResources();
+
+    mWindow = new D3D12Window(width, height);
+
+    mWindows.push_back(static_cast<RenderWindow*>(mWindow));
+
+    return mWindows.front();
+}
+
+void D3D12RenderSystem::CreateBuffers()
+{
+    //
+}
+
+void D3D12RenderSystem::Render()
+{
+    // Prepare device resources
+	auto commandAllocator = m_commandAllocators[m_currentFrame];
+	auto renderTarget = m_renderTargets[m_currentFrame];
+
+	// Reset command allocator
+	commandAllocator->Reset();
+
+	// Get CommandList and reset
+	m_commandList->Reset(commandAllocator.Get(), nullptr);
+
+	// Transition render target into correct state to allow draw into it.
+	{
+		CD3DX12_RESOURCE_BARRIER barrier = CD3DX12_RESOURCE_BARRIER::Transition(renderTarget.Get(), D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
+		m_commandList->ResourceBarrier(1, &barrier);
+
+		FLOAT clearColor[] = { 1.0f, 0.0f, 0.0f, 1.0f };
+		CD3DX12_CPU_DESCRIPTOR_HANDLE rtv(m_rtvHeap->GetCPUDescriptorHandleForHeapStart(), m_currentFrame, m_rtvDescriptorSize);
+
+		// Clear render target
+    	m_commandList->ClearRenderTargetView(rtv, clearColor, 0, nullptr);
+	}
+	
+	// Sets
+
+	// Draw
+
+	// Transition render target into correct state to present.
+	CD3DX12_RESOURCE_BARRIER barrier = CD3DX12_RESOURCE_BARRIER::Transition(renderTarget.Get(), D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
+	m_commandList->ResourceBarrier(1, &barrier);
+
+	// Present
+	// Set command list off to the GPU
+	ThrowIfFailed(m_commandList->Close());
+	m_commandQueue->ExecuteCommandLists(1, CommandListCast(m_commandList.GetAddressOf()));
+
+	ThrowIfFailed(m_swapChain->Present(1, 0));
+	
+	// Next Frame
+	MoveToNextFrame();
+}
+        
+void D3D12RenderSystem::ChangeViewportSize(u32 width, u32 height)
+{
+    //
+}
+
+void D3D12RenderSystem::Tick()
+{
+    static uint64_t frameCounter = 0;
     static double elapsedSeconds = 0.0;
     static std::chrono::high_resolution_clock clock;
     static auto t0 = clock.now();
@@ -53,9 +122,9 @@ void DXRenderer::Tick()
 }
 
 // Wait for pending GPU work to complete.
-void DXRenderer::WaitForGpu()
+void D3D12RenderSystem::WaitForGpu()
 {
-	// Schedule a Signal command in the queue.
+    // Schedule a Signal command in the queue.
 	ThrowIfFailed(m_commandQueue->Signal(m_fence.Get(), m_fenceValues[m_currentFrame]));
 
 	// Wait until the fence has been crossed.
@@ -67,7 +136,7 @@ void DXRenderer::WaitForGpu()
 }
 
 // Prepare to render the next frame.
-void DXRenderer::MoveToNextFrame()
+void D3D12RenderSystem::MoveToNextFrame()
 {
     // Schedule a Signal command in the queue.
     const UINT64 currentFenceValue = m_fenceValues[m_currentFrame];
@@ -87,9 +156,9 @@ void DXRenderer::MoveToNextFrame()
     m_fenceValues[m_currentFrame] = currentFenceValue + 1;
 }
 
-void DXRenderer::CreateDeviceResources()
+void D3D12RenderSystem::CreateDeviceResources()
 {
-#if defined(_DEBUG)
+    #if defined(_DEBUG)
 	{
 		// Enable debug layer interface before create dx device
 		ComPtr<ID3D12Debug> debugController;
@@ -182,18 +251,10 @@ void DXRenderer::CreateDeviceResources()
 	}
 }
 
-// This method is called when the CoreWindow is created (or re-created).
-void DXRenderer::SetWindow(Windows::UI::Core::CoreWindow^ window)
-{
-    m_window = window;
-
-	CreateWindowSizeDependentResources();
-}
-
 // These resources need to be recreated every time the window size is changed.
-void DXRenderer::CreateWindowSizeDependentResources()
+void D3D12RenderSystem::CreateWindowSizeDependentResources()
 {
-	//if (!m_window)
+    //if (!m_window)
 	//{
 	//	throw std::exception("Call SetWindow with a valid CoreWindow pointer.");
 	//}
@@ -207,8 +268,8 @@ void DXRenderer::CreateWindowSizeDependentResources()
 		m_fenceValues[n] = m_fenceValues[m_currentFrame];
 	}
 
-	UINT backBufferWidth = static_cast<UINT>(m_window->Bounds.Width);
-	UINT backBufferHeight = static_cast<UINT>(m_window->Bounds.Height);
+	UINT backBufferWidth = static_cast<UINT>(mWindow->GetWidth());
+	UINT backBufferHeight = static_cast<UINT>(mWindow->GetHeight());
 	DXGI_FORMAT backBufferFormat = DXGI_FORMAT_B8G8R8A8_UNORM;
 
 	if (m_swapChain)
@@ -238,7 +299,7 @@ void DXRenderer::CreateWindowSizeDependentResources()
 		ComPtr<IDXGISwapChain1> swapChain;
 		ThrowIfFailed(m_dxgiFactory->CreateSwapChainForCoreWindow(
 			m_commandQueue.Get(),
-			reinterpret_cast<IUnknown*>(m_window.Get()),
+			reinterpret_cast<IUnknown*>(mWindow->mWindow.Get()),
 			&swapChainDesc,
 			nullptr,
 			swapChain.GetAddressOf()
@@ -265,51 +326,21 @@ void DXRenderer::CreateWindowSizeDependentResources()
 	}
 }
 
-// Render
-void DXRenderer::Render()
+// This method is called when the CoreWindow is created (or re-created).
+void D3D12RenderSystem::SetCoreWindow(Windows::UI::Core::CoreWindow^ window)
 {
-	// Prepare device resources
-	auto commandAllocator = m_commandAllocators[m_currentFrame];
-	auto renderTarget = m_renderTargets[m_currentFrame];
+    if (mWindow == nullptr)
+    {
+        u32 width = static_cast<u32>(window->Bounds.Width);
+        u32 height = static_cast<u32>(window->Bounds.Height);
+        CreateRenderWindow(width, height);
+    }
+    mWindow->SetCoreWindow(window);
 
-	// Reset command allocator
-	commandAllocator->Reset();
-
-	// Get CommandList and reset
-	m_commandList->Reset(commandAllocator.Get(), nullptr);
-
-	// Transition render target into correct state to allow draw into it.
-	{
-		CD3DX12_RESOURCE_BARRIER barrier = CD3DX12_RESOURCE_BARRIER::Transition(renderTarget.Get(), D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
-		m_commandList->ResourceBarrier(1, &barrier);
-
-		FLOAT clearColor[] = { 1.0f, 0.0f, 0.0f, 1.0f };
-		CD3DX12_CPU_DESCRIPTOR_HANDLE rtv(m_rtvHeap->GetCPUDescriptorHandleForHeapStart(), m_currentFrame, m_rtvDescriptorSize);
-
-		// Clear render target
-    	m_commandList->ClearRenderTargetView(rtv, clearColor, 0, nullptr);
-	}
-	
-	// Sets
-
-	// Draw
-
-	// Transition render target into correct state to present.
-	CD3DX12_RESOURCE_BARRIER barrier = CD3DX12_RESOURCE_BARRIER::Transition(renderTarget.Get(), D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
-	m_commandList->ResourceBarrier(1, &barrier);
-
-	// Present
-	// Set command list off to the GPU
-	ThrowIfFailed(m_commandList->Close());
-	m_commandQueue->ExecuteCommandLists(1, CommandListCast(m_commandList.GetAddressOf()));
-
-	ThrowIfFailed(m_swapChain->Present(1, 0));
-	
-	// Next Frame
-	MoveToNextFrame();
+	CreateWindowSizeDependentResources();
 }
 
-void DXRenderer::GetAdapter(IDXGIAdapter1** ppAdapter)
+void D3D12RenderSystem::GetAdapter(IDXGIAdapter1** ppAdapter)
 {
 	ComPtr<IDXGIAdapter1> adapter;
 	*ppAdapter = nullptr;

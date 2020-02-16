@@ -1,4 +1,5 @@
 //
+//	LucusRenderSystem.h
 //  LucusGame
 //
 //  Created by Alexander Kardakov
@@ -8,7 +9,7 @@
 #define _LUCUS_ENGINE_RENDER_SYSTEM_H
 
 #include "LucusTypes.h"
-#include "LucusWindow.h"
+#include "LucusRenderWindow.h"
 
 namespace LucusEngine
 {
@@ -18,14 +19,14 @@ namespace LucusEngine
 		RenderSystem();
 		virtual ~RenderSystem();
         
-        virtual Window* CreateWindow(u32 width, u32 height) = 0;
+        virtual RenderWindow* CreateRenderWindow(u32 width, u32 height) = 0;
         virtual void CreateBuffers() = 0;
         virtual void Render() = 0;
         
         virtual void ChangeViewportSize(u32 width, u32 height) = 0;
 
 	protected:
-        WindowVector mWindows;
+        RenderWindowVector mWindows;
 	};
 }
 

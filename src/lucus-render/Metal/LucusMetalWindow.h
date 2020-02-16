@@ -1,16 +1,16 @@
 //
-//  MetalWindow.hpp
+//  MetalWindow.h
 //  LucusGame
 //
 //  Created by Alexander Kardakov on 12/02/2020.
 //
 
-#ifndef _METAL_WINDOW_H
-#define _METAL_WINDOW_H
+#ifndef _LUCUS_ENGINE_METAL_WINDOW_H
+#define _LUCUS_ENGINE_METAL_WINDOW_H
 
-#include "LucusWindow.h"
-#include "MetalView.h"
-#include "MetalDevice.h"
+#include "LucusRenderWindow.h"
+#include "LucusMetalView.h"
+#include "LucusMetalDevice.h"
 
 #if defined(TARGET_IOS)
 #import <UIKit/UIKit.h>
@@ -20,7 +20,7 @@
 
 namespace LucusEngine
 {
-    class MetalWindow: public Window
+    class MetalWindow: public RenderWindow
     {
     public:
         MetalWindow(u32 width, u32 height, MetalDevice* device);

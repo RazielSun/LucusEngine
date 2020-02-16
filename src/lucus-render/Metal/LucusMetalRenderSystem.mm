@@ -5,7 +5,7 @@
 //  Created by Alexander Kardakov on 10/02/2020.
 //
 
-#include "MetalRenderSystem.h"
+#include "LucusMetalRenderSystem.h"
 #include "MetalShaderTypes.h"
 
 using namespace LucusEngine;
@@ -18,17 +18,17 @@ MetalRenderSystem::~MetalRenderSystem()
 {
 }
 
-Window* MetalRenderSystem::CreateWindow(u32 width, u32 height)
+RenderWindow* MetalRenderSystem::CreateRenderWindow(u32 width, u32 height)
 {
     mDevice.Init();
     
     mWindow = new MetalWindow(width, height, &mDevice);
     
-    mWindows.push_back(static_cast<Window*>(mWindow));
+    mWindows.push_back(static_cast<RenderWindow*>(mWindow));
     
     CreateBuffers();
     
-    return static_cast<Window*>(mWindow);
+    return mWindow.front();//static_cast<RenderWindow*>(mWindow);
 }
 
 void MetalRenderSystem::CreateBuffers()

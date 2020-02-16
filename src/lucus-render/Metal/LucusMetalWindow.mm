@@ -5,11 +5,11 @@
 //  Created by Alexander Kardakov on 12/02/2020.
 //
 
-#include "MetalWindow.h"
+#include "LucusMetalWindow.h"
 
 using namespace LucusEngine;
 
-MetalWindow::MetalWindow(u32 width, u32 height, MetalDevice* device) : Window(width, height)
+MetalWindow::MetalWindow(u32 width, u32 height, MetalDevice* device) : RenderWindow(width, height)
 {
     @autoreleasepool {
         CGRect frame = CGRectMake(0, 0, mWidth, mHeight);

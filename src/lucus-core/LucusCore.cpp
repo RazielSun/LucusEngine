@@ -3,7 +3,7 @@
 
 using namespace LucusEngine;
 
-template<> Core* Singleton<Core>::mInstance = 0;
+template<> Core* Singleton<Core>::mInstance = nullptr;
 
 Core::Core()
 {
@@ -12,7 +12,13 @@ Core::Core()
 
 Core::~Core()
 {
-    //
+    mInstance = nullptr;
+
+    if (mActiveRenderSystem)
+    {
+        delete mActiveRenderSystem;
+        mActiveRenderSystem = nullptr;
+    }
 }
 
 Core& Core::Get()

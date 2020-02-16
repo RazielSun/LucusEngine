@@ -1,15 +1,33 @@
+//
+//  LucusD3D12RenderSystem.h
+//  LucusGame
+//
+//  Created by Alexander Kardakov on 15/02/2020.
+//
 
-#pragma once
+#ifndef _LUCUS_ENGINE_D3D12_RENDER_SYSTEM_H
+#define _LUCUS_ENGINE_D3D12_RENDER_SYSTEM_H
 
-namespace DX
+#include "LucusD3D12Prerequisites.h"
+#include "LucusRenderSystem.h"
+#include "LucusD3D12Device.h"
+#include "LucusD3D12Window.h"
+
+namespace LucusEngine
 {
-    static const UINT c_frameCount = 3;		// Use triple buffering.
+    static const u32 c_frameCount = 3;		// Use triple buffering.
 
-    class DXRenderer
+    class D3D12RenderSystem: public RenderSystem
     {
     public:
-        DXRenderer();
-        ~DXRenderer();
+        D3D12RenderSystem();
+        virtual ~D3D12RenderSystem();
+
+        virtual RenderWindow* CreateRenderWindow(u32 width, u32 height) override;
+        virtual void CreateBuffers() override;
+        virtual void Render() override;
+        
+        virtual void ChangeViewportSize(u32 width, u32 height) override;
 
         void Tick();
         
@@ -18,13 +36,17 @@ namespace DX
 
         void CreateDeviceResources();
         void CreateWindowSizeDependentResources();
-        void SetWindow(Windows::UI::Core::CoreWindow^ window);
-    private:
-        void Render();
+        void SetCoreWindow(Windows::UI::Core::CoreWindow^ window);
 
+    public:
+        D3D12Device mDevice;
+
+        D3D12Window* mWindow;
+    
+    private:
         void GetAdapter(IDXGIAdapter1** ppAdapter);
 
-        UINT											m_currentFrame;
+        u32											    m_currentFrame;
 
         // Direct3D objects.
         Microsoft::WRL::ComPtr<ID3D12Device>            m_d3dDevice;
@@ -43,9 +65,10 @@ namespace DX
 		UINT64											m_fenceValues[c_frameCount];
 		HANDLE											m_fenceEvent;
 
-        // Cached reference to the Window.
-		Platform::Agile<Windows::UI::Core::CoreWindow>	m_window;
         D3D_FEATURE_LEVEL                               m_d3dMinFeatureLevel;
-        UINT											m_rtvDescriptorSize;
+        u32											    m_rtvDescriptorSize;
     };
 }
+
+
+#endif /* _LUCUS_ENGINE_D3D12_RENDER_SYSTEM_H */
