@@ -10,6 +10,7 @@
 
 #include "LucusD3D12Prerequisites.h"
 #include "LucusRenderWindow.h"
+#include "LucusD3D12Device.h"
 
 #include <agile.h>
 
@@ -25,9 +26,22 @@ namespace LucusEngine
 
         void SetCoreWindow(Windows::UI::Core::CoreWindow^ window);
 
+        void CreateDescriptorHeap(D3D12Device& device);
+        void CreateWindowSizeDependentResources(D3D12Device& device);
+
     // private:
         // Cached reference to the Window.
 		Platform::Agile<Windows::UI::Core::CoreWindow>	mWindow;
+
+        Microsoft::WRL::ComPtr<ID3D12DescriptorHeap>	mRTVHeap;
+
+        u32											    mRTVDescriptorSize;
+
+        Microsoft::WRL::ComPtr<IDXGISwapChain3>			mSwapChain;
+		Microsoft::WRL::ComPtr<ID3D12Resource>			mRenderTargets[c_frameCount];
+
+		CD3DX12_VIEWPORT								mViewport;
+		CD3DX12_RECT									mScissorRect;
     };
 }
 

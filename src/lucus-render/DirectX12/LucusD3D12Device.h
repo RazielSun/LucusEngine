@@ -19,7 +19,30 @@ namespace LucusEngine
         D3D12Device(D3D12RenderSystem* renderSystem);
         ~D3D12Device();
 
-        D3D12RenderSystem* mRenderSystem;
+        void ReleaseAll();
+
+        void Init();
+
+        D3D_FEATURE_LEVEL                           mD3DMinFeatureLevel;
+
+        D3D12RenderSystem*                          mRenderSystem;
+
+        Microsoft::WRL::ComPtr<ID3D12Device>        mD3D12Device;
+        Microsoft::WRL::ComPtr<IDXGIFactory4>		mDXGIFactory;
+
+        Microsoft::WRL::ComPtr<ID3D12CommandQueue>  mCommandQueue;
+
+        Microsoft::WRL::ComPtr<ID3D12CommandAllocator>	mCommandAllocators[c_frameCount];
+        // Direct3D resources for cube geometry.
+		Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList>	mCommandList;
+
+        // CPU/GPU Synchronization.
+		Microsoft::WRL::ComPtr<ID3D12Fence>				mFence;
+		UINT64											mFenceValues[c_frameCount];
+		HANDLE											mFenceEvent;
+
+        void GetAdapter(IDXGIAdapter1** ppAdapter);
+        
     };
 }
 

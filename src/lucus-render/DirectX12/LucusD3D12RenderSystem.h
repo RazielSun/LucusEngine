@@ -15,8 +15,6 @@
 
 namespace LucusEngine
 {
-    static const u32 c_frameCount = 3;		// Use triple buffering.
-
     class D3D12RenderSystem: public RenderSystem
     {
     public:
@@ -29,13 +27,16 @@ namespace LucusEngine
         
         virtual void ChangeViewportSize(u32 width, u32 height) override;
 
-        void Tick();
+        // void Tick();
         
         void WaitForGpu();
         void MoveToNextFrame();
 
-        void CreateDeviceResources();
-        void CreateWindowSizeDependentResources();
+        void CreateDevice();
+        void CreateDeviceDependentResources();
+
+        void ResetFenceValues();
+
         void SetCoreWindow(Windows::UI::Core::CoreWindow^ window);
 
     public:
@@ -44,29 +45,24 @@ namespace LucusEngine
         D3D12Window* mWindow;
     
     private:
-        void GetAdapter(IDXGIAdapter1** ppAdapter);
+        Microsoft::WRL::ComPtr<ID3D12RootSignature>     mRootSignature;
 
-        u32											    m_currentFrame;
+        u32											    mCurrentFrame;
 
-        // Direct3D objects.
-        Microsoft::WRL::ComPtr<ID3D12Device>            m_d3dDevice;
-        Microsoft::WRL::ComPtr<IDXGIFactory4>			m_dxgiFactory;
-        Microsoft::WRL::ComPtr<IDXGISwapChain3>			m_swapChain;
-		Microsoft::WRL::ComPtr<ID3D12Resource>			m_renderTargets[c_frameCount];
-        Microsoft::WRL::ComPtr<ID3D12DescriptorHeap>	m_rtvHeap;
-        Microsoft::WRL::ComPtr<ID3D12CommandQueue>      m_commandQueue;
-        Microsoft::WRL::ComPtr<ID3D12CommandAllocator>	m_commandAllocators[c_frameCount];
+        //
+        Microsoft::WRL::ComPtr<ID3D12PipelineState>     mPipelineState;
 
-        // Direct3D resources for cube geometry.
-		Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList>	m_commandList;
+        std::vector<byte>								mVertexShader;
+		std::vector<byte>								mPixelShader;
 
-        // CPU/GPU Synchronization.
-		Microsoft::WRL::ComPtr<ID3D12Fence>				m_fence;
-		UINT64											m_fenceValues[c_frameCount];
-		HANDLE											m_fenceEvent;
+        // // CPU/GPU Synchronization.
+		Microsoft::WRL::ComPtr<ID3D12Fence>				mFence;
+		UINT64											mFenceValues[c_frameCount];
+		HANDLE											mFenceEvent;
 
-        D3D_FEATURE_LEVEL                               m_d3dMinFeatureLevel;
-        u32											    m_rtvDescriptorSize;
+        // App resources.
+	    Microsoft::WRL::ComPtr<ID3D12Resource>          mVertexBuffer;
+	    D3D12_VERTEX_BUFFER_VIEW                        mVertexBufferView;
     };
 }
 

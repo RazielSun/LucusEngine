@@ -20,6 +20,9 @@
     <Filter Include="d3d12">
       <UniqueIdentifier>{53a294a5-ba88-44f4-9a82-079a9d53e5c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{b0296d3f-87f4-41ba-bf2c-23e541bb8e80}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\lucus-core\host.cpp">
@@ -111,5 +114,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="LucusGame_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\..\..\src\lucus-shaders\DirectX12\DefaultPixelShader.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\src\lucus-shaders\DirectX12\DefaultVertexShader.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
