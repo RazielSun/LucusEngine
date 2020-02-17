@@ -39,6 +39,10 @@ void Core::SetRenderSystem(RenderSystem* system)
 void Core::ChangeViewportSize(u32 width, u32 height)
 {
     // change viewport size for render system and viewport
+    if (mActiveRenderSystem != nullptr)
+    {
+        mActiveRenderSystem->ChangeViewportSize(width, height);
+    }
 }
 
 void Core::Tick()

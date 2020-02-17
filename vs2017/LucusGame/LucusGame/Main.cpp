@@ -156,6 +156,7 @@ namespace Lucus
         {
             // GetDeviceResources()->SetLogicalSize(Size(sender->Bounds.Width, sender->Bounds.Height));
             // m_main->OnWindowSizeChanged();
+			AKUChangeViewportSize(static_cast<u32>(sender->Bounds.Width), static_cast<u32>(sender->Bounds.Height));
         }
 
 		void OnVisibilityChanged(CoreWindow^ sender, VisibilityChangedEventArgs^ args)

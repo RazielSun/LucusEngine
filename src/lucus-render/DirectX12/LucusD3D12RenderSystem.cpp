@@ -145,7 +145,19 @@ void D3D12RenderSystem::Render()
         
 void D3D12RenderSystem::ChangeViewportSize(u32 width, u32 height)
 {
-    //
+    if (mWindow != nullptr)
+	{
+		mWindow->ChangeViewportSize(width, height);
+
+		// Wait until all previous GPU work is complete.
+		WaitForGpu();
+
+		// Window Dependent Resources
+		ResetFenceValues();
+		// These resources need to be recreated every time the window size is changed.
+		mWindow->CreateWindowSizeDependentResources(mDevice);
+		mCurrentFrame = mWindow->mSwapChain->GetCurrentBackBufferIndex();
+	}
 }
 
 // void D3D12RenderSystem::Tick()

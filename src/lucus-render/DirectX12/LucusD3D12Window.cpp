@@ -7,6 +7,9 @@ using namespace LucusEngine;
 
 D3D12Window::D3D12Window(u32 width, u32 height) : RenderWindow(width, height)
 {
+	// TODO
+	mViewport = CD3DX12_VIEWPORT(0.0f, 0.0f, static_cast<float>(mWidth), static_cast<float>(mHeight));
+	mScissorRect = CD3DX12_RECT(0, 0, static_cast<LONG>(mWidth), static_cast<LONG>(mHeight));
 }
 
 D3D12Window::~D3D12Window()
@@ -18,15 +21,17 @@ void D3D12Window::ChangeViewportSize(u32 width, u32 height)
 {
     mWidth = width;
     mHeight = height;
+
+	// TODO
+	mViewport = CD3DX12_VIEWPORT(0.0f, 0.0f, static_cast<float>(mWidth), static_cast<float>(mHeight));
+	mScissorRect = CD3DX12_RECT(0, 0, static_cast<LONG>(mWidth), static_cast<LONG>(mHeight));
+
+	// Change 
 }
 
 void D3D12Window::SetCoreWindow(Windows::UI::Core::CoreWindow^ window)
 {
     mWindow = window;
-
-	// TODO
-	mViewport = CD3DX12_VIEWPORT(0.0f, 0.0f, static_cast<float>(mWidth), static_cast<float>(mHeight));
-	mScissorRect = CD3DX12_RECT(0, 0, static_cast<LONG>(mWidth), static_cast<LONG>(mHeight));
 }
 
 void D3D12Window::CreateDescriptorHeap(D3D12Device& device)
