@@ -13,12 +13,13 @@ Core::Core()
 Core::~Core()
 {
     mInstance = nullptr;
-
-    if (mActiveRenderSystem)
-    {
-        delete mActiveRenderSystem;
-        mActiveRenderSystem = nullptr;
-    }
+    
+    // remove render system via smartpointer
+//    if (mActiveRenderSystem != nullptr)
+//    {
+//        delete mActiveRenderSystem;
+//        mActiveRenderSystem = nullptr;
+//    }
 }
 
 Core& Core::Get()

@@ -8,8 +8,8 @@
 #import "AppDelegate.h"
 
 #include "host.h"
-#include "MetalRenderSystem.h"
-#include "MetalWindow.h"
+#include "LucusMetalRenderSystem.h"
+#include "LucusMetalWindow.h"
 
 static AppDelegate* mInstance = nil;
 
@@ -86,7 +86,7 @@ static AppDelegate* mInstance = nil;
     LucusEngine::MetalRenderSystem* renderSystem = new LucusEngine::MetalRenderSystem();
     
     // Create Window
-    LucusEngine::Window* window = renderSystem->CreateWindow((u32)width, (u32)height);
+    LucusEngine::RenderWindow* window = renderSystem->CreateRenderWindow((u32)width, (u32)height);
     LucusEngine::MetalWindow* metalWindow = static_cast<LucusEngine::MetalWindow*>(window);
 //    metalWindow->SetWindow();
     

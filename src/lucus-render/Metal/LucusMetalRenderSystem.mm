@@ -6,7 +6,7 @@
 //
 
 #include "LucusMetalRenderSystem.h"
-#include "MetalShaderTypes.h"
+#include "LucusShaderTypes.h"
 
 using namespace LucusEngine;
 
@@ -28,7 +28,7 @@ RenderWindow* MetalRenderSystem::CreateRenderWindow(u32 width, u32 height)
     
     CreateBuffers();
     
-    return mWindow.front();//static_cast<RenderWindow*>(mWindow);
+    return mWindows.front();//static_cast<RenderWindow*>(mWindow);
 }
 
 void MetalRenderSystem::CreateBuffers()

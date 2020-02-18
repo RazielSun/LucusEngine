@@ -1,11 +1,11 @@
 //
-//  MetalView.m
+//  LucusMetalView.m
 //  LucusGame macOS
 //
 //  Created by Alexander Kardakov on 12/02/2020.
 //
 
-#import "MetalView.h"
+#import "LucusMetalView.h"
 
 #include "host.h"
 

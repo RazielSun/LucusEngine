@@ -1,12 +1,12 @@
 //
-//  MetalView.h
+//  LucusMetalView.h
 //  LucusGame macOS
 //
 //  Created by Alexander Kardakov on 12/02/2020.
 //
 
-#ifndef _METAL_VIEW_H
-#define _METAL_VIEW_H
+#ifndef _LUCUS_ENGINE_METAL_VIEW_H
+#define _LUCUS_ENGINE_METAL_VIEW_H
 
 #import <MetalKit/MTKView.h>
 
@@ -19,4 +19,4 @@
 
 @end
 
-#endif /* _METAL_VIEW_H */
+#endif /* _LUCUS_ENGINE_METAL_VIEW_H */
