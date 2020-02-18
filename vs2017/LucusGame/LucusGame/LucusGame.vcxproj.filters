@@ -85,6 +85,9 @@
     <ClInclude Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12Window.h">
       <Filter>lucus-render\DirectX12</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-render\LucusShaderTypes.h">
+      <Filter>lucus-render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\LockScreenLogo.scale-200.png">
