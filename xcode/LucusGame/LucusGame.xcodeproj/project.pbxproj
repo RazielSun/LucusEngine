@@ -115,12 +115,12 @@
 		7A0C0DC823F1E84200DE0B7D /* lucus-render */ = {
 			isa = PBXGroup;
 			children = (
-				7A324B7A23FBC07A000C49DB /* LucusShaderTypes.h */,
 				7A0C0DCD23F1EBFD00DE0B7D /* Metal */,
 				7A324B7723FBBCE9000C49DB /* LucusRenderWindow.cpp */,
 				7A324B7623FBBCE9000C49DB /* LucusRenderWindow.h */,
 				7A0C0DC923F1E84200DE0B7D /* LucusRenderSystem.h */,
 				7A0C0DCA23F1E84200DE0B7D /* LucusRenderSystem.cpp */,
+				7A324B7A23FBC07A000C49DB /* LucusShaderTypes.h */,
 			);
 			name = "lucus-render";
 			path = "../../src/lucus-render";
