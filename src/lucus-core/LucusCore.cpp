@@ -7,11 +7,13 @@ template<> Core* Singleton<Core>::mInstance = nullptr;
 
 Core::Core()
 {
-    //
+    LoadModules();
 }
 
 Core::~Core()
 {
+    UnloadModules();
+    
     mInstance = nullptr;
     
     // remove render system via smartpointer
@@ -22,6 +24,16 @@ Core::~Core()
 //    }
 }
 
+void Core::LoadModules()
+{
+    mFileSystem = new FileSystem();
+}
+
+void Core::UnloadModules()
+{
+    delete mFileSystem;
+}
+
 Core& Core::Get()
 {
     return *mInstance;
@@ -30,6 +42,11 @@ Core& Core::Get()
 Core* Core::GetPtr()
 {
     return mInstance;
+}
+
+FileSystem* Core::GetFileSystem()
+{
+    return Core::Get().mFileSystem;
 }
 
 void Core::SetRenderSystem(RenderSystem* system)

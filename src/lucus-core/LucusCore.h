@@ -9,7 +9,9 @@
 
 #include "LucusTypes.h"
 #include "LucusSingleton.h"
+
 #include "LucusRenderSystem.h"
+#include "LucusFileSystem.h"
 
 namespace LucusEngine
 {
@@ -19,8 +21,8 @@ namespace LucusEngine
 		Core();
 		~Core();
         
-        static Core& Get();
-        static Core* GetPtr();
+        void LoadModules();
+        void UnloadModules();
         
         void SetRenderSystem(RenderSystem* system);
         
@@ -29,11 +31,19 @@ namespace LucusEngine
         void StartCoreLoop();
         
         void Tick();
+        
+    public:
+        static Core& Get();
+        static Core* GetPtr();
+        
+        static FileSystem* GetFileSystem();
 
 	protected:
         bool mIsActive = false;
 		
         RenderSystem* mActiveRenderSystem;
+        
+        FileSystem* mFileSystem;
 	};
 }
 

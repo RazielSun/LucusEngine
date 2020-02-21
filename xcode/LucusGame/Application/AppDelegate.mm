@@ -69,6 +69,8 @@ static AppDelegate* mInstance = nil;
     // Init Engine
     AKUCoreCreate();
     
+    AKUChangeWorkingDir([[[NSBundle mainBundle] resourcePath] UTF8String]);
+    
     NSUInteger width = 1280;
     NSUInteger height = 720;
     

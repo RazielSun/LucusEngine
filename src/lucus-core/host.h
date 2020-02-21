@@ -26,4 +26,6 @@ void AKUTick();
 void AKUSetRenderSystem(LucusEngine::RenderSystem* system);
 void AKUChangeViewportSize(u32 width, u32 height);
 
+void AKUChangeWorkingDir(char const* path);
+
 #endif /* _LUCUS_ENGINE_HOST_H */
