@@ -228,7 +228,7 @@
       </PrecompiledHeaderOutputFile>
       <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions);TARGET_DX12</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
   </ItemDefinitionGroup>
@@ -244,7 +244,7 @@
       </PrecompiledHeaderOutputFile>
       <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions);TARGET_DX12</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
   </ItemDefinitionGroup>
@@ -269,6 +269,7 @@
     <ClInclude Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12Window.h" />
     <ClInclude Include="..\..\..\src\lucus-render\LucusRenderSystem.h" />
     <ClInclude Include="..\..\..\src\lucus-render\LucusRenderWindow.h" />
+    <ClInclude Include="..\..\..\src\lucus-render\LucusShaderTypes.h" />
     <ClInclude Include="..\..\..\src\lucus-sim\LucusMath.h" />
   </ItemGroup>
   <ItemGroup>
