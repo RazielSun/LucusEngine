@@ -8,35 +8,7 @@
 #ifndef _LUCUS_ENGINE_SHADER_TYPES_H
 #define _LUCUS_ENGINE_SHADER_TYPES_H
 
-#if defined(TARGET_METAL)
-
-#include <simd/simd.h>
-
-typedef vector_float2 FVector2;
-typedef vector_float4 FVector4;
-
-#elif defined(TARGET_DX12)
-
-#include <DirectXMath.h>
-
-typedef DirectX::XMFLOAT2 FVector2;
-typedef DirectX::XMFLOAT4 FVector4;
-
-#else
-
-// not properly aligned structs
-
-struct FVector2
-{
-    float x, y;
-};
-
-struct FVector4
-{
-    float x, y, z, w;
-};
-
-#endif
+#include "LucusMath.h"
 
 typedef struct
 {

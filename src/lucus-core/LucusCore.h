@@ -12,6 +12,7 @@
 
 #include "LucusRenderSystem.h"
 #include "LucusFileSystem.h"
+#include "LucusMeshFormatManager.h"
 
 namespace LucusEngine
 {
@@ -37,6 +38,7 @@ namespace LucusEngine
         static Core* GetPtr();
         
         static FileSystem* GetFileSystem();
+        static MeshFormatManager* GetMeshFormatMgr();
 
 	protected:
         bool mIsActive = false;
@@ -44,6 +46,7 @@ namespace LucusEngine
         RenderSystem* mActiveRenderSystem;
         
         FileSystem* mFileSystem;
+        MeshFormatManager* mMeshFormatManager;
 	};
 }
 

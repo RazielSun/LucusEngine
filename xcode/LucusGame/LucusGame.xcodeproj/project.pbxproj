@@ -29,8 +29,15 @@
 		7A324B7923FBBCEA000C49DB /* LucusRenderWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A324B7723FBBCE9000C49DB /* LucusRenderWindow.cpp */; };
 		7A324B7D23FFA976000C49DB /* LucusFileSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A324B7B23FFA976000C49DB /* LucusFileSystem.cpp */; };
 		7A324B7E23FFA976000C49DB /* LucusFileSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A324B7B23FFA976000C49DB /* LucusFileSystem.cpp */; };
-		7A324B8124006E5A000C49DB /* meshes in Resources */ = {isa = PBXBuildFile; fileRef = 7A324B8024006E59000C49DB /* meshes */; };
-		7A324B8224006E5A000C49DB /* meshes in Resources */ = {isa = PBXBuildFile; fileRef = 7A324B8024006E59000C49DB /* meshes */; };
+		7A324B8524012D26000C49DB /* LucusMeshFormat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A324B8324012D25000C49DB /* LucusMeshFormat.cpp */; };
+		7A324B8624012D26000C49DB /* LucusMeshFormat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A324B8324012D25000C49DB /* LucusMeshFormat.cpp */; };
+		7A324B8924012D3C000C49DB /* LucusMeshFormatManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A324B8724012D3C000C49DB /* LucusMeshFormatManager.cpp */; };
+		7A324B8A24012D3C000C49DB /* LucusMeshFormatManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A324B8724012D3C000C49DB /* LucusMeshFormatManager.cpp */; };
+		7A324B8E24013515000C49DB /* LucusMeshFormatFBX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A324B8C24013515000C49DB /* LucusMeshFormatFBX.cpp */; };
+		7A324B8F24013515000C49DB /* LucusMeshFormatFBX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A324B8C24013515000C49DB /* LucusMeshFormatFBX.cpp */; };
+		7A324B9224013575000C49DB /* LucusMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A324B9024013575000C49DB /* LucusMesh.cpp */; };
+		7A324B9324013575000C49DB /* LucusMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A324B9024013575000C49DB /* LucusMesh.cpp */; };
+		7AA498D1240249C1009C1ED7 /* libfbxsdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA498D0240249C0009C1ED7 /* libfbxsdk.a */; };
 		7ADF914023E6D07A0094C83D /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7ADF913F23E6D07A0094C83D /* main.mm */; };
 		7ADF914123E6D07A0094C83D /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7ADF913F23E6D07A0094C83D /* main.mm */; };
 		7ADF914523E6D36B0094C83D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADF914423E6D36B0094C83D /* Cocoa.framework */; };
@@ -67,7 +74,16 @@
 		7A324B7A23FBC07A000C49DB /* LucusShaderTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LucusShaderTypes.h; path = "../../src/lucus-render/LucusShaderTypes.h"; sourceTree = SOURCE_ROOT; };
 		7A324B7B23FFA976000C49DB /* LucusFileSystem.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LucusFileSystem.cpp; sourceTree = "<group>"; };
 		7A324B7C23FFA976000C49DB /* LucusFileSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LucusFileSystem.h; sourceTree = "<group>"; };
-		7A324B8024006E59000C49DB /* meshes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = meshes; path = Resources/meshes; sourceTree = "<group>"; };
+		7A324B8324012D25000C49DB /* LucusMeshFormat.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LucusMeshFormat.cpp; sourceTree = "<group>"; };
+		7A324B8424012D25000C49DB /* LucusMeshFormat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LucusMeshFormat.h; sourceTree = "<group>"; };
+		7A324B8724012D3C000C49DB /* LucusMeshFormatManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LucusMeshFormatManager.cpp; sourceTree = "<group>"; };
+		7A324B8824012D3C000C49DB /* LucusMeshFormatManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LucusMeshFormatManager.h; sourceTree = "<group>"; };
+		7A324B8C24013515000C49DB /* LucusMeshFormatFBX.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LucusMeshFormatFBX.cpp; sourceTree = "<group>"; };
+		7A324B8D24013515000C49DB /* LucusMeshFormatFBX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LucusMeshFormatFBX.h; sourceTree = "<group>"; };
+		7A324B9024013575000C49DB /* LucusMesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LucusMesh.cpp; sourceTree = "<group>"; };
+		7A324B9124013575000C49DB /* LucusMesh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LucusMesh.h; sourceTree = "<group>"; };
+		7A324B94240137C4000C49DB /* modules.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = modules.h; sourceTree = "<group>"; };
+		7AA498D0240249C0009C1ED7 /* libfbxsdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfbxsdk.a; path = "../../3rdparty/fbx-sdk-osx/lib/clang/debug/libfbxsdk.a"; sourceTree = "<group>"; };
 		7ADF910E23E6CA810094C83D /* LucusGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LucusGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ADF911D23E6CA810094C83D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7ADF912423E6CA810094C83D /* LucusGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LucusGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AA498D1240249C1009C1ED7 /* libfbxsdk.a in Frameworks */,
 				7ADF915323E704E00094C83D /* MetalKit.framework in Frameworks */,
 				7ADF915123E704DA0094C83D /* Metal.framework in Frameworks */,
 				7ADF914523E6D36B0094C83D /* Cocoa.framework in Frameworks */,
@@ -108,6 +125,7 @@
 		7A0C0DC223F1E83600DE0B7D /* lucus-core */ = {
 			isa = PBXGroup;
 			children = (
+				7A324B94240137C4000C49DB /* modules.h */,
 				7A0C0DDC23F338BC00DE0B7D /* host.h */,
 				7A0C0DDB23F338BC00DE0B7D /* host.cpp */,
 				7A0C0DC323F1E83600DE0B7D /* LucusCore.h */,
@@ -162,6 +180,12 @@
 			isa = PBXGroup;
 			children = (
 				7A324B6623F5DD84000C49DB /* LucusMath.h */,
+				7A324B8424012D25000C49DB /* LucusMeshFormat.h */,
+				7A324B8324012D25000C49DB /* LucusMeshFormat.cpp */,
+				7A324B8824012D3C000C49DB /* LucusMeshFormatManager.h */,
+				7A324B8724012D3C000C49DB /* LucusMeshFormatManager.cpp */,
+				7A324B9124013575000C49DB /* LucusMesh.h */,
+				7A324B9024013575000C49DB /* LucusMesh.cpp */,
 			);
 			name = "lucus-sim";
 			path = "../../src/lucus-sim";
@@ -184,22 +208,24 @@
 			path = Metal;
 			sourceTree = "<group>";
 		};
-		7A324B7F24006E23000C49DB /* Resources */ = {
+		7A324B8B240134F1000C49DB /* lucus-mesh-fbx */ = {
 			isa = PBXGroup;
 			children = (
-				7A324B8024006E59000C49DB /* meshes */,
+				7A324B8D24013515000C49DB /* LucusMeshFormatFBX.h */,
+				7A324B8C24013515000C49DB /* LucusMeshFormatFBX.cpp */,
 			);
-			name = Resources;
+			name = "lucus-mesh-fbx";
+			path = "../../src/lucus-mesh-fbx";
 			sourceTree = "<group>";
 		};
 		7A83AE8523E6C3DE002E161C = {
 			isa = PBXGroup;
 			children = (
-				7A324B7F24006E23000C49DB /* Resources */,
 				7A0C0DC223F1E83600DE0B7D /* lucus-core */,
 				7A0C0DC823F1E84200DE0B7D /* lucus-render */,
 				7A324B6023F5DAA9000C49DB /* lucus-shaders */,
 				7A324B5D23F5D71A000C49DB /* lucus-sim */,
+				7A324B8B240134F1000C49DB /* lucus-mesh-fbx */,
 				7ADF914223E6D3080094C83D /* Application */,
 				7ADF910F23E6CA810094C83D /* Products */,
 				7ADF914323E6D36A0094C83D /* Frameworks */,
@@ -246,6 +272,7 @@
 		7ADF914323E6D36A0094C83D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7AA498D0240249C0009C1ED7 /* libfbxsdk.a */,
 				7ADF915223E704E00094C83D /* MetalKit.framework */,
 				7ADF915023E704DA0094C83D /* Metal.framework */,
 				7ADF914E23E704D10094C83D /* MetalKit.framework */,
@@ -333,7 +360,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A324B8124006E5A000C49DB /* meshes in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,7 +367,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A324B8224006E5A000C49DB /* meshes in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,9 +382,13 @@
 				7ADF914023E6D07A0094C83D /* main.mm in Sources */,
 				7A324B6323F5DAC1000C49DB /* DefaultShader.metal in Sources */,
 				7A324B7423FBBCDA000C49DB /* LucusMetalWindow.mm in Sources */,
+				7A324B8524012D26000C49DB /* LucusMeshFormat.cpp in Sources */,
 				7A324B7D23FFA976000C49DB /* LucusFileSystem.cpp in Sources */,
+				7A324B9224013575000C49DB /* LucusMesh.cpp in Sources */,
 				7A324B6823F5DEFD000C49DB /* host.cpp in Sources */,
+				7A324B8924012D3C000C49DB /* LucusMeshFormatManager.cpp in Sources */,
 				7A324B7023FBBCDA000C49DB /* LucusMetalRenderSystem.mm in Sources */,
+				7A324B8E24013515000C49DB /* LucusMeshFormatFBX.cpp in Sources */,
 				7A0C0DC623F1E83600DE0B7D /* LucusCore.cpp in Sources */,
 				7A0C0DE223F3CAB500DE0B7D /* LucusMetalView.mm in Sources */,
 				7A324B7823FBBCEA000C49DB /* LucusRenderWindow.cpp in Sources */,
@@ -376,9 +405,13 @@
 				7A0C0DDD23F338BC00DE0B7D /* host.cpp in Sources */,
 				7A0C0DE123F3CAAF00DE0B7D /* LucusMetalView.mm in Sources */,
 				7A324B7523FBBCDA000C49DB /* LucusMetalWindow.mm in Sources */,
+				7A324B8624012D26000C49DB /* LucusMeshFormat.cpp in Sources */,
 				7A324B7E23FFA976000C49DB /* LucusFileSystem.cpp in Sources */,
+				7A324B9324013575000C49DB /* LucusMesh.cpp in Sources */,
 				7ADF914123E6D07A0094C83D /* main.mm in Sources */,
+				7A324B8A24012D3C000C49DB /* LucusMeshFormatManager.cpp in Sources */,
 				7A324B7123FBBCDA000C49DB /* LucusMetalRenderSystem.mm in Sources */,
+				7A324B8F24013515000C49DB /* LucusMeshFormatFBX.cpp in Sources */,
 				7A324B5C23F5CEF8000C49DB /* AppDelegate.mm in Sources */,
 				7A0C0DC723F1E83600DE0B7D /* LucusCore.cpp in Sources */,
 				7A324B7923FBBCEA000C49DB /* LucusRenderWindow.cpp in Sources */,
@@ -393,7 +426,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = TARGET_METAL;
-				MTL_HEADER_SEARCH_PATHS = "$PROJECT_DIR/../../src/lucus-render";
+				HEADER_SEARCH_PATHS = "$PROJECT_DIR/../../3rdparty/fbx-sdk-osx/include";
+				MTL_HEADER_SEARCH_PATHS = "$PROJECT_DIR/../../src/lucus-render $PROJECT_DIR/../../src/lucus-sim";
 				MTL_PREPROCESSOR_DEFINITIONS = TARGET_METAL;
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 			};
@@ -403,7 +437,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = TARGET_METAL;
-				MTL_HEADER_SEARCH_PATHS = "$PROJECT_DIR/../../src/lucus-render";
+				HEADER_SEARCH_PATHS = "$PROJECT_DIR/../../3rdparty/fbx-sdk-osx/include";
+				MTL_HEADER_SEARCH_PATHS = "$PROJECT_DIR/../../src/lucus-render $PROJECT_DIR/../../src/lucus-sim";
 				MTL_PREPROCESSOR_DEFINITIONS = TARGET_METAL;
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 			};
@@ -426,7 +461,7 @@
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -462,21 +497,23 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = $inherited;
 				INFOPLIST_FILE = Application/iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = "$PROJECT_DIR/../../3rdparty/fbx-sdk-osx/lib/ios/debug";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				MTL_HEADER_SEARCH_PATHS = "";
+				MTL_HEADER_SEARCH_PATHS = $inherited;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = org.razielsun.LucusGame;
 				PRODUCT_NAME = LucusGame;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 arm64e";
 			};
 			name = Debug;
 		};
@@ -497,7 +534,7 @@
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -530,21 +567,23 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = $inherited;
 				INFOPLIST_FILE = Application/iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = "$PROJECT_DIR/../../3rdparty/fbx-sdk-osx/lib/ios/release";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				MTL_HEADER_SEARCH_PATHS = "";
+				MTL_HEADER_SEARCH_PATHS = $inherited;
 				PRODUCT_BUNDLE_IDENTIFIER = org.razielsun.LucusGame;
 				PRODUCT_NAME = LucusGame;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 arm64e";
 			};
 			name = Release;
 		};
@@ -565,7 +604,7 @@
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -604,15 +643,17 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = $inherited;
 				INFOPLIST_FILE = Application/macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = "$PROJECT_DIR/../../3rdparty/fbx-sdk-osx/lib/clang/debug";
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				MTL_HEADER_SEARCH_PATHS = $inherited;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = org.razielsun.LucusGame;
 				PRODUCT_NAME = LucusGame;
@@ -637,7 +678,7 @@
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -673,15 +714,17 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = $inherited;
 				INFOPLIST_FILE = Application/macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = "$PROJECT_DIR/../../3rdparty/fbx-sdk-osx/lib/clang/release";
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				MTL_HEADER_SEARCH_PATHS = $inherited;
 				PRODUCT_BUNDLE_IDENTIFIER = org.razielsun.LucusGame;
 				PRODUCT_NAME = LucusGame;
 				SDKROOT = macosx;

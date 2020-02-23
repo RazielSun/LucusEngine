@@ -27,11 +27,13 @@ Core::~Core()
 void Core::LoadModules()
 {
     mFileSystem = new FileSystem();
+    mMeshFormatManager = new MeshFormatManager();
 }
 
 void Core::UnloadModules()
 {
     delete mFileSystem;
+    delete mMeshFormatManager;
 }
 
 Core& Core::Get()
@@ -47,6 +49,11 @@ Core* Core::GetPtr()
 FileSystem* Core::GetFileSystem()
 {
     return Core::Get().mFileSystem;
+}
+
+MeshFormatManager* Core::GetMeshFormatMgr()
+{
+    return Core::Get().mMeshFormatManager;
 }
 
 void Core::SetRenderSystem(RenderSystem* system)

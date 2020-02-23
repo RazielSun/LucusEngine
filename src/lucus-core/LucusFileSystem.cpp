@@ -33,6 +33,32 @@ void FileSystem::ChangeWorkingDir(char const* path)
         mWorkingDir = buffer;
     }
 }
+
+std::string FileSystem::GetAssetPath( cc8* name )
+{
+    std::string fullPath;
+    
+    if (name)
+    {
+        fullPath.append(mWorkingDir);
+        fullPath.append(name);
+    }
+    
+    return fullPath;
+}
+
+std::string FileSystem::GetFileFormat( cc8* name )
+{
+    std::string path(name);
+    size_t dotIndex = path.find_last_of('.');
+    if (dotIndex != std::string::npos)
+    {
+        std::string format = path.substr( dotIndex + 1 );
+//        std::transform( format.begin(), format.end(), format.begin(), ::tolower );
+        return format;
+    }
+    return "";
+}
     
 std::vector<cc8> FileSystem::ReadData()
 {

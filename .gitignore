@@ -1,6 +1,13 @@
 # Prerequisites
 *.d
 
+#Exlude 3rdparty static libs
+!3rdparty/*.a
+# !3rdparty/fbx-sdk-osx/lib/clang/debug/*.a
+# !3rdparty/fbx-sdk-osx/lib/clang/release/*.a
+# !3rdparty/libpng-osx/lib/*.a
+# !3rdparty/zlib-osx/lib/*.a
+
 # Compiled Object files
 *.slo
 *.lo

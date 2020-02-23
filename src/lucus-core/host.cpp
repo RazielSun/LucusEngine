@@ -75,8 +75,5 @@ void AKUChangeViewportSize(u32 width, u32 height)
 
 void AKUChangeWorkingDir(char const* path)
 {
-    if (nullptr != LucusEngine::Core::GetFileSystem())
-    {
-        LucusEngine::Core::GetFileSystem()->ChangeWorkingDir(path);
-    }
+    LucusEngine::Core::GetFileSystem()->ChangeWorkingDir(path);
 }

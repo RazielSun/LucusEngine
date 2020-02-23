@@ -8,6 +8,7 @@
 #import "AppDelegate.h"
 
 #include "host.h"
+#include "modules.h"
 #include "LucusMetalRenderSystem.h"
 #include "LucusMetalWindow.h"
 
@@ -40,7 +41,7 @@ static AppDelegate* mInstance = nil;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Init Engine
-//    AKUCoreCreate();
+    AKUCoreCreate();
     
     CGRect frame = [[UIScreen mainScreen] bounds];
     
@@ -68,6 +69,9 @@ static AppDelegate* mInstance = nil;
 {
     // Init Engine
     AKUCoreCreate();
+    
+    // Init Modules
+    AKUModulesCreate();
     
     AKUChangeWorkingDir([[[NSBundle mainBundle] resourcePath] UTF8String]);
     
