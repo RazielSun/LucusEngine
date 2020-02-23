@@ -10,6 +10,8 @@
 
 #include "LucusTypes.h"
 #include "LucusMath.h"
+#include "LucusShaderTypes.h"
+#include <vector>
 
 namespace LucusEngine
 {
@@ -26,11 +28,16 @@ namespace LucusEngine
 
     class Mesh
     {
+        std::vector<SimpleVertex> mVertices;
+        std::vector<TriangleIndex> mIndices;
+        
     public:
         Mesh();
         virtual ~Mesh();
         
         void Load( cc8* name );
+        void SetIndices(std::vector<TriangleIndex>& indices);
+        void SetVertices(std::vector<SimpleVertex>& vertices);
     };
 }
 

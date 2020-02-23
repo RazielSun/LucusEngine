@@ -16,4 +16,9 @@ typedef struct
     FVector4 color;
 } DefaultVertex;
 
+typedef struct
+{
+    FVector3 position;
+} SimpleVertex;
+
 #endif /* _LUCUS_ENGINE_SHADER_TYPES_H */

@@ -27,6 +27,20 @@ void Mesh::Load( cc8* name )
     MeshFormat* meshFormat = Core::GetMeshFormatMgr()->FindFormat( formatName.c_str() );
     if (nullptr != meshFormat)
     {
-        meshFormat->LoadMesh(this, name);
+        meshFormat->LoadMesh(this, Core::GetFileSystem()->GetAssetPath(name).c_str());
     }
+}
+
+void Mesh::SetIndices(std::vector<TriangleIndex>& indices)
+{
+    mIndices.clear();
+    mIndices.resize(indices.size());
+    mIndices.assign(indices.begin(), indices.end());
+}
+
+void Mesh::SetVertices(std::vector<SimpleVertex>& vertices)
+{
+    mVertices.clear();
+    mVertices.resize(vertices.size());
+    mVertices.assign(vertices.begin(), vertices.end());
 }

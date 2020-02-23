@@ -38,6 +38,8 @@
 		7A324B9224013575000C49DB /* LucusMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A324B9024013575000C49DB /* LucusMesh.cpp */; };
 		7A324B9324013575000C49DB /* LucusMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A324B9024013575000C49DB /* LucusMesh.cpp */; };
 		7AA498D1240249C1009C1ED7 /* libfbxsdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA498D0240249C0009C1ED7 /* libfbxsdk.a */; };
+		7AA498D924027E1E009C1ED7 /* meshes in Resources */ = {isa = PBXBuildFile; fileRef = 7AA498D824027E1E009C1ED7 /* meshes */; };
+		7AA498DA24027E1E009C1ED7 /* meshes in Resources */ = {isa = PBXBuildFile; fileRef = 7AA498D824027E1E009C1ED7 /* meshes */; };
 		7ADF914023E6D07A0094C83D /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7ADF913F23E6D07A0094C83D /* main.mm */; };
 		7ADF914123E6D07A0094C83D /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7ADF913F23E6D07A0094C83D /* main.mm */; };
 		7ADF914523E6D36B0094C83D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADF914423E6D36B0094C83D /* Cocoa.framework */; };
@@ -85,6 +87,7 @@
 		7A324B94240137C4000C49DB /* modules.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = modules.h; sourceTree = "<group>"; };
 		7AA498D0240249C0009C1ED7 /* libfbxsdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfbxsdk.a; path = "../../3rdparty/fbx-sdk-osx/lib/clang/debug/libfbxsdk.a"; sourceTree = "<group>"; };
 		7AA498D324027673009C1ED7 /* LucusUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LucusUtils.h; sourceTree = "<group>"; };
+		7AA498D824027E1E009C1ED7 /* meshes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = meshes; path = Resources/meshes; sourceTree = "<group>"; };
 		7ADF910E23E6CA810094C83D /* LucusGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LucusGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ADF911D23E6CA810094C83D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7ADF912423E6CA810094C83D /* LucusGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LucusGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -223,6 +226,7 @@
 		7A83AE8523E6C3DE002E161C = {
 			isa = PBXGroup;
 			children = (
+				7AA498D424027C38009C1ED7 /* Resources */,
 				7A0C0DC223F1E83600DE0B7D /* lucus-core */,
 				7A0C0DC823F1E84200DE0B7D /* lucus-render */,
 				7A324B6023F5DAA9000C49DB /* lucus-shaders */,
@@ -232,6 +236,14 @@
 				7ADF910F23E6CA810094C83D /* Products */,
 				7ADF914323E6D36A0094C83D /* Frameworks */,
 			);
+			sourceTree = "<group>";
+		};
+		7AA498D424027C38009C1ED7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7AA498D824027E1E009C1ED7 /* meshes */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		7ADF910F23E6CA810094C83D /* Products */ = {
@@ -362,6 +374,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AA498D924027E1E009C1ED7 /* meshes in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +382,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AA498DA24027E1E009C1ED7 /* meshes in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

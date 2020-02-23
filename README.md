@@ -1,10 +1,13 @@
 # LucusEngine
 Custom game engine for own education
+## References
+IsettaEngine, MOAI SDK, Unreal Engine, OGRE3D
 
 ## Engine structure
 ### 3rdparty
-libpng [https://github.com/glennrp/libpng]
-zlib [https://github.com/madler/zlib]
+fbx sdk osx: 2018.1 - static libs
+libpng osx:- static libs (need to compile from source)[https://github.com/glennrp/libpng]
+zlib osx: - static libs (need to compile from source)[https://github.com/madler/zlib]
 
 ### game
 

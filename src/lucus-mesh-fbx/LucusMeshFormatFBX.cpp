@@ -226,7 +226,7 @@ void FBXMeshFormat::LoadPositionNormalTexCoord(FbxMesh* data, Mesh* mesh)
     FBXSDK_printf("         Vertices: \"%d\"\n", verticesCount);
     FBXSDK_printf("         Indices: \"%d\"\n", indicesCount);
     FBXSDK_printf("         Poly: \"%d\"\n", polyCount);
-    FBXSDK_printf("\n");
+//    FBXSDK_printf("\n");
     
 //    int uvCount = data->GetUVLayerCount();
 //    int texUvCount = data->GetTextureUVCount();
@@ -261,7 +261,7 @@ void FBXMeshFormat::LoadPositionNormalTexCoord(FbxMesh* data, Mesh* mesh)
         
         FBXSDK_printf("    UV Data\n");
         FBXSDK_printf("         Count: \"%d\"\n", uvCount);
-        FBXSDK_printf("\n");
+//        FBXSDK_printf("\n");
         
 //        FbxLayerElementNormal* elemNormal = layer->GetNormals();
         
@@ -282,7 +282,7 @@ void FBXMeshFormat::LoadPositionNormalTexCoord(FbxMesh* data, Mesh* mesh)
         
         FBXSDK_printf("    Normal Data\n");
         FBXSDK_printf("         Count: \"%d\"\n", mNormals.GetCount());
-        FBXSDK_printf("\n");
+//        FBXSDK_printf("\n");
         
         for (int i = 0; i < mNormals.GetCount(); i++)
         {
@@ -382,7 +382,21 @@ void FBXMeshFormat::LoadPositionNormalTexCoord(FbxMesh* data, Mesh* mesh)
         faces.push_back(face);
     }
     
+    std::vector<TriangleIndex> indices;
+    for (const auto& face : faces)
+    {
+        indices.push_back({ face.tris[0].x, face.tris[1].x, face.tris[2].x });
+    }
+    
+    std::vector<SimpleVertex> vecVertices;
+    for (const auto& pos : vertices)
+    {
+        vecVertices.push_back((SimpleVertex){ { pos.x, pos.y, pos.z } });
+    }
+    
 //    mesh->Load(vertices, texcoords, normals, faces);
+    mesh->SetIndices(indices);
+    mesh->SetVertices(vecVertices);
     
     FBXSDK_printf("    Done\n");
 }
