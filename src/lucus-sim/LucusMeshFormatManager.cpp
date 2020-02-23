@@ -23,17 +23,11 @@ MeshFormatManager::~MeshFormatManager()
     }
 }
 
-u32 MeshFormatManager::HashName( cc8* name )
-{
-    // Hash function
-    return 0;
-}
-
 MeshFormat* MeshFormatManager::FindFormat( cc8* name )
 {
     if (name)
     {
-        u32 hash = HashName( name );
+        u32 hash = Utils::HashName( name );
         auto search = mFormats.find( hash );
         return (search != mFormats.end()) ? mFormats[hash] : nullptr;
     }

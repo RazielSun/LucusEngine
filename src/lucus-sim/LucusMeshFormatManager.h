@@ -9,6 +9,7 @@
 #define _LUCUS_ENGINE_MESH_FORMAT_MANAGER_H
 
 #include "LucusTypes.h"
+#include "LucusUtils.h"
 #include "LucusMeshFormat.h"
 #include <unordered_map>
 
@@ -21,8 +22,6 @@ namespace LucusEngine
     {
         MapMeshFormats mFormats;
         
-        u32 HashName( cc8* name );
-        
     public:
         MeshFormatManager();
         ~MeshFormatManager();
@@ -32,7 +31,7 @@ namespace LucusEngine
         template <class T>
         void RegisterFormat( cc8* name )
         {
-            u32 hash = HashName( name );
+            u32 hash = Utils::HashName( name );
             
             auto search = mFormats.find( hash );
             if (search != mFormats.end())

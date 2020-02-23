@@ -84,6 +84,7 @@
 		7A324B9124013575000C49DB /* LucusMesh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LucusMesh.h; sourceTree = "<group>"; };
 		7A324B94240137C4000C49DB /* modules.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = modules.h; sourceTree = "<group>"; };
 		7AA498D0240249C0009C1ED7 /* libfbxsdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfbxsdk.a; path = "../../3rdparty/fbx-sdk-osx/lib/clang/debug/libfbxsdk.a"; sourceTree = "<group>"; };
+		7AA498D324027673009C1ED7 /* LucusUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LucusUtils.h; sourceTree = "<group>"; };
 		7ADF910E23E6CA810094C83D /* LucusGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LucusGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ADF911D23E6CA810094C83D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7ADF912423E6CA810094C83D /* LucusGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LucusGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,6 +187,7 @@
 				7A324B8724012D3C000C49DB /* LucusMeshFormatManager.cpp */,
 				7A324B9124013575000C49DB /* LucusMesh.h */,
 				7A324B9024013575000C49DB /* LucusMesh.cpp */,
+				7AA498D324027673009C1ED7 /* LucusUtils.h */,
 			);
 			name = "lucus-sim";
 			path = "../../src/lucus-sim";
