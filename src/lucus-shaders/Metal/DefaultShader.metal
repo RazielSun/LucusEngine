@@ -16,11 +16,11 @@ typedef struct
 {
     float4 position [[position]];
     float4 color;
-} RasterizerData;
+} DefaultRasterizerData;
 
-vertex RasterizerData defaultVertexShader(uint vertexID [[vertex_id]], constant DefaultVertex* vertices [[buffer(0)]])
+vertex DefaultRasterizerData defaultVertexShader(uint vertexID [[vertex_id]], constant DefaultVertex* vertices [[buffer(0)]])
 {
-    RasterizerData out;
+    DefaultRasterizerData out;
     
     out.position = float4( 0, 0, 0, 1 );
     out.position.xy = vertices[vertexID].position;
@@ -29,7 +29,33 @@ vertex RasterizerData defaultVertexShader(uint vertexID [[vertex_id]], constant 
     return out;
 }
 
-fragment float4 defaultFragmentShader(RasterizerData in [[stage_in]])
+fragment float4 defaultFragmentShader(DefaultRasterizerData in [[stage_in]])
 {
     return in.color;
+}
+
+//
+typedef struct
+{
+    float3 position [[attribute(0)]];
+} SimpleVertexIn;
+
+typedef struct
+{
+    float4 position [[position]];
+} RasterizerData;
+
+vertex RasterizerData simpleVertexShader(SimpleVertexIn in [[stage_in]])
+{
+    RasterizerData out;
+    
+    out.position = float4( 0, 0, 0, 1 );
+    out.position.xyz = in.position;
+    
+    return out;
+}
+
+fragment float4 simpleFragmentShader(RasterizerData in [[stage_in]])
+{
+    return float4(0,0,0,1);
 }

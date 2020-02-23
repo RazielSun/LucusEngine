@@ -105,10 +105,6 @@ static AppDelegate* mInstance = nil;
     
     // Start Loop
 //    AKUStartCoreLoop();
-    
-    LucusEngine::Mesh* mesh = new LucusEngine::Mesh();
-    mesh->Load("meshes/cube.fbx");
-    delete mesh;
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender

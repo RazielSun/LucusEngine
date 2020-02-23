@@ -14,8 +14,14 @@
 
 #include <Metal/MTLRenderPipeline.h>
 
+// temp
+#include <Metal/MTLBuffer.h>
+
 namespace LucusEngine
 {
+    //temp
+    class Mesh;
+
     class MetalRenderSystem: public RenderSystem
     {
     public:
@@ -35,7 +41,12 @@ namespace LucusEngine
         
         id<MTLRenderPipelineState> mPipelineState;
         
-//        bool mSystemReady = false;
+        // temp files for cube
+        Mesh* mMesh;
+        id<MTLBuffer> mVerticesBuf;
+        id<MTLBuffer> mIndicesBuf;
+        NSUInteger mIndicesCount;
+        
     };
 }
 

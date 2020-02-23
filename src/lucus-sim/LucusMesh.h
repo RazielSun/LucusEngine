@@ -26,18 +26,24 @@ namespace LucusEngine
         u32 count;
     };
 
+    typedef std::vector<TriangleIndex> VectorIndices;
+    typedef std::vector<SimpleVertex> VectorVertices;
+
     class Mesh
     {
-        std::vector<SimpleVertex> mVertices;
-        std::vector<TriangleIndex> mIndices;
+        VectorVertices mVertices;
+        VectorIndices mIndices;
         
     public:
         Mesh();
         virtual ~Mesh();
         
         void Load( cc8* name );
-        void SetIndices(std::vector<TriangleIndex>& indices);
-        void SetVertices(std::vector<SimpleVertex>& vertices);
+        void SetIndices(VectorIndices& indices);
+        void SetVertices(VectorVertices& vertices);
+        
+        const VectorIndices* GetIndices() const { return &mIndices; }
+        const VectorVertices* GetVertices() const { return &mVertices; }
     };
 }
 

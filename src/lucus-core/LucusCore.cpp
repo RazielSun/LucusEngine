@@ -59,6 +59,10 @@ MeshFormatManager* Core::GetMeshFormatMgr()
 void Core::SetRenderSystem(RenderSystem* system)
 {
     mActiveRenderSystem = system;
+    if (mActiveRenderSystem)
+    {
+        mActiveRenderSystem->CreateBuffers();
+    }
 }
 
 void Core::ChangeViewportSize(u32 width, u32 height)
