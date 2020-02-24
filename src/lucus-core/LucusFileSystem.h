@@ -26,7 +26,7 @@ namespace LucusEngine
         std::string GetAssetPath( cc8* name );
         std::string GetFileFormat( cc8* name );
         
-        std::vector<cc8> ReadData() noexcept(false);
+        std::vector<u8> ReadData( cc8* name ) noexcept(false);
 //        void ReadDataAsync();
     protected:
         std::string mWorkingDir;

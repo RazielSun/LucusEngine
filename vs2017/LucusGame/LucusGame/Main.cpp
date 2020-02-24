@@ -3,6 +3,7 @@
 //
 
 #include "host.h"
+#include "modules.h"
 #include "DirectX12/LucusD3D12RenderSystem.h"
 
 #include <ppltasks.h>
@@ -19,7 +20,9 @@ using namespace Windows::Graphics::Display;
 
 using Microsoft::WRL::ComPtr;
 
-namespace Lucus
+
+
+namespace LucusEngine
 {
 	// Main entry point for our app. Connects the app with the Windows shell and handles application lifecycle events.
 	ref class ViewProvider sealed : public IFrameworkView
@@ -44,11 +47,14 @@ namespace Lucus
             CoreApplication::Resuming += ref new EventHandler<Platform::Object^>(this, &ViewProvider::OnResuming);
 
             AKUCoreCreate();
+			AKUModulesCreate();
 
-            LucusEngine::D3D12RenderSystem* renderSystem = new LucusEngine::D3D12RenderSystem();
+			AKUChangeWorkingDir("Assets");
+
+            D3D12RenderSystem* renderSystem = new D3D12RenderSystem();
             m_renderSystem = renderSystem;
 
-            AKUSetRenderSystem(static_cast<LucusEngine::RenderSystem*>(renderSystem));
+            AKUSetRenderSystem(static_cast<RenderSystem*>(renderSystem));
         }
 
 		virtual void SetWindow(CoreWindow^ window)
@@ -241,7 +247,7 @@ namespace Lucus
 [Platform::MTAThread]
 int main(Platform::Array<Platform::String^>^)
 {
-	auto viewProviderFactory = ref new Lucus::ViewProviderFactory();
+	auto viewProviderFactory = ref new LucusEngine::ViewProviderFactory();
 	CoreApplication::Run(viewProviderFactory);
 	return 0;
 }

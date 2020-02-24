@@ -134,7 +134,7 @@ bool FBXMeshFormat::OpenFile( cc8* path )
     
     bool lResult = mImporter->Import(mScene);
     
-    u32 animStackCount = mScene->GetSrcObjectCount<FbxAnimStack>();
+    int animStackCount = mScene->GetSrcObjectCount<FbxAnimStack>();
     int i, j, l, a;
     FBXSDK_printf("Animation Stack Information (LOADED SCENE)\n");
     for ( a = 0; a < animStackCount; a++ )
@@ -237,7 +237,7 @@ void FBXMeshFormat::LoadPositionNormalTexCoord(FbxMesh* data, Mesh* mesh)
     {
         FbxVector4 vertex = data->GetControlPointAt(vid);
 
-        vertices.push_back( (FVector3){(float)vertex[0], (float)vertex[1], (float)vertex[2]} );
+        vertices.push_back( {(float)vertex[0], (float)vertex[1], (float)vertex[2]} );
         
 //        FBXSDK_printf("    %d vertex: %f %f %f\n", vid, (float)vertex[0], (float)vertex[1], (float)vertex[2]);
     }
@@ -255,7 +255,7 @@ void FBXMeshFormat::LoadPositionNormalTexCoord(FbxMesh* data, Mesh* mesh)
         for (int i = 0; i < uvCount; i++)
         {
             FbxVector2 uv = elemUV->GetDirectArray()[i];
-            texcoords.push_back( (FVector2){(float)uv[0], (float)uv[1]} );
+			texcoords.push_back({ (float)uv[0], (float)uv[1] });
 //            FBXSDK_printf("   - Layer0 uv: i %i  %f %f\n", i, (float)uv[0], (float)uv[1]);
         }
         
@@ -287,7 +287,7 @@ void FBXMeshFormat::LoadPositionNormalTexCoord(FbxMesh* data, Mesh* mesh)
         for (int i = 0; i < mNormals.GetCount(); i++)
         {
             FbxVector4 normal = mNormals[i];
-            normals.push_back( (FVector3){(float)normal[0], (float)normal[1], (float)normal[2]} );
+			normals.push_back({ (float)normal[0], (float)normal[1], (float)normal[2] });
         }
     }
     
@@ -391,7 +391,7 @@ void FBXMeshFormat::LoadPositionNormalTexCoord(FbxMesh* data, Mesh* mesh)
     std::vector<SimpleVertex> vecVertices;
     for (const auto& pos : vertices)
     {
-        vecVertices.push_back((SimpleVertex){ { pos.x, pos.y, pos.z } });
+		vecVertices.push_back({ {pos.x, pos.y, pos.z} });
     }
     
 //    mesh->Load(vertices, texcoords, normals, faces);

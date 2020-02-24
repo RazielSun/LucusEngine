@@ -60,11 +60,31 @@ std::string FileSystem::GetFileFormat( cc8* name )
     return "";
 }
     
-std::vector<cc8> FileSystem::ReadData()
+std::vector<u8> FileSystem::ReadData( cc8* name )
 {
-    std::vector<cc8> vec;
+	std::ifstream inFile(name, std::ios::in | std::ios::binary | std::ios::ate);
+
+	if (!inFile)
+		throw std::exception("ReadData");
+
+	std::streampos len = inFile.tellg();
+	if (!inFile)
+		throw std::exception("ReadData");
+
+	std::vector<u8> data;
+	data.resize(size_t(len));
+
+	inFile.seekg(0, std::ios::beg);
+	if (!inFile)
+		throw std::exception("ReadData");
+
+	inFile.read(reinterpret_cast<char*>(data.data()), len);
+	if (!inFile)
+		throw std::exception("ReadData");
+
+	inFile.close();
     
-    return vec;
+    return data;
 }
 
 //inline std::vector<uint8_t> ReadData(_In_z_ const wchar_t* name)

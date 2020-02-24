@@ -13,10 +13,17 @@
 #include "LucusD3D12Device.h"
 #include "LucusD3D12Window.h"
 
+// temp
+#include "LucusMesh.h"
+
 namespace LucusEngine
 {
     class D3D12RenderSystem: public RenderSystem
     {
+		// temp
+		bool mResourceCreated;
+		Mesh* mMesh;
+
     public:
         D3D12RenderSystem();
         virtual ~D3D12RenderSystem();

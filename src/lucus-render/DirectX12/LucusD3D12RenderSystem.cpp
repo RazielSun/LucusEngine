@@ -1,5 +1,8 @@
 
 #include "LucusD3D12RenderSystem.h"
+#include "LucusShaderTypes.h"
+
+#include "LucusCore.h"
 
 #include <chrono> // for time
 
@@ -15,7 +18,12 @@ D3D12RenderSystem::D3D12RenderSystem() :
 
 D3D12RenderSystem::~D3D12RenderSystem()
 {
-    //
+    // temp
+	if (nullptr != mMesh)
+	{
+		delete mMesh;
+		mMesh = nullptr;
+	}
 }
 
 RenderWindow* D3D12RenderSystem::CreateRenderWindow(u32 width, u32 height)
@@ -26,13 +34,16 @@ RenderWindow* D3D12RenderSystem::CreateRenderWindow(u32 width, u32 height)
 
     mWindows.push_back(static_cast<RenderWindow*>(mWindow));
 
-	CreateBuffers();
+	//CreateBuffers();
 
     return mWindows.front();
 }
 
 void D3D12RenderSystem::CreateBuffers()
 {
+	mMesh = new Mesh();
+	mMesh->Load("meshes/cube.fbx");
+
 	// Define the geometry for a quad.
 	// DirectX front face polygons is clockwise !!!
 	static const DefaultVertex quad[] =
@@ -84,6 +95,13 @@ void D3D12RenderSystem::CreateBuffers()
 
 void D3D12RenderSystem::Render()
 {
+	// temp
+	if (!mResourceCreated)
+	{
+		CreateBuffers();
+		mResourceCreated = true;
+	}
+
     // Prepare device resources
 	auto commandAllocator = mDevice.mCommandAllocators[mCurrentFrame];
 	auto renderTarget = mWindow->mRenderTargets[mCurrentFrame];
@@ -287,8 +305,8 @@ void D3D12RenderSystem::CreateDeviceDependentResources()
 		//	mPixelShader = fileData;
 		//});
 
-		auto vertexShaderData = ReadData(L"DefaultVertexShader.cso");
-		auto pixelShaderData = ReadData(L"DefaultPixelShader.cso");
+		auto vertexShaderData = Core::GetFileSystem()->ReadData("DefaultVertexShader.cso");
+		auto pixelShaderData = Core::GetFileSystem()->ReadData("DefaultPixelShader.cso");
 
 		// ThrowIfFailed(D3DCompileFromFile(GetAssetFullPath(L"DefaultVertesShader.cso").c_str(), nullptr, nullptr, "main", "vs_5_0", compileFlags, 0, &vertexShader, nullptr));
 		//ThrowIfFailed(D3DCompileFromFile(GetAssetFullPath(L"DefaultPixelShader.cso").c_str(), nullptr, nullptr, "main", "ps_5_0", compileFlags, 0, &pixelShader, nullptr));
