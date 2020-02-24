@@ -79,6 +79,7 @@ void D3D12Device::Init()
     queueDesc.Type = D3D12_COMMAND_LIST_TYPE_DIRECT;
 
     ThrowIfFailed(mD3D12Device->CreateCommandQueue(&queueDesc, IID_PPV_ARGS(mCommandQueue.ReleaseAndGetAddressOf())));
+	mCommandQueue->SetName(L"Command Queue");
 
     // Create command allocators for each back buffer
 	for (u32 n = 0; n < c_frameCount; n++)
@@ -88,7 +89,8 @@ void D3D12Device::Init()
 
 	// Create command list for recording graphics commands
 	ThrowIfFailed(mD3D12Device->CreateCommandList(0,D3D12_COMMAND_LIST_TYPE_DIRECT, mCommandAllocators[0].Get(), nullptr, IID_PPV_ARGS(mCommandList.ReleaseAndGetAddressOf())));
-	ThrowIfFailed(mCommandList->Close());
+	//ThrowIfFailed(mCommandList->Close());
+	mCommandList->SetName(L"Command List");
 }
 
 void D3D12Device::GetAdapter(IDXGIAdapter1** ppAdapter)
