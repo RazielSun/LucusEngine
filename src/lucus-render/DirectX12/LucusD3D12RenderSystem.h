@@ -20,9 +20,7 @@ namespace LucusEngine
 {
     class D3D12RenderSystem: public RenderSystem
     {
-		// temp
-		bool mResourceCreated;
-		Mesh* mMesh;
+		
 
     public:
         D3D12RenderSystem();
@@ -69,7 +67,15 @@ namespace LucusEngine
 
         // App resources.
 	    Microsoft::WRL::ComPtr<ID3D12Resource>          mVertexBuffer;
-	    D3D12_VERTEX_BUFFER_VIEW                        mVertexBufferView;
+		D3D12_VERTEX_BUFFER_VIEW                        mVertexBufferView;
+		Microsoft::WRL::ComPtr<ID3D12Resource>          mIndexBuffer;
+		D3D12_INDEX_BUFFER_VIEW							mIndexBufferView;
+		u32												mIndexCount;
+
+		// App temp resources
+		bool mResourceCreated;
+		Mesh* mMesh;
+	    
     };
 }
 

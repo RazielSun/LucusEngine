@@ -46,51 +46,136 @@ void D3D12RenderSystem::CreateBuffers()
 
 	// Define the geometry for a quad.
 	// DirectX front face polygons is clockwise !!!
-	static const DefaultVertex quad[] =
-	{
-		{ { -0.5f, -0.5f }, { 0.0f, 1.0f, 1.0f, 1.0f } },
-		{ { 0.5f, 0.5f }, 	{ 1.0f, 1.0f, 0.0f, 1.0f } },
-		{ { 0.5f, -0.5f }, 	{ 0.0f, 1.0f, 0.0f, 1.0f } },
-		{ { -0.5f, -0.5f }, { 1.0f, 0.0f, 1.0f, 1.0f } },
-		{ { -0.5f, 0.5f }, 	{ 0.0f, 0.0f, 1.0f, 1.0f } },
-		{ { 0.5f, 0.5f }, 	{ 1.0f, 1.0f, 1.0f, 1.0f } }
-	};
-
-	//static const DefaultVertex quad[3] =
+	//static const DefaultVertex quad[] =
 	//{
-	//	{ { 0.0f,   0.5f,  0.5f, 1.0f },{ 1.0f, 0.0f, 0.0f, 1.0f } },  // Top / Red
-	//	{ { 0.5f,  -0.5f,  0.5f, 1.0f },{ 0.0f, 1.0f, 0.0f, 1.0f } },  // Right / Green
-	//	{ { -0.5f, -0.5f,  0.5f, 1.0f },{ 0.0f, 0.0f, 1.0f, 1.0f } }   // Left / Blue
+	//	{ { -0.5f, -0.5f }, { 0.0f, 1.0f, 1.0f, 1.0f } },
+	//	{ { 0.5f, 0.5f }, 	{ 1.0f, 1.0f, 0.0f, 1.0f } },
+	//	{ { 0.5f, -0.5f }, 	{ 0.0f, 1.0f, 0.0f, 1.0f } },
+	//	{ { -0.5f, -0.5f }, { 1.0f, 0.0f, 1.0f, 1.0f } },
+	//	{ { -0.5f, 0.5f }, 	{ 0.0f, 0.0f, 1.0f, 1.0f } },
+	//	{ { 0.5f, 0.5f }, 	{ 1.0f, 1.0f, 1.0f, 1.0f } }
 	//};
 
 	// Create the vertex buffer.
 	{
-		const u32 vertexBufferSize = sizeof(quad);
+		const std::vector<SimpleVertex>* vertices = mMesh->GetVertices();
+
+		const u32 vertexBufferSize = vertices->size() * sizeof(SimpleVertex);// sizeof(quad);
+
+		// Create the vertex buffer resource in the GPU's default heap and copy vertex data into it using the upload heap.
+		// The upload resource must not be released until after the GPU has finished using it.
+		Microsoft::WRL::ComPtr<ID3D12Resource> vertexBufferUpload;
+
+		CD3DX12_RESOURCE_DESC vertexBufferDesc = CD3DX12_RESOURCE_DESC::Buffer(vertexBufferSize);
+
+		CD3DX12_HEAP_PROPERTIES defaultHeapProperties(D3D12_HEAP_TYPE_DEFAULT);
+		ThrowIfFailed(mDevice.mD3D12Device->CreateCommittedResource(
+			&defaultHeapProperties,
+			D3D12_HEAP_FLAG_NONE,
+			&vertexBufferDesc,
+			D3D12_RESOURCE_STATE_COPY_DEST,
+			nullptr,
+			IID_PPV_ARGS(&mVertexBuffer)));
+
+		CD3DX12_HEAP_PROPERTIES uploadHeapProperties(D3D12_HEAP_TYPE_UPLOAD);
+		ThrowIfFailed(mDevice.mD3D12Device->CreateCommittedResource(
+			&uploadHeapProperties,
+			D3D12_HEAP_FLAG_NONE,
+			&vertexBufferDesc,
+			D3D12_RESOURCE_STATE_GENERIC_READ,
+			nullptr,
+			IID_PPV_ARGS(&vertexBufferUpload)));
+
+		// Upload the vertex buffer to the GPU.
+		//{
+		//	D3D12_SUBRESOURCE_DATA vertexData = {};
+		//	vertexData.pData = reinterpret_cast<BYTE*>(const_cast<std::vector<SimpleVertex>*>(vertices)->data());
+		//	vertexData.RowPitch = vertexBufferSize;
+		//	vertexData.SlicePitch = vertexData.RowPitch;
+
+		//	UpdateSubresources(mDevice.mCommandList.Get(), mVertexBuffer.Get(), vertexBufferUpload.Get(), 0, 0, 1, &vertexData);
+
+		//	CD3DX12_RESOURCE_BARRIER vertexBufferResourceBarrier =
+		//		CD3DX12_RESOURCE_BARRIER::Transition(mVertexBuffer.Get(), D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER);
+		//	mDevice.mCommandList->ResourceBarrier(1, &vertexBufferResourceBarrier);
+		//}
+
+		mVertexBufferView.BufferLocation = mVertexBuffer->GetGPUVirtualAddress();
+		mVertexBufferView.StrideInBytes = sizeof(SimpleVertex);
+		mVertexBufferView.SizeInBytes = vertexBufferSize;
 
 		// Note: using upload heaps to transfer static data like vert buffers is not 
 		// recommended. Every time the GPU needs it, the upload heap will be marshalled 
 		// over. Please read up on Default Heap usage. An upload heap is used here for 
 		// code simplicity and because there are very few verts to actually transfer.
-		ThrowIfFailed(mDevice.mD3D12Device->CreateCommittedResource(
-			&CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD),
-			D3D12_HEAP_FLAG_NONE,
-			&CD3DX12_RESOURCE_DESC::Buffer(vertexBufferSize),
-			D3D12_RESOURCE_STATE_GENERIC_READ,
-			nullptr,
-			IID_PPV_ARGS(&mVertexBuffer)));
+		//ThrowIfFailed(mDevice.mD3D12Device->CreateCommittedResource(
+		//	&CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD),
+		//	D3D12_HEAP_FLAG_NONE,
+		//	&CD3DX12_RESOURCE_DESC::Buffer(vertexBufferSize),
+		//	D3D12_RESOURCE_STATE_GENERIC_READ,
+		//	nullptr,
+		//	IID_PPV_ARGS(&mVertexBuffer)));
 
 		// Copy the quad data to the vertex buffer.
-		UINT8* pVertexDataBegin;
-		CD3DX12_RANGE readRange(0, 0);		// We do not intend to read from this resource on the CPU.
-		ThrowIfFailed(mVertexBuffer->Map(0, &readRange, reinterpret_cast<void**>(&pVertexDataBegin)));
-		memcpy(pVertexDataBegin, quad, sizeof(quad));
-		mVertexBuffer->Unmap(0, nullptr);
+		//UINT8* pVertexDataBegin;
+		//CD3DX12_RANGE readRange(0, 0);		// We do not intend to read from this resource on the CPU.
+		//ThrowIfFailed(mVertexBuffer->Map(0, &readRange, reinterpret_cast<void**>(&pVertexDataBegin)));
+		//memcpy(pVertexDataBegin, quad, sizeof(quad));
+		//mVertexBuffer->Unmap(0, nullptr);
 
-		// Initialize the vertex buffer view.
-		mVertexBufferView.BufferLocation = mVertexBuffer->GetGPUVirtualAddress();
-		mVertexBufferView.StrideInBytes = sizeof(DefaultVertex);
-		mVertexBufferView.SizeInBytes = vertexBufferSize;
+		//// Initialize the vertex buffer view.
+		//mVertexBufferView.BufferLocation = mVertexBuffer->GetGPUVirtualAddress();
+		//mVertexBufferView.StrideInBytes = sizeof(DefaultVertex);
+		//mVertexBufferView.SizeInBytes = vertexBufferSize;
+
+		const std::vector<TriangleIndex>* indices = mMesh->GetIndices();
+
+		const u32 indicesBufferSize = indices->size() * sizeof(TriangleIndex);
+		mIndexCount = indicesBufferSize / sizeof(u32);
+
+		Microsoft::WRL::ComPtr<ID3D12Resource> indicesBufferUpload;
+
+		CD3DX12_RESOURCE_DESC indexBufferDesc = CD3DX12_RESOURCE_DESC::Buffer(indicesBufferSize);
+
+		ThrowIfFailed(mDevice.mD3D12Device->CreateCommittedResource(
+			&defaultHeapProperties,
+			D3D12_HEAP_FLAG_NONE,
+			&indexBufferDesc,
+			D3D12_RESOURCE_STATE_COPY_DEST,
+			nullptr,
+			IID_PPV_ARGS(&mIndexBuffer)));
+
+		ThrowIfFailed(mDevice.mD3D12Device->CreateCommittedResource(
+			&uploadHeapProperties,
+			D3D12_HEAP_FLAG_NONE,
+			&indexBufferDesc,
+			D3D12_RESOURCE_STATE_GENERIC_READ,
+			nullptr,
+			IID_PPV_ARGS(&indicesBufferUpload)));
+
+		// Upload the index buffer to the GPU.
+		//{
+		//	D3D12_SUBRESOURCE_DATA indexData = {};
+		//	indexData.pData = reinterpret_cast<BYTE*>(const_cast<std::vector<TriangleIndex>*>(indices)->data());
+		//	indexData.RowPitch = indicesBufferSize;
+		//	indexData.SlicePitch = indexData.RowPitch;
+
+		//	UpdateSubresources(mDevice.mCommandList.Get(), mIndexBuffer.Get(), indicesBufferUpload.Get(), 0, 0, 1, &indexData);
+
+		//	CD3DX12_RESOURCE_BARRIER indexBufferResourceBarrier =
+		//		CD3DX12_RESOURCE_BARRIER::Transition(mIndexBuffer.Get(), D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_INDEX_BUFFER);
+		//	mDevice.mCommandList->ResourceBarrier(1, &indexBufferResourceBarrier);
+		//}
+
+		mIndexBufferView.BufferLocation = mIndexBuffer->GetGPUVirtualAddress();
+		mIndexBufferView.Format = DXGI_FORMAT_R32_UINT;
+		mIndexBufferView.SizeInBytes = indicesBufferSize;
 	}
+
+	// Close the command list and execute it to begin the vertex/index buffer copy into the GPU's default heap.
+	//DX::ThrowIfFailed(mDevice.mCommandList->Close());
+	//ID3D12CommandList* ppCommandLists[] = { mDevice.mCommandList.Get() };
+	//mDevice.mCommandQueue->ExecuteCommandLists(_countof(ppCommandLists), ppCommandLists);
 }
 
 void D3D12RenderSystem::Render()
@@ -134,12 +219,16 @@ void D3D12RenderSystem::Render()
 	commandList->SetGraphicsRootSignature(mRootSignature.Get());
 	commandList->SetPipelineState(mPipelineState.Get());
 
-	// Set quad data
+	// //Set quad data
+	//commandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	//commandList->IASetVertexBuffers(0, 1, &mVertexBufferView);
+	// // Draw
+	//commandList->DrawInstanced(6, 1, 0, 0);
+
 	commandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	commandList->IASetVertexBuffers(0, 1, &mVertexBufferView);
-
-	 // Draw
-	commandList->DrawInstanced(6, 1, 0, 0);
+	commandList->IASetIndexBuffer(&mIndexBufferView);
+	commandList->DrawIndexedInstanced(mIndexCount, 1, 0, 0, 0);
 
 	// Transition render target into correct state to present.
 	{
@@ -305,8 +394,10 @@ void D3D12RenderSystem::CreateDeviceDependentResources()
 		//	mPixelShader = fileData;
 		//});
 
-		auto vertexShaderData = Core::GetFileSystem()->ReadData("DefaultVertexShader.cso");
-		auto pixelShaderData = Core::GetFileSystem()->ReadData("DefaultPixelShader.cso");
+		//auto vertexShaderData = Core::GetFileSystem()->ReadData("DefaultVertexShader.cso");
+		//auto pixelShaderData = Core::GetFileSystem()->ReadData("DefaultPixelShader.cso");
+		auto vertexShaderData = Core::GetFileSystem()->ReadData("SimpleVertexShader.cso");
+		auto pixelShaderData = Core::GetFileSystem()->ReadData("SimplePixelShader.cso");
 
 		// ThrowIfFailed(D3DCompileFromFile(GetAssetFullPath(L"DefaultVertesShader.cso").c_str(), nullptr, nullptr, "main", "vs_5_0", compileFlags, 0, &vertexShader, nullptr));
 		//ThrowIfFailed(D3DCompileFromFile(GetAssetFullPath(L"DefaultPixelShader.cso").c_str(), nullptr, nullptr, "main", "ps_5_0", compileFlags, 0, &pixelShader, nullptr));

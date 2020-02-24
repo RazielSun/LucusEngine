@@ -177,5 +177,11 @@
     <FxCompile Include="..\..\..\src\lucus-shaders\DirectX12\DefaultVertexShader.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
+    <FxCompile Include="..\..\..\src\lucus-shaders\DirectX12\SimplePixelShader.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\src\lucus-shaders\DirectX12\SimpleVertexShader.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

@@ -1,12 +1,6 @@
 # Prerequisites
 *.d
 
-#Exlude 3rdparty static libs
-!3rdparty/*.a
-!3rdparty/*.lib
-!3rdparty/*.dll
-!3rdparty/*.pdb
-
 # Compiled Object files
 *.slo
 *.lo
