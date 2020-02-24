@@ -1,6 +1,10 @@
 # Prerequisites
 *.d
 
+# FBX SDK
+3rdparty/fbx-sdk-osx/*
+3rdparty/fbx-sdk-uwp/*
+
 # Compiled Object files
 *.slo
 *.lo
