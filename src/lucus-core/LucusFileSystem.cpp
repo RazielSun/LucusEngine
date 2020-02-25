@@ -7,6 +7,7 @@
 
 #include "LucusFileSystem.h"
 #include <fstream>
+#include <exception>
 
 using namespace LucusEngine;
 
@@ -65,22 +66,22 @@ std::vector<u8> FileSystem::ReadData( cc8* name )
 	std::ifstream inFile(name, std::ios::in | std::ios::binary | std::ios::ate);
 
 	if (!inFile)
-		throw std::exception("ReadData");
+		throw std::exception(); // "ReadData"
 
 	std::streampos len = inFile.tellg();
 	if (!inFile)
-		throw std::exception("ReadData");
+		throw std::exception(); // "ReadData"
 
 	std::vector<u8> data;
 	data.resize(size_t(len));
 
 	inFile.seekg(0, std::ios::beg);
 	if (!inFile)
-		throw std::exception("ReadData");
+		throw std::exception(); // "ReadData"
 
 	inFile.read(reinterpret_cast<char*>(data.data()), len);
 	if (!inFile)
-		throw std::exception("ReadData");
+		throw std::exception(); // "ReadData"
 
 	inFile.close();
     

@@ -41,6 +41,15 @@ void AKUTick()
     }
 }
 
+void AKURun()
+{
+    LucusEngine::Core* core = LucusEngine::Core::GetPtr();
+    if (core != nullptr)
+    {
+        core->Run();
+    }
+}
+
 //void AKUUpdate()
 //{
 //    //

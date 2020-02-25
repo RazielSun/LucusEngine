@@ -35,11 +35,29 @@ FBXMeshFormat::FBXMeshFormat()
     ios->SetBoolProp(IMP_FBX_GLOBAL_SETTINGS, true);
     
     mSdkManager->SetIOSettings(ios);
+    
+    mConverter = new FbxGeometryConverter(mSdkManager);
 }
 
 FBXMeshFormat::~FBXMeshFormat()
 {
-    //
+    //Destroy all objects created by the FBX SDK.
+    delete mConverter;
+    mConverter = nullptr;
+    
+    if( mScene )
+    {
+        mScene->Destroy();
+        mScene = nullptr;
+    }
+        
+    if( mSdkManager )
+    {
+        mSdkManager->Destroy();
+        mSdkManager = nullptr;
+    }
+        
+    //    if( lResult ) FBXSDK_printf("Program Success!\n");
 }
 
 void FBXMeshFormat::LoadMesh( Mesh* mesh, cc8* name )
@@ -183,15 +201,24 @@ bool FBXMeshFormat::OpenFile( cc8* path )
 void FBXMeshFormat::ConvertScene()
 {
     // Setup X, Y, Z axis
+//    FbxAxisSystem::ECoordSystem CoordSystem = FbxAxisSystem::eRightHanded;
+//    FbxAxisSystem::EUpVector UpVector = FbxAxisSystem::eZAxis;
+//    FbxAxisSystem::EFrontVector FrontVector = (FbxAxisSystem::EFrontVector) - FbxAxisSystem::eParityOdd;
+//    if (GetImportOptions()->bForceFrontXAxis)
+//    {
+//        FrontVector = FbxAxisSystem::eParityEven;
+//    }
+//    FbxAxisSystem UnrealImportAxis(UpVector, FrontVector, CoordSystem);
+//    FbxAxisSystem SourceSetup = Scene->GetGlobalSettings().GetAxisSystem();
     
     // Setup cm or m system
+    FbxSystemUnit::m.ConvertScene(mScene);
 }
 
 void FBXMeshFormat::TriangulateScene()
 {
     // Triangulate before use
-    FbxGeometryConverter converter(mSdkManager);
-    converter.Triangulate(mScene, true);
+    mConverter->Triangulate(mScene, true);
 }
 
 void FBXMeshFormat::AddMeshNode(FbxNode* node)
@@ -236,8 +263,12 @@ void FBXMeshFormat::LoadPositionNormalTexCoord(FbxMesh* data, Mesh* mesh)
     for (int vid = 0; vid < verticesCount; vid++)
     {
         FbxVector4 vertex = data->GetControlPointAt(vid);
-
+        
+#if defined(TARGET_METAL)
+        vertices.push_back( (FVector3){(float)vertex[0], (float)vertex[1], (float)vertex[2]} );
+#else
         vertices.push_back( {(float)vertex[0], (float)vertex[1], (float)vertex[2]} );
+#endif
         
 //        FBXSDK_printf("    %d vertex: %f %f %f\n", vid, (float)vertex[0], (float)vertex[1], (float)vertex[2]);
     }
@@ -255,7 +286,12 @@ void FBXMeshFormat::LoadPositionNormalTexCoord(FbxMesh* data, Mesh* mesh)
         for (int i = 0; i < uvCount; i++)
         {
             FbxVector2 uv = elemUV->GetDirectArray()[i];
-			texcoords.push_back({ (float)uv[0], (float)uv[1] });
+#if defined(TARGET_METAL)
+            texcoords.push_back((FVector2){ (float)uv[0], (float)uv[1] });
+#else
+            texcoords.push_back({ (float)uv[0], (float)uv[1] });
+#endif
+			
 //            FBXSDK_printf("   - Layer0 uv: i %i  %f %f\n", i, (float)uv[0], (float)uv[1]);
         }
         
@@ -287,7 +323,12 @@ void FBXMeshFormat::LoadPositionNormalTexCoord(FbxMesh* data, Mesh* mesh)
         for (int i = 0; i < mNormals.GetCount(); i++)
         {
             FbxVector4 normal = mNormals[i];
-			normals.push_back({ (float)normal[0], (float)normal[1], (float)normal[2] });
+#if defined(TARGET_METAL)
+            normals.push_back((FVector3){ (float)normal[0], (float)normal[1], (float)normal[2] });
+#else
+            normals.push_back({ (float)normal[0], (float)normal[1], (float)normal[2] });
+#endif
+			
         }
     }
     
@@ -391,7 +432,12 @@ void FBXMeshFormat::LoadPositionNormalTexCoord(FbxMesh* data, Mesh* mesh)
     std::vector<SimpleVertex> vecVertices;
     for (const auto& pos : vertices)
     {
-		vecVertices.push_back({ {pos.x, pos.y, pos.z} });
+#if defined(TARGET_METAL)
+        vecVertices.push_back((SimpleVertex){pos.x, pos.y, pos.z});
+#else
+        vecVertices.push_back({ {pos.x, pos.y, pos.z} });
+#endif
+		
     }
     
 //    mesh->Load(vertices, texcoords, normals, faces);

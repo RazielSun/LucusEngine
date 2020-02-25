@@ -30,6 +30,7 @@ namespace LucusEngine
         void ChangeViewportSize(u32 width, u32 height);
         
         void StartCoreLoop();
+        void Run();
         
         void Tick();
         

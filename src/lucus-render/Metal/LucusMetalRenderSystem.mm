@@ -46,7 +46,7 @@ void MetalRenderSystem::CreateBuffers()
     
     // Mesh
     mMesh = new LucusEngine::Mesh();
-    mMesh->Load("meshes/cube.fbx");
+    mMesh->Load("Assets/meshes/cube.fbx");
     
     // Create Buffers
     const VectorVertices* vertices = mMesh->GetVertices();

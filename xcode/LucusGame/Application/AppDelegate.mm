@@ -105,6 +105,8 @@ static AppDelegate* mInstance = nil;
     
     // Start Loop
 //    AKUStartCoreLoop();
+    
+    AKURun();
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender

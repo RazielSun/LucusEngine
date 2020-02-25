@@ -17,6 +17,7 @@ namespace LucusEngine
     class FBXMeshFormat: public MeshFormat
     {
         FbxManager* mSdkManager;
+        FbxGeometryConverter* mConverter;
         FbxScene* mScene;
         std::vector<FbxNode*> mMeshNodes;
         

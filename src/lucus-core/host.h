@@ -20,6 +20,9 @@ void AKUCoreDestroy();
 
 void AKUStartCoreLoop();
 void AKUTick();
+
+void AKURun();
+
 //void AKUUpdate();
 //void AKURender();
 
