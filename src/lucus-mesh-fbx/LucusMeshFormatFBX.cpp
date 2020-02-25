@@ -435,7 +435,7 @@ void FBXMeshFormat::LoadPositionNormalTexCoord(FbxMesh* data, Mesh* mesh)
 #if defined(TARGET_METAL)
         vecVertices.push_back((SimpleVertex){pos.x, pos.y, pos.z});
 #else
-        vecVertices.push_back({ {pos.x, pos.y, pos.z} });
+        vecVertices.push_back( {pos.x, pos.y, pos.z} );
 #endif
 		
     }

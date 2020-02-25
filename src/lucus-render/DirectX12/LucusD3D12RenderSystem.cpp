@@ -59,7 +59,7 @@ void D3D12RenderSystem::CreateBuffers()
 	// Create the buffers.
 	const std::vector<SimpleVertex>* vertices = mMesh->GetVertices();
 
-	const u32 vertexBufferSize = vertices->size() * sizeof(SimpleVertex);// sizeof(quad);
+	const u32 vertexBufferSize = static_cast<u32>(vertices->size() * sizeof(SimpleVertex));// sizeof(quad);
 
 	// Create the vertex buffer resource in the GPU's default heap and copy vertex data into it using the upload heap.
 	// The upload resource must not be released until after the GPU has finished using it.
@@ -128,7 +128,7 @@ void D3D12RenderSystem::CreateBuffers()
 
 	const std::vector<TriangleIndex>* indices = mMesh->GetIndices();
 
-	const u32 indicesBufferSize = indices->size() * sizeof(TriangleIndex);
+	const u32 indicesBufferSize = static_cast<u32>(indices->size() * sizeof(TriangleIndex));
 	mIndexCount = indicesBufferSize / sizeof(u32);
 
 	Microsoft::WRL::ComPtr<ID3D12Resource> indicesBufferUpload;
