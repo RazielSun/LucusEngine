@@ -1,13 +1,9 @@
 
 #include "LucusD3D12RenderSystem.h"
 #include "LucusShaderTypes.h"
-
 #include "LucusCore.h"
 
-#include <chrono> // for time
-
 using namespace DX;
-
 using namespace LucusEngine;
 
 D3D12RenderSystem::D3D12RenderSystem() :
@@ -266,39 +262,6 @@ void D3D12RenderSystem::ChangeViewportSize(u32 width, u32 height)
 		mCurrentFrame = mWindow->mSwapChain->GetCurrentBackBufferIndex();
 	}
 }
-
-// void D3D12RenderSystem::Tick()
-// {
-//     static uint64_t frameCounter = 0;
-//     static double elapsedSeconds = 0.0;
-//     static std::chrono::high_resolution_clock clock;
-//     static auto t0 = clock.now();
- 
-//     frameCounter++;
-//     auto t1 = clock.now();
-//     auto deltaTime = t1 - t0;
-//     t0 = t1;
-
-// 	elapsedSeconds += deltaTime.count() * 1e-9;
-//     if (elapsedSeconds > 1.0)
-//     {
-//         // char buffer[500];
-//         // auto fps = frameCounter / elapsedSeconds;
-//         // sprintf_s(buffer, 500, "FPS: %f\n", fps);
-//         // OutputDebugString(buffer);
-//         frameCounter = 0;
-//         elapsedSeconds = 0.0;
-//     }
-
-// 	// Don't try render in first frame
-// 	// if (m_frameCount == 0)
-// 	// {
-// 	// 	return;
-// 	// }
-
-// 	if (frameCounter != 0)
-// 		Render();
-// }
 
 // Wait for pending GPU work to complete.
 void D3D12RenderSystem::WaitForGpu()

@@ -1,5 +1,6 @@
 
 #include "LucusCore.h"
+#include "LucusWorld.h"
 
 using namespace LucusEngine;
 
@@ -56,6 +57,11 @@ MeshFormatManager* Core::GetMeshFormatMgr()
     return Core::Get().mMeshFormatManager;
 }
 
+RenderSystem* Core::GetRenderSystem()
+{
+    return Core::Get().mActiveRenderSystem;
+}
+
 void Core::SetRenderSystem(RenderSystem* system)
 {
     mActiveRenderSystem = system;
@@ -72,6 +78,11 @@ void Core::ChangeViewportSize(u32 width, u32 height)
 
 void Core::Tick()
 {
+    if (mWorld != nullptr)
+    {
+        mWorld->Tick();
+    }
+
     if (mActiveRenderSystem != nullptr)
     {
         mActiveRenderSystem->Render();
@@ -93,6 +104,8 @@ void Core::StartCoreLoop()
 
 void Core::Run()
 {
+    mWorld = World::CreateWorld();
+
     if (mActiveRenderSystem)
     {
         mActiveRenderSystem->CreateBuffers();

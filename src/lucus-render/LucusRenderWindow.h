@@ -10,6 +10,7 @@
 
 #include <vector>
 #include "LucusTypes.h"
+#include "LucusViewport.h"
 
 namespace LucusEngine
 {
@@ -17,16 +18,20 @@ namespace LucusEngine
     {
     public:
         RenderWindow(u32 width, u32 height);
+        RenderWindow();
+        
         virtual ~RenderWindow();
         
-        virtual void ChangeViewportSize(u32 width, u32 height) = 0;
+        // virtual void ChangeViewportSize(u32 width, u32 height) = 0;
 
-        u32 GetWidth() { return mWidth; }
-        u32 GetHeight() { return mHeight; }
+        // u32 GetWidth() { return mWidth; }
+        // u32 GetHeight() { return mHeight; }
+        Viewport& GetViewport() { return mViewport; }
         
     protected:
-        u32 mWidth;
-        u32 mHeight;
+        Viewport mViewport;
+        // u32 mWidth;
+        // u32 mHeight;
     };
 
     typedef std::vector<RenderWindow*> RenderWindowVector;

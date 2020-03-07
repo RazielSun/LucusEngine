@@ -9,7 +9,13 @@
 
 using namespace LucusEngine;
 
-RenderWindow::RenderWindow(u32 width, u32 height) : mWidth(width), mHeight(height)
+RenderWindow::RenderWindow(u32 width, u32 height) :
+	mViewport( 0.0f, 0.0f, width, height )
+{
+    //
+}
+
+RenderWindow::RenderWindow() : RenderWindow ( 0, 0 )
 {
     //
 }

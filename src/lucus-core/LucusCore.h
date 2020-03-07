@@ -16,6 +16,8 @@
 
 namespace LucusEngine
 {
+    class World;
+
 	class Core : public Singleton<Core>
 	{
 	public:
@@ -40,6 +42,7 @@ namespace LucusEngine
         
         static FileSystem* GetFileSystem();
         static MeshFormatManager* GetMeshFormatMgr();
+        static RenderSystem* GetRenderSystem();
 
 	protected:
         bool mIsActive = false;
@@ -48,6 +51,9 @@ namespace LucusEngine
         
         FileSystem* mFileSystem;
         MeshFormatManager* mMeshFormatManager;
+
+    protected:
+        World* mWorld;
 	};
 }
 

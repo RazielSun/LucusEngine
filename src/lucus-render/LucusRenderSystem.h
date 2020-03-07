@@ -13,6 +13,9 @@
 
 namespace LucusEngine
 {
+	class World;
+	class Scene;
+
 	class RenderSystem
 	{
 	public:
@@ -25,8 +28,13 @@ namespace LucusEngine
         
         virtual void ChangeViewportSize(u32 width, u32 height) = 0;
 
+        void AllocateScene(World* world);
+
 	protected:
         RenderWindowVector mWindows;
+        // RenderWindow* mWindow;
+
+        Scene* mScene;
 	};
 }
 
