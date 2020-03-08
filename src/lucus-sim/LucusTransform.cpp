@@ -9,9 +9,8 @@
 
 using namespace LucusEngine;
 
-Transform::Transform() : mLocation(0,0,0)
+Transform::Transform() : mLocation(0,0,0), mModelMatrix(FMatrix4x4::Identity)
 {
-    //
 }
 
 Transform::~Transform()
@@ -33,5 +32,5 @@ void Transform::AddLocation(float x, float y, float z)
 
 void Transform::UpdateModelMatrix()
 {
-	//
+    mModelMatrix.SetTranslate(mLocation);
 }

@@ -12,8 +12,6 @@
 #include "LucusMetalRenderSystem.h"
 #include "LucusMetalWindow.h"
 
-#include "LucusMesh.h"
-
 static AppDelegate* mInstance = nil;
 
 @implementation AppDelegate

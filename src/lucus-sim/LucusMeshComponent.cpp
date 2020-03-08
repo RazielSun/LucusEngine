@@ -15,7 +15,22 @@ MeshComponent::MeshComponent() : mMesh(nullptr)
     //
 }
 
+MeshComponent::MeshComponent(cc8* name)
+{
+    mMesh = new LucusEngine::Mesh();
+    mMesh->Load(name);
+}
+
 MeshComponent::~MeshComponent()
 {
-    //
+    if (nullptr != mMesh)
+    {
+        delete mMesh;
+        mMesh = nullptr;
+    }
+}
+
+Mesh* MeshComponent::GetMesh()
+{
+    return mMesh;
 }

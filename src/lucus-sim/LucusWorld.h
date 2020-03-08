@@ -40,7 +40,7 @@ namespace LucusEngine
     	u32 mFrameCounter;
     	double mElapsedSeconds;
 		std::chrono::high_resolution_clock mClock;
-		std::chrono::time_point mLastTime;
+		std::chrono::time_point<std::chrono::high_resolution_clock> mLastTime;
     };
 }
 

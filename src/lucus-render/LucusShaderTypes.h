@@ -10,11 +10,37 @@
 
 #include "LucusMath.h"
 
+#if defined(TARGET_METAL)
+#   include <simd/simd.h>
+
 typedef struct
 {
-    FVector2 position;
-    FVector4 color;
-} DefaultVertex;
+    matrix_float4x4 MVP_MATRIX;
+    matrix_float4x4 PROJ_MATRIX;
+    matrix_float4x4 VIEW_MATRIX;
+    matrix_float4x4 MODEL_MATRIX;
+} Uniforms;
+
+#elif defined(TARGET_DX12)
+#   include <DirectXMath.h>
+#endif
+
+//typedef struct
+//{
+//    FVector2 position;
+//    FVector4 color;
+//} DefaultVertex;
+
+//typedef struct
+//{
+//    FMatrix4x4 MVP_MATRIX;
+//    FMatrix4x4 PROJ_MATRIX;
+//    FMatrix4x4 VIEW_MATRIX;
+//    FMatrix4x4 MODEL_MATRIX;
+//} Uniforms;
+
+
+
 
 typedef FVector3 SimpleVertex;
 

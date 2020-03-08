@@ -19,9 +19,6 @@
 
 namespace LucusEngine
 {
-    //temp
-    class Mesh;
-
     class MetalRenderSystem: public RenderSystem
     {
     public:
@@ -32,8 +29,6 @@ namespace LucusEngine
         virtual void CreateBuffers() override;
         virtual void Render() override;
         
-        virtual void ChangeViewportSize(u32 width, u32 height) override;
-        
     protected:
         MetalWindow* mWindow;
         
@@ -42,10 +37,10 @@ namespace LucusEngine
         id<MTLRenderPipelineState> mPipelineState;
         
         // temp files for cube
-        Mesh* mMesh;
         id<MTLBuffer> mVerticesBuf;
         id<MTLBuffer> mIndicesBuf;
         NSUInteger mIndicesCount;
+        id<MTLBuffer> mUniforms;
         
     };
 }

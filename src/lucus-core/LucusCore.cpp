@@ -1,5 +1,6 @@
 
 #include "LucusCore.h"
+#include "LucusRenderSystem.h"
 #include "LucusWorld.h"
 
 using namespace LucusEngine;
@@ -106,8 +107,8 @@ void Core::Run()
 {
     mWorld = World::CreateWorld();
 
-    if (mActiveRenderSystem)
-    {
-        mActiveRenderSystem->CreateBuffers();
-    }
+//    if (mActiveRenderSystem)
+//    {
+//        mActiveRenderSystem->CreateBuffers();
+//    }
 }

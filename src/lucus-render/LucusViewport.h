@@ -33,6 +33,7 @@ namespace LucusEngine
         float GetBottom() const { return mTop + mHeight; }
         float GetWidth() const { return mWidth; }
         float GetHeight() const { return mHeight; }
+        float GetAspectRatio() const { return mWidth / mHeight; }
     };
 }
 

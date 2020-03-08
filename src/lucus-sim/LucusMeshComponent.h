@@ -9,16 +9,20 @@
 #define _LUCUS_ENGINE_MESH_COMPONENT_H
 
 #include "LucusTypes.h"
+#include "LucusComponent.h"
 
 namespace LucusEngine
 {
 	class Mesh;
 
-    class MeshComponent
+    class MeshComponent : public Component
     {
     public:
         MeshComponent();
+        MeshComponent(cc8* name);
         virtual ~MeshComponent();
+        
+        Mesh* GetMesh();
 
     protected:
     	Mesh* mMesh;

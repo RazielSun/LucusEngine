@@ -9,7 +9,10 @@
 #include "LucusShaderTypes.h"
 
 // temp
+#include "LucusScene.h"
 #include "LucusMesh.h"
+#include "LucusCameraComponent.h"
+#include "LucusMeshComponent.h"
 #include "Metal/MTLVertexDescriptor.h"
 
 using namespace LucusEngine;
@@ -20,11 +23,6 @@ MetalRenderSystem::MetalRenderSystem() : mDevice(this)
 
 MetalRenderSystem::~MetalRenderSystem()
 {
-    if (mMesh)
-    {
-        delete mMesh;
-        mMesh = nullptr;
-    }
 }
 
 RenderWindow* MetalRenderSystem::CreateRenderWindow(u32 width, u32 height)
@@ -45,16 +43,18 @@ void MetalRenderSystem::CreateBuffers()
     // Create Assets
     
     // Mesh
-    mMesh = new LucusEngine::Mesh();
-    mMesh->Load("Assets/meshes/cube.fbx");
+    MeshComponent* meshCom = mScene->MeshComps[0];
+    Mesh* mesh = meshCom->GetMesh();
+//    mMesh = new LucusEngine::Mesh();
+//    mMesh->Load("Assets/meshes/cube.fbx");
     
     // Create Buffers
-    const VectorVertices* vertices = mMesh->GetVertices();
+    const VectorVertices* vertices = mesh->GetVertices();
     NSUInteger verticesLength = vertices->size() * sizeof(SimpleVertex); // bytes
     mVerticesBuf = [mDevice.mDevice newBufferWithBytes:vertices->data() length:verticesLength options:MTLResourceOptionCPUCacheModeDefault];
 //    memcpy()
     
-    const VectorIndices* indices = mMesh->GetIndices();
+    const VectorIndices* indices = mesh->GetIndices();
     NSUInteger indicesLength = indices->size() * sizeof(TriangleIndex); // bytes
     mIndicesBuf = [mDevice.mDevice newBufferWithBytes:indices->data() length:indicesLength options:MTLResourceOptionCPUCacheModeDefault];
     
@@ -96,6 +96,8 @@ void MetalRenderSystem::CreateBuffers()
     //  from Xcode.)
     //    NSAssert(mPipelineState, @"Failed to created pipeline state: %@", error);
     
+    mUniforms = [mDevice.mDevice newBufferWithLength:sizeof(Uniforms) options:MTLResourceStorageModeShared];
+    
 }
         
 void MetalRenderSystem::Render()
@@ -110,6 +112,18 @@ void MetalRenderSystem::Render()
 //        { { 0.5, 0.5 },     { 0, 0, 1, 1 } },
 //        { { -0.5, 0.5 },    { 1, 1, 1, 1 } }
 //    };
+    
+    // Update Uniforms
+    Uniforms* uniforms = (Uniforms*)(mUniforms.contents);
+    
+    CameraComponent* cameraCom = mScene->CameraComp;
+    cameraCom->UpdateProjectionMatrix(mWindow->GetViewport());
+    uniforms->PROJ_MATRIX = cameraCom->GetProjMatrix().GetNative();
+    uniforms->VIEW_MATRIX = cameraCom->GetTransform().GetModelMatrix().GetNative();
+    MeshComponent* meshCom = mScene->MeshComps[0];
+    meshCom->GetTransform().UpdateModelMatrix();
+    uniforms->MODEL_MATRIX = meshCom->GetTransform().GetModelMatrix().GetNative();
+    uniforms->MVP_MATRIX = matrix_multiply(uniforms->PROJ_MATRIX, matrix_multiply(uniforms->VIEW_MATRIX, uniforms->MODEL_MATRIX));
     
 //    mWindow->mCurrentDrawable = [mWindow->mView currentDrawable];
     mWindow->mCurrentDrawable = [mWindow->mMetalLayer nextDrawable];
@@ -139,6 +153,11 @@ void MetalRenderSystem::Render()
             
             [renderEncoder setVertexBuffer:mVerticesBuf offset:0 atIndex:0];
 //            [renderEncoder setFragmentBuffer:mVerticesBuf offset:0 atIndex:0];
+            
+            // only for vertex shader
+            [renderEncoder setVertexBuffer:mUniforms offset:0 atIndex:1];
+//            [renderEncoder setFragmentBuffer:mUniforms offset:0 atIndex:1];
+            
             [renderEncoder drawIndexedPrimitives:MTLPrimitiveTypeTriangle indexCount:mIndicesCount indexType:MTLIndexTypeUInt32 indexBuffer:mIndicesBuf indexBufferOffset:0];
             
             [renderEncoder endEncoding];
@@ -154,12 +173,4 @@ void MetalRenderSystem::Render()
     }
     
     mWindow->mCurrentDrawable = nil;
-}
-
-void MetalRenderSystem::ChangeViewportSize(u32 width, u32 height)
-{
-    for (auto it = mWindows.begin(); it != mWindows.end(); it++)
-    {
-        (*it)->ChangeViewportSize(width, height);
-    }
 }

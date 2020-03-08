@@ -10,18 +10,21 @@
 
 #include "LucusTypes.h"
 #include "LucusMath.h"
+#include "LucusComponent.h"
 
 namespace LucusEngine
 {
     class Viewport;
 
-    class CameraComponent
+    class CameraComponent : public Component
     {
     public:
         CameraComponent();
         virtual ~CameraComponent();
 
-        void UpdateProjectionMatrix(const Viewport* viewport);
+        void UpdateProjectionMatrix(const Viewport& viewport);
+        
+        const FMatrix4x4& GetProjMatrix() const { return mProj; }
 
     protected:
         FMatrix4x4 mProj;

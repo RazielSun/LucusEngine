@@ -14,7 +14,8 @@
 using namespace LucusEngine;
 
 Scene::Scene(World* world) :
-	mWorld(world)
+	mWorld(world),
+    CameraComp(nullptr)
 {
     //
 }
@@ -31,17 +32,21 @@ void Scene::AddComponent(Component* comp)
 		MeshComponent* meshComp = dynamic_cast<MeshComponent*>(comp);
 		if (nullptr != meshComp)
 		{
-			mMeshComps.push_back(meshComp);
+			MeshComps.push_back(meshComp);
+            return;
 		}
 
-		if (nullptr == meshComp && nullptr == mCameraComp)
+		if (CameraComp == nullptr)
 		{
-			mCameraComp = dynamic_cast<CameraComponent*>(comp);
+			CameraComp = dynamic_cast<CameraComponent*>(comp);
 		}
 	}
 }
 
 void Scene::RemoveComponent(Component* comp)
 {
-	//
+	if (nullptr != comp)
+    {
+        //
+    }
 }

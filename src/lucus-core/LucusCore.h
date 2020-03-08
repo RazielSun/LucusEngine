@@ -10,13 +10,14 @@
 #include "LucusTypes.h"
 #include "LucusSingleton.h"
 
-#include "LucusRenderSystem.h"
+
 #include "LucusFileSystem.h"
 #include "LucusMeshFormatManager.h"
 
 namespace LucusEngine
 {
     class World;
+    class RenderSystem;
 
 	class Core : public Singleton<Core>
 	{

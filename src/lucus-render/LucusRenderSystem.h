@@ -26,7 +26,7 @@ namespace LucusEngine
         virtual void CreateBuffers() = 0;
         virtual void Render() = 0;
         
-        virtual void ChangeViewportSize(u32 width, u32 height) = 0;
+        virtual void ChangeViewportSize(u32 width, u32 height);
 
         void AllocateScene(World* world);
 
