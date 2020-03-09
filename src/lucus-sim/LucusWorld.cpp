@@ -39,14 +39,27 @@ void World::InitWorld()
     	system->AllocateScene(this);
     }
     
+    // Load World
+    // Camera
     Actor* cameraActor = SpawnActor();
     CameraComponent* cameraCom = new CameraComponent();
     cameraActor->SetRootComponent(cameraCom);
     
-    Actor* cubeActor = SpawnActor();
-    MeshComponent* meshCom = new MeshComponent("Assets/meshes/cube.fbx");
-    meshCom->GetTransform().AddLocation(0, 0, -2);
-    cubeActor->SetRootComponent(meshCom);
+    // Actors
+    Actor* cube1Actor = SpawnActor();
+    MeshComponent* mesh1Com = new MeshComponent("Assets/meshes/cube.fbx");
+    mesh1Com->GetTransform().AddLocation(0, 0, -2);
+    cube1Actor->SetRootComponent(mesh1Com);
+    
+    Actor* cube2Actor = SpawnActor();
+    MeshComponent* mesh2Com = new MeshComponent("Assets/meshes/cube.fbx");
+    mesh2Com->GetTransform().AddLocation(1, 0, -2);
+    cube2Actor->SetRootComponent(mesh2Com);
+    
+    Actor* cube3Actor = SpawnActor();
+    MeshComponent* mesh3Com = new MeshComponent("Assets/meshes/cube.fbx");
+    mesh3Com->GetTransform().AddLocation(-1, 0, -2);
+    cube3Actor->SetRootComponent(mesh3Com);
     
     if (system)
     {
