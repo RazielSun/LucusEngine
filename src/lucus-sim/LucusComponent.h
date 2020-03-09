@@ -13,6 +13,8 @@
 
 namespace LucusEngine
 {
+    class ComponentProxy;
+
     class Component
     {
     public:
@@ -20,6 +22,10 @@ namespace LucusEngine
         virtual ~Component();
 
         Transform& GetTransform() { return mTransform; }
+        
+        ComponentProxy* Proxy;
+        
+//        virtual ComponentProxy* CreateProxy();
 
     protected:
     	Transform mTransform;

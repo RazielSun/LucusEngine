@@ -10,7 +10,7 @@
 
 #include "LucusTypes.h"
 #include "LucusMath.h"
-#include "LucusShaderTypes.h"
+#include "LucusResourceTypes.h"
 #include <vector>
 
 namespace LucusEngine

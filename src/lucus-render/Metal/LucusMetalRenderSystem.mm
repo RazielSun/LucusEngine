@@ -6,7 +6,7 @@
 //
 
 #include "LucusMetalRenderSystem.h"
-#include "LucusShaderTypes.h"
+#include "LucusRenderTypes.h"
 
 // temp
 #include "LucusScene.h"
@@ -14,6 +14,7 @@
 #include "LucusCameraComponent.h"
 #include "LucusMeshComponent.h"
 #include "Metal/MTLVertexDescriptor.h"
+#include "LucusMetalComponentProxy.h"
 
 using namespace LucusEngine;
 
@@ -33,32 +34,17 @@ RenderWindow* MetalRenderSystem::CreateRenderWindow(u32 width, u32 height)
     
     mWindows.push_back(static_cast<RenderWindow*>(mWindow));
     
-//    CreateBuffers();
-    
-    return mWindows.front();//static_cast<RenderWindow*>(mWindow);
+    return mWindows.front();
 }
 
 void MetalRenderSystem::CreateBuffers()
 {
     // Create Assets
-    
-    // Mesh
-    MeshComponent* meshCom = mScene->MeshComps[0];
-    Mesh* mesh = meshCom->GetMesh();
-//    mMesh = new LucusEngine::Mesh();
-//    mMesh->Load("Assets/meshes/cube.fbx");
-    
-    // Create Buffers
-    const VectorVertices* vertices = mesh->GetVertices();
-    NSUInteger verticesLength = vertices->size() * sizeof(SimpleVertex); // bytes
-    mVerticesBuf = [mDevice.mDevice newBufferWithBytes:vertices->data() length:verticesLength options:MTLResourceOptionCPUCacheModeDefault];
-//    memcpy()
-    
-    const VectorIndices* indices = mesh->GetIndices();
-    NSUInteger indicesLength = indices->size() * sizeof(TriangleIndex); // bytes
-    mIndicesBuf = [mDevice.mDevice newBufferWithBytes:indices->data() length:indicesLength options:MTLResourceOptionCPUCacheModeDefault];
-    
-    mIndicesCount = indicesLength / sizeof(u32); // indices count
+    for (auto* component : mScene->MeshComps) {
+        MetalComponentProxy* proxy = new MetalComponentProxy(&mDevice);
+        proxy->CreateBuffers(component->GetMesh());
+        component->Proxy = proxy;
+    }
     
     MTLVertexDescriptor* vertexDescr = [[MTLVertexDescriptor alloc] init];
     vertexDescr.attributes[0].format = MTLVertexFormatFloat3;
@@ -71,9 +57,6 @@ void MetalRenderSystem::CreateBuffers()
     
     // Load all the shader files with a .metal file extension in the project.
     id<MTLLibrary> defaultLibrary = [mDevice.mDevice newDefaultLibrary];
-        
-    //    id<MTLFunction> vertexFunction = [defaultLibrary newFunctionWithName:@"defaultVertexShader"];
-    //    id<MTLFunction> fragmentFunction = [defaultLibrary newFunctionWithName:@"defaultFragmentShader"];
         
     id<MTLFunction> vertexFunction = [defaultLibrary newFunctionWithName:@"simpleVertexShader"];
     id<MTLFunction> fragmentFunction = [defaultLibrary newFunctionWithName:@"simpleFragmentShader"];
@@ -89,50 +72,26 @@ void MetalRenderSystem::CreateBuffers()
     NSError *error = NULL;
     
     mPipelineState = [mDevice.mDevice newRenderPipelineStateWithDescriptor:pipelineStateDescriptor error:&error];
-    
-    // Pipeline State creation could fail if the pipeline descriptor isn't set up properly.
-    //  If the Metal API validation is enabled, you can find out more information about what
-    //  went wrong.  (Metal API validation is enabled by default when a debug build is run
-    //  from Xcode.)
-    //    NSAssert(mPipelineState, @"Failed to created pipeline state: %@", error);
-    
-    mUniforms = [mDevice.mDevice newBufferWithLength:sizeof(Uniforms) options:MTLResourceStorageModeShared];
-    
 }
         
 void MetalRenderSystem::Render()
 {
-//    static const DefaultVertex quad[] =
-//    {
-//        // 2D Position      // Color
-//        { { -0.5, -0.5 },   { 0, 1, 1, 1 } },
-//        { { 0.5, -0.5 },    { 1, 1, 0, 1 } },
-//        { { 0.5, 0.5 },     { 0, 1, 0, 1 } },
-//        { { -0.5, -0.5 },   { 1, 0, 1, 1 } },
-//        { { 0.5, 0.5 },     { 0, 0, 1, 1 } },
-//        { { -0.5, 0.5 },    { 1, 1, 1, 1 } }
-//    };
-    
     // Update Uniforms
-    Uniforms* uniforms = (Uniforms*)(mUniforms.contents);
-    
+    Uniforms uniforms;
     CameraComponent* cameraCom = mScene->CameraComp;
     cameraCom->UpdateProjectionMatrix(mWindow->GetViewport());
-    uniforms->PROJ_MATRIX = cameraCom->GetProjMatrix().GetNative();
-    uniforms->VIEW_MATRIX = cameraCom->GetTransform().GetModelMatrix().GetNative();
-    MeshComponent* meshCom = mScene->MeshComps[0];
-    meshCom->GetTransform().UpdateModelMatrix();
-    uniforms->MODEL_MATRIX = meshCom->GetTransform().GetModelMatrix().GetNative();
-    uniforms->MVP_MATRIX = matrix_multiply(uniforms->PROJ_MATRIX, matrix_multiply(uniforms->VIEW_MATRIX, uniforms->MODEL_MATRIX));
+    uniforms.PROJ_MATRIX = cameraCom->GetProjMatrix().GetNative();
+    uniforms.VIEW_MATRIX = cameraCom->GetTransform().GetModelMatrix().GetNative();
     
-//    mWindow->mCurrentDrawable = [mWindow->mView currentDrawable];
+    for (auto* component : mScene->MeshComps) {
+        component->GetTransform().UpdateModelMatrix();
+        component->Proxy->UpdateUniforms(uniforms, component->GetTransform());
+    }
+    
     mWindow->mCurrentDrawable = [mWindow->mMetalLayer nextDrawable];
-//    if (mSystemReady)
     if (mWindow->mCurrentDrawable != nil)
     {
         id<MTLCommandBuffer> commandBuffer = [mDevice.mCommandQueue commandBuffer];
-        
-//        MTLRenderPassDescriptor *descriptor = [mWindow->mView currentRenderPassDescriptor];
         
         // Create custom render pass descriptor
         MTLRenderPassDescriptor *descriptor = [[MTLRenderPassDescriptor alloc] init];
@@ -148,21 +107,13 @@ void MetalRenderSystem::Render()
             
             [renderEncoder setRenderPipelineState:mPipelineState];
             
-//            [renderEncoder setVertexBytes:quad length:sizeof(quad) atIndex:0];
-//            [renderEncoder drawPrimitives:MTLPrimitiveTypeTriangle vertexStart:0 vertexCount:6];
-            
-            [renderEncoder setVertexBuffer:mVerticesBuf offset:0 atIndex:0];
-//            [renderEncoder setFragmentBuffer:mVerticesBuf offset:0 atIndex:0];
-            
-            // only for vertex shader
-            [renderEncoder setVertexBuffer:mUniforms offset:0 atIndex:1];
-//            [renderEncoder setFragmentBuffer:mUniforms offset:0 atIndex:1];
-            
-            [renderEncoder drawIndexedPrimitives:MTLPrimitiveTypeTriangle indexCount:mIndicesCount indexType:MTLIndexTypeUInt32 indexBuffer:mIndicesBuf indexBufferOffset:0];
-            
+            for (auto* component : mScene->MeshComps) {
+                static_cast<MetalComponentProxy*>(component->Proxy)->DrawIndexed(renderEncoder);
+            }
+
             [renderEncoder endEncoding];
             
-            [commandBuffer presentDrawable:mWindow->mCurrentDrawable]; // mWindow->mView.currentDrawable
+            [commandBuffer presentDrawable:mWindow->mCurrentDrawable];
         }
         
         [commandBuffer commit];

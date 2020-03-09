@@ -10,7 +10,7 @@
 
 using namespace metal;
 
-#include "LucusShaderTypes.h"
+#include "LucusRenderTypes.h"
 
 //typedef struct
 //{

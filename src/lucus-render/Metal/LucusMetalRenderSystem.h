@@ -15,7 +15,7 @@
 #include <Metal/MTLRenderPipeline.h>
 
 // temp
-#include <Metal/MTLBuffer.h>
+//#include <Metal/MTLBuffer.h>
 
 namespace LucusEngine
 {
@@ -37,10 +37,10 @@ namespace LucusEngine
         id<MTLRenderPipelineState> mPipelineState;
         
         // temp files for cube
-        id<MTLBuffer> mVerticesBuf;
-        id<MTLBuffer> mIndicesBuf;
-        NSUInteger mIndicesCount;
-        id<MTLBuffer> mUniforms;
+//        id<MTLBuffer> mVerticesBuf;
+//        id<MTLBuffer> mIndicesBuf;
+//        NSUInteger mIndicesCount;
+//        id<MTLBuffer> mUniforms;
         
     };
 }

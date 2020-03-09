@@ -9,15 +9,35 @@
 #include <cstring>
 #include <math.h>
 
-//float FVector2::operator[] (u32 i) const
-//{
-//    return *(&x+i);
-//}
-//
-//float& FVector2::operator[] (u32 i)
-//{
-//    return *(&x+i);
-//}
+float FVector2::operator[] (u32 i) const
+{
+    return *(&x+i);
+}
+
+float& FVector2::operator[] (u32 i)
+{
+    return *(&x+i);
+}
+
+float FVector3::operator[] (u32 i) const
+{
+    return *(&x+i);
+}
+
+float& FVector3::operator[] (u32 i)
+{
+    return *(&x+i);
+}
+
+float FVector4::operator[] (u32 i) const
+{
+    return *(&x+i);
+}
+
+float& FVector4::operator[] (u32 i)
+{
+    return *(&x+i);
+}
 
 const FMatrix4x4 FMatrix4x4::Identity {
     1.0f, 0.0f, 0.0f, 0.0f,
@@ -58,13 +78,11 @@ FMatrix4x4 FMatrix4x4::RightHandProjectionMatrix(float aspect, float nearZ, floa
     float fovRad = (fov * PI) / 180.0f;
     float ys = 1 / tan(fovRad * 0.5);
     float xs = ys / aspect;
-//    float zs = farZ / (farZ - nearZ);
     float zs = farZ / (nearZ - farZ);
     
     FMatrix4x4 mtx;
     mtx.m[0][0] = xs;
     mtx.m[1][1] = ys;
-//    mtx.m[2][2] = 1;
     mtx.m[2][2] = zs;
     mtx.m[2][3] = -1;
     mtx.m[3][2] = nearZ * zs;
@@ -92,20 +110,9 @@ FVector3 FMatrix4x4::operator * (const FVector3& vec) const
     FVector3 r;
     return r;
 }
-    
-//#if defined(TARGET_METAL)
-//simd::float4 FMatrix4x4::operator * (const simd::float4& vec) const
-//{
-//    simd::float4 r = vec;
-//    return r;
-//}
-//#endif
 
 void FMatrix4x4::SetTranslate(float x, float y, float z)
 {
-//    m[0][3] = x;
-//    m[1][3] = y;
-//    m[2][3] = z;
     m[3][0] = x;
     m[3][1] = y;
     m[3][2] = z;
@@ -115,24 +122,3 @@ void FMatrix4x4::SetTranslate(const FVector3& v)
 {
     SetTranslate(v.x, v.y, v.z);
 }
-
-#if defined(TARGET_METAL)
-//static simd::float4 operator*(const simd::float4 x, const FMatrix4x4 y)
-//{
-//    simd::float4 r = x;
-//    return r;
-//}
-//simd::float4 operator * (const DEVICE_Q FMatrix4x4& mtx, const DEVICE_Q simd::float4& vec)
-//{
-//    simd::float4 r = vec;
-//    return r;
-//}
-//
-//simd::float4 operator * (const DEVICE_Q simd::float4& vec, const DEVICE_Q FMatrix4x4& mtx)
-//{
-//    simd::float4 r = vec;
-//    return r;
-//}
-#endif
-
-
