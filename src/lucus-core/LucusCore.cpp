@@ -2,12 +2,15 @@
 #include "LucusCore.h"
 #include "LucusRenderSystem.h"
 #include "LucusWorld.h"
+#include "LucusTimeManager.h"
 
 using namespace LucusEngine;
 
 template<> Core* Singleton<Core>::mInstance = nullptr;
 
-Core::Core()
+Core::Core() :
+    mTimeStep(1.0f / 60.0f),
+    mMaxStepSim(5)
 {
     LoadModules();
 }
@@ -30,12 +33,14 @@ void Core::LoadModules()
 {
     mFileSystem = new FileSystem();
     mMeshFormatManager = new MeshFormatManager();
+    mTimeManager = new TimeManager();
 }
 
 void Core::UnloadModules()
 {
     delete mFileSystem;
     delete mMeshFormatManager;
+    delete mTimeManager;
 }
 
 Core& Core::Get()
@@ -63,6 +68,11 @@ RenderSystem* Core::GetRenderSystem()
     return Core::Get().mActiveRenderSystem;
 }
 
+TimeManager* Core::GetTimeManager()
+{
+    return Core::Get().mTimeManager;
+}
+
 void Core::SetRenderSystem(RenderSystem* system)
 {
     mActiveRenderSystem = system;
@@ -79,15 +89,24 @@ void Core::ChangeViewportSize(u32 width, u32 height)
 
 void Core::Tick()
 {
-    if (mWorld != nullptr)
+    mTimeManager->UpdateTime();
+    float deltaSeconds = mTimeManager->GetDeltaSeconds();
+    
+    for (u32 i = 0; i < mMaxStepSim && deltaSeconds > mTimeStep; ++i)
     {
-        mWorld->Tick();
+        mWorld->Tick(mTimeStep);
+        deltaSeconds -= mTimeStep;
     }
-
+    
+    // calculate how close or far we are from the next timestep
+//    auto alpha = (float) lag.count() / timestep.count();
+//    auto interpolated_state = interpolate(current_state, previous_state, alpha);
     if (mActiveRenderSystem != nullptr)
     {
         mActiveRenderSystem->Render();
     }
+    
+    mTimeManager->SetUnusedSeconds(deltaSeconds);
 }
 
 void Core::StartCoreLoop()

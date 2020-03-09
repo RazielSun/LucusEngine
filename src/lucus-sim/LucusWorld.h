@@ -11,7 +11,6 @@
 #include "LucusTypes.h"
 
 #include <vector>
-#include <chrono>
 
 namespace LucusEngine
 {
@@ -26,7 +25,7 @@ namespace LucusEngine
 
         void InitWorld();
 
-        void Tick();
+        void Tick(float deltaSeconds);
 
         static World* CreateWorld();
 
@@ -36,11 +35,6 @@ namespace LucusEngine
 
     protected:
     	std::vector<Actor*> mActors;
-
-    	u32 mFrameCounter;
-    	double mElapsedSeconds;
-		std::chrono::high_resolution_clock mClock;
-		std::chrono::time_point<std::chrono::high_resolution_clock> mLastTime;
     };
 }
 

@@ -60,6 +60,8 @@
 		7AA499012413BAA0009C1ED7 /* LucusViewport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA498F92413BA9F009C1ED7 /* LucusViewport.cpp */; };
 		7AA499032413EA60009C1ED7 /* LucusMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA499022413EA60009C1ED7 /* LucusMath.cpp */; };
 		7AA499042413EA60009C1ED7 /* LucusMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA499022413EA60009C1ED7 /* LucusMath.cpp */; };
+		7AA4990724163E18009C1ED7 /* LucusTimeManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA4990524163E18009C1ED7 /* LucusTimeManager.cpp */; };
+		7AA4990824163E19009C1ED7 /* LucusTimeManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA4990524163E18009C1ED7 /* LucusTimeManager.cpp */; };
 		7ADF914023E6D07A0094C83D /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7ADF913F23E6D07A0094C83D /* main.mm */; };
 		7ADF914123E6D07A0094C83D /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7ADF913F23E6D07A0094C83D /* main.mm */; };
 		7ADF914523E6D36B0094C83D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADF914423E6D36B0094C83D /* Cocoa.framework */; };
@@ -127,6 +129,8 @@
 		7AA498FA2413BAA0009C1ED7 /* LucusComponentProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusComponentProxy.h; sourceTree = "<group>"; };
 		7AA498FB2413BAA0009C1ED7 /* LucusViewport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusViewport.h; sourceTree = "<group>"; };
 		7AA499022413EA60009C1ED7 /* LucusMath.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LucusMath.cpp; sourceTree = "<group>"; };
+		7AA4990524163E18009C1ED7 /* LucusTimeManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LucusTimeManager.cpp; sourceTree = "<group>"; };
+		7AA4990624163E18009C1ED7 /* LucusTimeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LucusTimeManager.h; sourceTree = "<group>"; };
 		7ADF910E23E6CA810094C83D /* LucusGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LucusGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ADF911D23E6CA810094C83D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7ADF912423E6CA810094C83D /* LucusGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LucusGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -249,6 +253,8 @@
 				7A324B6623F5DD84000C49DB /* LucusMath.h */,
 				7AA499022413EA60009C1ED7 /* LucusMath.cpp */,
 				7AA498D324027673009C1ED7 /* LucusUtils.h */,
+				7AA4990624163E18009C1ED7 /* LucusTimeManager.h */,
+				7AA4990524163E18009C1ED7 /* LucusTimeManager.cpp */,
 			);
 			name = "lucus-sim";
 			path = "../../src/lucus-sim";
@@ -466,6 +472,7 @@
 				7A324B6823F5DEFD000C49DB /* host.cpp in Sources */,
 				7A324B8924012D3C000C49DB /* LucusMeshFormatManager.cpp in Sources */,
 				7A324B7023FBBCDA000C49DB /* LucusMetalRenderSystem.mm in Sources */,
+				7AA4990724163E18009C1ED7 /* LucusTimeManager.cpp in Sources */,
 				7A324B8E24013515000C49DB /* LucusMeshFormatFBX.cpp in Sources */,
 				7AA499032413EA60009C1ED7 /* LucusMath.cpp in Sources */,
 				7A0C0DC623F1E83600DE0B7D /* LucusCore.cpp in Sources */,
@@ -499,6 +506,7 @@
 				7ADF914123E6D07A0094C83D /* main.mm in Sources */,
 				7A324B8A24012D3C000C49DB /* LucusMeshFormatManager.cpp in Sources */,
 				7A324B7123FBBCDA000C49DB /* LucusMetalRenderSystem.mm in Sources */,
+				7AA4990824163E19009C1ED7 /* LucusTimeManager.cpp in Sources */,
 				7A324B8F24013515000C49DB /* LucusMeshFormatFBX.cpp in Sources */,
 				7AA499042413EA60009C1ED7 /* LucusMath.cpp in Sources */,
 				7A324B5C23F5CEF8000C49DB /* AppDelegate.mm in Sources */,

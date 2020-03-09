@@ -10,7 +10,6 @@
 #include "LucusTypes.h"
 #include "LucusSingleton.h"
 
-
 #include "LucusFileSystem.h"
 #include "LucusMeshFormatManager.h"
 
@@ -18,6 +17,7 @@ namespace LucusEngine
 {
     class World;
     class RenderSystem;
+    class TimeManager;
 
 	class Core : public Singleton<Core>
 	{
@@ -44,6 +44,7 @@ namespace LucusEngine
         static FileSystem* GetFileSystem();
         static MeshFormatManager* GetMeshFormatMgr();
         static RenderSystem* GetRenderSystem();
+        static TimeManager* GetTimeManager();
 
 	protected:
         bool mIsActive = false;
@@ -52,9 +53,12 @@ namespace LucusEngine
         
         FileSystem* mFileSystem;
         MeshFormatManager* mMeshFormatManager;
-
-    protected:
+        TimeManager* mTimeManager;
         World* mWorld;
+        
+    protected:
+        float mTimeStep;
+        u32 mMaxStepSim;
 	};
 }
 
