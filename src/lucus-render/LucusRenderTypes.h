@@ -1,5 +1,5 @@
 //
-//  MetalRenderTypes.h
+//  LucusRenderTypes.h
 //  LucusGame
 //
 //  Created by Alexander Kardakov on 13/02/2020.
@@ -21,15 +21,15 @@ typedef struct
 
 #elif defined(TARGET_DX12)
 #   include <DirectXMath.h>
+
+typedef struct
+{
+	//FMatrix4x4 MVP_MATRIX;
+	//FMatrix4x4 PROJ_MATRIX;
+	//FMatrix4x4 VIEW_MATRIX;
+	//FMatrix4x4 MODEL_MATRIX;
+} Uniforms;
+
 #endif
-
-//typedef struct
-//{
-//    FMatrix4x4 MVP_MATRIX;
-//    FMatrix4x4 PROJ_MATRIX;
-//    FMatrix4x4 VIEW_MATRIX;
-//    FMatrix4x4 MODEL_MATRIX;
-//} Uniforms;
-
 
 #endif /* _LUCUS_ENGINE_RENDER_TYPES_H */

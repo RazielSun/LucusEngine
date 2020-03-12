@@ -75,8 +75,8 @@ FMatrix4x4::FMatrix4x4(float m11, float m12, float m13, float m14,
 
 FMatrix4x4 FMatrix4x4::RightHandProjectionMatrix(float aspect, float nearZ, float farZ, float fov)
 {
-    float fovRad = (fov * PI) / 180.0f;
-    float ys = 1 / tan(fovRad * 0.5);
+    float fovRad = (fov * (float)PI) / 180.0f;
+    float ys = 1.0f / (float)tan(fovRad * 0.5);
     float xs = ys / aspect;
     float zs = farZ / (nearZ - farZ);
     
@@ -107,7 +107,7 @@ FMatrix4x4 FMatrix4x4::operator * (const FMatrix4x4& mtx) const
 
 FVector3 FMatrix4x4::operator * (const FVector3& vec) const
 {
-    FVector3 r;
+    FVector3 r = vec;
     return r;
 }
 

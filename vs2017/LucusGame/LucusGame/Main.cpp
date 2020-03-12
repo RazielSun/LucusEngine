@@ -49,7 +49,7 @@ namespace LucusEngine
             AKUCoreCreate();
 			AKUModulesCreate();
 
-			AKUChangeWorkingDir("Assets");
+			AKUChangeWorkingDir("");
 
             D3D12RenderSystem* renderSystem = new D3D12RenderSystem();
             m_renderSystem = renderSystem;
@@ -79,6 +79,8 @@ namespace LucusEngine
 			{
 				m_renderSystem->SetCoreWindow(window);
 			}
+
+			AKURun();
         }
 
 		virtual void Load(Platform::String^ entryPoint)
@@ -113,7 +115,7 @@ namespace LucusEngine
                 }
                 else
                 {
-                    CoreWindow::GetForCurrentThread()->Dispatcher->ProcessEvents(CoreProcessEventsOption::ProcessOneAndAllPending);
+                    CoreWindow::GetForCurrentThread()->Dispatcher->ProcessEvents(CoreProcessEventsOption::ProcessOneAndAllPending); 
                 }
             }
         }

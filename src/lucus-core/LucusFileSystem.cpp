@@ -27,7 +27,7 @@ void FileSystem::ChangeWorkingDir(char const* path)
     {
         std::string buffer;
         buffer.append(path);
-        if (buffer[buffer.length() - 1] != '/')
+        if (buffer.length() > 0 && buffer[buffer.length() - 1] != '/')
         {
             buffer.push_back('/');
         }

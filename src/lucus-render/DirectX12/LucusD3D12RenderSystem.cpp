@@ -1,25 +1,30 @@
 
 #include "LucusD3D12RenderSystem.h"
-#include "LucusShaderTypes.h"
+#include "LucusRenderTypes.h"
+#include "LucusD3D12ComponentProxy.h"
+#include "LucusScene.h"
 #include "LucusCore.h"
+
+#include "LucusMeshComponent.h"
 
 using namespace DX;
 using namespace LucusEngine;
 
 D3D12RenderSystem::D3D12RenderSystem() :
     mDevice(this),
-    mCurrentFrame(0)
+    mCurrentFrame(0),
+	mReady(false)
 {
 }
 
 D3D12RenderSystem::~D3D12RenderSystem()
 {
     // temp
-	if (nullptr != mMesh)
-	{
-		delete mMesh;
-		mMesh = nullptr;
-	}
+	// if (nullptr != mMesh)
+	// {
+	// 	delete mMesh;
+	// 	mMesh = nullptr;
+	// }
 }
 
 RenderWindow* D3D12RenderSystem::CreateRenderWindow(u32 width, u32 height)
@@ -37,152 +42,36 @@ RenderWindow* D3D12RenderSystem::CreateRenderWindow(u32 width, u32 height)
 
 void D3D12RenderSystem::CreateBuffers()
 {
-	mMesh = new Mesh();
-	mMesh->Load("meshes/cube.fbx");
+	// Prepare device resources
+	auto commandAllocator = mDevice.mCommandAllocators[mCurrentFrame];
+	auto commandList = mDevice.mCommandList;
+	// Reset command allocator
+	commandAllocator->Reset();
+	// Get CommandList and reset
+	commandList->Reset(commandAllocator.Get(), nullptr);
 
-	// Define the geometry for a quad.
-	// DirectX front face polygons is clockwise !!!
-	//static const DefaultVertex quad[] =
-	//{
-	//	{ { -0.5f, -0.5f }, { 0.0f, 1.0f, 1.0f, 1.0f } },
-	//	{ { 0.5f, 0.5f }, 	{ 1.0f, 1.0f, 0.0f, 1.0f } },
-	//	{ { 0.5f, -0.5f }, 	{ 0.0f, 1.0f, 0.0f, 1.0f } },
-	//	{ { -0.5f, -0.5f }, { 1.0f, 0.0f, 1.0f, 1.0f } },
-	//	{ { -0.5f, 0.5f }, 	{ 0.0f, 0.0f, 1.0f, 1.0f } },
-	//	{ { 0.5f, 0.5f }, 	{ 1.0f, 1.0f, 1.0f, 1.0f } }
-	//};
-
-	// Create the buffers.
-	const std::vector<SimpleVertex>* vertices = mMesh->GetVertices();
-
-	const u32 vertexBufferSize = static_cast<u32>(vertices->size() * sizeof(SimpleVertex));// sizeof(quad);
-
-	// Create the vertex buffer resource in the GPU's default heap and copy vertex data into it using the upload heap.
-	// The upload resource must not be released until after the GPU has finished using it.
-	Microsoft::WRL::ComPtr<ID3D12Resource> vertexBufferUpload;
-
-	CD3DX12_RESOURCE_DESC vertexBufferDesc = CD3DX12_RESOURCE_DESC::Buffer(vertexBufferSize);
-
-	CD3DX12_HEAP_PROPERTIES defaultHeapProperties(D3D12_HEAP_TYPE_DEFAULT);
-	ThrowIfFailed(mDevice.mD3D12Device->CreateCommittedResource(
-		&defaultHeapProperties,
-		D3D12_HEAP_FLAG_NONE,
-		&vertexBufferDesc,
-		D3D12_RESOURCE_STATE_COPY_DEST,
-		nullptr,
-		IID_PPV_ARGS(&mVertexBuffer)));
-
-	CD3DX12_HEAP_PROPERTIES uploadHeapProperties(D3D12_HEAP_TYPE_UPLOAD);
-	ThrowIfFailed(mDevice.mD3D12Device->CreateCommittedResource(
-		&uploadHeapProperties,
-		D3D12_HEAP_FLAG_NONE,
-		&vertexBufferDesc,
-		D3D12_RESOURCE_STATE_GENERIC_READ,
-		nullptr,
-		IID_PPV_ARGS(&vertexBufferUpload)));
-
-	mVertexBuffer->SetName(L"Vertex Buffer");
-	vertexBufferUpload->SetName(L"Vertex Buffer Upload");
-
-	// Upload the vertex buffer to the GPU.
-	{
-		D3D12_SUBRESOURCE_DATA vertexData = {};
-		vertexData.pData = reinterpret_cast<BYTE*>(const_cast<std::vector<SimpleVertex>*>(vertices)->data());
-		vertexData.RowPitch = vertexBufferSize;
-		vertexData.SlicePitch = vertexData.RowPitch;
-
-		UpdateSubresources(mDevice.mCommandList.Get(), mVertexBuffer.Get(), vertexBufferUpload.Get(), 0, 0, 1, &vertexData);
-
-		CD3DX12_RESOURCE_BARRIER vertexBufferResourceBarrier =
-			CD3DX12_RESOURCE_BARRIER::Transition(mVertexBuffer.Get(), D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER);
-		mDevice.mCommandList->ResourceBarrier(1, &vertexBufferResourceBarrier);
-	}
-
-	// Note: using upload heaps to transfer static data like vert buffers is not 
-	// recommended. Every time the GPU needs it, the upload heap will be marshalled 
-	// over. Please read up on Default Heap usage. An upload heap is used here for 
-	// code simplicity and because there are very few verts to actually transfer.
-	//ThrowIfFailed(mDevice.mD3D12Device->CreateCommittedResource(
-	//	&CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD),
-	//	D3D12_HEAP_FLAG_NONE,
-	//	&CD3DX12_RESOURCE_DESC::Buffer(vertexBufferSize),
-	//	D3D12_RESOURCE_STATE_GENERIC_READ,
-	//	nullptr,
-	//	IID_PPV_ARGS(&mVertexBuffer)));
-
-	// Copy the quad data to the vertex buffer.
-	//UINT8* pVertexDataBegin;
-	//CD3DX12_RANGE readRange(0, 0);		// We do not intend to read from this resource on the CPU.
-	//ThrowIfFailed(mVertexBuffer->Map(0, &readRange, reinterpret_cast<void**>(&pVertexDataBegin)));
-	//memcpy(pVertexDataBegin, quad, sizeof(quad));
-	//mVertexBuffer->Unmap(0, nullptr);
-
-	//// Initialize the vertex buffer view.
-	//mVertexBufferView.BufferLocation = mVertexBuffer->GetGPUVirtualAddress();
-	//mVertexBufferView.StrideInBytes = sizeof(DefaultVertex);
-	//mVertexBufferView.SizeInBytes = vertexBufferSize;
-
-	const std::vector<TriangleIndex>* indices = mMesh->GetIndices();
-
-	const u32 indicesBufferSize = static_cast<u32>(indices->size() * sizeof(TriangleIndex));
-	mIndexCount = indicesBufferSize / sizeof(u32);
-
-	Microsoft::WRL::ComPtr<ID3D12Resource> indicesBufferUpload;
-
-	CD3DX12_RESOURCE_DESC indexBufferDesc = CD3DX12_RESOURCE_DESC::Buffer(indicesBufferSize);
-
-	ThrowIfFailed(mDevice.mD3D12Device->CreateCommittedResource(
-		&defaultHeapProperties,
-		D3D12_HEAP_FLAG_NONE,
-		&indexBufferDesc,
-		D3D12_RESOURCE_STATE_COPY_DEST,
-		nullptr,
-		IID_PPV_ARGS(&mIndexBuffer)));
-
-	ThrowIfFailed(mDevice.mD3D12Device->CreateCommittedResource(
-		&uploadHeapProperties,
-		D3D12_HEAP_FLAG_NONE,
-		&indexBufferDesc,
-		D3D12_RESOURCE_STATE_GENERIC_READ,
-		nullptr,
-		IID_PPV_ARGS(&indicesBufferUpload)));
-
-	mIndexBuffer->SetName(L"Index Buffer");
-	indicesBufferUpload->SetName(L"Index Buffer Upload");
-
-	// Upload the index buffer to the GPU.
-	{
-		D3D12_SUBRESOURCE_DATA indexData = {};
-		indexData.pData = reinterpret_cast<BYTE*>(const_cast<std::vector<TriangleIndex>*>(indices)->data());
-		indexData.RowPitch = indicesBufferSize;
-		indexData.SlicePitch = indexData.RowPitch;
-
-		UpdateSubresources(mDevice.mCommandList.Get(), mIndexBuffer.Get(), indicesBufferUpload.Get(), 0, 0, 1, &indexData);
-
-		CD3DX12_RESOURCE_BARRIER indexBufferResourceBarrier =
-			CD3DX12_RESOURCE_BARRIER::Transition(mIndexBuffer.Get(), D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_INDEX_BUFFER);
-		mDevice.mCommandList->ResourceBarrier(1, &indexBufferResourceBarrier);
-	}
+	// Create Assets
+    for (auto* component : mScene->MeshComps) {
+        D3D12ComponentProxy* proxy = new D3D12ComponentProxy(&mDevice);
+        proxy->CreateBuffers(component->GetMesh());
+        component->Proxy = proxy;
+    }
 
 	// Close the command list and execute it to begin the vertex/index buffer copy into the GPU's default heap.
-	DX::ThrowIfFailed(mDevice.mCommandList->Close());
-	ID3D12CommandList* ppCommandLists[] = { mDevice.mCommandList.Get() };
+	DX::ThrowIfFailed(commandList->Close());
+	ID3D12CommandList* ppCommandLists[] = { commandList.Get() };
 	mDevice.mCommandQueue->ExecuteCommandLists(_countof(ppCommandLists), ppCommandLists);
-	
+
 	// Wait for GPU, otherwise the buffer might not be uploaded by the time we start drawing
 	WaitForGpu();
 
-	mVertexBufferView.BufferLocation = mVertexBuffer->GetGPUVirtualAddress();
-	mVertexBufferView.StrideInBytes = sizeof(SimpleVertex);
-	mVertexBufferView.SizeInBytes = vertexBufferSize;
-
-	mIndexBufferView.BufferLocation = mIndexBuffer->GetGPUVirtualAddress();
-	mIndexBufferView.Format = DXGI_FORMAT_R32_UINT;
-	mIndexBufferView.SizeInBytes = indicesBufferSize;
+	mReady = true;
 }
 
 void D3D12RenderSystem::Render()
 {
+	if (!mReady) return;
+
     // Prepare device resources
 	auto commandAllocator = mDevice.mCommandAllocators[mCurrentFrame];
 	auto renderTarget = mWindow->mRenderTargets[mCurrentFrame];
@@ -208,8 +97,16 @@ void D3D12RenderSystem::Render()
 	FLOAT clearColor[] = { 1.0f, 0.0f, 0.0f, 1.0f };
     commandList->ClearRenderTargetView(rtvHandle, clearColor, 0, nullptr);
 
-	commandList->RSSetViewports(1, &mWindow->mViewport);
-	commandList->RSSetScissorRects(1, &mWindow->mScissorRect);
+	Viewport viewport = mWindow->GetViewport();
+	CD3DX12_VIEWPORT cViewport(0.0f, 0.0f, viewport.GetWidth(), viewport.GetHeight());
+	CD3DX12_RECT cScissorRect(
+		static_cast<LONG>(viewport.GetLeft()),
+		static_cast<LONG>(viewport.GetTop()),
+		static_cast<LONG>(viewport.GetRight()),
+		static_cast<LONG>(viewport.GetBottom())
+	);
+	commandList->RSSetViewports(1, &cViewport);
+	commandList->RSSetScissorRects(1, &cScissorRect);
 
 	 // Set pipeline
 	commandList->SetGraphicsRootSignature(mRootSignature.Get());
@@ -221,10 +118,16 @@ void D3D12RenderSystem::Render()
 	// // Draw
 	//commandList->DrawInstanced(6, 1, 0, 0);
 
-	commandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-	commandList->IASetVertexBuffers(0, 1, &mVertexBufferView);
-	commandList->IASetIndexBuffer(&mIndexBufferView);
-	commandList->DrawIndexedInstanced(mIndexCount, 1, 0, 0, 0);
+	for (auto* component : mScene->MeshComps) {
+		if (component->Proxy)
+		{
+			D3D12ComponentProxy* proxy = static_cast<D3D12ComponentProxy*>(component->Proxy);
+			if (proxy)
+			{
+				proxy->DrawIndexed(commandList);
+			}
+		}
+    }
 
 	// Transition render target into correct state to present.
 	{
@@ -250,7 +153,8 @@ void D3D12RenderSystem::ChangeViewportSize(u32 width, u32 height)
 {
     if (mWindow != nullptr)
 	{
-		mWindow->ChangeViewportSize(width, height);
+		//mWindow->ChangeViewportSize(width, height);
+		RenderSystem::ChangeViewportSize(width, height);
 
 		// Wait until all previous GPU work is complete.
 		WaitForGpu();
@@ -323,7 +227,7 @@ void D3D12RenderSystem::CreateDevice()
 		ThrowIfFailed(HRESULT_FROM_WIN32(GetLastError()));
 	}
 
-	CreateBuffers();
+	//CreateBuffers();
 }
 
 void D3D12RenderSystem::CreateDeviceDependentResources()

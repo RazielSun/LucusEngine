@@ -130,7 +130,7 @@
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>
       </PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-resources;$(ProjectDir)..\..\..\src\lucus-math;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -147,7 +147,7 @@
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>
       </PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-resources;$(ProjectDir)..\..\..\src\lucus-math;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -164,7 +164,7 @@
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>
       </PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-resources;$(ProjectDir)..\..\..\src\lucus-math;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -181,7 +181,7 @@
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>
       </PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-resources;$(ProjectDir)..\..\..\src\lucus-math;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -198,7 +198,7 @@
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>
       </PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-resources;$(ProjectDir)..\..\..\src\lucus-math;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -215,7 +215,7 @@
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>
       </PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-resources;$(ProjectDir)..\..\..\src\lucus-math;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -232,7 +232,7 @@
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>
       </PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-resources;$(ProjectDir)..\..\..\src\lucus-math;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions);TARGET_DX12</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -249,7 +249,7 @@
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>
       </PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-resources;$(ProjectDir)..\..\..\src\lucus-math;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions);TARGET_DX12</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -273,33 +273,57 @@
     <ClInclude Include="..\..\..\src\lucus-core\LucusSingleton.h" />
     <ClInclude Include="..\..\..\src\lucus-core\LucusTypes.h" />
     <ClInclude Include="..\..\..\src\lucus-core\modules.h" />
+    <ClInclude Include="..\..\..\src\lucus-math\LucusMath.h" />
     <ClInclude Include="..\..\..\src\lucus-mesh-fbx\LucusMeshFormatFBX.h" />
+    <ClInclude Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12ComponentProxy.h" />
     <ClInclude Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12Device.h" />
     <ClInclude Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12Prerequisites.h" />
     <ClInclude Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12RenderSystem.h" />
     <ClInclude Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12Window.h" />
+    <ClInclude Include="..\..\..\src\lucus-render\LucusComponentProxy.h" />
     <ClInclude Include="..\..\..\src\lucus-render\LucusRenderSystem.h" />
+    <ClInclude Include="..\..\..\src\lucus-render\LucusRenderTypes.h" />
     <ClInclude Include="..\..\..\src\lucus-render\LucusRenderWindow.h" />
-    <ClInclude Include="..\..\..\src\lucus-render\LucusShaderTypes.h" />
-    <ClInclude Include="..\..\..\src\lucus-sim\LucusMath.h" />
-    <ClInclude Include="..\..\..\src\lucus-sim\LucusMesh.h" />
-    <ClInclude Include="..\..\..\src\lucus-sim\LucusMeshFormat.h" />
-    <ClInclude Include="..\..\..\src\lucus-sim\LucusMeshFormatManager.h" />
+    <ClInclude Include="..\..\..\src\lucus-render\LucusScene.h" />
+    <ClInclude Include="..\..\..\src\lucus-render\LucusViewport.h" />
+    <ClInclude Include="..\..\..\src\lucus-resources\LucusMesh.h" />
+    <ClInclude Include="..\..\..\src\lucus-resources\LucusMeshFormat.h" />
+    <ClInclude Include="..\..\..\src\lucus-resources\LucusMeshFormatManager.h" />
+    <ClInclude Include="..\..\..\src\lucus-resources\LucusResourceTypes.h" />
+    <ClInclude Include="..\..\..\src\lucus-sim\LucusActor.h" />
+    <ClInclude Include="..\..\..\src\lucus-sim\LucusCameraComponent.h" />
+    <ClInclude Include="..\..\..\src\lucus-sim\LucusComponent.h" />
+    <ClInclude Include="..\..\..\src\lucus-sim\LucusMeshComponent.h" />
+    <ClInclude Include="..\..\..\src\lucus-sim\LucusTimeManager.h" />
+    <ClInclude Include="..\..\..\src\lucus-sim\LucusTransform.h" />
     <ClInclude Include="..\..\..\src\lucus-sim\LucusUtils.h" />
+    <ClInclude Include="..\..\..\src\lucus-sim\LucusWorld.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\lucus-core\host.cpp" />
     <ClCompile Include="..\..\..\src\lucus-core\LucusCore.cpp" />
     <ClCompile Include="..\..\..\src\lucus-core\LucusFileSystem.cpp" />
+    <ClCompile Include="..\..\..\src\lucus-math\LucusMath.cpp" />
     <ClCompile Include="..\..\..\src\lucus-mesh-fbx\LucusMeshFormatFBX.cpp" />
+    <ClCompile Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12ComponentProxy.cpp" />
     <ClCompile Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12Device.cpp" />
     <ClCompile Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12RenderSystem.cpp" />
     <ClCompile Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12Window.cpp" />
+    <ClCompile Include="..\..\..\src\lucus-render\LucusComponentProxy.cpp" />
     <ClCompile Include="..\..\..\src\lucus-render\LucusRenderSystem.cpp" />
     <ClCompile Include="..\..\..\src\lucus-render\LucusRenderWindow.cpp" />
-    <ClCompile Include="..\..\..\src\lucus-sim\LucusMesh.cpp" />
-    <ClCompile Include="..\..\..\src\lucus-sim\LucusMeshFormat.cpp" />
-    <ClCompile Include="..\..\..\src\lucus-sim\LucusMeshFormatManager.cpp" />
+    <ClCompile Include="..\..\..\src\lucus-render\LucusScene.cpp" />
+    <ClCompile Include="..\..\..\src\lucus-render\LucusViewport.cpp" />
+    <ClCompile Include="..\..\..\src\lucus-resources\LucusMesh.cpp" />
+    <ClCompile Include="..\..\..\src\lucus-resources\LucusMeshFormat.cpp" />
+    <ClCompile Include="..\..\..\src\lucus-resources\LucusMeshFormatManager.cpp" />
+    <ClCompile Include="..\..\..\src\lucus-sim\LucusActor.cpp" />
+    <ClCompile Include="..\..\..\src\lucus-sim\LucusCameraComponent.cpp" />
+    <ClCompile Include="..\..\..\src\lucus-sim\LucusComponent.cpp" />
+    <ClCompile Include="..\..\..\src\lucus-sim\LucusMeshComponent.cpp" />
+    <ClCompile Include="..\..\..\src\lucus-sim\LucusTimeManager.cpp" />
+    <ClCompile Include="..\..\..\src\lucus-sim\LucusTransform.cpp" />
+    <ClCompile Include="..\..\..\src\lucus-sim\LucusWorld.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -312,7 +336,7 @@
     <None Include="LucusGame_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="..\..\..\src\lucus-shaders\DirectX12\DefaultPixelShader.hlsl">
+    <FxCompile Include="..\..\..\src\lucus-resources\shaders\DirectX12\DefaultPixelShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Pixel</ShaderType>
@@ -321,9 +345,8 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
-      <DeploymentContent>true</DeploymentContent>
     </FxCompile>
-    <FxCompile Include="..\..\..\src\lucus-shaders\DirectX12\DefaultVertexShader.hlsl">
+    <FxCompile Include="..\..\..\src\lucus-resources\shaders\DirectX12\DefaultVertexShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Vertex</ShaderType>
@@ -332,10 +355,8 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
-      <DeploymentContent>true</DeploymentContent>
     </FxCompile>
-    <FxCompile Include="..\..\..\src\lucus-shaders\DirectX12\SimplePixelShader.hlsl">
-      <DeploymentContent>true</DeploymentContent>
+    <FxCompile Include="..\..\..\src\lucus-resources\shaders\DirectX12\SimplePixelShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Pixel</ShaderType>
@@ -345,8 +366,7 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
     </FxCompile>
-    <FxCompile Include="..\..\..\src\lucus-shaders\DirectX12\SimpleVertexShader.hlsl">
-      <DeploymentContent>true</DeploymentContent>
+    <FxCompile Include="..\..\..\src\lucus-resources\shaders\DirectX12\SimpleVertexShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Vertex</ShaderType>

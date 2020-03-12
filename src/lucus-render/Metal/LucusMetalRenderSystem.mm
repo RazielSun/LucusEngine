@@ -7,14 +7,16 @@
 
 #include "LucusMetalRenderSystem.h"
 #include "LucusRenderTypes.h"
+#include "LucusMetalComponentProxy.h"
+#include "LucusScene.h"
 
 // temp
-#include "LucusScene.h"
+
 #include "LucusMesh.h"
 #include "LucusCameraComponent.h"
 #include "LucusMeshComponent.h"
 #include "Metal/MTLVertexDescriptor.h"
-#include "LucusMetalComponentProxy.h"
+
 
 using namespace LucusEngine;
 

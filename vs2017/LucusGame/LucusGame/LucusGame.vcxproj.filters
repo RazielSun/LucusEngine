@@ -36,6 +36,12 @@
       <UniqueIdentifier>{180b1ff4-64b4-40b0-97f8-c2f6a16f468c}</UniqueIdentifier>
       <Extensions>fbx</Extensions>
     </Filter>
+    <Filter Include="lucus-math">
+      <UniqueIdentifier>{fbd2810a-7e53-4a88-a065-51410bf3ad26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lucus-resources">
+      <UniqueIdentifier>{015fad63-db8e-416e-88c7-a87889e7e576}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\lucus-core\host.cpp">
@@ -60,20 +66,56 @@
     <ClCompile Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12Window.cpp">
       <Filter>lucus-render\DirectX12</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\lucus-sim\LucusMesh.cpp">
-      <Filter>lucus-sim</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\lucus-sim\LucusMeshFormat.cpp">
-      <Filter>lucus-sim</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\lucus-sim\LucusMeshFormatManager.cpp">
-      <Filter>lucus-sim</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\lucus-core\LucusFileSystem.cpp">
       <Filter>lucus-core</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\lucus-mesh-fbx\LucusMeshFormatFBX.cpp">
       <Filter>lucus-mesh-fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-resources\LucusMesh.cpp">
+      <Filter>lucus-resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-resources\LucusMeshFormat.cpp">
+      <Filter>lucus-resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-resources\LucusMeshFormatManager.cpp">
+      <Filter>lucus-resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-math\LucusMath.cpp">
+      <Filter>lucus-math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-sim\LucusActor.cpp">
+      <Filter>lucus-sim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-sim\LucusCameraComponent.cpp">
+      <Filter>lucus-sim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-sim\LucusComponent.cpp">
+      <Filter>lucus-sim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-sim\LucusMeshComponent.cpp">
+      <Filter>lucus-sim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-sim\LucusTimeManager.cpp">
+      <Filter>lucus-sim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-sim\LucusTransform.cpp">
+      <Filter>lucus-sim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-sim\LucusWorld.cpp">
+      <Filter>lucus-sim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-render\LucusComponentProxy.cpp">
+      <Filter>lucus-render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-render\LucusScene.cpp">
+      <Filter>lucus-render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-render\LucusViewport.cpp">
+      <Filter>lucus-render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12ComponentProxy.cpp">
+      <Filter>lucus-render\DirectX12</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -91,9 +133,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\lucus-render\LucusRenderSystem.h">
       <Filter>lucus-render</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\lucus-sim\LucusMath.h">
-      <Filter>lucus-sim</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\3rdparty\d3d12\d3dx12.h">
       <Filter>d3d12</Filter>
@@ -113,18 +152,6 @@
     <ClInclude Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12Window.h">
       <Filter>lucus-render\DirectX12</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\lucus-render\LucusShaderTypes.h">
-      <Filter>lucus-render</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\lucus-sim\LucusMesh.h">
-      <Filter>lucus-sim</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\lucus-sim\LucusMeshFormat.h">
-      <Filter>lucus-sim</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\lucus-sim\LucusMeshFormatManager.h">
-      <Filter>lucus-sim</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\lucus-sim\LucusUtils.h">
       <Filter>lucus-sim</Filter>
     </ClInclude>
@@ -136,6 +163,57 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\lucus-mesh-fbx\LucusMeshFormatFBX.h">
       <Filter>lucus-mesh-fbx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-resources\LucusMesh.h">
+      <Filter>lucus-resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-resources\LucusMeshFormat.h">
+      <Filter>lucus-resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-resources\LucusMeshFormatManager.h">
+      <Filter>lucus-resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-resources\LucusResourceTypes.h">
+      <Filter>lucus-resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-math\LucusMath.h">
+      <Filter>lucus-math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-sim\LucusActor.h">
+      <Filter>lucus-sim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-sim\LucusCameraComponent.h">
+      <Filter>lucus-sim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-sim\LucusComponent.h">
+      <Filter>lucus-sim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-sim\LucusMeshComponent.h">
+      <Filter>lucus-sim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-sim\LucusTimeManager.h">
+      <Filter>lucus-sim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-sim\LucusTransform.h">
+      <Filter>lucus-sim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-sim\LucusWorld.h">
+      <Filter>lucus-sim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-render\LucusComponentProxy.h">
+      <Filter>lucus-render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-render\LucusRenderTypes.h">
+      <Filter>lucus-render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-render\LucusScene.h">
+      <Filter>lucus-render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-render\LucusViewport.h">
+      <Filter>lucus-render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12ComponentProxy.h">
+      <Filter>lucus-render\DirectX12</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -171,16 +249,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="..\..\..\src\lucus-shaders\DirectX12\DefaultPixelShader.hlsl">
+    <FxCompile Include="..\..\..\src\lucus-resources\shaders\DirectX12\DefaultPixelShader.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
-    <FxCompile Include="..\..\..\src\lucus-shaders\DirectX12\DefaultVertexShader.hlsl">
+    <FxCompile Include="..\..\..\src\lucus-resources\shaders\DirectX12\DefaultVertexShader.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
-    <FxCompile Include="..\..\..\src\lucus-shaders\DirectX12\SimplePixelShader.hlsl">
+    <FxCompile Include="..\..\..\src\lucus-resources\shaders\DirectX12\SimplePixelShader.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
-    <FxCompile Include="..\..\..\src\lucus-shaders\DirectX12\SimpleVertexShader.hlsl">
+    <FxCompile Include="..\..\..\src\lucus-resources\shaders\DirectX12\SimpleVertexShader.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>

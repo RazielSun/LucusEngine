@@ -14,14 +14,12 @@
 #include "LucusD3D12Window.h"
 
 // temp
-#include "LucusMesh.h"
+// #include "LucusMesh.h"
 
 namespace LucusEngine
 {
     class D3D12RenderSystem: public RenderSystem
     {
-		
-
     public:
         D3D12RenderSystem();
         virtual ~D3D12RenderSystem();
@@ -65,16 +63,18 @@ namespace LucusEngine
 		UINT64											mFenceValues[c_frameCount];
 		HANDLE											mFenceEvent;
 
-        // App resources.
-	    Microsoft::WRL::ComPtr<ID3D12Resource>          mVertexBuffer;
-		D3D12_VERTEX_BUFFER_VIEW                        mVertexBufferView;
-		Microsoft::WRL::ComPtr<ID3D12Resource>          mIndexBuffer;
-		D3D12_INDEX_BUFFER_VIEW							mIndexBufferView;
-		u32												mIndexCount;
+		bool											mReady;
+
+        // // App resources.
+	    // Microsoft::WRL::ComPtr<ID3D12Resource>          mVertexBuffer;
+		// D3D12_VERTEX_BUFFER_VIEW                        mVertexBufferView;
+		// Microsoft::WRL::ComPtr<ID3D12Resource>          mIndexBuffer;
+		// D3D12_INDEX_BUFFER_VIEW							mIndexBufferView;
+		// u32												mIndexCount;
 
 		// App temp resources
-		bool mResourceCreated;
-		Mesh* mMesh;
+		// bool mResourceCreated;
+		// Mesh* mMesh;
 	    
     };
 }

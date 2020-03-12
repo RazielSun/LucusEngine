@@ -22,7 +22,7 @@ namespace LucusEngine
         D3D12Window(u32 width, u32 height);
         virtual ~D3D12Window();
 
-        virtual void ChangeViewportSize(u32 width, u32 height) override;
+        //virtual void ChangeViewportSize(u32 width, u32 height) override;
 
         void SetCoreWindow(Windows::UI::Core::CoreWindow^ window);
 
@@ -40,8 +40,8 @@ namespace LucusEngine
         Microsoft::WRL::ComPtr<IDXGISwapChain3>			mSwapChain;
 		Microsoft::WRL::ComPtr<ID3D12Resource>			mRenderTargets[c_frameCount];
 
-		CD3DX12_VIEWPORT								mViewport;
-		CD3DX12_RECT									mScissorRect;
+		//CD3DX12_VIEWPORT								mViewport;
+		//CD3DX12_RECT									mScissorRect;
     };
 }
 

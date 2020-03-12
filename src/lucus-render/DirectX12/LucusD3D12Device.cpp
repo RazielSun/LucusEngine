@@ -89,7 +89,7 @@ void D3D12Device::Init()
 
 	// Create command list for recording graphics commands
 	ThrowIfFailed(mD3D12Device->CreateCommandList(0,D3D12_COMMAND_LIST_TYPE_DIRECT, mCommandAllocators[0].Get(), nullptr, IID_PPV_ARGS(mCommandList.ReleaseAndGetAddressOf())));
-	//ThrowIfFailed(mCommandList->Close());
+	ThrowIfFailed(mCommandList->Close());
 	mCommandList->SetName(L"Command List");
 }
 
