@@ -24,10 +24,10 @@ typedef struct
 
 typedef struct
 {
-	//FMatrix4x4 MVP_MATRIX;
-	//FMatrix4x4 PROJ_MATRIX;
-	//FMatrix4x4 VIEW_MATRIX;
-	//FMatrix4x4 MODEL_MATRIX;
+	DirectX::XMFLOAT4X4 MVP_MATRIX;
+	DirectX::XMFLOAT4X4 PROJ_MATRIX;
+	DirectX::XMFLOAT4X4 VIEW_MATRIX;
+	DirectX::XMFLOAT4X4 MODEL_MATRIX;
 } Uniforms;
 
 #endif

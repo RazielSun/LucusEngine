@@ -14,6 +14,8 @@
 
 #if defined(TARGET_METAL)
 #include <simd/simd.h>
+#elif defined(TARGET_DX12)
+#   include <DirectXMath.h>
 #endif
 
 struct FVector2
@@ -76,7 +78,7 @@ struct FMatrix4x4
                 float m41, float m42, float m43, float m44
                );
     
-    #if defined(TARGET_METAL)
+ #if defined(TARGET_METAL)
     matrix_float4x4 GetNative() const {
         return (matrix_float4x4) {{
             { m[0][0], m[0][1], m[0][2], m[0][3] },
@@ -86,7 +88,16 @@ struct FMatrix4x4
         }};
         
     }
-    #endif
+#elif defined(TARGET_DX12)
+	DirectX::XMFLOAT4X4 GetNative() const {
+		return { 
+			m[0][0], m[0][1], m[0][2], m[0][3],
+			m[1][0], m[1][1], m[1][2], m[1][3],
+			m[2][0], m[2][1], m[2][2], m[2][3],
+			m[3][0], m[3][1], m[3][2], m[3][3]
+		};
+	}
+#endif
     
     static FMatrix4x4 RightHandProjectionMatrix(float aspect, float nearZ, float farZ, float fov);
     

@@ -55,6 +55,10 @@ namespace LucusEngine
         //
         Microsoft::WRL::ComPtr<ID3D12PipelineState>     mPipelineState;
 
+		// Descriptors
+		Microsoft::WRL::ComPtr<ID3D12DescriptorHeap>	mDescriptorHeap;
+		u32												mDescriptorSize;
+
         std::vector<byte>								mVertexShader;
 		std::vector<byte>								mPixelShader;
 
@@ -64,6 +68,12 @@ namespace LucusEngine
 		HANDLE											mFenceEvent;
 
 		bool											mReady;
+
+		
+		// TEST CB
+		Microsoft::WRL::ComPtr<ID3D12Resource>          mConstantBuffer = nullptr;
+		u8*												mMappedDataAddress = nullptr;
+		bool mCBVready = false;
 
         // // App resources.
 	    // Microsoft::WRL::ComPtr<ID3D12Resource>          mVertexBuffer;

@@ -5,7 +5,9 @@
 #include "LucusScene.h"
 #include "LucusCore.h"
 
+#include "LucusCameraComponent.h"
 #include "LucusMeshComponent.h"
+#include <DirectXMath.h>
 
 using namespace DX;
 using namespace LucusEngine;
@@ -57,6 +59,38 @@ void D3D12RenderSystem::CreateBuffers()
         component->Proxy = proxy;
     }
 
+	// TEST
+	// Create constant buffer
+	const u32 constantBufferSize = sizeof(Uniforms);
+	CD3DX12_RESOURCE_DESC constantBufferDesc = CD3DX12_RESOURCE_DESC::Buffer(constantBufferSize);
+
+	ThrowIfFailed(mDevice.mD3D12Device->CreateCommittedResource(
+		&CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD),
+		D3D12_HEAP_FLAG_NONE,
+		&constantBufferDesc,
+		D3D12_RESOURCE_STATE_GENERIC_READ,
+		nullptr,
+		IID_PPV_ARGS(&mConstantBuffer)));
+
+	D3D12_CONSTANT_BUFFER_VIEW_DESC constantBufferViewDesc = {};
+	constantBufferViewDesc.BufferLocation = mConstantBuffer->GetGPUVirtualAddress();
+	constantBufferViewDesc.SizeInBytes = constantBufferSize;
+
+	mDevice.mD3D12Device->CreateConstantBufferView(&constantBufferViewDesc, mDescriptorHeap->GetCPUDescriptorHandleForHeapStart());
+
+	// Map the constant buffers.
+	//ZeroMemory(&mMappedDataAddress, sizeof(mMappedDataAddress));
+	ThrowIfFailed(mConstantBuffer->Map(0, nullptr, reinterpret_cast<void**>(&mMappedDataAddress)));
+
+	//Uniforms uniforms;
+	//memcpy()
+
+	{
+		// Map the constant buffers.
+		//CD3DX12_RANGE readRange(0, 0);		// We do not intend to read from this resource on the CPU.
+		//ThrowIfFailed(mConstantBuffer->Map(0, &readRange, reinterpret_cast<void**>(&mMappedDataAddress)));
+	}
+
 	// Close the command list and execute it to begin the vertex/index buffer copy into the GPU's default heap.
 	DX::ThrowIfFailed(commandList->Close());
 	ID3D12CommandList* ppCommandLists[] = { commandList.Get() };
@@ -72,6 +106,49 @@ void D3D12RenderSystem::Render()
 {
 	if (!mReady) return;
 
+	//if (!mCBVready)
+	//{
+	//	mCBVready = true;
+
+	//	D3D12_CONSTANT_BUFFER_VIEW_DESC constantBufferViewDesc = {};
+	//	constantBufferViewDesc.BufferLocation = mConstantBuffer->GetGPUVirtualAddress();
+	//	constantBufferViewDesc.BufferLocation = sizeof(Uniforms);
+
+	//	//
+	//	mDevice.mD3D12Device->CreateConstantBufferView(&constantBufferViewDesc, mDescriptorHeap->GetCPUDescriptorHandleForHeapStart());
+	//}
+
+	// Update Uniforms
+
+	Uniforms uniforms;
+	CameraComponent* cameraCom = mScene->CameraComp;
+	cameraCom->UpdateProjectionMatrix(mWindow->GetViewport());
+
+	Viewport viewport = mWindow->GetViewport();
+
+	// This sample makes use of a right-handed coordinate system using row-major matrices.
+	//uniforms.PROJ_MATRIX = cameraCom->GetProjMatrix().GetNative();
+	float aspectRatio = viewport.GetAspectRatio();
+	uniforms.PROJ_MATRIX = {
+			1, 0, 0, 0,
+			0, aspectRatio, 0, 0,
+			0, 0, 1, 0,
+			0, 0, 0, 1
+	};
+	uniforms.VIEW_MATRIX = cameraCom->GetTransform().GetModelMatrix().GetNative();
+	auto* component = mScene->MeshComps[0];
+	component->GetTransform().UpdateModelMatrix();
+	uniforms.MODEL_MATRIX = component->GetTransform().GetModelMatrix().GetNative();
+
+	//for (auto* component : mScene->MeshComps) {
+	//	component->GetTransform().UpdateModelMatrix();
+	//	component->Proxy->UpdateUniforms(uniforms, component->GetTransform());
+	//}
+	
+	memcpy(mMappedDataAddress, &uniforms, sizeof(Uniforms));
+
+	// Start Frame
+
     // Prepare device resources
 	auto commandAllocator = mDevice.mCommandAllocators[mCurrentFrame];
 	auto renderTarget = mWindow->mRenderTargets[mCurrentFrame];
@@ -82,6 +159,19 @@ void D3D12RenderSystem::Render()
 
 	// Get CommandList and reset
 	commandList->Reset(commandAllocator.Get(), nullptr);
+
+	// BEGIN Set Frame
+
+	//Viewport viewport = mWindow->GetViewport();
+	CD3DX12_VIEWPORT cViewport(0.0f, 0.0f, viewport.GetWidth(), viewport.GetHeight());
+	CD3DX12_RECT cScissorRect(
+		static_cast<LONG>(viewport.GetLeft()),
+		static_cast<LONG>(viewport.GetTop()),
+		static_cast<LONG>(viewport.GetRight()),
+		static_cast<LONG>(viewport.GetBottom())
+	);
+	commandList->RSSetViewports(1, &cViewport);
+	commandList->RSSetScissorRects(1, &cScissorRect);
 
 	// Transition render target into correct state to allow draw into it.
 	{
@@ -97,20 +187,21 @@ void D3D12RenderSystem::Render()
 	FLOAT clearColor[] = { 1.0f, 0.0f, 0.0f, 1.0f };
     commandList->ClearRenderTargetView(rtvHandle, clearColor, 0, nullptr);
 
-	Viewport viewport = mWindow->GetViewport();
-	CD3DX12_VIEWPORT cViewport(0.0f, 0.0f, viewport.GetWidth(), viewport.GetHeight());
-	CD3DX12_RECT cScissorRect(
-		static_cast<LONG>(viewport.GetLeft()),
-		static_cast<LONG>(viewport.GetTop()),
-		static_cast<LONG>(viewport.GetRight()),
-		static_cast<LONG>(viewport.GetBottom())
-	);
-	commandList->RSSetViewports(1, &cViewport);
-	commandList->RSSetScissorRects(1, &cScissorRect);
+	// Set Main Descriptor Heaps
+	ID3D12DescriptorHeap* descriptorHeaps[] = { mDescriptorHeap.Get() };
+	commandList->SetDescriptorHeaps(_countof(descriptorHeaps), descriptorHeaps);
 
-	 // Set pipeline
+	 // Set Shader Signature
 	commandList->SetGraphicsRootSignature(mRootSignature.Get());
+
+	// Set PSO
 	commandList->SetPipelineState(mPipelineState.Get());
+
+	// Bind constant buffer
+	// Bind the current frame's constant buffer to the pipeline.
+	//CD3DX12_GPU_DESCRIPTOR_HANDLE gpuHandle(mDescriptorHeap->GetGPUDescriptorHandleForHeapStart(),mCurrentFrame, mDescriptorSize);
+	//commandList->SetGraphicsRootDescriptorTable(0, gpuHandle);
+	commandList->SetGraphicsRootDescriptorTable(0, mDescriptorHeap->GetGPUDescriptorHandleForHeapStart());
 
 	// //Set quad data
 	//commandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
@@ -134,6 +225,8 @@ void D3D12RenderSystem::Render()
 		CD3DX12_RESOURCE_BARRIER barrier = CD3DX12_RESOURCE_BARRIER::Transition(renderTarget.Get(), D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
 		commandList->ResourceBarrier(1, &barrier);
 	}
+
+	// END
 
 	// Present
 	// Set command list off to the GPU
@@ -233,9 +326,16 @@ void D3D12RenderSystem::CreateDevice()
 void D3D12RenderSystem::CreateDeviceDependentResources()
 {
 	// Create an empty root signature.
+	//with 1 parameter for CB
 	{
+		CD3DX12_DESCRIPTOR_RANGE range;
+		range.Init(D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 0);
+
+		CD3DX12_ROOT_PARAMETER parameter;
+		parameter.InitAsDescriptorTable(1, &range, D3D12_SHADER_VISIBILITY_VERTEX);
+
 		CD3DX12_ROOT_SIGNATURE_DESC rootSignatureDesc;
-		rootSignatureDesc.Init(0, nullptr, 0, nullptr, D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT);
+		rootSignatureDesc.Init(1, &parameter, 0, nullptr, D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT);
 
 		ComPtr<ID3DBlob> signature;
 		ComPtr<ID3DBlob> error;
@@ -298,6 +398,20 @@ void D3D12RenderSystem::CreateDeviceDependentResources()
 		ThrowIfFailed(mDevice.mD3D12Device->CreateGraphicsPipelineState(&psoDesc, IID_PPV_ARGS(&mPipelineState)));
 
 		mPipelineState->SetName(L"Pipeline State");
+	}
+
+	{
+		D3D12_DESCRIPTOR_HEAP_DESC descriptorHeapDesc = {};
+		// Allocate a heap for descriptors:
+		descriptorHeapDesc.NumDescriptors = 1;// c_frameCount;
+		descriptorHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
+		descriptorHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
+		descriptorHeapDesc.NodeMask = 0;
+		ThrowIfFailed(mDevice.mD3D12Device->CreateDescriptorHeap(&descriptorHeapDesc, IID_PPV_ARGS(&mDescriptorHeap)));
+
+		mDescriptorHeap->SetName(L"Descriptor Heap");
+
+		mDescriptorSize = mDevice.mD3D12Device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
 	}
 }
 

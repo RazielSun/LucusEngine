@@ -90,6 +90,7 @@ void MetalRenderSystem::Render()
         component->Proxy->UpdateUniforms(uniforms, component->GetTransform());
     }
     
+    // Start Frame
     mWindow->mCurrentDrawable = [mWindow->mMetalLayer nextDrawable];
     if (mWindow->mCurrentDrawable != nil)
     {

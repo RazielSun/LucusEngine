@@ -27,6 +27,11 @@ D3D12ComponentProxy::D3D12ComponentProxy(D3D12Device* ownerDevice) :
 D3D12ComponentProxy::~D3D12ComponentProxy()
 {
     mOwnerDevice = nullptr;
+
+	if (mConstantBuffer != nullptr)
+		mConstantBuffer->Unmap(0, nullptr);
+
+	mMappedData = nullptr;
 }
 
 // const VectorVertices* vertices = mesh->GetVertices();
@@ -180,25 +185,43 @@ void D3D12ComponentProxy::CreateBuffers(const Mesh* mesh, Microsoft::WRL::ComPtr
 			//mOwnerDevice->mCommandList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(mIndexBuffer.Get(), D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_GENERIC_READ));
         }
 
+        // Create constant buffer
+
+		//const u32 constantBufferSize = sizeof(Uniforms);
+
+		//CD3DX12_RESOURCE_DESC constantBufferDesc = CD3DX12_RESOURCE_DESC::Buffer(constantBufferSize);
+
+		//ThrowIfFailed(mOwnerDevice->mD3D12Device->CreateCommittedResource(
+		//	&uploadHeapProperties,
+		//	D3D12_HEAP_FLAG_NONE,
+		//	&constantBufferDesc,
+		//	D3D12_RESOURCE_STATE_GENERIC_READ,
+		//	nullptr,
+		//	IID_PPV_ARGS(&mConstantBuffer)));
+
+		//{
+		//	// Map the constant buffers.
+		//	CD3DX12_RANGE readRange(0, 0);		// We do not intend to read from this resource on the CPU.
+		//	ThrowIfFailed(mConstantBuffer->Map(0, &readRange, reinterpret_cast<void**>(&mMappedData)));
+
+		//	// We do not need to unmap until we are done with the resource.  However, we must not write to
+		//	// the resource while it is in use by the GPU (so we must use synchronization techniques).
+		//}
+
 		mBuffersLoaded = true;
     }
 }
 
 void D3D12ComponentProxy::UpdateUniforms(const Uniforms& uniforms, const Transform& transform)
 {
-    // memcpy((void*)(mUniforms.contents), &uniforms, sizeof(Uniforms));
-    
-    // Update Uniforms
-    // Uniforms* cUniforms = (Uniforms*)(mUniforms.contents);
-    
-//    CameraComponent* cameraCom = mScene->CameraComp;
-//    cameraCom->UpdateProjectionMatrix(mWindow->GetViewport());
-//    uniforms->PROJ_MATRIX = cameraCom->GetProjMatrix().GetNative();
-//    uniforms->VIEW_MATRIX = cameraCom->GetTransform().GetModelMatrix().GetNative();
-//    MeshComponent* meshCom = mScene->MeshComps[0];
-    
-    // cUniforms->MODEL_MATRIX = transform.GetModelMatrix().GetNative();
-    // cUniforms->MVP_MATRIX = matrix_multiply(cUniforms->PROJ_MATRIX, matrix_multiply(cUniforms->VIEW_MATRIX, cUniforms->MODEL_MATRIX));
+	//Uniforms cUniforms;
+	//memcpy(&cUniforms, &uniforms, sizeof(Uniforms));
+ //   
+ //    cUniforms.MODEL_MATRIX = transform.GetModelMatrix().GetNative();
+ //    //cUniforms.MVP_MATRIX = matrix_multiply(cUniforms->PROJ_MATRIX, matrix_multiply(cUniforms->VIEW_MATRIX, cUniforms->MODEL_MATRIX));
+
+ //   // Update constant buffer data
+	//memcpy(mMappedData, &cUniforms, sizeof(cUniforms));
 }
 
 void D3D12ComponentProxy::DrawIndexed(Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList>	commandList)
@@ -208,10 +231,17 @@ void D3D12ComponentProxy::DrawIndexed(Microsoft::WRL::ComPtr<ID3D12GraphicsComma
 		mReadyToDraw = true;
 		SetupBufferViews();
 	}
+
+	// Set Constant Buffer
+	//auto cbGpuAddress = mConstantBuffer->GetGPUVirtualAddress();
+	//commandList->SetComputeRootConstantBufferView(GlobalRootSignatureParams::SceneConstantSlot, cbGpuAddress);
     
+	// Set Index And Vertex Buffers
     commandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	commandList->IASetVertexBuffers(0, 1, &mVertexBufferView);
 	commandList->IASetIndexBuffer(&mIndexBufferView);
+
+	// Draw
 	commandList->DrawIndexedInstanced(mIndexCount, 1, 0, 0, 0);
 }
 

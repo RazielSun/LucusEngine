@@ -54,6 +54,9 @@ namespace LucusEngine
 		u32												mIndexCount;
 		Microsoft::WRL::ComPtr<ID3D12Resource>			mIndicesBufferUpload = nullptr;
 
+		Microsoft::WRL::ComPtr<ID3D12Resource>          mConstantBuffer = nullptr;
+		u8*												mMappedData = nullptr;
+
 		bool											mBuffersLoaded;
 		bool											mReadyToDraw;
     };
