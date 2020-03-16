@@ -44,6 +44,21 @@ RenderWindow* D3D12RenderSystem::CreateRenderWindow(u32 width, u32 height)
 
 void D3D12RenderSystem::CreateBuffers()
 {
+	{
+		// first try without frames
+		u32 count = static_cast<u32>(mScene->MeshComps.size());// *c_frameCount;
+		D3D12_DESCRIPTOR_HEAP_DESC descriptorHeapDesc = {};
+		// Allocate a heap for descriptors:
+		descriptorHeapDesc.NumDescriptors = count;
+		descriptorHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
+		descriptorHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
+		descriptorHeapDesc.NodeMask = 0;
+		ThrowIfFailed(mDevice.mD3D12Device->CreateDescriptorHeap(&descriptorHeapDesc, IID_PPV_ARGS(&mDescriptorHeap)));
+		mDescriptorHeap->SetName(L"Descriptor Heap");
+
+		mDescriptorSize = mDevice.mD3D12Device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+	}
+
 	// Prepare device resources
 	auto commandAllocator = mDevice.mCommandAllocators[mCurrentFrame];
 	auto commandList = mDevice.mCommandList;
@@ -53,43 +68,30 @@ void D3D12RenderSystem::CreateBuffers()
 	commandList->Reset(commandAllocator.Get(), nullptr);
 
 	// Create Assets
+	u32 idx = 0;
     for (auto* component : mScene->MeshComps) {
         D3D12ComponentProxy* proxy = new D3D12ComponentProxy(&mDevice);
         proxy->CreateBuffers(component->GetMesh());
         component->Proxy = proxy;
+
+		const u32 constantBufferSize = sizeof(Uniforms);
+		D3D12_CONSTANT_BUFFER_VIEW_DESC constantBufferViewDesc = {};
+		constantBufferViewDesc.BufferLocation = proxy->mConstantBuffer->GetGPUVirtualAddress();
+		constantBufferViewDesc.SizeInBytes = constantBufferSize;
+
+		// Offset to the object cbv in the descriptor heap.
+		//int heapIndex = frameIndex * objCount + i;
+		//auto handle = CD3DX12_CPU_DESCRIPTOR_HANDLE(mCbvHeap->GetCPUDescriptorHandleForHeapStart());
+		//handle.Offset(heapIndex, mCbvSrvUavDescriptorSize);
+
+		int heapIndex = idx;//frameIndex * objCount + i;
+		auto handle = CD3DX12_CPU_DESCRIPTOR_HANDLE(mDescriptorHeap->GetCPUDescriptorHandleForHeapStart());
+		handle.Offset(heapIndex, mDescriptorSize);
+
+		mDevice.mD3D12Device->CreateConstantBufferView(&constantBufferViewDesc, handle);
+
+		idx++;
     }
-
-	// TEST
-	// Create constant buffer
-	const u32 constantBufferSize = sizeof(Uniforms);
-	CD3DX12_RESOURCE_DESC constantBufferDesc = CD3DX12_RESOURCE_DESC::Buffer(constantBufferSize);
-
-	ThrowIfFailed(mDevice.mD3D12Device->CreateCommittedResource(
-		&CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD),
-		D3D12_HEAP_FLAG_NONE,
-		&constantBufferDesc,
-		D3D12_RESOURCE_STATE_GENERIC_READ,
-		nullptr,
-		IID_PPV_ARGS(&mConstantBuffer)));
-
-	D3D12_CONSTANT_BUFFER_VIEW_DESC constantBufferViewDesc = {};
-	constantBufferViewDesc.BufferLocation = mConstantBuffer->GetGPUVirtualAddress();
-	constantBufferViewDesc.SizeInBytes = constantBufferSize;
-
-	mDevice.mD3D12Device->CreateConstantBufferView(&constantBufferViewDesc, mDescriptorHeap->GetCPUDescriptorHandleForHeapStart());
-
-	// Map the constant buffers.
-	//ZeroMemory(&mMappedDataAddress, sizeof(mMappedDataAddress));
-	ThrowIfFailed(mConstantBuffer->Map(0, nullptr, reinterpret_cast<void**>(&mMappedDataAddress)));
-
-	//Uniforms uniforms;
-	//memcpy()
-
-	{
-		// Map the constant buffers.
-		//CD3DX12_RANGE readRange(0, 0);		// We do not intend to read from this resource on the CPU.
-		//ThrowIfFailed(mConstantBuffer->Map(0, &readRange, reinterpret_cast<void**>(&mMappedDataAddress)));
-	}
 
 	// Close the command list and execute it to begin the vertex/index buffer copy into the GPU's default heap.
 	DX::ThrowIfFailed(commandList->Close());
@@ -106,46 +108,37 @@ void D3D12RenderSystem::Render()
 {
 	if (!mReady) return;
 
-	//if (!mCBVready)
-	//{
-	//	mCBVready = true;
-
-	//	D3D12_CONSTANT_BUFFER_VIEW_DESC constantBufferViewDesc = {};
-	//	constantBufferViewDesc.BufferLocation = mConstantBuffer->GetGPUVirtualAddress();
-	//	constantBufferViewDesc.BufferLocation = sizeof(Uniforms);
-
-	//	//
-	//	mDevice.mD3D12Device->CreateConstantBufferView(&constantBufferViewDesc, mDescriptorHeap->GetCPUDescriptorHandleForHeapStart());
-	//}
-
 	// Update Uniforms
-
 	Uniforms uniforms;
 	CameraComponent* cameraCom = mScene->CameraComp;
 	cameraCom->UpdateProjectionMatrix(mWindow->GetViewport());
 
-	Viewport viewport = mWindow->GetViewport();
-
 	// This sample makes use of a right-handed coordinate system using row-major matrices.
-	//uniforms.PROJ_MATRIX = cameraCom->GetProjMatrix().GetNative();
-	float aspectRatio = viewport.GetAspectRatio();
-	uniforms.PROJ_MATRIX = {
-			1, 0, 0, 0,
-			0, aspectRatio, 0, 0,
-			0, 0, 1, 0,
-			0, 0, 0, 1
-	};
+	uniforms.PROJ_MATRIX = cameraCom->GetProjMatrix().GetNative();
 	uniforms.VIEW_MATRIX = cameraCom->GetTransform().GetModelMatrix().GetNative();
-	auto* component = mScene->MeshComps[0];
-	component->GetTransform().UpdateModelMatrix();
-	uniforms.MODEL_MATRIX = component->GetTransform().GetModelMatrix().GetNative();
 
-	//for (auto* component : mScene->MeshComps) {
-	//	component->GetTransform().UpdateModelMatrix();
-	//	component->Proxy->UpdateUniforms(uniforms, component->GetTransform());
-	//}
+	//float aspectRatio = viewport.GetAspectRatio();
+	//float fovRad = (65 * (float)PI) / 180.0f;
+	//float ys = 1.0f / (float)tan(fovRad * 0.5);
+	//float xs = ys / aspectRatio;
+	//float zn = 0.1f;
+	//float zf = 1000.0f;
+	//float zs = zf / (zf - zn);
+	//uniforms.PROJ_MATRIX = {
+	//		xs, 0, 0, 0,
+	//		0, ys, 0, 0,
+	//		0, 0, zs, 1,
+	//		0, 0, -zn*zs, 0
+	//};
 	
-	memcpy(mMappedDataAddress, &uniforms, sizeof(Uniforms));
+	//auto* component = mScene->MeshComps[0];
+	//component->GetTransform().UpdateModelMatrix();
+	//uniforms.MODEL_MATRIX = component->GetTransform().GetModelMatrix().GetNative();
+
+	for (auto* component : mScene->MeshComps) {
+		component->GetTransform().UpdateModelMatrix();
+		component->Proxy->UpdateUniforms(uniforms, component->GetTransform());
+	}
 
 	// Start Frame
 
@@ -162,7 +155,7 @@ void D3D12RenderSystem::Render()
 
 	// BEGIN Set Frame
 
-	//Viewport viewport = mWindow->GetViewport();
+	Viewport viewport = mWindow->GetViewport();
 	CD3DX12_VIEWPORT cViewport(0.0f, 0.0f, viewport.GetWidth(), viewport.GetHeight());
 	CD3DX12_RECT cScissorRect(
 		static_cast<LONG>(viewport.GetLeft()),
@@ -201,7 +194,12 @@ void D3D12RenderSystem::Render()
 	// Bind the current frame's constant buffer to the pipeline.
 	//CD3DX12_GPU_DESCRIPTOR_HANDLE gpuHandle(mDescriptorHeap->GetGPUDescriptorHandleForHeapStart(),mCurrentFrame, mDescriptorSize);
 	//commandList->SetGraphicsRootDescriptorTable(0, gpuHandle);
-	commandList->SetGraphicsRootDescriptorTable(0, mDescriptorHeap->GetGPUDescriptorHandleForHeapStart());
+
+	//int passCbvIndex = mPassCbvOffset + mCurrFrameResourceIndex;
+	//auto passCbvHandle = CD3DX12_GPU_DESCRIPTOR_HANDLE(mCbvHeap->GetGPUDescriptorHandleForHeapStart());
+	//passCbvHandle.Offset(passCbvIndex, mCbvSrvUavDescriptorSize);
+	//mCommandList->SetGraphicsRootDescriptorTable(1, passCbvHandle);
+	//commandList->SetGraphicsRootDescriptorTable(0, mDescriptorHeap->GetGPUDescriptorHandleForHeapStart());
 
 	// //Set quad data
 	//commandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
@@ -209,15 +207,24 @@ void D3D12RenderSystem::Render()
 	// // Draw
 	//commandList->DrawInstanced(6, 1, 0, 0);
 
+	u32 idx = 0;
 	for (auto* component : mScene->MeshComps) {
 		if (component->Proxy)
 		{
 			D3D12ComponentProxy* proxy = static_cast<D3D12ComponentProxy*>(component->Proxy);
 			if (proxy)
 			{
+				// Offset to the CBV in the descriptor heap for this object and for this frame resource.
+				UINT cbvIndex = idx; //mCurrFrameResourceIndex * (UINT)mOpaqueRitems.size() + ri->ObjCBIndex;
+				auto cbvHandle = CD3DX12_GPU_DESCRIPTOR_HANDLE(mDescriptorHeap->GetGPUDescriptorHandleForHeapStart());
+				cbvHandle.Offset(cbvIndex, mDescriptorSize);
+
+				commandList->SetGraphicsRootDescriptorTable(0, cbvHandle);
+
 				proxy->DrawIndexed(commandList);
 			}
 		}
+		idx++;
     }
 
 	// Transition render target into correct state to present.
@@ -398,20 +405,6 @@ void D3D12RenderSystem::CreateDeviceDependentResources()
 		ThrowIfFailed(mDevice.mD3D12Device->CreateGraphicsPipelineState(&psoDesc, IID_PPV_ARGS(&mPipelineState)));
 
 		mPipelineState->SetName(L"Pipeline State");
-	}
-
-	{
-		D3D12_DESCRIPTOR_HEAP_DESC descriptorHeapDesc = {};
-		// Allocate a heap for descriptors:
-		descriptorHeapDesc.NumDescriptors = 1;// c_frameCount;
-		descriptorHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
-		descriptorHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
-		descriptorHeapDesc.NodeMask = 0;
-		ThrowIfFailed(mDevice.mD3D12Device->CreateDescriptorHeap(&descriptorHeapDesc, IID_PPV_ARGS(&mDescriptorHeap)));
-
-		mDescriptorHeap->SetName(L"Descriptor Heap");
-
-		mDescriptorSize = mDevice.mD3D12Device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
 	}
 }
 

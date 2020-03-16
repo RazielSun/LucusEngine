@@ -31,7 +31,7 @@ D3D12ComponentProxy::~D3D12ComponentProxy()
 	if (mConstantBuffer != nullptr)
 		mConstantBuffer->Unmap(0, nullptr);
 
-	mMappedData = nullptr;
+	mMappedDataAddress = nullptr;
 }
 
 // const VectorVertices* vertices = mesh->GetVertices();
@@ -185,19 +185,22 @@ void D3D12ComponentProxy::CreateBuffers(const Mesh* mesh, Microsoft::WRL::ComPtr
 			//mOwnerDevice->mCommandList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(mIndexBuffer.Get(), D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_GENERIC_READ));
         }
 
-        // Create constant buffer
+		// Create constant buffer
 
-		//const u32 constantBufferSize = sizeof(Uniforms);
+		const u32 constantBufferSize = sizeof(Uniforms);
+		CD3DX12_RESOURCE_DESC constantBufferDesc = CD3DX12_RESOURCE_DESC::Buffer(constantBufferSize);
 
-		//CD3DX12_RESOURCE_DESC constantBufferDesc = CD3DX12_RESOURCE_DESC::Buffer(constantBufferSize);
+		ThrowIfFailed(mOwnerDevice->mD3D12Device->CreateCommittedResource(
+			&CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD),
+			D3D12_HEAP_FLAG_NONE,
+			&constantBufferDesc,
+			D3D12_RESOURCE_STATE_GENERIC_READ,
+			nullptr,
+			IID_PPV_ARGS(&mConstantBuffer)));
 
-		//ThrowIfFailed(mOwnerDevice->mD3D12Device->CreateCommittedResource(
-		//	&uploadHeapProperties,
-		//	D3D12_HEAP_FLAG_NONE,
-		//	&constantBufferDesc,
-		//	D3D12_RESOURCE_STATE_GENERIC_READ,
-		//	nullptr,
-		//	IID_PPV_ARGS(&mConstantBuffer)));
+		// Map the constant buffers.
+		//ZeroMemory(&mMappedDataAddress, sizeof(mMappedDataAddress));
+		ThrowIfFailed(mConstantBuffer->Map(0, nullptr, reinterpret_cast<void**>(&mMappedDataAddress)));
 
 		//{
 		//	// Map the constant buffers.
@@ -214,14 +217,16 @@ void D3D12ComponentProxy::CreateBuffers(const Mesh* mesh, Microsoft::WRL::ComPtr
 
 void D3D12ComponentProxy::UpdateUniforms(const Uniforms& uniforms, const Transform& transform)
 {
-	//Uniforms cUniforms;
-	//memcpy(&cUniforms, &uniforms, sizeof(Uniforms));
+	Uniforms cUniforms;
+	memcpy(&cUniforms, &uniforms, sizeof(Uniforms));
  //   
- //    cUniforms.MODEL_MATRIX = transform.GetModelMatrix().GetNative();
+     cUniforms.MODEL_MATRIX = transform.GetModelMatrix().GetNative();
  //    //cUniforms.MVP_MATRIX = matrix_multiply(cUniforms->PROJ_MATRIX, matrix_multiply(cUniforms->VIEW_MATRIX, cUniforms->MODEL_MATRIX));
 
  //   // Update constant buffer data
-	//memcpy(mMappedData, &cUniforms, sizeof(cUniforms));
+	memcpy(mMappedDataAddress, &cUniforms, sizeof(cUniforms));
+
+	//memcpy(mMappedDataAddress, &uniforms, sizeof(Uniforms));
 }
 
 void D3D12ComponentProxy::DrawIndexed(Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList>	commandList)

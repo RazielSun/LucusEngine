@@ -263,12 +263,8 @@ void FBXMeshFormat::LoadPositionNormalTexCoord(FbxMesh* data, Mesh* mesh)
     for (int vid = 0; vid < verticesCount; vid++)
     {
         FbxVector4 vertex = data->GetControlPointAt(vid);
-        
-//#if defined(TARGET_METAL)
-//        vertices.push_back( (FVector3){(float)vertex[0], (float)vertex[1], (float)vertex[2]} );
-//#else
-        vertices.push_back( {(float)vertex[0], (float)vertex[1], (float)vertex[2]} );
-//#endif
+
+		vertices.push_back({ (float)vertex[0], (float)vertex[1], (float)vertex[2] });
         
 //        FBXSDK_printf("    %d vertex: %f %f %f\n", vid, (float)vertex[0], (float)vertex[1], (float)vertex[2]);
     }
@@ -426,7 +422,11 @@ void FBXMeshFormat::LoadPositionNormalTexCoord(FbxMesh* data, Mesh* mesh)
     std::vector<TriangleIndex> indices;
     for (const auto& face : faces)
     {
-        indices.push_back({ face.tris[0].x, face.tris[1].x, face.tris[2].x });
+//#if defined(TARGET_METAL)
+		indices.push_back({ face.tris[0].x, face.tris[1].x, face.tris[2].x });
+//#elif defined(TARGET_DX12)
+//		indices.push_back({ face.tris[0].x, face.tris[2].x, face.tris[1].x });
+//#endif
     }
     
     std::vector<SimpleVertex> vecVertices;

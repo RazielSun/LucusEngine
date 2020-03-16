@@ -71,9 +71,9 @@ namespace LucusEngine
 
 		
 		// TEST CB
-		Microsoft::WRL::ComPtr<ID3D12Resource>          mConstantBuffer = nullptr;
-		u8*												mMappedDataAddress = nullptr;
-		bool mCBVready = false;
+		//Microsoft::WRL::ComPtr<ID3D12Resource>          mConstantBuffer = nullptr;
+		//u8*												mMappedDataAddress = nullptr;
+		//bool mCBVready = false;
 
         // // App resources.
 	    // Microsoft::WRL::ComPtr<ID3D12Resource>          mVertexBuffer;

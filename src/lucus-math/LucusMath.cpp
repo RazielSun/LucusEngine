@@ -84,8 +84,8 @@ FMatrix4x4 FMatrix4x4::RightHandProjectionMatrix(float aspect, float nearZ, floa
     mtx.m[0][0] = xs;
     mtx.m[1][1] = ys;
     mtx.m[2][2] = zs;
-    mtx.m[2][3] = -1;
-    mtx.m[3][2] = nearZ * zs;
+	mtx.m[2][3] = -1;
+	mtx.m[3][2] = nearZ * zs;
     return mtx;
 }
 
