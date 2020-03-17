@@ -22,7 +22,7 @@ namespace LucusEngine
         ComponentProxy();
         ~ComponentProxy();
         
-        virtual void CreateBuffers(const Mesh* mesh) = 0;
+        virtual void CreateBuffers(Mesh* mesh) = 0;
         virtual void UpdateUniforms(const Uniforms& uniforms, const Transform& transform) = 0;
     };
 }

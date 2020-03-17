@@ -69,6 +69,10 @@ namespace LucusEngine
 
 		bool											mReady;
 
+
+
+		float radians;
+
 		
 		// TEST CB
 		//Microsoft::WRL::ComPtr<ID3D12Resource>          mConstantBuffer = nullptr;

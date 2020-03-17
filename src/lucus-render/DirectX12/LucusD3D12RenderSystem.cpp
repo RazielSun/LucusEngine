@@ -115,21 +115,52 @@ void D3D12RenderSystem::Render()
 
 	// This sample makes use of a right-handed coordinate system using row-major matrices.
 	uniforms.PROJ_MATRIX = cameraCom->GetProjMatrix().GetNative();
-	uniforms.VIEW_MATRIX = cameraCom->GetTransform().GetModelMatrix().GetNative();
 
-	//float aspectRatio = viewport.GetAspectRatio();
+	//float aspectRatio = mWindow->GetViewport().GetAspectRatio();
 	//float fovRad = (65 * (float)PI) / 180.0f;
 	//float ys = 1.0f / (float)tan(fovRad * 0.5);
 	//float xs = ys / aspectRatio;
 	//float zn = 0.1f;
-	//float zf = 1000.0f;
-	//float zs = zf / (zf - zn);
+	//float zf = 100.0f;
+	//float zs = zf / (zn - zf);
 	//uniforms.PROJ_MATRIX = {
 	//		xs, 0, 0, 0,
 	//		0, ys, 0, 0,
-	//		0, 0, zs, 1,
-	//		0, 0, -zn*zs, 0
+	//		0, 0, zs, -1,
+	//		0, 0, zn * zs, 0
 	//};
+	//float aspectRatio = mWindow->GetViewport().GetAspectRatio();
+	//float fovAngleY = 70.0f * DirectX::XM_PI / 180.0f;
+
+	// This is a simple example of change that can be made when the app is in
+	// portrait or snapped view.
+	//if (aspectRatio < 1.0f)
+	//{
+	//	fovAngleY *= 2.0f;
+	//}
+
+	// This sample makes use of a right-handed coordinate system using row-major matrices.
+	//DirectX::XMMATRIX perspectiveMatrix = DirectX::XMMatrixPerspectiveFovRH(
+	//	fovAngleY,
+	//	aspectRatio,
+	//	0.01f,
+	//	100.0f
+	//);
+
+	//DirectX::XMStoreFloat4x4(&uniforms.PROJ_MATRIX, DirectX::XMMatrixTranspose(perspectiveMatrix));
+
+	// View
+	uniforms.VIEW_MATRIX = cameraCom->GetTransform().GetModelMatrix().GetNative();
+
+	// Eye is at (0,0.7,1.5), looking at point (0,-0.1,0) with the up-vector along the y-axis.
+	//static const DirectX::XMVECTORF32 eye = { 0.0f, 0.7f, 1.5f, 0.0f };
+	//static const DirectX::XMVECTORF32 at = { 0.0f, -0.1f, 0.0f, 0.0f };
+	//static const DirectX::XMVECTORF32 up = { 0.0f, 1.0f, 0.0f, 0.0f };
+
+	//XMStoreFloat4x4(&uniforms.VIEW_MATRIX, DirectX::XMMatrixTranspose(DirectX::XMMatrixLookAtRH(eye, at, up)));
+
+	//radians += 0.03f;
+	//DirectX::XMStoreFloat4x4(&uniforms.MODEL_MATRIX, DirectX::XMMatrixTranspose(DirectX::XMMatrixRotationY(radians)));
 	
 	//auto* component = mScene->MeshComps[0];
 	//component->GetTransform().UpdateModelMatrix();
@@ -383,8 +414,8 @@ void D3D12RenderSystem::CreateDeviceDependentResources()
 		// Define the vertex input layout.
 		D3D12_INPUT_ELEMENT_DESC inputElementDescs[] =
 		{
-			{ "POSITION", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
-			{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 8, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 }
+			{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
+			//{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 8, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 }
 		};
 
 		// Describe and create the graphics pipeline state object (PSO).

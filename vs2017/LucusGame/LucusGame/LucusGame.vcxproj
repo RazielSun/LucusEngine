@@ -234,7 +234,7 @@
       </PrecompiledHeaderOutputFile>
       <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-resources;$(ProjectDir)..\..\..\src\lucus-math;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions);TARGET_DX12</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);TARGET_DX12</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
@@ -330,6 +330,9 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="Assets\meshes\cone.fbx">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
     <None Include="Assets\meshes\cube.fbx">
       <DeploymentContent>true</DeploymentContent>
     </None>

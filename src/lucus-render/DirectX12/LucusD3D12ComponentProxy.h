@@ -27,10 +27,10 @@ namespace LucusEngine
         D3D12ComponentProxy(D3D12Device* ownerDevice);
         ~D3D12ComponentProxy();
         
-        virtual void CreateBuffers(const Mesh* mesh) override;
+        virtual void CreateBuffers(Mesh* mesh) override;
         virtual void UpdateUniforms(const Uniforms& uniforms, const Transform& transform) override;
         
-		void CreateBuffers(const Mesh* mesh, Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList> commandList);
+		void CreateBuffers(Mesh* mesh, Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList> commandList);
         void DrawIndexed(Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList> commandList);
         void SetupBufferViews();
 

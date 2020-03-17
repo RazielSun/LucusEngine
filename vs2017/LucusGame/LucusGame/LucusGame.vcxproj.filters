@@ -247,6 +247,9 @@
     <None Include="Assets\meshes\cube.fbx">
       <Filter>Assets\meshes</Filter>
     </None>
+    <None Include="Assets\meshes\cone.fbx">
+      <Filter>Assets\meshes</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\..\..\src\lucus-resources\shaders\DirectX12\DefaultPixelShader.hlsl">

@@ -85,17 +85,17 @@ D3D12ComponentProxy::~D3D12ComponentProxy()
 		//mVertexBufferView.StrideInBytes = sizeof(DefaultVertex);
 		//mVertexBufferView.SizeInBytes = vertexBufferSize;
 
-void D3D12ComponentProxy::CreateBuffers(const Mesh* mesh)
+void D3D12ComponentProxy::CreateBuffers(Mesh* mesh)
 {
 	CreateBuffers(mesh, mOwnerDevice->mCommandList);
 }
 
-void D3D12ComponentProxy::CreateBuffers(const Mesh* mesh, Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList> commandList)
+void D3D12ComponentProxy::CreateBuffers(Mesh* mesh, Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList> commandList)
 {
     if (nullptr != mesh)
     {
         // Create the buffers.
-        const std::vector<SimpleVertex>* vertices = mesh->GetVertices();
+        std::vector<SimpleVertex>* vertices = mesh->GetVertices();
 
         mVertexBufferSize = static_cast<u32>(vertices->size() * sizeof(SimpleVertex));// sizeof(quad);
 
@@ -130,7 +130,7 @@ void D3D12ComponentProxy::CreateBuffers(const Mesh* mesh, Microsoft::WRL::ComPtr
         // Upload the vertex buffer to the GPU.
         {
             D3D12_SUBRESOURCE_DATA vertexData = {};
-            vertexData.pData = reinterpret_cast<BYTE*>(const_cast<std::vector<SimpleVertex>*>(vertices)->data());
+            vertexData.pData = reinterpret_cast<BYTE*>(vertices->data());
             vertexData.RowPitch = mVertexBufferSize;
             vertexData.SlicePitch = vertexData.RowPitch;
 
@@ -142,7 +142,7 @@ void D3D12ComponentProxy::CreateBuffers(const Mesh* mesh, Microsoft::WRL::ComPtr
 			//commandList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(mVertexBuffer.Get(), D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_GENERIC_READ));
         }
 
-        const std::vector<TriangleIndex>* indices = mesh->GetIndices();
+        std::vector<TriangleIndex>* indices = mesh->GetIndices();
 
         mIndicesBufferSize = static_cast<u32>(indices->size() * sizeof(TriangleIndex));
         mIndexCount = mIndicesBufferSize / sizeof(u32);
@@ -173,7 +173,7 @@ void D3D12ComponentProxy::CreateBuffers(const Mesh* mesh, Microsoft::WRL::ComPtr
         // Upload the index buffer to the GPU.
         {
             D3D12_SUBRESOURCE_DATA indexData = {};
-            indexData.pData = reinterpret_cast<BYTE*>(const_cast<std::vector<TriangleIndex>*>(indices)->data());
+            indexData.pData = reinterpret_cast<BYTE*>(indices->data());
             indexData.RowPitch = mIndicesBufferSize;
             indexData.SlicePitch = indexData.RowPitch;
 
@@ -219,11 +219,11 @@ void D3D12ComponentProxy::UpdateUniforms(const Uniforms& uniforms, const Transfo
 {
 	Uniforms cUniforms;
 	memcpy(&cUniforms, &uniforms, sizeof(Uniforms));
- //   
+    
      cUniforms.MODEL_MATRIX = transform.GetModelMatrix().GetNative();
- //    //cUniforms.MVP_MATRIX = matrix_multiply(cUniforms->PROJ_MATRIX, matrix_multiply(cUniforms->VIEW_MATRIX, cUniforms->MODEL_MATRIX));
+     //cUniforms.MVP_MATRIX = matrix_multiply(cUniforms->PROJ_MATRIX, matrix_multiply(cUniforms->VIEW_MATRIX, cUniforms->MODEL_MATRIX));
 
- //   // Update constant buffer data
+    // Update constant buffer data
 	memcpy(mMappedDataAddress, &cUniforms, sizeof(cUniforms));
 
 	//memcpy(mMappedDataAddress, &uniforms, sizeof(Uniforms));

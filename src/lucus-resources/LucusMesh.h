@@ -42,8 +42,8 @@ namespace LucusEngine
         void SetIndices(VectorIndices& indices);
         void SetVertices(VectorVertices& vertices);
         
-        const VectorIndices* GetIndices() const { return &mIndices; }
-        const VectorVertices* GetVertices() const { return &mVertices; }
+        VectorIndices* GetIndices() { return &mIndices; }
+        VectorVertices* GetVertices() { return &mVertices; }
     };
 }
 
