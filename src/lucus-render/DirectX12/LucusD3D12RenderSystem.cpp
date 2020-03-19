@@ -21,12 +21,6 @@ D3D12RenderSystem::D3D12RenderSystem() :
 
 D3D12RenderSystem::~D3D12RenderSystem()
 {
-    // temp
-	// if (nullptr != mMesh)
-	// {
-	// 	delete mMesh;
-	// 	mMesh = nullptr;
-	// }
 }
 
 RenderWindow* D3D12RenderSystem::CreateRenderWindow(u32 width, u32 height)
@@ -36,8 +30,6 @@ RenderWindow* D3D12RenderSystem::CreateRenderWindow(u32 width, u32 height)
     mWindow = new D3D12Window(width, height);
 
     mWindows.push_back(static_cast<RenderWindow*>(mWindow));
-
-	//CreateBuffers();
 
     return mWindows.front();
 }
@@ -74,16 +66,13 @@ void D3D12RenderSystem::CreateBuffers()
         proxy->CreateBuffers(component->GetMesh());
         component->Proxy = proxy;
 
+		// View for buffers
 		const u32 constantBufferSize = sizeof(Uniforms);
 		D3D12_CONSTANT_BUFFER_VIEW_DESC constantBufferViewDesc = {};
 		constantBufferViewDesc.BufferLocation = proxy->mConstantBuffer->GetGPUVirtualAddress();
 		constantBufferViewDesc.SizeInBytes = constantBufferSize;
 
 		// Offset to the object cbv in the descriptor heap.
-		//int heapIndex = frameIndex * objCount + i;
-		//auto handle = CD3DX12_CPU_DESCRIPTOR_HANDLE(mCbvHeap->GetCPUDescriptorHandleForHeapStart());
-		//handle.Offset(heapIndex, mCbvSrvUavDescriptorSize);
-
 		int heapIndex = idx;//frameIndex * objCount + i;
 		auto handle = CD3DX12_CPU_DESCRIPTOR_HANDLE(mDescriptorHeap->GetCPUDescriptorHandleForHeapStart());
 		handle.Offset(heapIndex, mDescriptorSize);
@@ -114,40 +103,8 @@ void D3D12RenderSystem::Render()
 	cameraCom->UpdateProjectionMatrix(mWindow->GetViewport());
 
 	// This sample makes use of a right-handed coordinate system using row-major matrices.
+	// Projection
 	uniforms.PROJ_MATRIX = cameraCom->GetProjMatrix().GetNative();
-
-	//float aspectRatio = mWindow->GetViewport().GetAspectRatio();
-	//float fovRad = (65 * (float)PI) / 180.0f;
-	//float ys = 1.0f / (float)tan(fovRad * 0.5);
-	//float xs = ys / aspectRatio;
-	//float zn = 0.1f;
-	//float zf = 100.0f;
-	//float zs = zf / (zn - zf);
-	//uniforms.PROJ_MATRIX = {
-	//		xs, 0, 0, 0,
-	//		0, ys, 0, 0,
-	//		0, 0, zs, -1,
-	//		0, 0, zn * zs, 0
-	//};
-	//float aspectRatio = mWindow->GetViewport().GetAspectRatio();
-	//float fovAngleY = 70.0f * DirectX::XM_PI / 180.0f;
-
-	// This is a simple example of change that can be made when the app is in
-	// portrait or snapped view.
-	//if (aspectRatio < 1.0f)
-	//{
-	//	fovAngleY *= 2.0f;
-	//}
-
-	// This sample makes use of a right-handed coordinate system using row-major matrices.
-	//DirectX::XMMATRIX perspectiveMatrix = DirectX::XMMatrixPerspectiveFovRH(
-	//	fovAngleY,
-	//	aspectRatio,
-	//	0.01f,
-	//	100.0f
-	//);
-
-	//DirectX::XMStoreFloat4x4(&uniforms.PROJ_MATRIX, DirectX::XMMatrixTranspose(perspectiveMatrix));
 
 	// View
 	uniforms.VIEW_MATRIX = cameraCom->GetTransform().GetModelMatrix().GetNative();

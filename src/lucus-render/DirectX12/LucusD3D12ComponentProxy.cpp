@@ -34,57 +34,6 @@ D3D12ComponentProxy::~D3D12ComponentProxy()
 	mMappedDataAddress = nullptr;
 }
 
-// const VectorVertices* vertices = mesh->GetVertices();
-		// NSUInteger verticesLength = vertices->size() * sizeof(SimpleVertex); // bytes
-		// mVerticesBuf = [mOwnerDevice->mDevice newBufferWithBytes:vertices->data() length:verticesLength options:MTLResourceOptionCPUCacheModeDefault];
-
-		// const VectorIndices* indices = mesh->GetIndices();
-		// NSUInteger indicesLength = indices->size() * sizeof(TriangleIndex); // bytes
-		// mIndicesBuf = [mOwnerDevice->mDevice newBufferWithBytes:indices->data() length:indicesLength options:MTLResourceOptionCPUCacheModeDefault];
-
-		// mIndicesCount = indicesLength / sizeof(u32); // indices count
-
-		// mUniforms = [mOwnerDevice->mDevice newBufferWithLength:sizeof(Uniforms) options:MTLResourceStorageModeShared];
-
-		// mMesh = new Mesh();
-		// mMesh->Load("meshes/cube.fbx");
-
-		// Define the geometry for a quad.
-		// DirectX front face polygons is clockwise !!!
-		//static const DefaultVertex quad[] =
-		//{
-		//	{ { -0.5f, -0.5f }, { 0.0f, 1.0f, 1.0f, 1.0f } },
-		//	{ { 0.5f, 0.5f }, 	{ 1.0f, 1.0f, 0.0f, 1.0f } },
-		//	{ { 0.5f, -0.5f }, 	{ 0.0f, 1.0f, 0.0f, 1.0f } },
-		//	{ { -0.5f, -0.5f }, { 1.0f, 0.0f, 1.0f, 1.0f } },
-		//	{ { -0.5f, 0.5f }, 	{ 0.0f, 0.0f, 1.0f, 1.0f } },
-		//	{ { 0.5f, 0.5f }, 	{ 1.0f, 1.0f, 1.0f, 1.0f } }
-		//};
-
-// Note: using upload heaps to transfer static data like vert buffers is not 
-		// recommended. Every time the GPU needs it, the upload heap will be marshalled 
-		// over. Please read up on Default Heap usage. An upload heap is used here for 
-		// code simplicity and because there are very few verts to actually transfer.
-		//ThrowIfFailed(mDevice.mD3D12Device->CreateCommittedResource(
-		//	&CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD),
-		//	D3D12_HEAP_FLAG_NONE,
-		//	&CD3DX12_RESOURCE_DESC::Buffer(vertexBufferSize),
-		//	D3D12_RESOURCE_STATE_GENERIC_READ,
-		//	nullptr,
-		//	IID_PPV_ARGS(&mVertexBuffer)));
-
-		// Copy the quad data to the vertex buffer.
-		//UINT8* pVertexDataBegin;
-		//CD3DX12_RANGE readRange(0, 0);		// We do not intend to read from this resource on the CPU.
-		//ThrowIfFailed(mVertexBuffer->Map(0, &readRange, reinterpret_cast<void**>(&pVertexDataBegin)));
-		//memcpy(pVertexDataBegin, quad, sizeof(quad));
-		//mVertexBuffer->Unmap(0, nullptr);
-
-		//// Initialize the vertex buffer view.
-		//mVertexBufferView.BufferLocation = mVertexBuffer->GetGPUVirtualAddress();
-		//mVertexBufferView.StrideInBytes = sizeof(DefaultVertex);
-		//mVertexBufferView.SizeInBytes = vertexBufferSize;
-
 void D3D12ComponentProxy::CreateBuffers(Mesh* mesh)
 {
 	CreateBuffers(mesh, mOwnerDevice->mCommandList);
@@ -202,14 +151,10 @@ void D3D12ComponentProxy::CreateBuffers(Mesh* mesh, Microsoft::WRL::ComPtr<ID3D1
 		//ZeroMemory(&mMappedDataAddress, sizeof(mMappedDataAddress));
 		ThrowIfFailed(mConstantBuffer->Map(0, nullptr, reinterpret_cast<void**>(&mMappedDataAddress)));
 
-		//{
-		//	// Map the constant buffers.
+		// We do not need to unmap until we are done with the resource.  However, we must not write to
+		// the resource while it is in use by the GPU (so we must use synchronization techniques).
 		//	CD3DX12_RANGE readRange(0, 0);		// We do not intend to read from this resource on the CPU.
 		//	ThrowIfFailed(mConstantBuffer->Map(0, &readRange, reinterpret_cast<void**>(&mMappedData)));
-
-		//	// We do not need to unmap until we are done with the resource.  However, we must not write to
-		//	// the resource while it is in use by the GPU (so we must use synchronization techniques).
-		//}
 
 		mBuffersLoaded = true;
     }
@@ -220,13 +165,16 @@ void D3D12ComponentProxy::UpdateUniforms(const Uniforms& uniforms, const Transfo
 	Uniforms cUniforms;
 	memcpy(&cUniforms, &uniforms, sizeof(Uniforms));
     
-     cUniforms.MODEL_MATRIX = transform.GetModelMatrix().GetNative();
-     //cUniforms.MVP_MATRIX = matrix_multiply(cUniforms->PROJ_MATRIX, matrix_multiply(cUniforms->VIEW_MATRIX, cUniforms->MODEL_MATRIX));
+     cUniforms.MODEL_MATRIX = transform.GetModelMatrix().GetNative(); //XMMatrixMultiply
+	 // Need to be stored as CMXMatrix? or we can use our matrices and store data
+	 DirectX::XMMATRIX model = DirectX::XMLoadFloat4x4((const DirectX::XMFLOAT4X4*)(&cUniforms.MODEL_MATRIX));
+	 DirectX::XMMATRIX view = DirectX::XMLoadFloat4x4((const DirectX::XMFLOAT4X4*)(&cUniforms.VIEW_MATRIX));
+	 DirectX::XMMATRIX projection = DirectX::XMLoadFloat4x4((const DirectX::XMFLOAT4X4*)(&cUniforms.PROJ_MATRIX));
+	 DirectX::XMMATRIX result = DirectX::XMMatrixMultiply(DirectX::XMMatrixMultiply(projection, view), model);
+	 DirectX::XMStoreFloat4x4((&cUniforms.MVP_MATRIX), result);
 
     // Update constant buffer data
 	memcpy(mMappedDataAddress, &cUniforms, sizeof(cUniforms));
-
-	//memcpy(mMappedDataAddress, &uniforms, sizeof(Uniforms));
 }
 
 void D3D12ComponentProxy::DrawIndexed(Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList>	commandList)

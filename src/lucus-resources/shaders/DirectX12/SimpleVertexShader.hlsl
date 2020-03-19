@@ -31,18 +31,10 @@ PixelShaderInput main(VertexShaderInput input)
 	float3 color = input.pos;
 
 	// Transform the vertex position into projected space.
-	//pos = mul(mvp, pos); // test rotate
-	pos = mul(model, pos);
-	pos = mul(view, pos);
-	pos = mul(projection, pos);
-
+	pos = mul(pos, mvp);
 	//pos = mul(pos, model);
 	//pos = mul(pos, view);
 	//pos = mul(pos, projection);
-
-	//pos = mul(pos,model);
-	//pos = mul(pos,view);
-	//pos = mul(pos,projection);
 
 	output.pos = pos;
 	output.color = color;
