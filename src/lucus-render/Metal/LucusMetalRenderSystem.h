@@ -36,12 +36,6 @@ namespace LucusEngine
         
         id<MTLRenderPipelineState> mPipelineState;
         
-        // temp files for cube
-//        id<MTLBuffer> mVerticesBuf;
-//        id<MTLBuffer> mIndicesBuf;
-//        NSUInteger mIndicesCount;
-//        id<MTLBuffer> mUniforms;
-        
     };
 }
 

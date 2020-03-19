@@ -51,6 +51,8 @@ vertex RasterizerData simpleVertexShader(SimpleVertexIn in [[stage_in]], constan
     
     float4 position = float4( in.position.xyz, 1 );
     out.position = uniforms.MVP_MATRIX * position;
+//    uniforms.MODEL_MATRIX * uniforms.VIEW_MATRIX * uniforms.PROJ_MATRIX
+//    out.position = uniforms.PROJ_MATRIX * uniforms.VIEW_MATRIX * uniforms.MODEL_MATRIX * position;
     
     return out;
 }

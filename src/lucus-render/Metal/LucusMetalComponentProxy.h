@@ -26,7 +26,7 @@ namespace LucusEngine
         MetalComponentProxy(MetalDevice* ownerDevice);
         ~MetalComponentProxy();
         
-        virtual void CreateBuffers(const Mesh* mesh) override;
+        virtual void CreateBuffers(Mesh* mesh) override;
         virtual void UpdateUniforms(const Uniforms& uniforms, const Transform& transform) override;
         
         void DrawIndexed(id<MTLRenderCommandEncoder> encoder);

@@ -22,7 +22,7 @@ MetalComponentProxy::~MetalComponentProxy()
     mOwnerDevice = nullptr;
 }
 
-void MetalComponentProxy::CreateBuffers(const Mesh* mesh)
+void MetalComponentProxy::CreateBuffers(Mesh* mesh)
 {
     if (nullptr != mesh)
     {
@@ -48,27 +48,21 @@ void MetalComponentProxy::UpdateUniforms(const Uniforms& uniforms, const Transfo
     // Update Uniforms
     Uniforms* cUniforms = (Uniforms*)(mUniforms.contents);
     
-//    CameraComponent* cameraCom = mScene->CameraComp;
-//    cameraCom->UpdateProjectionMatrix(mWindow->GetViewport());
-//    uniforms->PROJ_MATRIX = cameraCom->GetProjMatrix().GetNative();
-//    uniforms->VIEW_MATRIX = cameraCom->GetTransform().GetModelMatrix().GetNative();
-//    MeshComponent* meshCom = mScene->MeshComps[0];
-    
     cUniforms->MODEL_MATRIX = transform.GetModelMatrix().GetNative();
-    cUniforms->MVP_MATRIX = matrix_multiply(cUniforms->PROJ_MATRIX, matrix_multiply(cUniforms->VIEW_MATRIX, cUniforms->MODEL_MATRIX));
+    cUniforms->MVP_MATRIX = matrix_multiply(matrix_multiply(cUniforms->PROJ_MATRIX, cUniforms->VIEW_MATRIX), cUniforms->MODEL_MATRIX);
 }
 
 void MetalComponentProxy::DrawIndexed(id<MTLRenderCommandEncoder> renderEncoder)
 {
-    //            [renderEncoder setVertexBytes:quad length:sizeof(quad) atIndex:0];
-    //            [renderEncoder drawPrimitives:MTLPrimitiveTypeTriangle vertexStart:0 vertexCount:6];
+//    [renderEncoder setVertexBytes:quad length:sizeof(quad) atIndex:0];
+//    [renderEncoder drawPrimitives:MTLPrimitiveTypeTriangle vertexStart:0 vertexCount:6];
 
     [renderEncoder setVertexBuffer:mVerticesBuf offset:0 atIndex:0];
-    //            [renderEncoder setFragmentBuffer:mVerticesBuf offset:0 atIndex:0];
+//    [renderEncoder setFragmentBuffer:mVerticesBuf offset:0 atIndex:0];
 
     // only for vertex shader
     [renderEncoder setVertexBuffer:mUniforms offset:0 atIndex:1];
-    //            [renderEncoder setFragmentBuffer:mUniforms offset:0 atIndex:1];
+//    [renderEncoder setFragmentBuffer:mUniforms offset:0 atIndex:1];
 
     [renderEncoder drawIndexedPrimitives:MTLPrimitiveTypeTriangle indexCount:mIndicesCount indexType:MTLIndexTypeUInt32 indexBuffer:mIndicesBuf indexBufferOffset:0];
                 
