@@ -11,7 +11,7 @@
 
 using namespace LucusEngine;
 
-FBXMeshFormat::FBXMeshFormat()
+MeshFormatFBX::MeshFormatFBX()
 {
     // Prepare the FBX SDK.
     mSdkManager = FbxManager::Create();
@@ -39,7 +39,7 @@ FBXMeshFormat::FBXMeshFormat()
     mConverter = new FbxGeometryConverter(mSdkManager);
 }
 
-FBXMeshFormat::~FBXMeshFormat()
+MeshFormatFBX::~MeshFormatFBX()
 {
     //Destroy all objects created by the FBX SDK.
     delete mConverter;
@@ -60,7 +60,7 @@ FBXMeshFormat::~FBXMeshFormat()
     //    if( lResult ) FBXSDK_printf("Program Success!\n");
 }
 
-void FBXMeshFormat::LoadMesh( Mesh* mesh, cc8* name )
+void MeshFormatFBX::LoadMesh( Mesh* mesh, cc8* name )
 {
     if (!OpenFile( name ))
     {
@@ -81,7 +81,7 @@ void FBXMeshFormat::LoadMesh( Mesh* mesh, cc8* name )
     }
 }
 
-bool FBXMeshFormat::OpenFile( cc8* path )
+bool MeshFormatFBX::OpenFile( cc8* path )
 {
     // Create an importer.
     FbxImporter* mImporter = FbxImporter::Create(mSdkManager,"");
@@ -198,7 +198,7 @@ bool FBXMeshFormat::OpenFile( cc8* path )
     return lResult;
 }
 
-void FBXMeshFormat::ConvertScene()
+void MeshFormatFBX::ConvertScene()
 {
     // Setup X, Y, Z axis
 //    FbxAxisSystem::ECoordSystem CoordSystem = FbxAxisSystem::eRightHanded;
@@ -215,13 +215,13 @@ void FBXMeshFormat::ConvertScene()
     FbxSystemUnit::m.ConvertScene(mScene);
 }
 
-void FBXMeshFormat::TriangulateScene()
+void MeshFormatFBX::TriangulateScene()
 {
     // Triangulate before use
     mConverter->Triangulate(mScene, true);
 }
 
-void FBXMeshFormat::AddMeshNode(FbxNode* node)
+void MeshFormatFBX::AddMeshNode(FbxNode* node)
 {
     FbxNodeAttribute* nodeAttribute = node->GetNodeAttribute();
     if ( nodeAttribute )
@@ -239,7 +239,7 @@ void FBXMeshFormat::AddMeshNode(FbxNode* node)
     }
 }
 
-void FBXMeshFormat::LoadPositionNormalTexCoord(FbxMesh* data, Mesh* mesh)
+void MeshFormatFBX::LoadPositionNormalTexCoord(FbxMesh* data, Mesh* mesh)
 {
     std::vector<FVector3> vertices;
     std::vector<FVector2> texcoords;

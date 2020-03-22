@@ -32,6 +32,7 @@ Core::~Core()
 void Core::LoadModules()
 {
     mFileSystem = new FileSystem();
+    mImageFormatManager = new ImageFormatManager();
     mMeshFormatManager = new MeshFormatManager();
     mTimeManager = new TimeManager();
 }
@@ -39,6 +40,7 @@ void Core::LoadModules()
 void Core::UnloadModules()
 {
     delete mFileSystem;
+    delete mImageFormatManager;
     delete mMeshFormatManager;
     delete mTimeManager;
 }
@@ -56,6 +58,11 @@ Core* Core::GetPtr()
 FileSystem* Core::GetFileSystem()
 {
     return Core::Get().mFileSystem;
+}
+
+ImageFormatManager* Core::GetImageFormatMgr()
+{
+    return Core::Get().mImageFormatManager;
 }
 
 MeshFormatManager* Core::GetMeshFormatMgr()

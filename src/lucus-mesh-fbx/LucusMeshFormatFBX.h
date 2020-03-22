@@ -14,7 +14,7 @@
 
 namespace LucusEngine
 {
-    class FBXMeshFormat: public MeshFormat
+    class MeshFormatFBX : public MeshFormat
     {
         FbxManager* mSdkManager;
         FbxGeometryConverter* mConverter;
@@ -22,8 +22,8 @@ namespace LucusEngine
         std::vector<FbxNode*> mMeshNodes;
         
     public:
-        FBXMeshFormat();
-        virtual ~FBXMeshFormat();
+        MeshFormatFBX();
+        virtual ~MeshFormatFBX();
         
         virtual void LoadMesh( Mesh* mesh, cc8* name ) override;
         

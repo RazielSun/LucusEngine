@@ -11,6 +11,7 @@
 #include "LucusSingleton.h"
 
 #include "LucusFileSystem.h"
+#include "LucusImageFormatManager.h"
 #include "LucusMeshFormatManager.h"
 
 namespace LucusEngine
@@ -42,6 +43,7 @@ namespace LucusEngine
         static Core* GetPtr();
         
         static FileSystem* GetFileSystem();
+        static ImageFormatManager* GetImageFormatMgr();
         static MeshFormatManager* GetMeshFormatMgr();
         static RenderSystem* GetRenderSystem();
         static TimeManager* GetTimeManager();
@@ -52,6 +54,7 @@ namespace LucusEngine
         RenderSystem* mActiveRenderSystem;
         
         FileSystem* mFileSystem;
+        ImageFormatManager* mImageFormatManager;
         MeshFormatManager* mMeshFormatManager;
         TimeManager* mTimeManager;
         World* mWorld;

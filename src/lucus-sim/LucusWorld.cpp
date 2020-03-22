@@ -47,12 +47,12 @@ void World::InitWorld()
     
     // Actors
 	Actor* cube1Actor = SpawnActor();
-	MeshComponent* mesh1Com = new MeshComponent("Assets/meshes/cube.fbx");
+	MeshComponent* mesh1Com = new MeshComponent("Assets/meshes/cube.fbx", "Assets/textures/test-image.tga");
 	mesh1Com->GetTransform().AddLocation(0, 0, -2);
 	cube1Actor->SetRootComponent(mesh1Com);
 
 	Actor* cube2Actor = SpawnActor();
-	MeshComponent* mesh2Com = new MeshComponent("Assets/meshes/cube.fbx");
+	MeshComponent* mesh2Com = new MeshComponent("Assets/meshes/cube.fbx", "Assets/textures/checker.png");
 	mesh2Com->GetTransform().AddLocation(1, 0, -2);
 	cube2Actor->SetRootComponent(mesh2Com);
     

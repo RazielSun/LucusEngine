@@ -7,18 +7,25 @@
 
 #include "LucusMeshComponent.h"
 #include "LucusMesh.h"
+#include "LucusImage.h"
 
 using namespace LucusEngine;
 
-MeshComponent::MeshComponent() : mMesh(nullptr)
+MeshComponent::MeshComponent() : mMesh(nullptr), mImage(nullptr)
 {
     //
 }
 
-MeshComponent::MeshComponent(cc8* name)
+MeshComponent::MeshComponent(cc8* meshName) : mImage(nullptr)
 {
-    mMesh = new LucusEngine::Mesh();
-    mMesh->Load(name);
+    mMesh = new Mesh();
+    mMesh->Load(meshName);
+}
+
+MeshComponent::MeshComponent(cc8* meshName, cc8* imageName) : MeshComponent(meshName)
+{
+    mImage = new Image();
+    mImage->Load(imageName);
 }
 
 MeshComponent::~MeshComponent()
@@ -28,9 +35,20 @@ MeshComponent::~MeshComponent()
         delete mMesh;
         mMesh = nullptr;
     }
+    
+    if (nullptr != mImage)
+    {
+        delete mImage;
+        mImage = nullptr;
+    }
 }
 
 Mesh* MeshComponent::GetMesh()
 {
     return mMesh;
+}
+
+Image* MeshComponent::GetImage()
+{
+    return mImage;
 }
