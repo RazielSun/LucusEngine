@@ -38,11 +38,13 @@ using namespace metal;
 typedef struct
 {
     float3 position [[attribute(0)]];
+    float2 texcoord [[attribute(1)]];
 } SimpleVertexIn;
 
 typedef struct
 {
     float4 position [[position]];
+    float2 texcoord;
 } RasterizerData;
 
 vertex RasterizerData simpleVertexShader(SimpleVertexIn in [[stage_in]], constant Uniforms& uniforms [[buffer(1)]])
@@ -54,10 +56,14 @@ vertex RasterizerData simpleVertexShader(SimpleVertexIn in [[stage_in]], constan
 //    uniforms.MODEL_MATRIX * uniforms.VIEW_MATRIX * uniforms.PROJ_MATRIX
 //    out.position = uniforms.PROJ_MATRIX * uniforms.VIEW_MATRIX * uniforms.MODEL_MATRIX * position;
     
+    out.texcoord = in.texcoord;
+    
     return out;
 }
 
-fragment float4 simpleFragmentShader(RasterizerData in [[stage_in]])
+fragment float4 simpleFragmentShader(RasterizerData in [[stage_in]], texture2d<half> colorTexture [[ texture(0) ]])
 {
-    return float4(0,0,0,1);
+    constexpr sampler textureSampler(mag_filter::linear, min_filter::linear);
+    const half4 colorSample = colorTexture.sample(textureSampler, in.texcoord);
+    return float4(colorSample);//float4(0,0,0,1);
 }

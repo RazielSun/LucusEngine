@@ -8,6 +8,7 @@
 #include "LucusMetalComponentProxy.h"
 #include "LucusTransform.h"
 #include "LucusMesh.h"
+#include "LucusImage.h"
 #include "LucusMetalDevice.h"
 
 using namespace LucusEngine;
@@ -41,6 +42,21 @@ void MetalComponentProxy::CreateBuffers(Mesh* mesh)
     }
 }
 
+void MetalComponentProxy::CreateTexture(Image* image)
+{
+    if (nullptr != image)
+    {
+        MTLTextureDescriptor *textureDescriptor = [[MTLTextureDescriptor alloc] init];
+        textureDescriptor.pixelFormat = MTLPixelFormatRGBA8Unorm_sRGB;//MTLPixelFormatRGBA8Unorm;
+        textureDescriptor.width = image->GetWidth();
+        textureDescriptor.height = image->GetHeight();
+        mTexture = [mOwnerDevice->mDevice newTextureWithDescriptor:textureDescriptor];
+        MTLRegion region = {{0, 0, 0},{image->GetWidth(), image->GetHeight(), 1 }};
+        NSUInteger bytesPerRow = 4 * image->GetWidth();
+        [mTexture replaceRegion:region mipmapLevel:0 withBytes:image->GetBitmap() bytesPerRow:bytesPerRow];
+    }
+}
+
 void MetalComponentProxy::UpdateUniforms(const Uniforms& uniforms, const Transform& transform)
 {
     memcpy((void*)(mUniforms.contents), &uniforms, sizeof(Uniforms));
@@ -63,6 +79,8 @@ void MetalComponentProxy::DrawIndexed(id<MTLRenderCommandEncoder> renderEncoder)
     // only for vertex shader
     [renderEncoder setVertexBuffer:mUniforms offset:0 atIndex:1];
 //    [renderEncoder setFragmentBuffer:mUniforms offset:0 atIndex:1];
+
+    [renderEncoder setFragmentTexture:mTexture atIndex:0];
 
     [renderEncoder drawIndexedPrimitives:MTLPrimitiveTypeTriangle indexCount:mIndicesCount indexType:MTLIndexTypeUInt32 indexBuffer:mIndicesBuf indexBufferOffset:0];
                 

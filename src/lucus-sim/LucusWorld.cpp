@@ -57,7 +57,7 @@ void World::InitWorld()
 	cube2Actor->SetRootComponent(mesh2Com);
     
     Actor* cube3Actor = SpawnActor();
-    MeshComponent* mesh3Com = new MeshComponent("Assets/meshes/cube.fbx");
+    MeshComponent* mesh3Com = new MeshComponent("Assets/meshes/cube.fbx", "Assets/textures/checker-map.png");
     mesh3Com->GetTransform().AddLocation(-1, 0, -2);
     cube3Actor->SetRootComponent(mesh3Com);
     

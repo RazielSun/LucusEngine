@@ -11,11 +11,11 @@
 #include "LucusComponentProxy.h"
 
 #include <Metal/MTLBuffer.h>
+#include <Metal/MTLTexture.h>
 #include <Metal/MTLRenderCommandEncoder.h>
 
 namespace LucusEngine
 {
-    class Mesh;
     class Transform;
 
     class MetalDevice;
@@ -27,6 +27,7 @@ namespace LucusEngine
         ~MetalComponentProxy();
         
         virtual void CreateBuffers(Mesh* mesh) override;
+        virtual void CreateTexture(Image* image) override;
         virtual void UpdateUniforms(const Uniforms& uniforms, const Transform& transform) override;
         
         void DrawIndexed(id<MTLRenderCommandEncoder> encoder);
@@ -38,6 +39,8 @@ namespace LucusEngine
         id<MTLBuffer> mIndicesBuf;
         NSUInteger mIndicesCount;
         id<MTLBuffer> mUniforms;
+
+        id<MTLTexture> mTexture;
     };
 }
 

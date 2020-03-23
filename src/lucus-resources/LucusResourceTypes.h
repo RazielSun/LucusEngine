@@ -16,6 +16,11 @@
 //    FVector4 color;
 //} DefaultVertex;
 
-typedef FVector3 SimpleVertex;
+//typedef FVector3 SimpleVertex;
+typedef struct
+{
+    FVector3 position;
+    FVector2 texcoord;
+} SimpleVertex;
 
 #endif /* _LUCUS_ENGINE_RESOURCE_TYPES_H */

@@ -45,6 +45,7 @@ void MetalRenderSystem::CreateBuffers()
     for (auto* component : mScene->MeshComps) {
         MetalComponentProxy* proxy = new MetalComponentProxy(&mDevice);
         proxy->CreateBuffers(component->GetMesh());
+        proxy->CreateTexture(component->GetImage());
         component->Proxy = proxy;
     }
     
@@ -52,6 +53,10 @@ void MetalRenderSystem::CreateBuffers()
     vertexDescr.attributes[0].format = MTLVertexFormatFloat3;
     vertexDescr.attributes[0].bufferIndex = 0;
     vertexDescr.attributes[0].offset = 0;
+    
+    vertexDescr.attributes[1].format = MTLVertexFormatFloat2;
+    vertexDescr.attributes[1].bufferIndex = 0;
+    vertexDescr.attributes[1].offset = 12; // 12 because FVector3 is not simd::float4
     
     vertexDescr.layouts[0].stride = sizeof(SimpleVertex);
     vertexDescr.layouts[0].stepRate = 1;

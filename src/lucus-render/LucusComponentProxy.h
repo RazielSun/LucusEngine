@@ -15,6 +15,7 @@
 namespace LucusEngine
 {
     class Mesh;
+    class Image;
 
     class ComponentProxy
     {
@@ -23,6 +24,7 @@ namespace LucusEngine
         ~ComponentProxy();
         
         virtual void CreateBuffers(Mesh* mesh) = 0;
+        virtual void CreateTexture(Image* image) = 0;
         virtual void UpdateUniforms(const Uniforms& uniforms, const Transform& transform) = 0;
     };
 }
