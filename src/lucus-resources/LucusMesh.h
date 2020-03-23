@@ -15,10 +15,7 @@
 
 namespace LucusEngine
 {
-    struct TriangleIndex
-    {
-        u32 x, y, z;
-    };
+    typedef UIVector3 TriangleIndex;
 
     struct FMeshFaceData
     {

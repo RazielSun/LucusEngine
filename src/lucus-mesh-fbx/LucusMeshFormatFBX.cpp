@@ -6,8 +6,6 @@
 //
 
 #include "LucusMeshFormatFBX.h"
-#include "LucusMesh.h"
-#include "LucusMath.h"
 
 using namespace LucusEngine;
 
@@ -241,6 +239,8 @@ void MeshFormatFBX::AddMeshNode(FbxNode* node)
 
 void MeshFormatFBX::LoadPositionNormalTexCoord(FbxMesh* data, Mesh* mesh)
 {
+    mMap.clear();
+    
     std::vector<FVector3> vertices;
     std::vector<FVector2> texcoords;
     std::vector<FVector3> normals;
@@ -420,29 +420,61 @@ void MeshFormatFBX::LoadPositionNormalTexCoord(FbxMesh* data, Mesh* mesh)
     }
     
     std::vector<TriangleIndex> indices;
+    std::vector<SimpleVertex> vecVertices;
+    
     for (const auto& face : faces)
     {
+        TriangleIndex idx;
+        idx.x = GetVertexIndexFrom(face.tris[0], vecVertices, vertices, texcoords, normals);
+        idx.y = GetVertexIndexFrom(face.tris[1], vecVertices, vertices, texcoords, normals);
+        idx.z = GetVertexIndexFrom(face.tris[2], vecVertices, vertices, texcoords, normals);
+        indices.push_back( idx );
 //#if defined(TARGET_METAL)
-		indices.push_back({ face.tris[0].x, face.tris[1].x, face.tris[2].x });
+//		indices.push_back({ face.tris[0].x, face.tris[1].x, face.tris[2].x });
 //#elif defined(TARGET_DX12)
 //		indices.push_back({ face.tris[0].x, face.tris[2].x, face.tris[1].x });
 //#endif
     }
     
-    std::vector<SimpleVertex> vecVertices;
-    for (const auto& pos : vertices)
-    {
+    
+//    for (const auto& pos : vertices)
+//    {
 //#if defined(TARGET_METAL)
 //        vecVertices.push_back((SimpleVertex){pos.x, pos.y, pos.z});
 //#else
-        vecVertices.push_back({ {pos.x, pos.y, pos.z}, { 0.0f, 0.0f } });
+//        vecVertices.push_back({ {pos.x, pos.y, pos.z}, { 0.0f, 0.0f } });
 //#endif
 		
-    }
+//    }
     
 //    mesh->Load(vertices, texcoords, normals, faces);
     mesh->SetIndices(indices);
     mesh->SetVertices(vecVertices);
     
     FBXSDK_printf("    Done\n");
+}
+
+u32 MeshFormatFBX::GetVertexIndexFrom(const TriangleIndex& idx,
+                                       std::vector<SimpleVertex>& outvert,
+                                       const std::vector<FVector3>& positions,
+                                       const std::vector<FVector2>& texcoords,
+                                       const std::vector<FVector3>& normals)
+{
+    auto search = mMap.find(idx);
+    if (search != mMap.end())
+    {
+        return mMap[idx];
+    }
+    else
+    {
+        int count = static_cast<int>(outvert.size());
+        FVector3 pos = positions[idx.x];
+        FVector2 uv = texcoords[idx.y];
+//        FVector3 normal = normals[idx.z];// * 0.5f + 0.5f;
+//        AddVertex({ { vertex.x, vertex.y, vertex.z }, { texcoord.x, texcoord.y }, { normal.x, normal.y, normal.z } });
+        outvert.push_back({ {pos.x, pos.y, pos.z}, { uv.x, uv.y } });
+        mMap[idx] = count;
+        return count;
+    }
+    return 0;
 }
