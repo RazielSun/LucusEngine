@@ -36,31 +36,30 @@ RenderWindow* D3D12RenderSystem::CreateRenderWindow(u32 width, u32 height)
 
 void D3D12RenderSystem::CreateBuffers()
 {
+	// Create descriptor heaps.
 	{
 		// first try without frames
 		u32 count = static_cast<u32>(mScene->MeshComps.size());// *c_frameCount;
-		D3D12_DESCRIPTOR_HEAP_DESC descriptorHeapDesc = {};
+		D3D12_DESCRIPTOR_HEAP_DESC descriptorCBHeapDesc = {};
 		// Allocate a heap for descriptors:
-		descriptorHeapDesc.NumDescriptors = count;
-		descriptorHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
-		descriptorHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
-		descriptorHeapDesc.NodeMask = 0;
-		ThrowIfFailed(mDevice.mD3D12Device->CreateDescriptorHeap(&descriptorHeapDesc, IID_PPV_ARGS(&mDescriptorHeap)));
-		mDescriptorHeap->SetName(L"Descriptor Heap");
+		descriptorCBHeapDesc.NumDescriptors = count;
+		descriptorCBHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
+		descriptorCBHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
+		descriptorCBHeapDesc.NodeMask = 0;
+		ThrowIfFailed(mDevice.mD3D12Device->CreateDescriptorHeap(&descriptorCBHeapDesc, IID_PPV_ARGS(&mDescriptorCBHeap)));
+		mDescriptorCBHeap->SetName(L"Descriptor CB Heap");
+		mDescriptorCBSize = mDevice.mD3D12Device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
 
-		mDescriptorSize = mDevice.mD3D12Device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+		 // Describe and create a shader resource view (SRV) heap for the texture.
+        D3D12_DESCRIPTOR_HEAP_DESC descriptorSRHeapDesc = {};
+        descriptorSRHeapDesc.NumDescriptors = count;
+        descriptorSRHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
+        descriptorSRHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
+		descriptorSRHeapDesc.NodeMask = 0;
+		ThrowIfFailed(mDevice.mD3D12Device->CreateDescriptorHeap(&descriptorSRHeapDesc, IID_PPV_ARGS(&mDescriptorSRHeap)));
+		mDescriptorSRHeap->SetName(L"Descriptor SR Heap");
+		mDescriptorSRSize = mDevice.mD3D12Device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
 	}
-
-	// // Create descriptor heaps.
-    // {
-    //     // Describe and create a shader resource view (SRV) heap for the texture.
-    //     D3D12_DESCRIPTOR_HEAP_DESC srvHeapDesc = {};
-    //     srvHeapDesc.NumDescriptors = 1;
-    //     srvHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
-    //     srvHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
-    //     DX::ThrowIfFailed(
-    //         device->CreateDescriptorHeap(&srvHeapDesc, IID_PPV_ARGS(m_srvHeap.ReleaseAndGetAddressOf())));
-    // }
 
 	// Prepare device resources
 	auto commandAllocator = mDevice.mCommandAllocators[mCurrentFrame];
@@ -75,6 +74,7 @@ void D3D12RenderSystem::CreateBuffers()
     for (auto* component : mScene->MeshComps) {
         D3D12ComponentProxy* proxy = new D3D12ComponentProxy(&mDevice);
         proxy->CreateBuffers(component->GetMesh());
+		proxy->CreateTexture(component->GetImage());
         component->Proxy = proxy;
 
 		// View for buffers
@@ -85,10 +85,19 @@ void D3D12RenderSystem::CreateBuffers()
 
 		// Offset to the object cbv in the descriptor heap.
 		int heapIndex = idx;//frameIndex * objCount + i;
-		auto handle = CD3DX12_CPU_DESCRIPTOR_HANDLE(mDescriptorHeap->GetCPUDescriptorHandleForHeapStart());
-		handle.Offset(heapIndex, mDescriptorSize);
-
+		auto handle = CD3DX12_CPU_DESCRIPTOR_HANDLE(mDescriptorCBHeap->GetCPUDescriptorHandleForHeapStart());
+		handle.Offset(heapIndex, mDescriptorCBSize);
 		mDevice.mD3D12Device->CreateConstantBufferView(&constantBufferViewDesc, handle);
+
+		// Describe and create a SRV for the texture.
+		D3D12_SHADER_RESOURCE_VIEW_DESC textureViewDesc = {};
+		textureViewDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
+		textureViewDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
+		textureViewDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
+		textureViewDesc.Texture2D.MipLevels = 1;
+		auto handleSR = CD3DX12_CPU_DESCRIPTOR_HANDLE(mDescriptorSRHeap->GetCPUDescriptorHandleForHeapStart());
+		handleSR.Offset(heapIndex, mDescriptorSRSize);
+		mDevice.mD3D12Device->CreateShaderResourceView(proxy->mTexture.Get(), &textureViewDesc, handleSR);
 
 		idx++;
     }
@@ -180,12 +189,8 @@ void D3D12RenderSystem::Render()
     commandList->ClearRenderTargetView(rtvHandle, clearColor, 0, nullptr);
 
 	// Set Main Descriptor Heaps
-	ID3D12DescriptorHeap* descriptorHeaps[] = { mDescriptorHeap.Get() };
+	ID3D12DescriptorHeap* descriptorHeaps[] = { mDescriptorSRHeap.Get() }; //mDescriptorCBHeap.Get()
 	commandList->SetDescriptorHeaps(_countof(descriptorHeaps), descriptorHeaps);
-
-	// auto heap = m_srvHeap.Get();
-    // commandList->SetDescriptorHeaps(1, &heap);
-    // commandList->SetGraphicsRootDescriptorTable(0, m_srvHeap->GetGPUDescriptorHandleForHeapStart());
 
 	 // Set Shader Signature
 	commandList->SetGraphicsRootSignature(mRootSignature.Get());
@@ -219,10 +224,18 @@ void D3D12RenderSystem::Render()
 			{
 				// Offset to the CBV in the descriptor heap for this object and for this frame resource.
 				UINT cbvIndex = idx; //mCurrFrameResourceIndex * (UINT)mOpaqueRitems.size() + ri->ObjCBIndex;
-				auto cbvHandle = CD3DX12_GPU_DESCRIPTOR_HANDLE(mDescriptorHeap->GetGPUDescriptorHandleForHeapStart());
-				cbvHandle.Offset(cbvIndex, mDescriptorSize);
+				//auto cbvHandle = CD3DX12_GPU_DESCRIPTOR_HANDLE(mDescriptorCBHeap->GetGPUDescriptorHandleForHeapStart());
+				//cbvHandle.Offset(cbvIndex, mDescriptorCBSize);
+				//commandList->SetGraphicsRootDescriptorTable(0, cbvHandle);
 
-				commandList->SetGraphicsRootDescriptorTable(0, cbvHandle);
+				commandList->SetGraphicsRootConstantBufferView(0, proxy->mConstantBuffer->GetGPUVirtualAddress());
+
+				auto srvHandle = CD3DX12_GPU_DESCRIPTOR_HANDLE(mDescriptorSRHeap->GetGPUDescriptorHandleForHeapStart());
+				srvHandle.Offset(cbvIndex, mDescriptorSRSize);
+				commandList->SetGraphicsRootDescriptorTable(1, srvHandle);
+				
+				// for textures
+				// commandList->SetGraphicsRootDescriptorTable(0, m_srvHeap->GetGPUDescriptorHandleForHeapStart());
 
 				proxy->DrawIndexed(commandList);
 			}
@@ -338,14 +351,34 @@ void D3D12RenderSystem::CreateDeviceDependentResources()
 	// Create an empty root signature.
 	//with 1 parameter for CB
 	{
-		CD3DX12_DESCRIPTOR_RANGE range;
-		range.Init(D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 0);
+		CD3DX12_DESCRIPTOR_RANGE cbRange;
+		cbRange.Init(D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 1, 0);
 
-		CD3DX12_ROOT_PARAMETER parameter;
-		parameter.InitAsDescriptorTable(1, &range, D3D12_SHADER_VISIBILITY_VERTEX);
+		CD3DX12_DESCRIPTOR_RANGE srRange;
+		srRange.Init(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 0);
+
+		CD3DX12_ROOT_PARAMETER rootParameters[2];
+		rootParameters[0].InitAsConstantBufferView(0);
+		//rootParameters[0].InitAsDescriptorTable(1, &cbRange, D3D12_SHADER_VISIBILITY_VERTEX);
+		rootParameters[1].InitAsDescriptorTable(1, &srRange, D3D12_SHADER_VISIBILITY_PIXEL);
+
+		// Use a static sampler that matches the defaults
+		// https://msdn.microsoft.com/en-us/library/windows/desktop/dn913202(v=vs.85).aspx#static_sampler
+		D3D12_STATIC_SAMPLER_DESC samplerDesc = {};
+		samplerDesc.Filter = D3D12_FILTER_ANISOTROPIC;
+		samplerDesc.AddressU = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
+		samplerDesc.AddressV = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
+		samplerDesc.AddressW = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
+		samplerDesc.MaxAnisotropy = 16;
+		samplerDesc.ComparisonFunc = D3D12_COMPARISON_FUNC_LESS_EQUAL;
+		samplerDesc.BorderColor = D3D12_STATIC_BORDER_COLOR_OPAQUE_WHITE;
+		samplerDesc.MinLOD = 0;
+		samplerDesc.MaxLOD = D3D12_FLOAT32_MAX;
+		samplerDesc.ShaderVisibility = D3D12_SHADER_VISIBILITY_PIXEL;
 
 		CD3DX12_ROOT_SIGNATURE_DESC rootSignatureDesc;
-		rootSignatureDesc.Init(1, &parameter, 0, nullptr, D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT);
+		//rootSignatureDesc.Init(_countof(rootParameters), rootParameters, 0, nullptr, D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT);
+		rootSignatureDesc.Init(_countof(rootParameters), rootParameters, 1, &samplerDesc, D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT);
 
 		ComPtr<ID3DBlob> signature;
 		ComPtr<ID3DBlob> error;
@@ -387,7 +420,7 @@ void D3D12RenderSystem::CreateDeviceDependentResources()
 		D3D12_INPUT_ELEMENT_DESC inputElementDescs[] =
 		{
 			{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
-			//{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 8, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 }
+			{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 }
 		};
 
 		// Describe and create the graphics pipeline state object (PSO).

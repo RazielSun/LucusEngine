@@ -11,13 +11,14 @@ cbuffer UniformsBuffer : register(b0)
 struct VertexShaderInput
 {
 	float3 pos : POSITION;
+	float2 uv : TEXCOORD0;
 };
 
 // Per-pixel color data passed through the pixel shader.
 struct PixelShaderInput
 {
 	float4 pos : SV_POSITION;
-	float3 color : COLOR;
+	float2 uv : TEXCOORD0;
 };
 
 // Simple shader to do vertex processing on the GPU.
@@ -27,9 +28,6 @@ PixelShaderInput main(VertexShaderInput input)
 
 	// Pass the position
     float4 pos = float4(input.pos, 1.0f);
-
-	float3 color = input.pos;
-
 	// Transform the vertex position into projected space.
 	pos = mul(pos, mvp);
 	//pos = mul(pos, model);
@@ -37,7 +35,7 @@ PixelShaderInput main(VertexShaderInput input)
 	//pos = mul(pos, projection);
 
 	output.pos = pos;
-	output.color = color;
+	output.uv = input.uv;
 
 	return output;
 }

@@ -32,12 +32,16 @@ namespace LucusEngine
         virtual void UpdateUniforms(const Uniforms& uniforms, const Transform& transform) override;
         
 		void CreateBuffers(Mesh* mesh, Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList> commandList);
+        void CreateTexture(Image* image, Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList> commandList);
         void DrawIndexed(Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList> commandList);
         void SetupBufferViews();
 
 	public:
 		Microsoft::WRL::ComPtr<ID3D12Resource>          mConstantBuffer = nullptr;
 		u8*												mMappedDataAddress = nullptr;
+
+        Microsoft::WRL::ComPtr<ID3D12Resource>          mTexture = nullptr;
+        Microsoft::WRL::ComPtr<ID3D12Resource>			mTextureUpload = nullptr;
         
     protected:
         D3D12Device* mOwnerDevice;
@@ -58,8 +62,6 @@ namespace LucusEngine
         u32                                             mIndicesBufferSize;
 		u32												mIndexCount;
 		Microsoft::WRL::ComPtr<ID3D12Resource>			mIndicesBufferUpload = nullptr;
-
-        Microsoft::WRL::ComPtr<ID3D12Resource>          mTexture;
 
 		bool											mBuffersLoaded;
 		bool											mReadyToDraw;

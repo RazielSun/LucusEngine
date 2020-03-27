@@ -56,8 +56,10 @@ namespace LucusEngine
         Microsoft::WRL::ComPtr<ID3D12PipelineState>     mPipelineState;
 
 		// Descriptors
-		Microsoft::WRL::ComPtr<ID3D12DescriptorHeap>	mDescriptorHeap;
-		u32												mDescriptorSize;
+		Microsoft::WRL::ComPtr<ID3D12DescriptorHeap>	mDescriptorCBHeap;
+		u32												mDescriptorCBSize;
+        Microsoft::WRL::ComPtr<ID3D12DescriptorHeap>	mDescriptorSRHeap;
+		u32												mDescriptorSRSize;
 
         std::vector<byte>								mVertexShader;
 		std::vector<byte>								mPixelShader;
