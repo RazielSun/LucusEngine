@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7AB2AC92242753F60008C88D"
-               BuildableName = "liblibpng-ios.a"
+               BuildableName = "libpng-ios.a"
                BlueprintName = "libpng-ios"
                ReferencedContainer = "container:libpng.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7AB2AC92242753F60008C88D"
-            BuildableName = "liblibpng-ios.a"
+            BuildableName = "libpng-ios.a"
             BlueprintName = "libpng-ios"
             ReferencedContainer = "container:libpng.xcodeproj">
          </BuildableReference>

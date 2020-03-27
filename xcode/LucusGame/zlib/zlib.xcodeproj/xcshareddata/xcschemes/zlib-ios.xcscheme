@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7AB2ACD32427547B0008C88D"
-               BuildableName = "libzlib-ios.a"
+               BuildableName = "zlib-ios.a"
                BlueprintName = "zlib-ios"
                ReferencedContainer = "container:zlib.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7AB2ACD32427547B0008C88D"
-            BuildableName = "libzlib-ios.a"
+            BuildableName = "zlib-ios.a"
             BlueprintName = "zlib-ios"
             ReferencedContainer = "container:zlib.xcodeproj">
          </BuildableReference>
