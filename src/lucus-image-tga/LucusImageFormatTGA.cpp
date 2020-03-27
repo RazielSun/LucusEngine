@@ -25,7 +25,7 @@ ImageFormatTGA::~ImageFormatTGA()
 
 bool ImageFormatTGA::OpenFile(cc8* path)
 {
-    mStream = std::ifstream(path, std::ios::in);
+    mStream = std::ifstream(path, std::ios::in | std::ios::binary);
     
     return mStream.is_open();
 }

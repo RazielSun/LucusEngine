@@ -6,12 +6,16 @@
 //  Copyright © 2020 Alexander Kardakov. All rights reserved.
 //
 
-#include <iostream>
 
-#include <png.h>
+
+
 
 #include "LucusImageFormatPNG.h"
 #include "LucusImage.h"
+
+#include <png.h>
+
+#include <iostream>
 
 using namespace LucusEngine;
 
@@ -35,7 +39,7 @@ ImageFormatPNG::~ImageFormatPNG()
 
 bool ImageFormatPNG::OpenFile(const char* path)
 {
-    mStream = std::ifstream(path, std::ios::in);
+    mStream = std::ifstream(path, std::ios::in | std::ios::binary);
     
     return mStream.is_open();
 }
@@ -84,7 +88,8 @@ void ImageFormatPNG::LoadImage(Image* image, cc8* name)
         
         std::cout << "PNG: " << width << " " << height << " bitDepth:" << bitDepth << " pngColorType:" << pngColorType  << " interlaceType:" << interlaceType << std::endl;
         std::cout << "---: pallete:" << palette << " size:" << paletteSize << std::endl;
-        std::cout << "---: trans:" << trans << " size:" << transSize << std::endl;
+		// why trans fails for win build. trans is nil? mb nil in xcode but it's not fail
+        //std::cout << "---: trans:" << trans << " size:" << transSize << std::endl;
         
         bool trueColor = true;
         bool hasAlpha = false;

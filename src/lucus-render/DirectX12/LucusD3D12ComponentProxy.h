@@ -28,6 +28,7 @@ namespace LucusEngine
         ~D3D12ComponentProxy();
         
         virtual void CreateBuffers(Mesh* mesh) override;
+		virtual void CreateTexture(Image* image) override;
         virtual void UpdateUniforms(const Uniforms& uniforms, const Transform& transform) override;
         
 		void CreateBuffers(Mesh* mesh, Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList> commandList);
@@ -57,6 +58,8 @@ namespace LucusEngine
         u32                                             mIndicesBufferSize;
 		u32												mIndexCount;
 		Microsoft::WRL::ComPtr<ID3D12Resource>			mIndicesBufferUpload = nullptr;
+
+        Microsoft::WRL::ComPtr<ID3D12Resource>          mTexture;
 
 		bool											mBuffersLoaded;
 		bool											mReadyToDraw;

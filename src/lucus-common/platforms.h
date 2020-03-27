@@ -62,4 +62,30 @@
 	#include <unistd.h>
 // #endif
 
+// #include <assert.h>
+//#include <ctype.h>
+// #include <errno.h>
+// #include <float.h>
+// #include <math.h>
+// #include <stdarg.h>
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include <string.h>
+// #include <time.h>
+// #include <signal.h>
+// #include <setjmp.h>
+
+#ifdef __cplusplus
+	// #include <algorithm>
+	// #include <cstdio>
+	// #include <cstdlib>
+	// #include <fstream>
+	// #include <map>
+	// #include <set>
+	// #include <string>
+ 	// #include <iostream>
+	// #include <sstream>
+	// #include <vector>
+#endif
+
 #endif	/* _LUCUS_ENGINE_PLATFORMS_H */

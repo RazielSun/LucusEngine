@@ -8,6 +8,7 @@
 #include "LucusD3D12ComponentProxy.h"
 #include "LucusTransform.h"
 #include "LucusMesh.h"
+#include "LucusImage.h"
 #include "LucusD3D12Device.h"
 
 #include <wchar.h>
@@ -157,6 +158,78 @@ void D3D12ComponentProxy::CreateBuffers(Mesh* mesh, Microsoft::WRL::ComPtr<ID3D1
 		//	ThrowIfFailed(mConstantBuffer->Map(0, &readRange, reinterpret_cast<void**>(&mMappedData)));
 
 		mBuffersLoaded = true;
+    }
+}
+
+void D3D12ComponentProxy::CreateTexture(Image* image)
+{
+    if (nullptr != image)
+    {
+        // Create texture.
+        // auto commandList = m_deviceResources->GetCommandList();
+        // commandList->Reset(m_deviceResources->GetCommandAllocator(), nullptr);
+
+        // ComPtr<ID3D12Resource> textureUploadHeap;
+        // {
+        //     D3D12_RESOURCE_DESC txtDesc = {};
+        //     txtDesc.MipLevels = txtDesc.DepthOrArraySize = 1;
+        //     txtDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM_SRGB; // sunset.jpg is in sRGB colorspace
+        //     txtDesc.SampleDesc.Count = 1;
+        //     txtDesc.Dimension = D3D12_RESOURCE_DIMENSION_TEXTURE2D;
+
+        //     UINT width, height;
+        //     auto image = LoadBGRAImage(L"sunset.jpg", width, height);
+        //     txtDesc.Width = width;
+        //     txtDesc.Height = height;
+
+        //     CD3DX12_HEAP_PROPERTIES heapDefault(D3D12_HEAP_TYPE_DEFAULT);
+        //     DX::ThrowIfFailed(
+        //         device->CreateCommittedResource(
+        //             &heapDefault,
+        //             D3D12_HEAP_FLAG_NONE,
+        //             &txtDesc,
+        //             D3D12_RESOURCE_STATE_COPY_DEST,
+        //             nullptr,
+        //             IID_PPV_ARGS(m_texture.ReleaseAndGetAddressOf())));
+
+        //     const UINT64 uploadBufferSize = GetRequiredIntermediateSize(m_texture.Get(), 0, 1);
+
+        //     // Create the GPU upload buffer.
+        //     auto resDesc = CD3DX12_RESOURCE_DESC::Buffer(uploadBufferSize);
+
+        //     DX::ThrowIfFailed(
+        //         device->CreateCommittedResource(
+        //             &heapUpload,
+        //             D3D12_HEAP_FLAG_NONE,
+        //             &resDesc,
+        //             D3D12_RESOURCE_STATE_GENERIC_READ,
+        //             nullptr,
+        //             IID_PPV_ARGS(textureUploadHeap.GetAddressOf())));
+
+        //     D3D12_SUBRESOURCE_DATA textureData = {};
+        //     textureData.pData = image.data();
+        //     textureData.RowPitch = static_cast<LONG_PTR>(txtDesc.Width * sizeof(uint32_t));
+        //     textureData.SlicePitch = image.size();
+
+        //     UpdateSubresources(commandList, m_texture.Get(), textureUploadHeap.Get(), 0, 0, 1, &textureData);
+
+        //     auto barrier = CD3DX12_RESOURCE_BARRIER::Transition(m_texture.Get(), D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE);
+        //     commandList->ResourceBarrier(1, &barrier);
+
+        //     // Describe and create a SRV for the texture.
+        //     D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
+        //     srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
+        //     srvDesc.Format = txtDesc.Format;
+        //     srvDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
+        //     srvDesc.Texture2D.MipLevels = 1;
+        //     device->CreateShaderResourceView(m_texture.Get(), &srvDesc, m_srvHeap->GetCPUDescriptorHandleForHeapStart());
+        // }
+
+        // DX::ThrowIfFailed(commandList->Close());
+        // m_deviceResources->GetCommandQueue()->ExecuteCommandLists(1, CommandListCast(&commandList));
+
+        // // Wait until assets have been uploaded to the GPU.
+        // m_deviceResources->WaitForGpu();
     }
 }
 

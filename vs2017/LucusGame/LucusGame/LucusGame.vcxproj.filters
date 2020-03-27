@@ -3,8 +3,7 @@
   <ItemGroup>
     <Filter Include="Assets">
       <UniqueIdentifier>772a2456-77fb-440e-b445-4ee08c8eea09</UniqueIdentifier>
-      <Extensions>
-      </Extensions>
+      <Extensions>bmp;fbx;gif;jpg;jpeg;tga;tiff;tif;png;fbx</Extensions>
     </Filter>
     <Filter Include="lucus-core">
       <UniqueIdentifier>{953d7fa6-e70b-40ec-9f6f-06315a81d2ae}</UniqueIdentifier>
@@ -41,6 +40,16 @@
     </Filter>
     <Filter Include="lucus-resources">
       <UniqueIdentifier>{015fad63-db8e-416e-88c7-a87889e7e576}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\textures">
+      <UniqueIdentifier>{3de35cba-d855-4f48-9deb-171f2075da05}</UniqueIdentifier>
+      <Extensions>bmp;fbx;gif;jpg;jpeg;tga;tiff;tif;png</Extensions>
+    </Filter>
+    <Filter Include="lucus-image-tga">
+      <UniqueIdentifier>{11f6232b-94e8-4775-b4c2-b26c86e28b04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lucu-image-png">
+      <UniqueIdentifier>{eab2d6ab-346d-4532-9947-fdf3cb8cb786}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +125,21 @@
     </ClCompile>
     <ClCompile Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12ComponentProxy.cpp">
       <Filter>lucus-render\DirectX12</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-resources\LucusImage.cpp">
+      <Filter>lucus-resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-resources\LucusImageFormat.cpp">
+      <Filter>lucus-resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-resources\LucusImageFormatManager.cpp">
+      <Filter>lucus-resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-image-tga\LucusImageFormatTGA.cpp">
+      <Filter>lucus-image-tga</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-image-png\LucusImageFormatPNG.cpp">
+      <Filter>lucu-image-png</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -215,6 +239,21 @@
     <ClInclude Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12ComponentProxy.h">
       <Filter>lucus-render\DirectX12</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-resources\LucusImage.h">
+      <Filter>lucus-resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-resources\LucusImageFormat.h">
+      <Filter>lucus-resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-resources\LucusImageFormatManager.h">
+      <Filter>lucus-resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-image-tga\LucusImageFormatTGA.h">
+      <Filter>lucus-image-tga</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-image-png\LucusImageFormatPNG.h">
+      <Filter>lucu-image-png</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="AppIcons\LockScreenLogo.scale-200.png">
@@ -238,6 +277,18 @@
     <Image Include="AppIcons\Wide310x150Logo.scale-200.png">
       <Filter>AppIcons</Filter>
     </Image>
+    <Image Include="Assets\textures\checker.png">
+      <Filter>Assets\textures</Filter>
+    </Image>
+    <Image Include="Assets\textures\checker-indexed.tga">
+      <Filter>Assets\textures</Filter>
+    </Image>
+    <Image Include="Assets\textures\checker-map.png">
+      <Filter>Assets\textures</Filter>
+    </Image>
+    <Image Include="Assets\textures\test-image.tga">
+      <Filter>Assets\textures</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />
@@ -245,9 +296,6 @@
   <ItemGroup>
     <None Include="LucusGame_TemporaryKey.pfx" />
     <None Include="Assets\meshes\cube.fbx">
-      <Filter>Assets\meshes</Filter>
-    </None>
-    <None Include="Assets\meshes\cone.fbx">
       <Filter>Assets\meshes</Filter>
     </None>
   </ItemGroup>

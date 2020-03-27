@@ -51,6 +51,17 @@ void D3D12RenderSystem::CreateBuffers()
 		mDescriptorSize = mDevice.mD3D12Device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
 	}
 
+	// // Create descriptor heaps.
+    // {
+    //     // Describe and create a shader resource view (SRV) heap for the texture.
+    //     D3D12_DESCRIPTOR_HEAP_DESC srvHeapDesc = {};
+    //     srvHeapDesc.NumDescriptors = 1;
+    //     srvHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
+    //     srvHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
+    //     DX::ThrowIfFailed(
+    //         device->CreateDescriptorHeap(&srvHeapDesc, IID_PPV_ARGS(m_srvHeap.ReleaseAndGetAddressOf())));
+    // }
+
 	// Prepare device resources
 	auto commandAllocator = mDevice.mCommandAllocators[mCurrentFrame];
 	auto commandList = mDevice.mCommandList;
@@ -171,6 +182,10 @@ void D3D12RenderSystem::Render()
 	// Set Main Descriptor Heaps
 	ID3D12DescriptorHeap* descriptorHeaps[] = { mDescriptorHeap.Get() };
 	commandList->SetDescriptorHeaps(_countof(descriptorHeaps), descriptorHeaps);
+
+	// auto heap = m_srvHeap.Get();
+    // commandList->SetDescriptorHeaps(1, &heap);
+    // commandList->SetGraphicsRootDescriptorTable(0, m_srvHeap->GetGPUDescriptorHandleForHeapStart());
 
 	 // Set Shader Signature
 	commandList->SetGraphicsRootSignature(mRootSignature.Get());
