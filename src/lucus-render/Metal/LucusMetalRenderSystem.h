@@ -13,9 +13,7 @@
 #include "LucusMetalDevice.h"
 
 #include <Metal/MTLRenderPipeline.h>
-
-// temp
-//#include <Metal/MTLBuffer.h>
+#include <Metal/MTLDepthStencil.h>
 
 namespace LucusEngine
 {
@@ -35,7 +33,7 @@ namespace LucusEngine
         MetalDevice mDevice;
         
         id<MTLRenderPipelineState> mPipelineState;
-        
+        id<MTLDepthStencilState> mDSState;
     };
 }
 

@@ -41,6 +41,10 @@ RenderWindow* MetalRenderSystem::CreateRenderWindow(u32 width, u32 height)
 
 void MetalRenderSystem::CreateBuffers()
 {
+    mWindow->mView.depthStencilPixelFormat = MTLPixelFormatDepth32Float_Stencil8;
+    mWindow->mView.colorPixelFormat = MTLPixelFormatBGRA8Unorm_sRGB;
+    mWindow->mView.sampleCount = 1; // No MSAA
+    
     // Create Assets
     for (auto* component : mScene->MeshComps) {
         MetalComponentProxy* proxy = new MetalComponentProxy(&mDevice);
@@ -71,14 +75,23 @@ void MetalRenderSystem::CreateBuffers()
     // Configure a pipeline descriptor that is used to create a pipeline state.
     MTLRenderPipelineDescriptor *pipelineStateDescriptor = [[MTLRenderPipelineDescriptor alloc] init];
     pipelineStateDescriptor.label = @"Default Pipeline";
+    pipelineStateDescriptor.sampleCount = mWindow->mView.sampleCount;
     pipelineStateDescriptor.vertexFunction = vertexFunction;
     pipelineStateDescriptor.fragmentFunction = fragmentFunction;
     pipelineStateDescriptor.colorAttachments[0].pixelFormat = mWindow->mView.colorPixelFormat;
+    pipelineStateDescriptor.depthAttachmentPixelFormat = mWindow->mView.depthStencilPixelFormat;
+    pipelineStateDescriptor.stencilAttachmentPixelFormat = mWindow->mView.depthStencilPixelFormat;
     pipelineStateDescriptor.vertexDescriptor = vertexDescr;
     
     NSError *error = NULL;
     
     mPipelineState = [mDevice.mDevice newRenderPipelineStateWithDescriptor:pipelineStateDescriptor error:&error];
+    
+    MTLDepthStencilDescriptor *depthStencilDescriptor = [[MTLDepthStencilDescriptor alloc] init];
+    depthStencilDescriptor.depthCompareFunction = MTLCompareFunctionLess;
+    depthStencilDescriptor.depthWriteEnabled = YES;
+    
+    mDSState = [mDevice.mDevice newDepthStencilStateWithDescriptor:depthStencilDescriptor];
 }
         
 void MetalRenderSystem::Render()
@@ -107,13 +120,25 @@ void MetalRenderSystem::Render()
         descriptor.colorAttachments[0].clearColor = MTLClearColorMake(1, 0, 0, 1);
         descriptor.colorAttachments[0].storeAction = MTLStoreActionStore;
         descriptor.colorAttachments[0].loadAction = MTLLoadActionClear;
+        descriptor.depthAttachment.texture = mWindow->mView.depthStencilTexture;
+        descriptor.depthAttachment.storeAction = MTLStoreActionStore;
+        descriptor.depthAttachment.loadAction = MTLLoadActionClear;
+        descriptor.depthAttachment.clearDepth = 1.0f;
+        descriptor.stencilAttachment.texture = mWindow->mView.depthStencilTexture;
+        descriptor.stencilAttachment.storeAction = MTLStoreActionStore;
+        descriptor.stencilAttachment.loadAction = MTLLoadActionClear;
+        descriptor.stencilAttachment.clearStencil = 0;
         
         if (descriptor != nil)
         {
             id<MTLRenderCommandEncoder> renderEncoder = [commandBuffer renderCommandEncoderWithDescriptor:descriptor];
             renderEncoder.label = @"MyRenderEncoder";
             
+            [renderEncoder setFrontFacingWinding:MTLWindingCounterClockwise];//MTLWindingClockwise
+            [renderEncoder setCullMode:MTLCullModeBack];
+            
             [renderEncoder setRenderPipelineState:mPipelineState];
+            [renderEncoder setDepthStencilState:mDSState];
             
             for (auto* component : mScene->MeshComps) {
                 static_cast<MetalComponentProxy*>(component->Proxy)->DrawIndexed(renderEncoder);

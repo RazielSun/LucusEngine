@@ -16,24 +16,7 @@ MetalWindow::MetalWindow(u32 width, u32 height, MetalDevice* device) : RenderWin
         mView = [[MetalView alloc] initWithFrame:frame device:device->mDevice];
         
         mMetalLayer = (CAMetalLayer*)mView.layer;
-        
-//    #if defined(TARGET_IOS)
-//        mViewController = [[UIViewController alloc] init];
-//        mViewController.view = mView;
-//
-//        mWindow = [[UIWindow alloc] init];
-//        mWindow.rootViewController = mViewController;
-//        [mWindow makeKeyAndVisible];
-//    #elif defined(TARGET_OSX)
-//        mViewController = [[NSViewController alloc] init];
-//        mViewController.view = mView;
-//
-//        mWindow = [NSWindow windowWithContentViewController:mViewController];
-//        mWindow.title = @"Lucus Game";
-////        [mWindow makeKeyAndOrderFront:self];
-//    #endif
     }
-
 }
 
 MetalWindow::~MetalWindow()

@@ -27,8 +27,6 @@
 
 - (void)renderInView
 {
-//    AKUUpdate();
-//    AKURender();
     AKUTick();
 }
 
