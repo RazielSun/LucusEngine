@@ -173,7 +173,7 @@ void D3D12ComponentProxy::CreateTexture(Image* image, Microsoft::WRL::ComPtr<ID3
         // Create texture.
         D3D12_RESOURCE_DESC txtDesc = {};
         txtDesc.MipLevels = txtDesc.DepthOrArraySize = 1;
-        txtDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
+        txtDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM; //DXGI_FORMAT_R8G8B8A8_UNORM_SRGB
         txtDesc.SampleDesc.Count = 1;
         txtDesc.Dimension = D3D12_RESOURCE_DIMENSION_TEXTURE2D;
         txtDesc.Width = image->GetWidth();
