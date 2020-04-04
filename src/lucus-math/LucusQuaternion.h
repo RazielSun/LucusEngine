@@ -12,16 +12,26 @@
 
 namespace LucusEngine
 {
+	struct FVector3;
+
 	struct FQuaternion
 	{
 		static const FQuaternion Identity;
-		
-		float x, y, z, w;
 
-		FQuaternion() : x(0.0f), y(0.0f), z(0.0f), w(0.0f) {}
-		FQuaternion(float _x, float _y, float _z, float _w) : x(_x), y(_y), z(_z), w(_w) {}
-		FQuaternion(const FQuaternion& quat) : x(quat.x), y(quat.y), z(quat.z), w(quat.w) {}
+		static const u32 ELEMENT_COUNT = 4;
+		
+		// [s,v], where s = w, v = xi + yk + zk
+		float w, x, y, z;
+
+		// Identity Quaternion with 0 angle
+		FQuaternion() : w(1.0f), x(0.0f), y(0.0f), z(0.0f) {}
+		FQuaternion(float _w, float _x, float _y, float _z) : w(_w), x(_x), y(_y), z(_z) {}
+		FQuaternion(const FQuaternion& quat) : w(quat.w), x(quat.x), y(quat.y), z(quat.z) {}
 		explicit FQuaternion(const float array[]);
+		FQuaternion(const FVector3& axis, float angleRad);
+
+		float operator[] (u32 i) const;
+	    float& operator[] (u32 i);
 	};
 }
 

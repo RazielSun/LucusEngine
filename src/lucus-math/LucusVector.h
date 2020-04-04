@@ -15,6 +15,7 @@ namespace LucusEngine
 	struct FVector2
 	{
 		static const FVector2 Zero;
+		
 	    static const u32 ELEMENT_COUNT = 2;
 	    
 	    float x, y;
@@ -30,6 +31,7 @@ namespace LucusEngine
 	struct FVector3
 	{
 		static const FVector3 Zero;
+
 	    static const u32 ELEMENT_COUNT = 3;
 	    
 	    float x, y, z;
@@ -45,6 +47,7 @@ namespace LucusEngine
 	struct FVector4
 	{
 		static const FVector4 Zero;
+
 	    static const u32 ELEMENT_COUNT = 4;
 	    
 	    float x, y, z, w;
