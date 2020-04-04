@@ -11,21 +11,29 @@
 #include "LucusComponent.h"
 #include "LucusVector.h"
 #include "LucusQuaternion.h"
+#include "LucusTransform.h"
 
 namespace LucusEngine
 {
-    class ComponentProxy;
+    class SceneComponentProxy;
 
     class SceneComponent : public Component
     {
     public:
         SceneComponent();
         virtual ~SceneComponent();
+        
+        SceneComponentProxy* Proxy;
+        //        virtual ComponentProxy* CreateProxy();
+        
+        Transform& GetTransform() { return mTransform; }
 
     protected:
-    	FVector3 mLocation;
-        FQuaternion mRotation;
-        FVector3 mScale;
+//    	FVector3 mLocation;
+//        FQuaternion mRotation;
+//        FVector3 mScale;
+        
+        Transform mTransform;
     };
 }
 

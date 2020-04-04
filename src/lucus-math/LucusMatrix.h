@@ -71,9 +71,9 @@ namespace LucusEngine
 	    void SetTranslate(float x, float y, float z);
 	    void SetTranslate(const FVector3& v);
 
-	    void SetRotate();
+	    void SetRotate(const FQuaternion& q);
 
-	    void SetScale();
+	    void SetScale(const FVector3& v);
 
 	    void LookAt();
 	};

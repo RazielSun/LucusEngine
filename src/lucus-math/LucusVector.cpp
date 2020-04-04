@@ -21,7 +21,8 @@ float& FVector2::operator[] (u32 i)
     return *(&x+i);
 }
 
-const FVector2 FVector3::Zero { 0.0f, 0.0f, 0.0f };
+const FVector3 FVector3::Zero { 0.0f, 0.0f, 0.0f };
+const FVector3 FVector3::One { 1.0f, 1.0f, 1.0f };
 
 float FVector3::operator[] (u32 i) const
 {
@@ -33,7 +34,7 @@ float& FVector3::operator[] (u32 i)
     return *(&x+i);
 }
 
-const FVector2 FVector4::Zero { 0.0f, 0.0f, 0.0f, 0.0f };
+const FVector4 FVector4::Zero { 0.0f, 0.0f, 0.0f, 0.0f };
 
 float FVector4::operator[] (u32 i) const
 {

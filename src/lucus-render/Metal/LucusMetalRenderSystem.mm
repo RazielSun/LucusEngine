@@ -104,7 +104,7 @@ void MetalRenderSystem::Render()
     uniforms.VIEW_MATRIX = cameraCom->GetTransform().GetModelMatrix().GetNative();
     
     for (auto* component : mScene->MeshComps) {
-        component->GetTransform().UpdateModelMatrix();
+        component->GetTransform().UpdateMatrices();
         component->Proxy->UpdateUniforms(uniforms, component->GetTransform());
     }
     

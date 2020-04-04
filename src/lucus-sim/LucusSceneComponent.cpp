@@ -6,10 +6,13 @@
 //
 
 #include "LucusSceneComponent.h"
+#include "LucusSceneComponentProxy.h"
 
 using namespace LucusEngine;
 
-SceneComponent::SceneComponent()
+SceneComponent::SceneComponent() :
+   mTransform(),
+   Proxy(nullptr)
 {
     //
 }

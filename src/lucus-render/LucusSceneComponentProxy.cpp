@@ -5,16 +5,16 @@
 //  Created by Alexander Kardakov on 2/03/2020.
 //
 
-#include "LucusComponentProxy.h"
+#include "LucusSceneComponentProxy.h"
 
 using namespace LucusEngine;
 
-ComponentProxy::ComponentProxy()
+SceneComponentProxy::SceneComponentProxy()
 {
     //
 }
 
-ComponentProxy::~ComponentProxy()
+SceneComponentProxy::~SceneComponentProxy()
 {
     //
 }

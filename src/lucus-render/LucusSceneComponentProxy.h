@@ -10,18 +10,19 @@
 
 #include "LucusTypes.h"
 #include "LucusRenderTypes.h"
-#include "LucusTransform.h"
 
 namespace LucusEngine
 {
     class Mesh;
     class Image;
 
-    class ComponentProxy
+    class Transform;
+
+    class SceneComponentProxy
     {
     public:
-        ComponentProxy();
-        ~ComponentProxy();
+        SceneComponentProxy();
+        ~SceneComponentProxy();
         
         virtual void CreateBuffers(Mesh* mesh) = 0;
         virtual void CreateTexture(Image* image) = 0;

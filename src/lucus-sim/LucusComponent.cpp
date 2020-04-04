@@ -6,13 +6,10 @@
 //
 
 #include "LucusComponent.h"
-#include "LucusComponentProxy.h"
 
 using namespace LucusEngine;
 
-Component::Component() :
-	mTransform(),
-    Proxy(nullptr)
+Component::Component()
 {
     //
 }

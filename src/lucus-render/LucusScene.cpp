@@ -7,7 +7,7 @@
 
 #include "LucusScene.h"
 #include "LucusWorld.h"
-#include "LucusComponent.h"
+#include "LucusSceneComponent.h"
 #include "LucusMeshComponent.h"
 #include "LucusCameraComponent.h"
 
@@ -25,7 +25,7 @@ Scene::~Scene()
     mWorld = nullptr;
 }
 
-void Scene::AddComponent(Component* comp)
+void Scene::AddSceneComponent(SceneComponent* comp)
 {
 	if (nullptr != comp)
 	{
@@ -43,7 +43,7 @@ void Scene::AddComponent(Component* comp)
 	}
 }
 
-void Scene::RemoveComponent(Component* comp)
+void Scene::RemoveSceneComponent(SceneComponent* comp)
 {
 	if (nullptr != comp)
     {

@@ -14,7 +14,7 @@
 namespace LucusEngine
 {
 	class World;
-	class Component;
+	class SceneComponent;
 	class CameraComponent;
 	class MeshComponent;
 
@@ -32,8 +32,8 @@ namespace LucusEngine
         Scene(World* world);
         ~Scene();
 
-        void AddComponent(Component* );
-        void RemoveComponent(Component* );
+        void AddSceneComponent(SceneComponent* );
+        void RemoveSceneComponent(SceneComponent* );
     };
 }
 

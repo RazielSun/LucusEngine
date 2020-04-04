@@ -9,11 +9,12 @@
 #define _LUCUS_ENGINE_ACTOR_H
 
 #include "LucusTypes.h"
-#include "LucusComponent.h"
+#include "LucusSceneComponent.h"
 
 namespace LucusEngine
 {
     class World;
+//    class SceneComponent;
 
     class Actor
     {
@@ -24,17 +25,17 @@ namespace LucusEngine
 
         virtual void Tick(float deltaTime);
         
-        void SetRootComponent(Component* component);
+        void SetRootComponent(SceneComponent* component);
         
         template <class T>
         void SetRootComponent(T* component) {
-            SetRootComponent(dynamic_cast<Component*>(component));
+            SetRootComponent(dynamic_cast<SceneComponent*>(component));
         }
         
-        Component* GetRootComponent();
+        SceneComponent* GetRootComponent();
 
     protected:
-    	Component* RootComponent;
+    	SceneComponent* RootComponent;
         
         World* mWorld;
     };

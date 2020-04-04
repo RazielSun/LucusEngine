@@ -31,6 +31,7 @@ namespace LucusEngine
 	struct FVector3
 	{
 		static const FVector3 Zero;
+        static const FVector3 One;
 
 	    static const u32 ELEMENT_COUNT = 3;
 	    

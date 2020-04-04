@@ -6,6 +6,7 @@
 //
 
 #include "LucusMatrix.h"
+#include "LucusMath.h"
 #include <cstring>
 #include <math.h>
 
@@ -93,4 +94,16 @@ void FMatrix4x4::SetTranslate(float x, float y, float z)
 void FMatrix4x4::SetTranslate(const FVector3& v)
 {
     SetTranslate(v.x, v.y, v.z);
+}
+
+void FMatrix4x4::SetRotate(const FQuaternion& q)
+{
+    //
+}
+
+void FMatrix4x4::SetScale(const FVector3& v)
+{
+    m[0][0] = v.x;
+    m[1][1] = v.y;
+    m[2][2] = v.z;
 }

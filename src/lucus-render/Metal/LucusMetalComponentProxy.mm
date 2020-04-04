@@ -6,6 +6,7 @@
 //
 
 #include "LucusMetalComponentProxy.h"
+#include "LucusRenderTypes.h"
 #include "LucusTransform.h"
 #include "LucusMesh.h"
 #include "LucusImage.h"

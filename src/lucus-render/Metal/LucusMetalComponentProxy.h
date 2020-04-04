@@ -8,7 +8,7 @@
 #ifndef _LUCUS_ENGINE_METAL_COMPONENT_PROXY_H
 #define _LUCUS_ENGINE_METAL_COMPONENT_PROXY_H
 
-#include "LucusComponentProxy.h"
+#include "LucusSceneComponentProxy.h"
 
 #include <Metal/MTLBuffer.h>
 #include <Metal/MTLTexture.h>
@@ -16,11 +16,9 @@
 
 namespace LucusEngine
 {
-    class Transform;
-
     class MetalDevice;
     
-    class MetalComponentProxy : public ComponentProxy
+    class MetalComponentProxy : public SceneComponentProxy
     {
     public:
         MetalComponentProxy(MetalDevice* ownerDevice);

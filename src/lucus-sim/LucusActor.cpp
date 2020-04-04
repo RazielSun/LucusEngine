@@ -26,7 +26,7 @@ Actor::~Actor()
 {
     if (nullptr != mWorld)
     {
-        mWorld->Scene->RemoveComponent(RootComponent);
+        mWorld->Scene->RemoveSceneComponent(RootComponent);
     }
 }
 
@@ -35,16 +35,16 @@ void Actor::Tick(float deltaTime)
     //
 }
 
-void Actor::SetRootComponent(Component* component)
+void Actor::SetRootComponent(SceneComponent* component)
 {
     RootComponent = component;
     if (nullptr != mWorld)
     {
-        mWorld->Scene->AddComponent(RootComponent);
+        mWorld->Scene->AddSceneComponent(RootComponent);
     }
 }
 
-Component* Actor::GetRootComponent()
+SceneComponent* Actor::GetRootComponent()
 {
     return RootComponent;
 }

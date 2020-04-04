@@ -11,6 +11,7 @@
 #include "LucusTypes.h"
 #include "LucusVector.h"
 #include "LucusQuaternion.h"
+#include "LucusMatrix.h"
 
 namespace LucusEngine
 {
@@ -18,7 +19,7 @@ namespace LucusEngine
     {
     public:
         Transform();
-        Transform(FVector3 Location, FQuaternion Rotation, FVector3 Scale) : Transform(), mLocation(Location), mRotation(Rotation), mScale(Scale) { UpdateMatrices(); }
+        Transform(FVector3 Location, FQuaternion Rotation, FVector3 Scale);
         ~Transform();
 
         void SetLocation(float x, float y, float z);

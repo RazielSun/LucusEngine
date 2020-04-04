@@ -9,26 +9,14 @@
 #define _LUCUS_ENGINE_COMPONENT_H
 
 #include "LucusTypes.h"
-#include "LucusTransform.h"
 
 namespace LucusEngine
 {
-    class ComponentProxy;
-
     class Component
     {
     public:
         Component();
         virtual ~Component();
-
-        Transform& GetTransform() { return mTransform; }
-        
-        ComponentProxy* Proxy;
-        
-//        virtual ComponentProxy* CreateProxy();
-
-    protected:
-    	Transform mTransform;
     };
 }
 

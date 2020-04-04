@@ -10,15 +10,27 @@
 using namespace LucusEngine;
 
 Transform::Transform() :
-	mLocation(0,0,0),
-	mRotation(0,0,0,1),
-	mRotationEuler(0,0,0),
-	mScale(1,1,1),
+	mLocation(FVector3::Zero),
+	mRotation(FQuaternion::Identity),
+	mRotationEuler(FVector3::Zero),
+	mScale(FVector3::One),
 	mModelMatrix(FMatrix4x4::Identity),
 	mTranslateMatrix(FMatrix4x4::Identity),
 	mRotateMatrix(FMatrix4x4::Identity),
 	mScaleMatrix(FMatrix4x4::Identity)
 {
+}
+
+Transform::Transform(FVector3 Location, FQuaternion Rotation, FVector3 Scale) :
+    mLocation(Location),
+    mRotation(Rotation),
+    mScale(Scale),
+    mModelMatrix(FMatrix4x4::Identity),
+    mTranslateMatrix(FMatrix4x4::Identity),
+    mRotateMatrix(FMatrix4x4::Identity),
+    mScaleMatrix(FMatrix4x4::Identity)
+{
+    UpdateMatrices();
 }
 
 Transform::~Transform()
@@ -78,5 +90,8 @@ void Transform::SetScale(const FVector3& vec)
 
 void Transform::UpdateMatrices()
 {
-    mModelMatrix.SetTranslate(mLocation);
+    mTranslateMatrix.SetTranslate(mLocation);
+    mRotateMatrix.SetRotate(mRotation);
+    mScaleMatrix.SetScale(mScale);
+    mModelMatrix = mTranslateMatrix * mRotateMatrix * mScaleMatrix;
 }
