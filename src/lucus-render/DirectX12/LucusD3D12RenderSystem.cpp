@@ -180,13 +180,14 @@ void D3D12RenderSystem::Render()
 		commandList->ResourceBarrier(1, &barrier);
 	}
 	
-	//
+	// RTV & DSV
 	CD3DX12_CPU_DESCRIPTOR_HANDLE rtvHandle(mWindow->mRTVHeap->GetCPUDescriptorHandleForHeapStart(), mCurrentFrame, mWindow->mRTVDescriptorSize);
-	commandList->OMSetRenderTargets(1, &rtvHandle, FALSE, nullptr);
-	
-	// Clear render target
+	CD3DX12_CPU_DESCRIPTOR_HANDLE dsvHandle(mWindow->mDSVHeap->GetCPUDescriptorHandleForHeapStart());
+	commandList->OMSetRenderTargets(1, &rtvHandle, FALSE, &dsvHandle);
+
 	FLOAT clearColor[] = { 1.0f, 0.0f, 0.0f, 1.0f };
-    commandList->ClearRenderTargetView(rtvHandle, clearColor, 0, nullptr);
+	commandList->ClearRenderTargetView(rtvHandle, clearColor, 0, nullptr);
+	commandList->ClearDepthStencilView(dsvHandle, D3D12_CLEAR_FLAG_DEPTH | D3D12_CLEAR_FLAG_STENCIL, 1.0f, 0, 0, nullptr);
 
 	// Set Main Descriptor Heaps
 	ID3D12DescriptorHeap* descriptorHeaps[] = { mDescriptorSRHeap.Get() }; //mDescriptorCBHeap.Get()
@@ -430,14 +431,19 @@ void D3D12RenderSystem::CreateDeviceDependentResources()
 		psoDesc.VS = CD3DX12_SHADER_BYTECODE(vertexShaderData.data(), vertexShaderData.size());
 		psoDesc.PS = CD3DX12_SHADER_BYTECODE(pixelShaderData.data(), pixelShaderData.size());
 		psoDesc.RasterizerState = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT);
+		//psoDesc.RasterizerState.CullMode = D3D12_CULL_MODE_BACK; // Back Cull Mode is default for desc
+		psoDesc.RasterizerState.FrontCounterClockwise = TRUE;
 		psoDesc.BlendState = CD3DX12_BLEND_DESC(D3D12_DEFAULT);
-		psoDesc.DepthStencilState.DepthEnable = FALSE;
-		psoDesc.DepthStencilState.StencilEnable = FALSE;
+		psoDesc.DepthStencilState = CD3DX12_DEPTH_STENCIL_DESC(D3D12_DEFAULT);
+		// psoDesc.DepthStencilState.DepthEnable = TRUE;
+		// psoDesc.DepthStencilState.StencilEnable = TRUE;
 		psoDesc.SampleMask = UINT_MAX;
 		psoDesc.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;
 		psoDesc.NumRenderTargets = 1;
 		psoDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM;
+		psoDesc.DSVFormat = DXGI_FORMAT_D32_FLOAT_S8X24_UINT;
 		psoDesc.SampleDesc.Count = 1;
+
 		ThrowIfFailed(mDevice.mD3D12Device->CreateGraphicsPipelineState(&psoDesc, IID_PPV_ARGS(&mPipelineState)));
 
 		mPipelineState->SetName(L"Pipeline State");
@@ -461,7 +467,7 @@ void D3D12RenderSystem::SetCoreWindow(Windows::UI::Core::CoreWindow^ window)
         u32 width = static_cast<u32>(window->Bounds.Width);
         u32 height = static_cast<u32>(window->Bounds.Height);
         CreateRenderWindow(width, height);
-		mWindow->CreateDescriptorHeap(mDevice);
+		mWindow->CreateDescriptorHeaps(mDevice);
     }
     mWindow->SetCoreWindow(window);
 
