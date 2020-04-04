@@ -8,15 +8,14 @@
 #ifndef _LUCUS_ENGINE_CAMERA_COMPONENT_H
 #define _LUCUS_ENGINE_CAMERA_COMPONENT_H
 
-#include "LucusTypes.h"
-#include "LucusMath.h"
-#include "LucusComponent.h"
+#include "LucusMatrix.h"
+#include "LucusSceneComponent.h"
 
 namespace LucusEngine
 {
     class Viewport;
 
-    class CameraComponent : public Component
+    class CameraComponent : public SceneComponent
     {
     public:
         CameraComponent();

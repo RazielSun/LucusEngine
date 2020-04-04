@@ -9,14 +9,14 @@
 #define _LUCUS_ENGINE_MESH_FORMAT_FBX_H
 
 #include "LucusMeshFormat.h"
-#include "LucusMath.h"
+#include "LucusVertexTypes.h"
 #include "LucusMesh.h"
 #include <fbxsdk.h>
 #include <vector>
 
 namespace LucusEngine
 {
-    typedef std::unordered_map<UIVector3, u32> VertexIndexMap;
+    typedef std::unordered_map<TriangleIndex, u32> VertexIndexMap;
 
     class MeshFormatFBX : public MeshFormat
     {

@@ -8,15 +8,11 @@
 #ifndef _LUCUS_ENGINE_MESH_H
 #define _LUCUS_ENGINE_MESH_H
 
-#include "LucusTypes.h"
-#include "LucusMath.h"
-#include "LucusResourceTypes.h"
+#include "LucusVertexTypes.h"
 #include <vector>
 
 namespace LucusEngine
 {
-    typedef UIVector3 TriangleIndex;
-
     struct FMeshFaceData
     {
         TriangleIndex tris[4];

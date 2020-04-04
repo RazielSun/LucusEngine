@@ -8,15 +8,14 @@
 #ifndef _LUCUS_ENGINE_MESH_COMPONENT_H
 #define _LUCUS_ENGINE_MESH_COMPONENT_H
 
-#include "LucusTypes.h"
-#include "LucusComponent.h"
+#include "LucusSceneComponent.h"
 
 namespace LucusEngine
 {
 	class Mesh;
     class Image;
 
-    class MeshComponent : public Component
+    class MeshComponent : public SceneComponent
     {
     public:
         MeshComponent();
