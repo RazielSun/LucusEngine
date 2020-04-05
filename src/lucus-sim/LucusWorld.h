@@ -17,6 +17,9 @@ namespace LucusEngine
 	class Scene;
 	class Actor;
 
+    typedef std::vector<Actor*> ActorArray;
+    typedef ActorArray::iterator ActorIterator;
+
     class World
     {
     public:
@@ -34,7 +37,7 @@ namespace LucusEngine
         Actor* SpawnActor();
 
     protected:
-    	std::vector<Actor*> mActors;
+    	ActorArray mActors;
     };
 }
 

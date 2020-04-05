@@ -43,9 +43,9 @@ MeshComponent::~MeshComponent()
     }
 }
 
-void MeshComponent::Tick(float deltaTime)
+void MeshComponent::Tick(float deltaSeconds)
 {
-    angle += 0.01f;
+    angle += 1.0f * deltaSeconds;
     FVector3 axis(0.0f, 1.0f, 0.0f);
     mTransform.UpdateRotateMatrix(axis, angle);
 }

@@ -23,7 +23,7 @@ namespace LucusEngine
         SceneComponent();
         virtual ~SceneComponent();
 
-        virtual void Tick(float deltaTime) override;
+        virtual void Tick(float deltaSeconds) override;
         
         SceneComponentProxy* Proxy;
         //        virtual ComponentProxy* CreateProxy();

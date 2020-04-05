@@ -22,7 +22,7 @@ SceneComponent::~SceneComponent()
     //
 }
 
-void SceneComponent::Tick(float deltaTime)
+void SceneComponent::Tick(float deltaSeconds)
 {
 	//
 }

@@ -69,7 +69,10 @@ void World::InitWorld()
 
 void World::Tick(float deltaSeconds)
 {
-	//
+    for (ActorIterator it = mActors.begin(); it != mActors.end(); it++)
+    {
+        (*it)->Tick(deltaSeconds);
+    }
 }
 
 World* World::CreateWorld()

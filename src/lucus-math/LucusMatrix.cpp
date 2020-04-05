@@ -113,8 +113,8 @@ void FMatrix4x4::RotateAround(const FVector3& axis, float rad)
 
     m[0][0] = x * x * CI + C;
     m[0][1] = x * y * CI - z * S;
-    m[0][2] = x * z * CI - y * S;
-    m[1][0] = x * y * CI - z * S;
+    m[0][2] = x * z * CI + y * S;
+    m[1][0] = x * y * CI + z * S;
     m[1][1] = y * y * CI + C;
     m[1][2] = y * z * CI - x * S;
     m[2][0] = x * z * CI - y * S;

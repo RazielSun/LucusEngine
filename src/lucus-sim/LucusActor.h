@@ -23,7 +23,7 @@ namespace LucusEngine
         Actor(World* world);
         virtual ~Actor();
 
-        virtual void Tick(float deltaTime);
+        virtual void Tick(float deltaSeconds);
         
         void SetRootComponent(SceneComponent* component);
         

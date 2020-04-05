@@ -29,11 +29,11 @@ Actor::~Actor()
     }
 }
 
-void Actor::Tick(float deltaTime)
+void Actor::Tick(float deltaSeconds)
 {
     if (nullptr != RootComponent)
     {
-        RootComponent->Tick(deltaTime);
+        RootComponent->Tick(deltaSeconds);
     }
 }
 

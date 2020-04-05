@@ -23,7 +23,7 @@ namespace LucusEngine
         MeshComponent(cc8* meshName, cc8* imageName);
         virtual ~MeshComponent();
 
-        virtual void Tick(float deltaTime) override;
+        virtual void Tick(float deltaSeconds) override;
         
         Mesh* GetMesh();
         Image* GetImage();
