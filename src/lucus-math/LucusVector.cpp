@@ -6,6 +6,7 @@
 //
 
 #include "LucusVector.h"
+#include "LucusMath.h"
 
 using namespace LucusEngine;
 
@@ -32,6 +33,26 @@ float FVector3::operator[] (u32 i) const
 float& FVector3::operator[] (u32 i)
 {
     return *(&x+i);
+}
+
+float FVector3::GetLength() const
+{
+	return FMath::Sqrt(x*x + y*y + z*z);
+}
+
+void FVector3::Normalize()
+{
+	float length = GetLength();
+	x /= length;
+	y /= length;
+	z /= length;
+}
+
+FVector3 FVector3::GetNormalized() const
+{
+	FVector3 v(*this);
+	v.Normalize();
+	return v;
 }
 
 const FVector4 FVector4::Zero { 0.0f, 0.0f, 0.0f, 0.0f };

@@ -9,8 +9,6 @@
 #define _LUCUS_ENGINE_MATRIX_H
 
 #include "LucusTypes.h"
-#include "LucusVector.h"
-#include "LucusQuaternion.h"
 
 #if defined(TARGET_METAL)
 #include <simd/simd.h>
@@ -20,6 +18,9 @@
 
 namespace LucusEngine
 {
+	struct FVector3;
+	struct FQuaternion;
+
 	struct FMatrix4x4
 	{
 	    static const FMatrix4x4 Identity;
@@ -71,8 +72,10 @@ namespace LucusEngine
 	    void SetTranslate(float x, float y, float z);
 	    void SetTranslate(const FVector3& v);
 
-	    void SetRotate(const FQuaternion& q);
+	    void RotateAround(const FVector3& axis, float rad);
 
+	    void SetScale(float scale);
+	    void SetScale(float x, float y, float z);
 	    void SetScale(const FVector3& v);
 
 	    void LookAt();

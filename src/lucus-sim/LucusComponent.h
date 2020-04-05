@@ -17,6 +17,8 @@ namespace LucusEngine
     public:
         Component();
         virtual ~Component();
+
+        virtual void Tick(float deltaTime) = 0;
     };
 }
 

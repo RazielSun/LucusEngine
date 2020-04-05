@@ -8,7 +8,6 @@
 #include "LucusActor.h"
 #include "LucusWorld.h"
 #include "LucusScene.h"
-#include "LucusComponent.h"
 
 using namespace LucusEngine;
 
@@ -32,7 +31,10 @@ Actor::~Actor()
 
 void Actor::Tick(float deltaTime)
 {
-    //
+    if (nullptr != RootComponent)
+    {
+        RootComponent->Tick(deltaTime);
+    }
 }
 
 void Actor::SetRootComponent(SceneComponent* component)

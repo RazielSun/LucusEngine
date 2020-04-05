@@ -22,6 +22,8 @@ namespace LucusEngine
         MeshComponent(cc8* meshName);
         MeshComponent(cc8* meshName, cc8* imageName);
         virtual ~MeshComponent();
+
+        virtual void Tick(float deltaTime) override;
         
         Mesh* GetMesh();
         Image* GetImage();
@@ -29,6 +31,8 @@ namespace LucusEngine
     protected:
     	Mesh* mMesh;
         Image* mImage;
+
+        float angle = 0.0f;
     };
 }
 

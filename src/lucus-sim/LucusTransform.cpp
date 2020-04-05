@@ -88,10 +88,15 @@ void Transform::SetScale(const FVector3& vec)
 	mScale = vec;
 }
 
+void Transform::UpdateRotateMatrix(const FVector3& axis, float angle)
+{
+	mRotateMatrix.RotateAround(axis, angle);
+}
+
 void Transform::UpdateMatrices()
 {
     mTranslateMatrix.SetTranslate(mLocation);
-    mRotateMatrix.SetRotate(mRotation);
+    // mRotateMatrix.SetRotate(mRotation);
     mScaleMatrix.SetScale(mScale);
     mModelMatrix = mTranslateMatrix * mRotateMatrix * mScaleMatrix;
 }

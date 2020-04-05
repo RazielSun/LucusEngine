@@ -39,6 +39,7 @@ namespace LucusEngine
         const FVector3& GetScale() const { return mScale; }
 
         void UpdateMatrices();
+        void UpdateRotateMatrix(const FVector3& axis, float angle);
         const FMatrix4x4& GetModelMatrix() const { return mModelMatrix; }
 
     protected:

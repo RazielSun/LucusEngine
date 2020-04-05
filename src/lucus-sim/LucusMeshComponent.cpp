@@ -43,6 +43,13 @@ MeshComponent::~MeshComponent()
     }
 }
 
+void MeshComponent::Tick(float deltaTime)
+{
+    angle += 0.01f;
+    FVector3 axis(0.0f, 1.0f, 0.0f);
+    mTransform.UpdateRotateMatrix(axis, angle);
+}
+
 Mesh* MeshComponent::GetMesh()
 {
     return mMesh;

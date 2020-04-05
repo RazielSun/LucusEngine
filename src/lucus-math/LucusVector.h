@@ -15,7 +15,7 @@ namespace LucusEngine
 	struct FVector2
 	{
 		static const FVector2 Zero;
-		
+
 	    static const u32 ELEMENT_COUNT = 2;
 	    
 	    float x, y;
@@ -43,6 +43,10 @@ namespace LucusEngine
 	    
 	    float operator[] (u32 i) const;
 	    float& operator[] (u32 i);
+
+	    float GetLength() const;
+	    void Normalize();
+	    FVector3 GetNormalized() const;
 	};
 
 	struct FVector4

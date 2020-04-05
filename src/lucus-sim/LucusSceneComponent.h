@@ -22,6 +22,8 @@ namespace LucusEngine
     public:
         SceneComponent();
         virtual ~SceneComponent();
+
+        virtual void Tick(float deltaTime) override;
         
         SceneComponentProxy* Proxy;
         //        virtual ComponentProxy* CreateProxy();

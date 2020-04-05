@@ -21,3 +21,8 @@ SceneComponent::~SceneComponent()
 {
     //
 }
+
+void SceneComponent::Tick(float deltaTime)
+{
+	//
+}

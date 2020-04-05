@@ -7,6 +7,8 @@
 
 #include "LucusMatrix.h"
 #include "LucusMath.h"
+#include "LucusVector.h"
+#include "LucusQuaternion.h"
 #include <cstring>
 #include <math.h>
 
@@ -96,9 +98,43 @@ void FMatrix4x4::SetTranslate(const FVector3& v)
     SetTranslate(v.x, v.y, v.z);
 }
 
-void FMatrix4x4::SetRotate(const FQuaternion& q)
+void FMatrix4x4::RotateAround(const FVector3& axis, float rad)
 {
-    //
+    FVector3 N = axis.GetNormalized();
+    float C = FMath::Cos(rad);
+    float S = FMath::Sin(rad);
+    float CI = 1 - C;
+
+    float x = N.x;
+    float y = N.y;
+    float z = N.z;
+
+    memset(_m, 0, sizeof(_m));
+
+    m[0][0] = x * x * CI + C;
+    m[0][1] = x * y * CI - z * S;
+    m[0][2] = x * z * CI - y * S;
+    m[1][0] = x * y * CI - z * S;
+    m[1][1] = y * y * CI + C;
+    m[1][2] = y * z * CI - x * S;
+    m[2][0] = x * z * CI - y * S;
+    m[2][1] = y * z * CI + x * S;
+    m[2][2] = z * z * CI + C;
+    m[3][3] = 1;
+}
+
+void FMatrix4x4::SetScale(float scale)
+{
+    m[0][0] = scale;
+    m[1][1] = scale;
+    m[2][2] = scale;
+}
+
+void FMatrix4x4::SetScale(float x, float y, float z)
+{
+    m[0][0] = x;
+    m[1][1] = y;
+    m[2][2] = z;
 }
 
 void FMatrix4x4::SetScale(const FVector3& v)
