@@ -16,6 +16,7 @@ namespace LucusEngine
 {
 	class Scene;
 	class Actor;
+    class Component;
 
     typedef std::vector<Actor*> ActorArray;
     typedef ActorArray::iterator ActorIterator;
@@ -24,17 +25,17 @@ namespace LucusEngine
     {
     public:
         World();
-        ~World();
+        virtual ~World();
 
-        void InitWorld();
+        virtual void InitWorld();
 
         void Tick(float deltaSeconds);
-
-        static World* CreateWorld();
 
         Scene* Scene;
 
         Actor* SpawnActor();
+        // Actor* SpawnActor();
+        virtual Component* CreateComponent(сс8* name);
 
     protected:
     	ActorArray mActors;

@@ -4,10 +4,6 @@
 #include "LucusWorld.h"
 #include "LucusTimeManager.h"
 
-// TEST
-#include "tinyxml2.h"
-using namespace tinyxml2;
-
 using namespace LucusEngine;
 
 template<> Core* Singleton<Core>::mInstance = nullptr;
@@ -36,18 +32,16 @@ Core::~Core()
 void Core::LoadModules()
 {
     mFileSystem = new FileSystem();
+    mResourceManager = new ResourceManager();
     mImageFormatManager = new ImageFormatManager();
     mMeshFormatManager = new MeshFormatManager();
     mTimeManager = new TimeManager();
-    
-    XMLDocument doc;
-    doc.LoadFile( "Assets/levels/test_level.xml" );
-    int errorId = doc.ErrorID(); // Error ID File not found
 }
 
 void Core::UnloadModules()
 {
     delete mFileSystem;
+    delete mResourceManager;
     delete mImageFormatManager;
     delete mMeshFormatManager;
     delete mTimeManager;
@@ -66,6 +60,11 @@ Core* Core::GetPtr()
 FileSystem* Core::GetFileSystem()
 {
     return Core::Get().mFileSystem;
+}
+
+ResourceManager* Core::GetResourceMgr()
+{
+    return Core::Get().mResourceManager;
 }
 
 ImageFormatManager* Core::GetImageFormatMgr()
@@ -137,12 +136,11 @@ void Core::StartCoreLoop()
     }
 }
 
-void Core::Run()
+void Core::CreateWorld(World* world)
 {
-    mWorld = World::CreateWorld();
-
-//    if (mActiveRenderSystem)
-//    {
-//        mActiveRenderSystem->CreateBuffers();
-//    }
+    mWorld = world;
+    if (nullptr != mWorld)
+    {
+        mWorld->InitWorld();
+    }
 }

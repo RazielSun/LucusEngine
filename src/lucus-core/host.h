@@ -13,6 +13,7 @@
 namespace LucusEngine
 {
     class RenderSystem;
+    class World;
 }
 
 void AKUCoreCreate();
@@ -20,11 +21,10 @@ void AKUCoreDestroy();
 
 void AKUStartCoreLoop();
 void AKUTick();
-
-void AKURun();
-
 //void AKUUpdate();
 //void AKURender();
+
+void AKUCreateWorld(World* world);
 
 void AKUSetRenderSystem(LucusEngine::RenderSystem* system);
 void AKUChangeViewportSize(u32 width, u32 height);

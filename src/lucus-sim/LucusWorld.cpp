@@ -9,6 +9,7 @@
 #include "LucusRenderSystem.h"
 #include "LucusScene.h"
 #include "LucusActor.h"
+#include "LucusComponent.h"
 #include "LucusCameraComponent.h"
 #include "LucusMeshComponent.h"
 #include "LucusCore.h"
@@ -75,16 +76,21 @@ void World::Tick(float deltaSeconds)
     }
 }
 
-World* World::CreateWorld()
-{
-	World* world = new World();
-	world->InitWorld();
-	return world;
-}
+// World* World::CreateWorld()
+// {
+// 	World* world = new World();
+// 	world->InitWorld();
+// 	return world;
+// }
 
 Actor* World::SpawnActor()
 {
     Actor* actor = new Actor(this);
     mActors.push_back(actor);
 	return actor;
+}
+
+Component* World::CreateComponent(сс8* name)
+{
+    return nullptr;
 }

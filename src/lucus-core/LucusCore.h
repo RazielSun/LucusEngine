@@ -11,6 +11,7 @@
 #include "LucusSingleton.h"
 
 #include "LucusFileSystem.h"
+#include "LucusResourceManager.h"
 #include "LucusImageFormatManager.h"
 #include "LucusMeshFormatManager.h"
 
@@ -34,7 +35,7 @@ namespace LucusEngine
         void ChangeViewportSize(u32 width, u32 height);
         
         void StartCoreLoop();
-        void Run();
+        void CreateWorld(World* world);
         
         void Tick();
         
@@ -43,6 +44,7 @@ namespace LucusEngine
         static Core* GetPtr();
         
         static FileSystem* GetFileSystem();
+        static ResourceManager* GetResourceMgr();
         static ImageFormatManager* GetImageFormatMgr();
         static MeshFormatManager* GetMeshFormatMgr();
         static RenderSystem* GetRenderSystem();
@@ -54,6 +56,7 @@ namespace LucusEngine
         RenderSystem* mActiveRenderSystem;
         
         FileSystem* mFileSystem;
+        ResourceManager* mResourceManager;
         ImageFormatManager* mImageFormatManager;
         MeshFormatManager* mMeshFormatManager;
         TimeManager* mTimeManager;

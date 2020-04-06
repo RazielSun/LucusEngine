@@ -41,30 +41,14 @@ void AKUTick()
     }
 }
 
-void AKURun()
+void AKUCreateWorld(World* world)
 {
     LucusEngine::Core* core = LucusEngine::Core::GetPtr();
     if (core != nullptr)
     {
-    // Create World
-    // Create Buffers
-        core->Run();
+        core->CreateWorld(world);
     }
 }
-
-//void AKUUpdate()
-//{
-//    //
-//}
-//
-//void AKURender()
-//{
-//    LucusEngine::Core* core = LucusEngine::Core::GetPtr();
-//    if (core != nullptr)
-//    {
-//        core->Render();
-//    }
-//}
 
 void AKUSetRenderSystem(LucusEngine::RenderSystem* system)
 {
