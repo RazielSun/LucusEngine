@@ -37,6 +37,7 @@
 		7A884A492438E8C000EC2E74 /* LucusMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A884A422438E8C000EC2E74 /* LucusMatrix.cpp */; };
 		7A884A4C2438E8D500EC2E74 /* LucusSceneComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A884A4A2438E8D500EC2E74 /* LucusSceneComponent.cpp */; };
 		7A884A4D2438E8D500EC2E74 /* LucusSceneComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A884A4A2438E8D500EC2E74 /* LucusSceneComponent.cpp */; };
+		7A885DCF243B392600EC2E74 /* libtinyxml2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A885DAA243B37C000EC2E74 /* libtinyxml2.a */; };
 		7AA498D1240249C1009C1ED7 /* libfbxsdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA498D0240249C0009C1ED7 /* libfbxsdk.a */; };
 		7AA498DC240458A3009C1ED7 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 7AA498DB240458A3009C1ED7 /* Assets */; };
 		7AA498DD240458A3009C1ED7 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 7AA498DB240458A3009C1ED7 /* Assets */; };
@@ -97,6 +98,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7A885DA9243B37C000EC2E74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7A885DA4243B37BF00EC2E74 /* tinyxml2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7A885D9D243B37BF00EC2E74;
+			remoteInfo = tinyxml2;
+		};
+		7A885DCC243B38B500EC2E74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7A885DA4243B37BF00EC2E74 /* tinyxml2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7A885DC2243B389D00EC2E74;
+			remoteInfo = "tinyxml2-ios";
+		};
 		7AB2ACA3242753F80008C88D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7AB2AC9F242753F60008C88D /* libpng.xcodeproj */;
@@ -177,6 +192,9 @@
 		7A884A432438E8C000EC2E74 /* LucusMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusMatrix.h; sourceTree = "<group>"; };
 		7A884A4A2438E8D500EC2E74 /* LucusSceneComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LucusSceneComponent.cpp; sourceTree = "<group>"; };
 		7A884A4B2438E8D500EC2E74 /* LucusSceneComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusSceneComponent.h; sourceTree = "<group>"; };
+		7A885DA4243B37BF00EC2E74 /* tinyxml2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = tinyxml2.xcodeproj; path = tinyxml2/tinyxml2.xcodeproj; sourceTree = "<group>"; };
+		7A885DB7243B387700EC2E74 /* tinyxml2_ios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tinyxml2_ios.h; sourceTree = "<group>"; };
+		7A885DB8243B387700EC2E74 /* tinyxml2_ios.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tinyxml2_ios.m; sourceTree = "<group>"; };
 		7AA498D0240249C0009C1ED7 /* libfbxsdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfbxsdk.a; path = "../../3rdparty/fbx-sdk-osx/lib/clang/debug/libfbxsdk.a"; sourceTree = "<group>"; };
 		7AA498D324027673009C1ED7 /* LucusUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LucusUtils.h; sourceTree = "<group>"; };
 		7AA498DB240458A3009C1ED7 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = Resources/Assets; sourceTree = "<group>"; };
@@ -259,6 +277,7 @@
 				7ADF915123E704DA0094C83D /* Metal.framework in Frameworks */,
 				7AB2AD7424275DE60008C88D /* libpng-osx.a in Frameworks */,
 				7ADF914523E6D36B0094C83D /* Cocoa.framework in Frameworks */,
+				7A885DCF243B392600EC2E74 /* libtinyxml2.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +386,7 @@
 		7A83AE8523E6C3DE002E161C = {
 			isa = PBXGroup;
 			children = (
+				7A885DA4243B37BF00EC2E74 /* tinyxml2.xcodeproj */,
 				7AB2ACE02427547B0008C88D /* zlib.xcodeproj */,
 				7AB2AC9F242753F60008C88D /* libpng.xcodeproj */,
 				7A0C0DC223F1E83600DE0B7D /* lucus-core */,
@@ -379,9 +399,28 @@
 				7AB2AC7C2427466E0008C88D /* lucus-image-tga */,
 				7AA498D424027C38009C1ED7 /* Resources */,
 				7ADF914223E6D3080094C83D /* Application */,
+				7A885DB6243B387700EC2E74 /* tinyxml2-ios */,
 				7ADF910F23E6CA810094C83D /* Products */,
 				7ADF914323E6D36A0094C83D /* Frameworks */,
 			);
+			sourceTree = "<group>";
+		};
+		7A885DA5243B37BF00EC2E74 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7A885DAA243B37C000EC2E74 /* libtinyxml2.a */,
+				7A885DCD243B38B500EC2E74 /* libtinyxml2-ios.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7A885DB6243B387700EC2E74 /* tinyxml2-ios */ = {
+			isa = PBXGroup;
+			children = (
+				7A885DB7243B387700EC2E74 /* tinyxml2_ios.h */,
+				7A885DB8243B387700EC2E74 /* tinyxml2_ios.m */,
+			);
+			path = "tinyxml2-ios";
 			sourceTree = "<group>";
 		};
 		7AA498D424027C38009C1ED7 /* Resources */ = {
@@ -607,6 +646,10 @@
 					ProjectRef = 7AB2AC9F242753F60008C88D /* libpng.xcodeproj */;
 				},
 				{
+					ProductGroup = 7A885DA5243B37BF00EC2E74 /* Products */;
+					ProjectRef = 7A885DA4243B37BF00EC2E74 /* tinyxml2.xcodeproj */;
+				},
+				{
 					ProductGroup = 7AB2ACE12427547B0008C88D /* Products */;
 					ProjectRef = 7AB2ACE02427547B0008C88D /* zlib.xcodeproj */;
 				},
@@ -620,6 +663,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		7A885DAA243B37C000EC2E74 /* libtinyxml2.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libtinyxml2.a;
+			remoteRef = 7A885DA9243B37C000EC2E74 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7A885DCD243B38B500EC2E74 /* libtinyxml2-ios.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libtinyxml2-ios.a";
+			remoteRef = 7A885DCC243B38B500EC2E74 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		7AB2ACA4242753F80008C88D /* libpng-ios.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -783,6 +840,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$PROJECT_DIR/../../3rdparty/fbx-sdk-osx/include",
 					$PROJECT_DIR/../../3rdparty/zlib,
+					$PROJECT_DIR/../../3rdparty/tinyxml2,
 					$PROJECT_DIR/../../3rdparty/libpng,
 					"$PROJECT_DIR/../../src/lucus-common",
 				);
@@ -799,6 +857,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$PROJECT_DIR/../../3rdparty/fbx-sdk-osx/include",
 					$PROJECT_DIR/../../3rdparty/zlib,
+					$PROJECT_DIR/../../3rdparty/tinyxml2,
 					$PROJECT_DIR/../../3rdparty/libpng,
 					"$PROJECT_DIR/../../src/lucus-common",
 				);

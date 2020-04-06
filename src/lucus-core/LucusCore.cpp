@@ -4,6 +4,10 @@
 #include "LucusWorld.h"
 #include "LucusTimeManager.h"
 
+// TEST
+#include "tinyxml2.h"
+using namespace tinyxml2;
+
 using namespace LucusEngine;
 
 template<> Core* Singleton<Core>::mInstance = nullptr;
@@ -35,6 +39,10 @@ void Core::LoadModules()
     mImageFormatManager = new ImageFormatManager();
     mMeshFormatManager = new MeshFormatManager();
     mTimeManager = new TimeManager();
+    
+    XMLDocument doc;
+    doc.LoadFile( "Assets/levels/test_level.xml" );
+    int errorId = doc.ErrorID(); // Error ID File not found
 }
 
 void Core::UnloadModules()
