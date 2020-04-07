@@ -28,9 +28,7 @@ namespace LucusEngine
         void SetRootComponent(SceneComponent* component);
         
         template <class T>
-        void SetRootComponent(T* component) {
-            SetRootComponent(dynamic_cast<SceneComponent*>(component));
-        }
+        void SetRootComponent(T* component);
         
         SceneComponent* GetRootComponent();
 
@@ -39,6 +37,11 @@ namespace LucusEngine
         
         World* mWorld;
     };
+    
+    template <class T>
+    void Actor::SetRootComponent(T* component) {
+        SetRootComponent(dynamic_cast<SceneComponent*>(component));
+    }
 }
 
 #endif /* _LUCUS_ENGINE_ACTOR_H */

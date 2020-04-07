@@ -6,7 +6,9 @@
 //
 
 #include "GameWorld.h"
+#include "LucusActor.h"
 #include "LucusComponent.h"
+#include "RotatedMeshComponent.h"
 
 GameWorld::GameWorld()
 {
@@ -18,12 +20,20 @@ GameWorld::~GameWorld()
 	//
 }
 
-void GameWorld::InitWorld()
+void GameWorld::InitActors()
 {
-	//
+    LoadActors("Assets/Levels/level0.xml");
 }
 
-Component* GameWorld::CreateComponent(сс8* name)
+LucusEngine::Component* GameWorld::GetComponent(cc8* name)
 {
-	return nullptr;
+    LucusEngine::Component* component = nullptr;
+    if (CompareNames(name, "RotatedMeshComponent")) {
+        component = new RotatedMeshComponent();
+    }
+    if (nullptr == component)
+    {
+        component = LucusEngine::World::GetComponent(name);
+    }
+    return component;
 }

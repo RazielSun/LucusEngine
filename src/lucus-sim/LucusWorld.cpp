@@ -6,13 +6,15 @@
 //
 
 #include "LucusWorld.h"
+#include "LucusCore.h"
 #include "LucusRenderSystem.h"
 #include "LucusScene.h"
 #include "LucusActor.h"
 #include "LucusComponent.h"
 #include "LucusCameraComponent.h"
 #include "LucusMeshComponent.h"
-#include "LucusCore.h"
+
+#include "tinyxml2.h"
 
 using namespace LucusEngine;
 
@@ -40,31 +42,37 @@ void World::InitWorld()
     	system->AllocateScene(this);
     }
     
-    // Load World
-    // Camera
-    Actor* cameraActor = SpawnActor();
-    CameraComponent* cameraCom = new CameraComponent();
-    cameraActor->SetRootComponent(cameraCom);
-    
-    // Actors
-	Actor* cube1Actor = SpawnActor();
-	MeshComponent* mesh1Com = new MeshComponent("Assets/meshes/cube.fbx", "Assets/textures/test-image.tga");
-	mesh1Com->GetTransform().AddLocation(0, 0, -2);
-	cube1Actor->SetRootComponent(mesh1Com);
-
-	Actor* cube2Actor = SpawnActor();
-	MeshComponent* mesh2Com = new MeshComponent("Assets/meshes/cube.fbx", "Assets/textures/checker.png");
-	mesh2Com->GetTransform().AddLocation(1, 0, -2);
-	cube2Actor->SetRootComponent(mesh2Com);
-    
-    Actor* cube3Actor = SpawnActor();
-    MeshComponent* mesh3Com = new MeshComponent("Assets/meshes/cube.fbx", "Assets/textures/checker-map.png");
-    mesh3Com->GetTransform().AddLocation(-1, 0, -2);
-    cube3Actor->SetRootComponent(mesh3Com);
+    this->InitActors();
     
     if (system)
     {
         system->CreateBuffers();
+    }
+}
+
+void World::InitActors()
+{
+    //
+}
+
+void World::LoadActors(cc8* path)
+{
+    ResourceManager* mgr = Core::GetResourceMgr();
+    if (nullptr != mgr)
+    {
+        tinyxml2::XMLDocument document;
+        u32 status = mgr->LoadXMLFile(path, document);
+        if (status == 0) // Success
+        {
+            const tinyxml2::XMLElement* worldData = document.FirstChildElement("World");
+            for (const tinyxml2::XMLElement* actorData = worldData->FirstChildElement("Actor");
+                 actorData;
+                 actorData = actorData->NextSiblingElement("Actor"))
+            {
+                // Create Actor
+                SpawnActor(actorData);
+            }
+        }
     }
 }
 
@@ -90,7 +98,47 @@ Actor* World::SpawnActor()
 	return actor;
 }
 
-Component* World::CreateComponent(сс8* name)
+Actor* World::SpawnActor(const tinyxml2::XMLElement* data)
 {
-    return nullptr;
+    Actor* actor = new Actor(this);
+    
+    const tinyxml2::XMLElement* rootComData = data->FirstChildElement("Component");
+    LucusEngine::Component* com = CreateComponent(rootComData);
+    
+    LucusEngine::SceneComponent* rootSceneCom = dynamic_cast<LucusEngine::SceneComponent*>(com);
+    actor->SetRootComponent(rootSceneCom);
+    
+//    std::cout << actorData->Name() << " " << rootComData->Attribute("type") << std::endl;
+    mActors.push_back(actor);
+    return actor;
+}
+
+Component* World::GetComponent(cc8* name)
+{
+    Component* component = nullptr;
+    if (CompareNames(name, "SceneComponent")) {
+        component = new SceneComponent();
+    }
+    else if (CompareNames(name, "MeshComponent")) {
+        component = new MeshComponent();
+    }
+    else if (CompareNames(name, "CameraComponent")) {
+        component = new CameraComponent();
+    }
+    return component;
+}
+
+Component* World::CreateComponent(const tinyxml2::XMLElement* data)
+{
+    Component* component = this->GetComponent(data->Attribute("type"));
+    if (nullptr != component)
+    {
+        component->Init(data);
+    }
+    return component;
+}
+
+bool World::CompareNames(cc8* name, cc8* component)
+{
+    return strncmp(name, component, strlen(component)) == 0;
 }

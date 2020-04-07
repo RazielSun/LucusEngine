@@ -10,6 +10,11 @@
 
 #include "LucusTypes.h"
 
+namespace tinyxml2
+{
+    class XMLDocument;
+}
+
 namespace LucusEngine
 {
     class ResourceManager
@@ -18,7 +23,7 @@ namespace LucusEngine
         ResourceManager();
         ~ResourceManager();
 
-        void LoadXMLFile( cc8* name );
+        u32 LoadXMLFile( cc8* name, tinyxml2::XMLDocument& document );
     };
 }
 

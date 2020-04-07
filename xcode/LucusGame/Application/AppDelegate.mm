@@ -9,6 +9,7 @@
 
 #include "host.h"
 #include "modules.h"
+#include "GameWorld.h"
 #include "LucusMetalRenderSystem.h"
 #include "LucusMetalWindow.h"
 
@@ -103,8 +104,8 @@ static AppDelegate* mInstance = nil;
     
     // Start Loop
 //    AKUStartCoreLoop();
-    
-    AKURun();
+    AKUCreateWorld(new GameWorld());
+//    AKURun();
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender

@@ -22,7 +22,9 @@ namespace LucusEngine
     public:
         SceneComponent();
         virtual ~SceneComponent();
-
+        
+        virtual void Init(const tinyxml2::XMLElement*) override;
+        
         virtual void Tick(float deltaSeconds) override;
         
         SceneComponentProxy* Proxy;

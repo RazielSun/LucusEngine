@@ -1,0 +1,33 @@
+<?xml version="1.0" enconding="UTF-8"?>
+
+<World>
+
+	<Actor name="Camera">
+		<Component type="CameraComponent" />
+	</Actor>
+
+	<Actor name="Cube01">
+		<Component type="MeshComponent">
+			<Asset type="Mesh" path="Assets/meshes/cube.fbx" />
+			<Asset type="Image" path="Assets/textures/test-image.tga" />
+			<Location x="0.0" y="0.0" z="-2.0" />
+		</Component>
+	</Actor>
+
+	<Actor name="Cube02">
+		<Component type="RotatedMeshComponent">
+			<Asset type="Mesh" path="Assets/meshes/cube.fbx" />
+			<Asset type="Image" path="Assets/textures/checker.png" />
+			<Location x="1.0" y="0.0" z="-2.0" />
+		</Component>
+	</Actor>
+
+	<Actor name="Cube03">
+		<Component type="MeshComponent">
+			<Asset type="Mesh" path="Assets/meshes/cube.fbx" />
+			<Asset type="Image" path="Assets/textures/checker-map.png" />
+			<Location x="-1.0" y="0.0" z="-2.0" />
+		</Component>
+	</Actor>
+
+</World>

@@ -14,6 +14,7 @@ class RotatedMeshComponent : public LucusEngine::MeshComponent
 {
 public:
 	RotatedMeshComponent();
+    RotatedMeshComponent(cc8* meshName, cc8* imageName) : MeshComponent(meshName, imageName) {}
 	virtual ~RotatedMeshComponent();
 
 	virtual void Tick(float deltaSeconds) override;

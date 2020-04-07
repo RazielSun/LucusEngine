@@ -7,6 +7,7 @@
 
 #include "host.h"
 #include "LucusCore.h"
+#include "LucusWorld.h"
 
 void AKUCoreCreate()
 {
@@ -41,7 +42,7 @@ void AKUTick()
     }
 }
 
-void AKUCreateWorld(World* world)
+void AKUCreateWorld(LucusEngine::World* world)
 {
     LucusEngine::Core* core = LucusEngine::Core::GetPtr();
     if (core != nullptr)

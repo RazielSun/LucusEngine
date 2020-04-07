@@ -23,6 +23,11 @@ namespace LucusEngine
         MeshComponent(cc8* meshName, cc8* imageName);
         virtual ~MeshComponent();
         
+        virtual void Init(const tinyxml2::XMLElement*) override;
+        
+        void SetMesh(cc8* meshName);
+        void SetImage(cc8* imageName);
+        
         Mesh* GetMesh();
         Image* GetImage();
 

@@ -24,7 +24,7 @@ void AKUTick();
 //void AKUUpdate();
 //void AKURender();
 
-void AKUCreateWorld(World* world);
+void AKUCreateWorld(LucusEngine::World* world);
 
 void AKUSetRenderSystem(LucusEngine::RenderSystem* system);
 void AKUChangeViewportSize(u32 width, u32 height);

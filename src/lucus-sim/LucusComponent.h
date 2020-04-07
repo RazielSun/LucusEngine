@@ -10,6 +10,11 @@
 
 #include "LucusTypes.h"
 
+namespace tinyxml2
+{
+    class XMLElement;
+}
+
 namespace LucusEngine
 {
     class Component
@@ -17,8 +22,13 @@ namespace LucusEngine
     public:
         Component();
         virtual ~Component();
+        
+        virtual void Init(const tinyxml2::XMLElement*) = 0;
 
         virtual void Tick(float deltaSeconds) = 0;
+        
+    protected:
+        bool Compare(cc8* name, cc8* other);
     };
 }
 

@@ -7,6 +7,8 @@
 
 #include "LucusComponent.h"
 
+#include <string.h>
+
 using namespace LucusEngine;
 
 Component::Component()
@@ -17,4 +19,9 @@ Component::Component()
 Component::~Component()
 {
     //
+}
+
+bool Component::Compare(cc8* name, cc8* other)
+{
+    return strncmp(name, other, strlen(other)) == 0;
 }
