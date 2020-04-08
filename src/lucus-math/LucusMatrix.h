@@ -23,14 +23,14 @@ namespace LucusEngine
 
 	struct FMatrix4x4
 	{
-	    static const FMatrix4x4 Identity;
+	    MS_ALIGN(16) static const FMatrix4x4 Identity GCC_ALIGN(16);
 	    
 	    static const u32 ROW_COUNT = 4;
 	    static const u32 ELEMENT_COUNT = 16;
 	    
 	    union {
-	        float m[ROW_COUNT][ROW_COUNT];
-	        float _m[ELEMENT_COUNT];
+	        MS_ALIGN(16) float m[ROW_COUNT][ROW_COUNT] GCC_ALIGN(16);
+	        MS_ALIGN(16) float _m[ELEMENT_COUNT] GCC_ALIGN(16);
 	    };
 	    
 	    FMatrix4x4();
@@ -71,7 +71,8 @@ namespace LucusEngine
 	    
 	    void SetTranslate(float x, float y, float z);
 	    void SetTranslate(const FVector3& v);
-
+        
+        void SetRotate(const FQuaternion& quat);
 	    void RotateAround(const FVector3& axis, float rad);
 
 	    void SetScale(float scale);

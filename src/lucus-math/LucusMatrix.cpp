@@ -98,6 +98,11 @@ void FMatrix4x4::SetTranslate(const FVector3& v)
     SetTranslate(v.x, v.y, v.z);
 }
 
+void FMatrix4x4::SetRotate(const FQuaternion& quat)
+{
+    quat.ToRotateMatrix(*this);
+}
+
 void FMatrix4x4::RotateAround(const FVector3& axis, float rad)
 {
     FVector3 N = axis.GetNormalized();

@@ -73,6 +73,11 @@ void Transform::SetRotation(const FQuaternion& quat)
 	//mRotationEuler
 }
 
+void Transform::Rotate(const FVector3& axis, float angle)
+{
+    mRotation.RotateAroundAxis(axis, angle);
+}
+
 void Transform::SetScale(float scale)
 {
 	mScale = FVector3(scale, scale, scale);
@@ -96,7 +101,7 @@ void Transform::UpdateRotateMatrix(const FVector3& axis, float angle)
 void Transform::UpdateMatrices()
 {
     mTranslateMatrix.SetTranslate(mLocation);
-    // mRotateMatrix.SetRotate(mRotation);
+    mRotateMatrix.SetRotate(mRotation);
     mScaleMatrix.SetScale(mScale);
     mModelMatrix = mTranslateMatrix * mRotateMatrix * mScaleMatrix;
 }

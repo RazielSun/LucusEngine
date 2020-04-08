@@ -32,6 +32,7 @@ namespace LucusEngine
         void SetRotation(const FQuaternion& quat);
         const FQuaternion& GetRotation() const { return mRotation; }
         const FVector3& GetRotationEuler() const { return mRotationEuler; }
+        void Rotate(const FVector3& axis, float angle);
 
         void SetScale(float scale);
         void SetScale(float x, float y, float z);

@@ -864,9 +864,11 @@
 					$PROJECT_DIR/../../3rdparty/tinyxml2,
 					$PROJECT_DIR/../../3rdparty/libpng,
 					"$PROJECT_DIR/../../src/lucus-common",
+					"$PROJECT_DIR/../../src/lucus-common/mac",
 				);
 				MTL_HEADER_SEARCH_PATHS = "$PROJECT_DIR/../../src/lucus-render $PROJECT_DIR/../../src/lucus-sim $PROJECT_DIR/../../src/lucus-core";
 				MTL_PREPROCESSOR_DEFINITIONS = "TARGET_METAL TARGET_METAL_COMPILER";
+				OTHER_CFLAGS = "";
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 			};
 			name = Debug;
@@ -881,9 +883,11 @@
 					$PROJECT_DIR/../../3rdparty/tinyxml2,
 					$PROJECT_DIR/../../3rdparty/libpng,
 					"$PROJECT_DIR/../../src/lucus-common",
+					"$PROJECT_DIR/../../src/lucus-common/mac",
 				);
 				MTL_HEADER_SEARCH_PATHS = "$PROJECT_DIR/../../src/lucus-render $PROJECT_DIR/../../src/lucus-sim $PROJECT_DIR/../../src/lucus-core";
 				MTL_PREPROCESSOR_DEFINITIONS = "TARGET_METAL TARGET_METAL_COMPILER";
+				OTHER_CFLAGS = "";
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 			};
 			name = Release;
@@ -1099,6 +1103,10 @@
 				MTL_FAST_MATH = YES;
 				MTL_HEADER_SEARCH_PATHS = $inherited;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = (
+					"-include",
+					"\"MacPlatform.h\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.razielsun.LucusGame;
 				PRODUCT_NAME = LucusGame;
 				SDKROOT = macosx;
@@ -1169,6 +1177,10 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				MTL_HEADER_SEARCH_PATHS = $inherited;
+				OTHER_CFLAGS = (
+					"-include",
+					"\"MacPlatform.h\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.razielsun.LucusGame;
 				PRODUCT_NAME = LucusGame;
 				SDKROOT = macosx;

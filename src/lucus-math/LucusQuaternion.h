@@ -13,6 +13,7 @@
 namespace LucusEngine
 {
 	struct FVector3;
+    struct FMatrix4x4;
 
 	struct FQuaternion
 	{
@@ -32,6 +33,9 @@ namespace LucusEngine
 
 		float operator[] (u32 i) const;
 	    float& operator[] (u32 i);
+        
+        void ToRotateMatrix(FMatrix4x4& mtx) const;
+        void RotateAroundAxis(const FVector3& axis, float angleRad);
 	};
 }
 
