@@ -12,10 +12,15 @@
 #include "LucusVector.h"
 #include "LucusQuaternion.h"
 #include "LucusTransform.h"
+#include <vector>
 
 namespace LucusEngine
 {
+    class SceneComponent;
     class SceneComponentProxy;
+
+    typedef std::vector<SceneComponent*> ChildrenVector;
+    typedef ChildrenVector::iterator ChildIt;
 
     class SceneComponent : public Component
     {
@@ -32,10 +37,20 @@ namespace LucusEngine
         
         Transform& GetTransform() { return mTransform; }
 
+        void AttachTo(SceneComponent* parent);
+        void Detach();
+
+        const ChildrenVector& GetChildren() const;
+        int GetNumChildren() const;
+        SceneComponent* GetParent() const; // create inline function?
+
     protected:
 //    	FVector3 mLocation;
 //        FQuaternion mRotation;
 //        FVector3 mScale;
+
+        ChildrenVector mChildren;
+        SceneComponent* mParent;
         
         Transform mTransform;
     };
