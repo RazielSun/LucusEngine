@@ -17,3 +17,6 @@
 	#define GCC_ALIGN(n)
 	#define MS_ALIGN(n) __declspec(align(n))
 #endif
+
+// todo
+#define FORCEINLINE inline

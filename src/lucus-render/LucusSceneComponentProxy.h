@@ -16,7 +16,7 @@ namespace LucusEngine
     class Mesh;
     class Image;
 
-    class Transform;
+    class SceneComponent;
 
     class SceneComponentProxy
     {
@@ -26,7 +26,7 @@ namespace LucusEngine
         
         virtual void CreateBuffers(Mesh* mesh) = 0;
         virtual void CreateTexture(Image* image) = 0;
-        virtual void UpdateUniforms(const Uniforms& uniforms, const Transform& transform) = 0;
+        virtual void UpdateUniforms(const Uniforms& uniforms, const SceneComponent* component) = 0;
     };
 }
 

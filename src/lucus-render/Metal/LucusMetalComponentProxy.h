@@ -26,7 +26,7 @@ namespace LucusEngine
         
         virtual void CreateBuffers(Mesh* mesh) override;
         virtual void CreateTexture(Image* image) override;
-        virtual void UpdateUniforms(const Uniforms& uniforms, const Transform& transform) override;
+        virtual void UpdateUniforms(const Uniforms& uniforms, const SceneComponent* component) override;
         
         void DrawIndexed(id<MTLRenderCommandEncoder> encoder);
         

@@ -43,3 +43,45 @@ void SceneComponent::Tick(float deltaSeconds)
 {
 	//
 }
+
+void SceneComponent::AttachTo(SceneComponent* parent)
+{
+	if (parent != nullptr)
+	{
+		parent->AddChild(this);
+		mParent = parent;
+	}
+}
+
+void SceneComponent::Detach()
+{
+	if (mParent != nullptr)
+	{
+		mParent->RemoveChild(this);
+		mParent = nullptr;
+	}
+}
+
+void SceneComponent::AddChild(SceneComponent* child)
+{
+	if (child != nullptr)
+	{
+		mChildren.push_back(child);
+	}
+}
+
+void SceneComponent::RemoveChild(SceneComponent* child)
+{
+	// remove child
+}
+
+FMatrix4x4 SceneComponent::GetModelMatrix() const
+{
+	mTransform.UpdateMatrices();
+	if (mParent == nullptr)
+	{
+		return mTransform.GetModelMatrix();
+	}
+
+	return mParent->GetModelMatrix() * mTransform.GetModelMatrix();
+}

@@ -11,6 +11,7 @@
 #include "LucusComponent.h"
 #include "LucusVector.h"
 #include "LucusQuaternion.h"
+#include "LucusMatrix.h"
 #include "LucusTransform.h"
 #include <vector>
 
@@ -40,9 +41,14 @@ namespace LucusEngine
         void AttachTo(SceneComponent* parent);
         void Detach();
 
+        void AddChild(SceneComponent* child);
+        void RemoveChild(SceneComponent* child);
+
         const ChildrenVector& GetChildren() const;
-        int GetNumChildren() const;
+        u32 GetNumChildren() const;
         SceneComponent* GetParent() const; // create inline function?
+
+        FMatrix4x4 GetModelMatrix() const;
 
     protected:
 //    	FVector3 mLocation;
@@ -54,6 +60,21 @@ namespace LucusEngine
         
         Transform mTransform;
     };
+
+    FORCEINLINE const ChildrenVector& SceneComponent::GetChildren() const
+    {
+        return mChildren;
+    }
+
+    FORCEINLINE int SceneComponent::GetNumChildren() const
+    {
+        return (u32)mChildren.size();
+    }
+
+    FORCEINLINE SceneComponent* SceneComponent::GetParent() const
+    {
+        return mParent;
+    }
 }
 
 #endif /* _LUCUS_ENGINE_SCENE_COMPONENT_H */

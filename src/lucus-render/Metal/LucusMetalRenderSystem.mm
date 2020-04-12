@@ -101,11 +101,11 @@ void MetalRenderSystem::Render()
     CameraComponent* cameraCom = mScene->CameraComp;
     cameraCom->UpdateProjectionMatrix(mWindow->GetViewport());
     uniforms.PROJ_MATRIX = cameraCom->GetProjMatrix().GetNative();
-    uniforms.VIEW_MATRIX = cameraCom->GetTransform().GetModelMatrix().GetNative();
+    uniforms.VIEW_MATRIX = cameraCom->GetModelMatrix().GetNative(); //GetTransform().GetModelMatrix().GetNative();
     
     for (auto* component : mScene->MeshComps) {
-        component->GetTransform().UpdateMatrices();
-        component->Proxy->UpdateUniforms(uniforms, component->GetTransform());
+        // component->GetTransform().UpdateMatrices();
+        component->Proxy->UpdateUniforms(uniforms, component);// component->GetTransform());
     }
     
     // Start Frame

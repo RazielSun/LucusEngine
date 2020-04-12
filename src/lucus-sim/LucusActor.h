@@ -33,6 +33,9 @@ namespace LucusEngine
         SceneComponent* GetRootComponent();
 
     protected:
+        void AddComponentToScene(SceneComponent* component);
+
+    protected:
     	SceneComponent* RootComponent;
         
         World* mWorld;

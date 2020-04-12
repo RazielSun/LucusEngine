@@ -40,13 +40,26 @@ void Actor::Tick(float deltaSeconds)
 void Actor::SetRootComponent(SceneComponent* component)
 {
     RootComponent = component;
-    if (nullptr != mWorld)
-    {
-        mWorld->Scene->AddSceneComponent(RootComponent);
-    }
+
+    AddComponentToScene(RootComponent);
 }
 
 SceneComponent* Actor::GetRootComponent()
 {
     return RootComponent;
+}
+
+void Actor::AddComponentToScene(SceneComponent* component)
+{
+    if (nullptr != mWorld)
+    {
+        mWorld->Scene->AddSceneComponent(component);
+
+        const ChildrenVector& children = component->GetChildren();
+        for (auto* child : children)
+        {
+            AddComponentToScene(child);
+            // mWorld->Scene->AddSceneComponent(component);
+        }
+    }
 }

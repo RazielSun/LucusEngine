@@ -7,7 +7,7 @@
 
 #include "LucusMetalComponentProxy.h"
 #include "LucusRenderTypes.h"
-#include "LucusTransform.h"
+#include "LucusSceneComponent.h"
 #include "LucusMesh.h"
 #include "LucusImage.h"
 #include "LucusMetalDevice.h"
@@ -58,12 +58,12 @@ void MetalComponentProxy::CreateTexture(Image* image)
     }
 }
 
-void MetalComponentProxy::UpdateUniforms(const Uniforms& uniforms, const Transform& transform)
+void MetalComponentProxy::UpdateUniforms(const Uniforms& uniforms, const SceneComponent* component)
 {
     memcpy((void*)(mUniforms.contents), &uniforms, sizeof(Uniforms));
     
     Uniforms* cUniforms = (Uniforms*)(mUniforms.contents);
-    cUniforms->MODEL_MATRIX = transform.GetModelMatrix().GetNative();
+    cUniforms->MODEL_MATRIX = component->GetModelMatrix().GetNative();// transform.GetModelMatrix().GetNative();
     cUniforms->MVP_MATRIX = matrix_multiply(matrix_multiply(cUniforms->PROJ_MATRIX, cUniforms->VIEW_MATRIX), cUniforms->MODEL_MATRIX);
 }
 

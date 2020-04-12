@@ -134,6 +134,23 @@ Component* World::CreateComponent(const tinyxml2::XMLElement* data)
     if (nullptr != component)
     {
         component->Init(data);
+
+        SceneComponent* sceneCom = dynamic_cast<SceneComponent*>(component);
+
+        for (const tinyxml2::XMLElement* comData = data->FirstChildElement("Component");
+                 comData;
+                 comData = comData->NextSiblingElement("Component"))
+        {
+            // Create Child Components
+            Component* childComponent = CreateComponent(comData->Attribute("type"));
+
+            SceneComponent* childSceneCom = dynamic_cast<SceneComponent*>(childComponent);
+
+            if (childSceneCom != nullptr)
+            {
+                childSceneCom->AttachTo(sceneCom);
+            }
+        }
     }
     return component;
 }
