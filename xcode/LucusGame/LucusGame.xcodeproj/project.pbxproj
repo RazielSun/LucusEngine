@@ -44,6 +44,8 @@
 		7A885DDA243B900B00EC2E74 /* RotatedMeshComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A885DD6243B900A00EC2E74 /* RotatedMeshComponent.cpp */; };
 		7A885DDB243B900B00EC2E74 /* GameWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A885DD8243B900A00EC2E74 /* GameWorld.cpp */; };
 		7A885DDC243B900B00EC2E74 /* GameWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A885DD8243B900A00EC2E74 /* GameWorld.cpp */; };
+		7A885DE12443099800EC2E74 /* SpringArmComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A885DDF2443099800EC2E74 /* SpringArmComponent.cpp */; };
+		7A885DE22443099900EC2E74 /* SpringArmComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A885DDF2443099800EC2E74 /* SpringArmComponent.cpp */; };
 		7AA498D1240249C1009C1ED7 /* libfbxsdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA498D0240249C0009C1ED7 /* libfbxsdk.a */; };
 		7AA498DC240458A3009C1ED7 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 7AA498DB240458A3009C1ED7 /* Assets */; };
 		7AA498DD240458A3009C1ED7 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 7AA498DB240458A3009C1ED7 /* Assets */; };
@@ -205,6 +207,8 @@
 		7A885DD6243B900A00EC2E74 /* RotatedMeshComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RotatedMeshComponent.cpp; sourceTree = "<group>"; };
 		7A885DD7243B900A00EC2E74 /* GameWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameWorld.h; sourceTree = "<group>"; };
 		7A885DD8243B900A00EC2E74 /* GameWorld.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameWorld.cpp; sourceTree = "<group>"; };
+		7A885DDF2443099800EC2E74 /* SpringArmComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SpringArmComponent.cpp; sourceTree = "<group>"; };
+		7A885DE02443099800EC2E74 /* SpringArmComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpringArmComponent.h; sourceTree = "<group>"; };
 		7AA498D0240249C0009C1ED7 /* libfbxsdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfbxsdk.a; path = "../../3rdparty/fbx-sdk-osx/lib/clang/debug/libfbxsdk.a"; sourceTree = "<group>"; };
 		7AA498D324027673009C1ED7 /* LucusUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LucusUtils.h; sourceTree = "<group>"; };
 		7AA498DB240458A3009C1ED7 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = Resources/Assets; sourceTree = "<group>"; };
@@ -431,6 +435,8 @@
 				7A885DD6243B900A00EC2E74 /* RotatedMeshComponent.cpp */,
 				7A885DD7243B900A00EC2E74 /* GameWorld.h */,
 				7A885DD8243B900A00EC2E74 /* GameWorld.cpp */,
+				7A885DE02443099800EC2E74 /* SpringArmComponent.h */,
+				7A885DDF2443099800EC2E74 /* SpringArmComponent.cpp */,
 			);
 			name = src;
 			path = ../../game/src;
@@ -761,6 +767,7 @@
 				7AA498FE2413BAA0009C1ED7 /* LucusScene.cpp in Sources */,
 				7A324B6823F5DEFD000C49DB /* host.cpp in Sources */,
 				7A324B7023FBBCDA000C49DB /* LucusMetalRenderSystem.mm in Sources */,
+				7A885DE12443099800EC2E74 /* SpringArmComponent.cpp in Sources */,
 				7AA499182416A2A6009C1ED7 /* LucusMeshFormat.cpp in Sources */,
 				7AA4990724163E18009C1ED7 /* LucusTimeManager.cpp in Sources */,
 				7A324B8E24013515000C49DB /* LucusMeshFormatFBX.cpp in Sources */,
@@ -809,6 +816,7 @@
 				7AA498FF2413BAA0009C1ED7 /* LucusScene.cpp in Sources */,
 				7ADF914123E6D07A0094C83D /* main.mm in Sources */,
 				7A324B7123FBBCDA000C49DB /* LucusMetalRenderSystem.mm in Sources */,
+				7A885DE22443099900EC2E74 /* SpringArmComponent.cpp in Sources */,
 				7AA499192416A2A6009C1ED7 /* LucusMeshFormat.cpp in Sources */,
 				7AA4990824163E19009C1ED7 /* LucusTimeManager.cpp in Sources */,
 				7A324B8F24013515000C49DB /* LucusMeshFormatFBX.cpp in Sources */,

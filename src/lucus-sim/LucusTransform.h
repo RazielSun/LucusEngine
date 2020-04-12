@@ -48,6 +48,8 @@ namespace LucusEngine
         FQuaternion mRotation;
         FVector3 mRotationEuler;
         FVector3 mScale;
+        
+        bool mIsDirty;
 
     	FMatrix4x4 mModelMatrix;
         FMatrix4x4 mTranslateMatrix;

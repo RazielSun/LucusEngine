@@ -13,8 +13,9 @@
 using namespace LucusEngine;
 
 SceneComponent::SceneComponent() :
-   mTransform(),
-   Proxy(nullptr)
+    mTransform(),
+    Proxy(nullptr),
+    mParent(nullptr)
 {
     //
 }
@@ -75,7 +76,7 @@ void SceneComponent::RemoveChild(SceneComponent* child)
 	// remove child
 }
 
-FMatrix4x4 SceneComponent::GetModelMatrix() const
+FMatrix4x4 SceneComponent::GetModelMatrix()
 {
 	mTransform.UpdateMatrices();
 	if (mParent == nullptr)
@@ -83,5 +84,5 @@ FMatrix4x4 SceneComponent::GetModelMatrix() const
 		return mTransform.GetModelMatrix();
 	}
 
-	return mParent->GetModelMatrix() * mTransform.GetModelMatrix();
+	return mTransform.GetModelMatrix() * mParent->GetModelMatrix();
 }

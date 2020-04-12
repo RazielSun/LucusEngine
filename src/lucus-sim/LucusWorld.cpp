@@ -142,7 +142,7 @@ Component* World::CreateComponent(const tinyxml2::XMLElement* data)
                  comData = comData->NextSiblingElement("Component"))
         {
             // Create Child Components
-            Component* childComponent = CreateComponent(comData->Attribute("type"));
+            Component* childComponent = CreateComponent(comData);
 
             SceneComponent* childSceneCom = dynamic_cast<SceneComponent*>(childComponent);
 

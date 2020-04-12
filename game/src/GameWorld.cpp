@@ -8,6 +8,7 @@
 #include "GameWorld.h"
 #include "LucusActor.h"
 #include "LucusComponent.h"
+#include "SpringArmComponent.h"
 #include "RotatedMeshComponent.h"
 
 GameWorld::GameWorld()
@@ -30,6 +31,9 @@ LucusEngine::Component* GameWorld::GetComponent(cc8* name)
     LucusEngine::Component* component = nullptr;
     if (CompareNames(name, "RotatedMeshComponent")) {
         component = new RotatedMeshComponent();
+    }
+    else if (CompareNames(name, "SpringArmComponent")) {
+        component = new SpringArmComponent();
     }
     if (nullptr == component)
     {

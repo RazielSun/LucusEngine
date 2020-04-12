@@ -58,7 +58,7 @@ void MetalComponentProxy::CreateTexture(Image* image)
     }
 }
 
-void MetalComponentProxy::UpdateUniforms(const Uniforms& uniforms, const SceneComponent* component)
+void MetalComponentProxy::UpdateUniforms(const Uniforms& uniforms, SceneComponent* component)
 {
     memcpy((void*)(mUniforms.contents), &uniforms, sizeof(Uniforms));
     

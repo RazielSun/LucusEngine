@@ -48,7 +48,7 @@ namespace LucusEngine
         u32 GetNumChildren() const;
         SceneComponent* GetParent() const; // create inline function?
 
-        FMatrix4x4 GetModelMatrix() const;
+        FMatrix4x4 GetModelMatrix();
 
     protected:
 //    	FVector3 mLocation;
@@ -66,7 +66,7 @@ namespace LucusEngine
         return mChildren;
     }
 
-    FORCEINLINE int SceneComponent::GetNumChildren() const
+    FORCEINLINE u32 SceneComponent::GetNumChildren() const
     {
         return (u32)mChildren.size();
     }
