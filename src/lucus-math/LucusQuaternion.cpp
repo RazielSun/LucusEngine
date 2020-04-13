@@ -7,6 +7,7 @@
 
 #include "LucusQuaternion.h"
 #include "LucusVector.h"
+#include "LucusRotator.h"
 #include "LucusMatrix.h"
 #include "LucusMath.h"
 
@@ -74,4 +75,28 @@ void FQuaternion::RotateAroundAxis(const FVector3& axis, float angleRad)
     x = axis.x * S;
     y = axis.y * S;
     z = axis.z * S;
+}
+
+void Set(const FRotator& rot)
+{
+	Set(rot.roll, tor.pitch, rot.yaw);
+}
+
+void Set(float roll, float pitch, float yaw)
+{
+	float rollHalfRad *= D2R * 0.5f;
+	float pitchHalfRad *= D2R * 0.5f;
+	float yawHalfRad *= D2R * 0.5f;
+
+	float cr = FMath::Cos(rollHalfRad);
+	float cp = FMath::Cos(pitchHalfRad);
+	float cy = FMath::Cos(yawHalfRad);
+	float sr = FMath::Sin(rollHalfRad);
+	float sp = FMath::Sin(pitchHalfRad);
+	float sy = FMath::Sin(yawHalfRad);
+
+	w =  cr * cp * cy + sr * sp * sy;
+	x =  cr * sp * sy - sr * cp * cy;
+	y = -cr * sp * cy - sr * cp * sy;
+	z =  cr * cp * sy - sr * sp * cy;
 }

@@ -11,6 +11,7 @@
 #include "LucusTypes.h"
 #include "LucusVector.h"
 #include "LucusQuaternion.h"
+#include "LucusRotator.h"
 #include "LucusMatrix.h"
 
 namespace LucusEngine
@@ -27,11 +28,12 @@ namespace LucusEngine
         void AddLocation(float x, float y, float z);
         const FVector3& GetLocation() const { return mLocation; }
 
-        void SetRotationEuler(float x, float y, float z);
+        // void SetRotationEuler(float x, float y, float z);
         void SetRotation(float pitch, float roll, float yaw);
+        void SetRotation(const FRotator& rot);
         void SetRotation(const FQuaternion& quat);
         const FQuaternion& GetRotation() const { return mRotation; }
-        const FVector3& GetRotationEuler() const { return mRotationEuler; }
+        // const FVector3& GetRotationEuler() const { return mRotationEuler; }
         void Rotate(const FVector3& axis, float angle);
 
         void SetScale(float scale);
@@ -46,7 +48,7 @@ namespace LucusEngine
     protected:
     	FVector3 mLocation;
         FQuaternion mRotation;
-        FVector3 mRotationEuler;
+        // FVector3 mRotationEuler;
         FVector3 mScale;
         
         bool mIsDirty;

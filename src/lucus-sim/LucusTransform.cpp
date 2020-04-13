@@ -60,22 +60,25 @@ void Transform::AddLocation(float x, float y, float z)
     mIsDirty = true;
 }
 
-void Transform::SetRotationEuler(float x, float y, float z)
-{
-	mRotationEuler = FVector3(x, y, z);
-	// mRotation
-}
+// void Transform::SetRotationEuler(float x, float y, float z)
+// {
+// 	mRotationEuler = FVector3(x, y, z);
+// 	// mRotation
+// }
 
 void Transform::SetRotation(float pitch, float roll, float yaw)
 {
-	//mRotation
-	//mRotationEuler
+	mRotation.Set(roll, pitch, yaw);
+}
+
+void Transform::SetRotation(const FRotator& rot)
+{
+	SetRotation(rot.pitch, rot.roll, rot.yaw);
 }
 
 void Transform::SetRotation(const FQuaternion& quat)
 {
 	mRotation = quat;
-	//mRotationEuler
 }
 
 void Transform::Rotate(const FVector3& axis, float angle)

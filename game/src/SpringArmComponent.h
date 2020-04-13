@@ -9,6 +9,7 @@
 #define _SPRING_ARM_COMPONENT_H
 
 #include "LucusSceneComponent.h"
+#include "LucusRotator.h"
 
 class SpringArmComponent : public LucusEngine::SceneComponent
 {
@@ -19,7 +20,11 @@ public:
     virtual void Tick(float deltaSeconds) override;
 
 protected:
-    float angle = 0.0f;
+    // float angle = 0.0f;
+    float mSpeed;
+
+    //f for Test
+    LucusEngine::FRotator mRotation;
 };
 
 #endif /* _SPRING_ARM_COMPONENT_H */
