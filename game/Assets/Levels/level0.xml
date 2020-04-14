@@ -3,14 +3,18 @@
 <World>
 
 	<Actor name="Camera">
-		<Component type="CameraComponent" />
+		<Component type="SpringArmComponent">
+			<Component type="CameraComponent">
+				<Location x="0.0" y="0.0" z="-3.0" />
+			</Component>
+		</Component>
 	</Actor>
 
 	<Actor name="Cube01">
 		<Component type="MeshComponent">
 			<Asset type="Mesh" path="Assets/meshes/cube.fbx" />
 			<Asset type="Image" path="Assets/textures/test-image.tga" />
-			<Location x="0.0" y="0.0" z="-2.0" />
+			<Location x="0.0" y="0.0" z="0.0" />
 		</Component>
 	</Actor>
 
@@ -18,7 +22,7 @@
 		<Component type="RotatedMeshComponent">
 			<Asset type="Mesh" path="Assets/meshes/cube.fbx" />
 			<Asset type="Image" path="Assets/textures/checker.png" />
-			<Location x="1.0" y="0.0" z="-2.0" />
+			<Location x="1.0" y="0.0" z="0.0" />
 		</Component>
 	</Actor>
 
@@ -26,7 +30,7 @@
 		<Component type="MeshComponent">
 			<Asset type="Mesh" path="Assets/meshes/cube.fbx" />
 			<Asset type="Image" path="Assets/textures/checker-map.png" />
-			<Location x="-1.0" y="0.0" z="-2.0" />
+			<Location x="-1.0" y="0.0" z="0.0" />
 		</Component>
 	</Actor>
 
