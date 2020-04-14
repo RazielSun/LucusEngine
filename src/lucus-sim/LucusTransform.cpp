@@ -12,7 +12,7 @@ using namespace LucusEngine;
 Transform::Transform() :
 	mLocation(FVector3::Zero),
 	mRotation(FQuaternion::Identity),
-	mRotationEuler(FVector3::Zero),
+//	mRotationEuler(FVector3::Zero),
 	mScale(FVector3::One),
 	mModelMatrix(FMatrix4x4::Identity),
 	mTranslateMatrix(FMatrix4x4::Identity),
@@ -66,19 +66,21 @@ void Transform::AddLocation(float x, float y, float z)
 // 	// mRotation
 // }
 
-void Transform::SetRotation(float pitch, float roll, float yaw)
+void Transform::SetRotation(float roll, float pitch, float yaw)
 {
 	mRotation.Set(roll, pitch, yaw);
+    mIsDirty = true;
 }
 
 void Transform::SetRotation(const FRotator& rot)
 {
-	SetRotation(rot.pitch, rot.roll, rot.yaw);
+	SetRotation(rot.roll, rot.pitch, rot.yaw);
 }
 
 void Transform::SetRotation(const FQuaternion& quat)
 {
 	mRotation = quat;
+    mIsDirty = true;
 }
 
 void Transform::Rotate(const FVector3& axis, float angle)

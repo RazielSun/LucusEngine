@@ -77,26 +77,50 @@ void FQuaternion::RotateAroundAxis(const FVector3& axis, float angleRad)
     z = axis.z * S;
 }
 
-void Set(const FRotator& rot)
+void FQuaternion::Set(const FRotator& rot)
 {
-	Set(rot.roll, tor.pitch, rot.yaw);
+	Set(rot.roll, rot.pitch, rot.yaw);
 }
 
-void Set(float roll, float pitch, float yaw)
+void FQuaternion::Set(float roll, float pitch, float yaw)
 {
-	float rollHalfRad *= D2R * 0.5f;
-	float pitchHalfRad *= D2R * 0.5f;
-	float yawHalfRad *= D2R * 0.5f;
+	float rollHalfRad = roll * D2R * 0.5f;
+	float pitchHalfRad = pitch * D2R * 0.5f;
+	float yawHalfRad = yaw * D2R * 0.5f;
 
-	float cr = FMath::Cos(rollHalfRad);
-	float cp = FMath::Cos(pitchHalfRad);
-	float cy = FMath::Cos(yawHalfRad);
-	float sr = FMath::Sin(rollHalfRad);
-	float sp = FMath::Sin(pitchHalfRad);
-	float sy = FMath::Sin(yawHalfRad);
+	// float cx = FMath::Cos(rollHalfRad); //cr
+	// float cy = FMath::Cos(pitchHalfRad); //cp
+	// float cz = FMath::Cos(yawHalfRad); //cy
+	// float sx = FMath::Sin(rollHalfRad); //sr
+	// float sy = FMath::Sin(pitchHalfRad); //sp
+	// float sz = FMath::Sin(yawHalfRad); //sy
+    
+    // This for z-yaw
+//	w =  cr * cp * cy + sr * sp * sy;
+//	x =  cr * sp * sy - sr * cp * cy;
+//	y = -cr * sp * cy - sr * cp * sy;
+//	z =  cr * cp * sy - sr * sp * cy;
+    
+    // This where z is pitch
+//    float cycz = cy * cz;
+//    float sysz = sy * sz;
+//    float sycz = sy * cz;
+//    float cysz = cy * sz;
+//    w    = ( cx * cycz ) - ( sx * sysz );
+//    x    = ( sx * sycz ) + ( cx * cysz );
+//    y    = ( sx * cycz ) + ( cx * sysz );
+//    z    = ( cx * sycz ) - ( sx * cysz );
+    
+    // X+ right Y+ top Z+ forward
+    float cr = FMath::Cos(rollHalfRad); // roll or bank
+    float cp = FMath::Cos(pitchHalfRad); // pitch or attitude
+    float cy = FMath::Cos(yawHalfRad); // yaw or heading
+    float sr = FMath::Sin(rollHalfRad);
+    float sp = FMath::Sin(pitchHalfRad);
+    float sy = FMath::Sin(yawHalfRad);
 
-	w =  cr * cp * cy + sr * sp * sy;
-	x =  cr * sp * sy - sr * cp * cy;
-	y = -cr * sp * cy - sr * cp * sy;
-	z =  cr * cp * sy - sr * sp * cy;
+    w = cy * cp * cr - sy * sp * sr;
+    x = sy * sp * cr + cy * cp * sr;
+    y = sy * cp * cr + cy * sp * sr;
+    z = cy * sp * cr - sy * cp * sr;
 }

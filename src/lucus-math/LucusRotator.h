@@ -19,7 +19,7 @@ namespace LucusEngine
 		float roll, pitch, yaw;
 
 		FRotator() : roll(0.0f), pitch(0.0f), yaw(0.0f) {}
-		FRotator(float _roll, float _pitch, float _yaw) : roll(_roll), pitch(_pitch), yaw(yaw) {}
+		FRotator(float _roll, float _pitch, float _yaw) : roll(_roll), pitch(_pitch), yaw(_yaw) {}
 
 	};
 }

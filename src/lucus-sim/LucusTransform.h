@@ -29,7 +29,7 @@ namespace LucusEngine
         const FVector3& GetLocation() const { return mLocation; }
 
         // void SetRotationEuler(float x, float y, float z);
-        void SetRotation(float pitch, float roll, float yaw);
+        void SetRotation(float roll, float pitch, float yaw);
         void SetRotation(const FRotator& rot);
         void SetRotation(const FQuaternion& quat);
         const FQuaternion& GetRotation() const { return mRotation; }

@@ -12,6 +12,7 @@
 
 #include <cmath>
 
+#undef M_PI
 #define M_PI 					(3.1415926535897932f)	/* Extra digits if needed: 3.1415926535897932384626433832795f */
 #define D2R						( M_PI / 180.0f )
 #define R2D						( 180.0f / M_PI )

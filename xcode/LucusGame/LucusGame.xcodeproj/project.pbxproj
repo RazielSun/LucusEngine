@@ -46,6 +46,8 @@
 		7A885DDC243B900B00EC2E74 /* GameWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A885DD8243B900A00EC2E74 /* GameWorld.cpp */; };
 		7A885DE12443099800EC2E74 /* SpringArmComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A885DDF2443099800EC2E74 /* SpringArmComponent.cpp */; };
 		7A885DE22443099900EC2E74 /* SpringArmComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A885DDF2443099800EC2E74 /* SpringArmComponent.cpp */; };
+		7A885DE52445043C00EC2E74 /* LucusRotator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A885DE42445043C00EC2E74 /* LucusRotator.cpp */; };
+		7A885DE62445043C00EC2E74 /* LucusRotator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A885DE42445043C00EC2E74 /* LucusRotator.cpp */; };
 		7AA498D1240249C1009C1ED7 /* libfbxsdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA498D0240249C0009C1ED7 /* libfbxsdk.a */; };
 		7AA498DC240458A3009C1ED7 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 7AA498DB240458A3009C1ED7 /* Assets */; };
 		7AA498DD240458A3009C1ED7 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 7AA498DB240458A3009C1ED7 /* Assets */; };
@@ -209,6 +211,8 @@
 		7A885DD8243B900A00EC2E74 /* GameWorld.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameWorld.cpp; sourceTree = "<group>"; };
 		7A885DDF2443099800EC2E74 /* SpringArmComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SpringArmComponent.cpp; sourceTree = "<group>"; };
 		7A885DE02443099800EC2E74 /* SpringArmComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpringArmComponent.h; sourceTree = "<group>"; };
+		7A885DE32445043C00EC2E74 /* LucusRotator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusRotator.h; sourceTree = "<group>"; };
+		7A885DE42445043C00EC2E74 /* LucusRotator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LucusRotator.cpp; sourceTree = "<group>"; };
 		7AA498D0240249C0009C1ED7 /* libfbxsdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfbxsdk.a; path = "../../3rdparty/fbx-sdk-osx/lib/clang/debug/libfbxsdk.a"; sourceTree = "<group>"; };
 		7AA498D324027673009C1ED7 /* LucusUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LucusUtils.h; sourceTree = "<group>"; };
 		7AA498DB240458A3009C1ED7 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = Resources/Assets; sourceTree = "<group>"; };
@@ -492,6 +496,8 @@
 		7AA499282416A2B3009C1ED7 /* lucus-math */ = {
 			isa = PBXGroup;
 			children = (
+				7A885DE42445043C00EC2E74 /* LucusRotator.cpp */,
+				7A885DE32445043C00EC2E74 /* LucusRotator.h */,
 				7A884A422438E8C000EC2E74 /* LucusMatrix.cpp */,
 				7A884A432438E8C000EC2E74 /* LucusMatrix.h */,
 				7A884A412438E8C000EC2E74 /* LucusQuaternion.cpp */,
@@ -759,6 +765,7 @@
 				7A885DD9243B900B00EC2E74 /* RotatedMeshComponent.cpp in Sources */,
 				7AB2AC772427460D0008C88D /* LucusImageFormatManager.cpp in Sources */,
 				7A324B5B23F5CEF8000C49DB /* AppDelegate.mm in Sources */,
+				7A885DE52445043C00EC2E74 /* LucusRotator.cpp in Sources */,
 				7AA498F42413BA7F009C1ED7 /* LucusWorld.cpp in Sources */,
 				7A0C0DCB23F1E84200DE0B7D /* LucusRenderSystem.cpp in Sources */,
 				7ADF914023E6D07A0094C83D /* main.mm in Sources */,
@@ -808,6 +815,7 @@
 				7A885DDA243B900B00EC2E74 /* RotatedMeshComponent.cpp in Sources */,
 				7AB2AC762427460D0008C88D /* LucusImageFormatManager.cpp in Sources */,
 				7A0C0DCC23F1E84200DE0B7D /* LucusRenderSystem.cpp in Sources */,
+				7A885DE62445043C00EC2E74 /* LucusRotator.cpp in Sources */,
 				7AA498F52413BA7F009C1ED7 /* LucusWorld.cpp in Sources */,
 				7A0C0DDD23F338BC00DE0B7D /* host.cpp in Sources */,
 				7A0C0DE123F3CAAF00DE0B7D /* LucusMetalView.mm in Sources */,
