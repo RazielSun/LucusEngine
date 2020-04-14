@@ -127,7 +127,7 @@ void D3D12RenderSystem::Render()
 	uniforms.PROJ_MATRIX = cameraCom->GetProjMatrix().GetNative();
 
 	// View
-	uniforms.VIEW_MATRIX = cameraCom->GetTransform().GetModelMatrix().GetNative();
+	uniforms.VIEW_MATRIX = cameraCom->GetModelMatrix().GetNative();
 
 	// Eye is at (0,0.7,1.5), looking at point (0,-0.1,0) with the up-vector along the y-axis.
 	//static const DirectX::XMVECTORF32 eye = { 0.0f, 0.7f, 1.5f, 0.0f };
@@ -144,8 +144,8 @@ void D3D12RenderSystem::Render()
 	//uniforms.MODEL_MATRIX = component->GetTransform().GetModelMatrix().GetNative();
 
 	for (auto* component : mScene->MeshComps) {
-		component->GetTransform().UpdateModelMatrix();
-		component->Proxy->UpdateUniforms(uniforms, component->GetTransform());
+		//component->GetTransform().UpdateModelMatrix();
+		component->Proxy->UpdateUniforms(uniforms, component);
 	}
 
 	// Start Frame

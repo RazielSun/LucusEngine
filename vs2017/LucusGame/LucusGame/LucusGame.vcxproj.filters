@@ -31,25 +31,31 @@
       <UniqueIdentifier>{b7490192-5860-4d4e-a1fd-f94c4cfd3140}</UniqueIdentifier>
       <Extensions>bmp;fbx;gif;jpg;jpeg;tga;tiff;tif;png</Extensions>
     </Filter>
-    <Filter Include="Assets\meshes">
-      <UniqueIdentifier>{180b1ff4-64b4-40b0-97f8-c2f6a16f468c}</UniqueIdentifier>
-      <Extensions>fbx</Extensions>
-    </Filter>
     <Filter Include="lucus-math">
       <UniqueIdentifier>{fbd2810a-7e53-4a88-a065-51410bf3ad26}</UniqueIdentifier>
     </Filter>
     <Filter Include="lucus-resources">
       <UniqueIdentifier>{015fad63-db8e-416e-88c7-a87889e7e576}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Assets\textures">
-      <UniqueIdentifier>{3de35cba-d855-4f48-9deb-171f2075da05}</UniqueIdentifier>
-      <Extensions>bmp;fbx;gif;jpg;jpeg;tga;tiff;tif;png</Extensions>
-    </Filter>
     <Filter Include="lucus-image-tga">
       <UniqueIdentifier>{11f6232b-94e8-4775-b4c2-b26c86e28b04}</UniqueIdentifier>
     </Filter>
-    <Filter Include="lucu-image-png">
+    <Filter Include="lucus-image-png">
       <UniqueIdentifier>{eab2d6ab-346d-4532-9947-fdf3cb8cb786}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="game">
+      <UniqueIdentifier>{b06d29f3-6c56-48df-895f-a19f31fc794e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Meshes">
+      <UniqueIdentifier>{180b1ff4-64b4-40b0-97f8-c2f6a16f468c}</UniqueIdentifier>
+      <Extensions>fbx</Extensions>
+    </Filter>
+    <Filter Include="Assets\Textures">
+      <UniqueIdentifier>{3de35cba-d855-4f48-9deb-171f2075da05}</UniqueIdentifier>
+      <Extensions>bmp;fbx;gif;jpg;jpeg;tga;tiff;tif;png</Extensions>
+    </Filter>
+    <Filter Include="Assets\Levels">
+      <UniqueIdentifier>{c123cd5d-995b-4167-b26c-3e01f038dd67}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -114,9 +120,6 @@
     <ClCompile Include="..\..\..\src\lucus-sim\LucusWorld.cpp">
       <Filter>lucus-sim</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\lucus-render\LucusComponentProxy.cpp">
-      <Filter>lucus-render</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\lucus-render\LucusScene.cpp">
       <Filter>lucus-render</Filter>
     </ClCompile>
@@ -139,7 +142,37 @@
       <Filter>lucus-image-tga</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\lucus-image-png\LucusImageFormatPNG.cpp">
-      <Filter>lucu-image-png</Filter>
+      <Filter>lucus-image-png</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-math\LucusMatrix.cpp">
+      <Filter>lucus-math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-math\LucusQuaternion.cpp">
+      <Filter>lucus-math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-math\LucusRotator.cpp">
+      <Filter>lucus-math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-math\LucusVector.cpp">
+      <Filter>lucus-math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-sim\LucusSceneComponent.cpp">
+      <Filter>lucus-sim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-resources\LucusResourceManager.cpp">
+      <Filter>lucus-resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\game\src\GameWorld.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\game\src\RotatedMeshComponent.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\game\src\SpringArmComponent.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-render\LucusSceneComponentProxy.cpp">
+      <Filter>lucus-render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -197,9 +230,6 @@
     <ClInclude Include="..\..\..\src\lucus-resources\LucusMeshFormatManager.h">
       <Filter>lucus-resources</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\lucus-resources\LucusResourceTypes.h">
-      <Filter>lucus-resources</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\lucus-math\LucusMath.h">
       <Filter>lucus-math</Filter>
     </ClInclude>
@@ -223,9 +253,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\lucus-sim\LucusWorld.h">
       <Filter>lucus-sim</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\lucus-render\LucusComponentProxy.h">
-      <Filter>lucus-render</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\lucus-render\LucusRenderTypes.h">
       <Filter>lucus-render</Filter>
@@ -252,7 +279,40 @@
       <Filter>lucus-image-tga</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\lucus-image-png\LucusImageFormatPNG.h">
-      <Filter>lucu-image-png</Filter>
+      <Filter>lucus-image-png</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-math\LucusMatrix.h">
+      <Filter>lucus-math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-math\LucusQuaternion.h">
+      <Filter>lucus-math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-math\LucusRotator.h">
+      <Filter>lucus-math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-math\LucusVector.h">
+      <Filter>lucus-math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-math\LucusVertexTypes.h">
+      <Filter>lucus-math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-sim\LucusSceneComponent.h">
+      <Filter>lucus-sim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-resources\LucusResourceManager.h">
+      <Filter>lucus-resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\game\src\GameWorld.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\game\src\RotatedMeshComponent.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\game\src\SpringArmComponent.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-render\LucusSceneComponentProxy.h">
+      <Filter>lucus-render</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -278,16 +338,16 @@
       <Filter>AppIcons</Filter>
     </Image>
     <Image Include="Assets\textures\checker.png">
-      <Filter>Assets\textures</Filter>
+      <Filter>Assets\Textures</Filter>
     </Image>
     <Image Include="Assets\textures\checker-indexed.tga">
-      <Filter>Assets\textures</Filter>
+      <Filter>Assets\Textures</Filter>
     </Image>
     <Image Include="Assets\textures\checker-map.png">
-      <Filter>Assets\textures</Filter>
+      <Filter>Assets\Textures</Filter>
     </Image>
     <Image Include="Assets\textures\test-image.tga">
-      <Filter>Assets\textures</Filter>
+      <Filter>Assets\Textures</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
@@ -296,7 +356,7 @@
   <ItemGroup>
     <None Include="LucusGame_TemporaryKey.pfx" />
     <None Include="Assets\meshes\cube.fbx">
-      <Filter>Assets\meshes</Filter>
+      <Filter>Assets\Meshes</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -306,5 +366,10 @@
     <FxCompile Include="..\..\..\src\lucus-resources\shaders\DirectX12\SimpleVertexShader.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Assets\Levels\level0.xml">
+      <Filter>Assets\Levels</Filter>
+    </Xml>
   </ItemGroup>
 </Project>

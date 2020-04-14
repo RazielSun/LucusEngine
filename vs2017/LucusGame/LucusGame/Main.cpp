@@ -5,6 +5,7 @@
 #include "host.h"
 #include "modules.h"
 #include "DirectX12/LucusD3D12RenderSystem.h"
+#include "GameWorld.h"
 
 #include <ppltasks.h>
 
@@ -80,7 +81,8 @@ namespace LucusEngine
 				m_renderSystem->SetCoreWindow(window);
 			}
 
-			AKURun();
+			//AKURun();
+			AKUCreateWorld(new GameWorld());
         }
 
 		virtual void Load(Platform::String^ entryPoint)

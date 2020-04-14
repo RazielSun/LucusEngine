@@ -9,10 +9,7 @@
 #define _LUCUS_ENGINE_D3D12_COMPONENT_PROXY_H
 
 #include "LucusD3D12Prerequisites.h"
-#include "LucusComponentProxy.h"
-
-// #include <Metal/MTLBuffer.h>
-// #include <Metal/MTLRenderCommandEncoder.h>
+#include "LucusSceneComponentProxy.h"
 
 namespace LucusEngine
 {
@@ -21,7 +18,7 @@ namespace LucusEngine
 
 	struct D3D12Device;
     
-    class D3D12ComponentProxy : public ComponentProxy
+    class D3D12ComponentProxy : public SceneComponentProxy
     {
     public:
         D3D12ComponentProxy(D3D12Device* ownerDevice);
@@ -29,7 +26,7 @@ namespace LucusEngine
         
         virtual void CreateBuffers(Mesh* mesh) override;
 		virtual void CreateTexture(Image* image) override;
-        virtual void UpdateUniforms(const Uniforms& uniforms, const Transform& transform) override;
+        virtual void UpdateUniforms(const Uniforms& uniforms, SceneComponent* component) override;
         
 		void CreateBuffers(Mesh* mesh, Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList> commandList);
         void CreateTexture(Image* image, Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList> commandList);
@@ -45,11 +42,6 @@ namespace LucusEngine
         
     protected:
         D3D12Device* mOwnerDevice;
-        
-        // id<MTLBuffer> mVerticesBuf;
-        // id<MTLBuffer> mIndicesBuf;
-        // NSUInteger mIndicesCount;
-        // id<MTLBuffer> mUniforms;
 
         // App resources.
 	    Microsoft::WRL::ComPtr<ID3D12Resource>          mVertexBuffer = nullptr;

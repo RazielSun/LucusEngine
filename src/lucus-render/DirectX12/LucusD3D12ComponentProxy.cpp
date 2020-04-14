@@ -6,7 +6,7 @@
 //
 
 #include "LucusD3D12ComponentProxy.h"
-#include "LucusTransform.h"
+#include "LucusSceneComponent.h"
 #include "LucusMesh.h"
 #include "LucusImage.h"
 #include "LucusD3D12Device.h"
@@ -214,12 +214,12 @@ void D3D12ComponentProxy::CreateTexture(Image* image, Microsoft::WRL::ComPtr<ID3
     }
 }
 
-void D3D12ComponentProxy::UpdateUniforms(const Uniforms& uniforms, const Transform& transform)
+void D3D12ComponentProxy::UpdateUniforms(const Uniforms& uniforms, SceneComponent* component)
 {
 	Uniforms cUniforms;
 	memcpy(&cUniforms, &uniforms, sizeof(Uniforms));
     
-     cUniforms.MODEL_MATRIX = transform.GetModelMatrix().GetNative(); //XMMatrixMultiply
+     cUniforms.MODEL_MATRIX = component->GetModelMatrix().GetNative(); //XMMatrixMultiply
 	 // Need to be stored as CMXMatrix? or we can use our matrices and store data
 	 DirectX::XMMATRIX model = DirectX::XMLoadFloat4x4((const DirectX::XMFLOAT4X4*)(&cUniforms.MODEL_MATRIX));
 	 DirectX::XMMATRIX view = DirectX::XMLoadFloat4x4((const DirectX::XMFLOAT4X4*)(&cUniforms.VIEW_MATRIX));
