@@ -10,12 +10,12 @@
 
 using namespace LucusEngine;
 
-Memory::MemSet(void* ptr, int value, Size num)
+void Memory::MemSet(void* ptr, int value, size_t num)
 {
     memset(ptr, value, num);
 }
 
-Memory::MemCpy(void* destination, const void* source, Size num);
+void Memory::MemCpy(void* destination, const void* source, size_t num)
 {
     memcpy(destination, source, num);
 }

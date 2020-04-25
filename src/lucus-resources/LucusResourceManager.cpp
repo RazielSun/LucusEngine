@@ -8,6 +8,7 @@
 #include "tinyxml2.h"
 
 #include "LucusResourceManager.h"
+#include "LucusFileSystem.h"
 #include "LucusCore.h"
 
 using namespace tinyxml2;

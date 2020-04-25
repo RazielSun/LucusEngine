@@ -6,6 +6,8 @@
 //
 
 #include "LucusCore.h"
+#include "LucusFileSystem.h"
+#include "LucusMeshFormatManager.h"
 #include "LucusMesh.h"
 #include "LucusMeshFormat.h"
 

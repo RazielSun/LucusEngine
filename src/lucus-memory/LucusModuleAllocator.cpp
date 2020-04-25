@@ -11,10 +11,10 @@
 
 using namespace LucusEngine;
 
-ModuleAllocator::ModuleAllocator(Size size) : mMarker(0), mTotalSize(size)
+ModuleAllocator::ModuleAllocator(size_t size) : mMarker(0), mTotalSize(size)
 {
 	mBuffer = std::malloc(mTotalSize);
-	mBufferAddress = reinterpret_cast<PtrInt>(mBuffer);
+	mBufferAddress = reinterpret_cast<uintptr>(mBuffer);
 }
 
 ModuleAllocator::~ModuleAllocator()
@@ -22,20 +22,20 @@ ModuleAllocator::~ModuleAllocator()
 	std::free(mBuffer);
 }
 
-void* ModuleAllocator::Alloc(Size size, u8 alignment) 
+void* ModuleAllocator::Alloc(size_t size, u8 alignment)
 {
 	// Check Alignment
 	assert(alignment > 0 && alignment <= 128 && ((alignment & (alignment-1)) == 0));
 
 	// Code from Isetta Engine
-	PtrInt rawAddress = mBufferAddress + mMarker;
-	PtrInt misAlignment = rawAddress & (alignment - 1);
-	PtrDiff adjustment = alignment - misAlignment;
+	uintptr rawAddress = mBufferAddress + mMarker;
+	uintptr misAlignment = rawAddress & (alignment - 1);
+	sintptr adjustment = alignment - misAlignment;
 	// for the special case when misAlignment = 0
 	// make sure we don't shift the address by its alignment
 	adjustment = adjustment & (alignment - 1);
-	PtrInt alignedAddress = rawAddress + adjustment;
-	Size newMarker = mMarker + size + adjustment;
+	uintptr alignedAddress = rawAddress + adjustment;
+	size_t newMarker = mMarker + size + adjustment;
 
 	assert(newMarker <= mTotalSize);
 

@@ -10,6 +10,8 @@
 
 #include "host.h"
 #include "LucusCore.h"
+#include "LucusImageFormatManager.h"
+#include "LucusMeshFormatManager.h"
 
 #ifndef AKU_MESH_FBX
     #define AKU_MESH_FBX 1

@@ -11,7 +11,7 @@
 
 #include "LucusTypes.h"
 
-#define 10_MB (1024 * 1024 * 10)
+inline auto operator "" _MB(u64 const x) { return 1024 * 1024 * x; }
 
 namespace LucusEngine
 {
@@ -19,9 +19,9 @@ namespace LucusEngine
 	{
 		static const u8 ALIGNMENT = 16;
 
-		static void MemSet(void* ptr, int value, Size num);
+		static void MemSet(void* ptr, int value, size_t num);
 
-		static void MemCpy(void* destination, const void* source, Size num);
+		static void MemCpy(void* destination, const void* source, size_t num);
 	};
 }
 

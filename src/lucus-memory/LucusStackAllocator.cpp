@@ -7,14 +7,13 @@
 //
 
 #include "LucusStackAllocator.h"
-#include <assert.h>
 
 using namespace LucusEngine;
 
-StackAllocator::StackAllocator(Size size) : mMarker(0), mTotalSize(size)
+StackAllocator::StackAllocator(size_t size) : mMarker(0), mTotalSize(size)
 {
 	mBuffer = std::malloc(mTotalSize);
-	mBufferAddress = reinterpret_cast<PtrInt>(mBuffer);
+	mBufferAddress = reinterpret_cast<uintptr>(mBuffer);
 }
 
 StackAllocator::~StackAllocator()
@@ -22,7 +21,7 @@ StackAllocator::~StackAllocator()
 	std::free(mBuffer);
 }
 
-void* StackAllocator::Alloc(Size size, u8 alignment) 
+void* StackAllocator::Alloc(size_t size, u8 alignment) 
 {
 	// Check Alignment
 	assert(alignment > 0 && alignment <= 128 && ((alignment & (alignment-1)) == 0));

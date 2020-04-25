@@ -19,21 +19,21 @@ namespace LucusEngine
 	{
 	public:
 		StackAllocator() = delete;
-		explicit StackAllocator(Size size);
+		explicit StackAllocator(size_t size);
 		~StackAllocator();
 
 		template<typename T, typename... Args>
 		T* New(Args&&...);
 
-		void* Alloc(Size size, u8 alignment);
+		void* Alloc(size_t size, u8 alignment);
 
-		Size GetMarker() const { return mMarker; }
+		size_t GetMarker() const { return mMarker; }
 
 	protected:
-		Size mTotalSize;
-		Size mMarker; // top
+		size_t mTotalSize;
+		size_t mMarker; // top
 		void* mBuffer; // bottom
-		PtrInt mBufferAddress;
+		uintptr mBufferAddress;
 	};
 
 	template<typename T, typename... Args>

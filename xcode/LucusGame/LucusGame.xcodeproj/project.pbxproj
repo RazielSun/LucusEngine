@@ -37,7 +37,7 @@
 		7A884A492438E8C000EC2E74 /* LucusMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A884A422438E8C000EC2E74 /* LucusMatrix.cpp */; };
 		7A884A4C2438E8D500EC2E74 /* LucusSceneComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A884A4A2438E8D500EC2E74 /* LucusSceneComponent.cpp */; };
 		7A884A4D2438E8D500EC2E74 /* LucusSceneComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A884A4A2438E8D500EC2E74 /* LucusSceneComponent.cpp */; };
-		7A885DCF243B392600EC2E74 /* libtinyxml2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A885DAA243B37C000EC2E74 /* libtinyxml2.a */; };
+		7A885DCF243B392600EC2E74 /* libtinyxml2-osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A885DAA243B37C000EC2E74 /* libtinyxml2-osx.a */; };
 		7A885DD2243B8FF700EC2E74 /* LucusResourceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A885DD1243B8FF700EC2E74 /* LucusResourceManager.cpp */; };
 		7A885DD3243B8FF700EC2E74 /* LucusResourceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A885DD1243B8FF700EC2E74 /* LucusResourceManager.cpp */; };
 		7A885DD9243B900B00EC2E74 /* RotatedMeshComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A885DD6243B900A00EC2E74 /* RotatedMeshComponent.cpp */; };
@@ -48,6 +48,14 @@
 		7A885DE22443099900EC2E74 /* SpringArmComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A885DDF2443099800EC2E74 /* SpringArmComponent.cpp */; };
 		7A885DE52445043C00EC2E74 /* LucusRotator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A885DE42445043C00EC2E74 /* LucusRotator.cpp */; };
 		7A885DE62445043C00EC2E74 /* LucusRotator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A885DE42445043C00EC2E74 /* LucusRotator.cpp */; };
+		7A958AF82454D1B90074A438 /* LucusMemoryManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A958AEC2454D1B90074A438 /* LucusMemoryManager.cpp */; };
+		7A958AF92454D1B90074A438 /* LucusMemoryManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A958AEC2454D1B90074A438 /* LucusMemoryManager.cpp */; };
+		7A958AFA2454D1B90074A438 /* LucusStackAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A958AED2454D1B90074A438 /* LucusStackAllocator.cpp */; };
+		7A958AFB2454D1B90074A438 /* LucusStackAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A958AED2454D1B90074A438 /* LucusStackAllocator.cpp */; };
+		7A958AFC2454D1B90074A438 /* LucusMemory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A958AEE2454D1B90074A438 /* LucusMemory.cpp */; };
+		7A958AFD2454D1B90074A438 /* LucusMemory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A958AEE2454D1B90074A438 /* LucusMemory.cpp */; };
+		7A958AFE2454D1B90074A438 /* LucusModuleAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A958AEF2454D1B90074A438 /* LucusModuleAllocator.cpp */; };
+		7A958AFF2454D1B90074A438 /* LucusModuleAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A958AEF2454D1B90074A438 /* LucusModuleAllocator.cpp */; };
 		7AA498D1240249C1009C1ED7 /* libfbxsdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA498D0240249C0009C1ED7 /* libfbxsdk.a */; };
 		7AA498DC240458A3009C1ED7 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 7AA498DB240458A3009C1ED7 /* Assets */; };
 		7AA498DD240458A3009C1ED7 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 7AA498DB240458A3009C1ED7 /* Assets */; };
@@ -213,6 +221,14 @@
 		7A885DE02443099800EC2E74 /* SpringArmComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpringArmComponent.h; sourceTree = "<group>"; };
 		7A885DE32445043C00EC2E74 /* LucusRotator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusRotator.h; sourceTree = "<group>"; };
 		7A885DE42445043C00EC2E74 /* LucusRotator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LucusRotator.cpp; sourceTree = "<group>"; };
+		7A958AEC2454D1B90074A438 /* LucusMemoryManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LucusMemoryManager.cpp; sourceTree = "<group>"; };
+		7A958AED2454D1B90074A438 /* LucusStackAllocator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LucusStackAllocator.cpp; sourceTree = "<group>"; };
+		7A958AEE2454D1B90074A438 /* LucusMemory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LucusMemory.cpp; sourceTree = "<group>"; };
+		7A958AEF2454D1B90074A438 /* LucusModuleAllocator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LucusModuleAllocator.cpp; sourceTree = "<group>"; };
+		7A958AF02454D1B90074A438 /* LucusMemoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusMemoryManager.h; sourceTree = "<group>"; };
+		7A958AF12454D1B90074A438 /* LucusStackAllocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusStackAllocator.h; sourceTree = "<group>"; };
+		7A958AF22454D1B90074A438 /* LucusMemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusMemory.h; sourceTree = "<group>"; };
+		7A958AF32454D1B90074A438 /* LucusModuleAllocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusModuleAllocator.h; sourceTree = "<group>"; };
 		7AA498D0240249C0009C1ED7 /* libfbxsdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfbxsdk.a; path = "../../3rdparty/fbx-sdk-osx/lib/clang/debug/libfbxsdk.a"; sourceTree = "<group>"; };
 		7AA498D324027673009C1ED7 /* LucusUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LucusUtils.h; sourceTree = "<group>"; };
 		7AA498DB240458A3009C1ED7 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = Resources/Assets; sourceTree = "<group>"; };
@@ -295,7 +311,7 @@
 				7ADF915123E704DA0094C83D /* Metal.framework in Frameworks */,
 				7AB2AD7424275DE60008C88D /* libpng-osx.a in Frameworks */,
 				7ADF914523E6D36B0094C83D /* Cocoa.framework in Frameworks */,
-				7A885DCF243B392600EC2E74 /* libtinyxml2.a in Frameworks */,
+				7A885DCF243B392600EC2E74 /* libtinyxml2-osx.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +428,7 @@
 				7A0C0DC823F1E84200DE0B7D /* lucus-render */,
 				7A324B5D23F5D71A000C49DB /* lucus-sim */,
 				7AA499282416A2B3009C1ED7 /* lucus-math */,
+				7A958AEB2454D1B90074A438 /* lucus-memory */,
 				7AA499092416A2A6009C1ED7 /* lucus-resources */,
 				7A324B8B240134F1000C49DB /* lucus-mesh-fbx */,
 				7AB2AD6E24275C760008C88D /* lucus-image-png */,
@@ -426,7 +443,7 @@
 		7A885DA5243B37BF00EC2E74 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7A885DAA243B37C000EC2E74 /* libtinyxml2.a */,
+				7A885DAA243B37C000EC2E74 /* libtinyxml2-osx.a */,
 				7A885DCD243B38B500EC2E74 /* libtinyxml2-ios.a */,
 			);
 			name = Products;
@@ -444,6 +461,22 @@
 			);
 			name = src;
 			path = ../../game/src;
+			sourceTree = "<group>";
+		};
+		7A958AEB2454D1B90074A438 /* lucus-memory */ = {
+			isa = PBXGroup;
+			children = (
+				7A958AF22454D1B90074A438 /* LucusMemory.h */,
+				7A958AEE2454D1B90074A438 /* LucusMemory.cpp */,
+				7A958AF02454D1B90074A438 /* LucusMemoryManager.h */,
+				7A958AEC2454D1B90074A438 /* LucusMemoryManager.cpp */,
+				7A958AF12454D1B90074A438 /* LucusStackAllocator.h */,
+				7A958AED2454D1B90074A438 /* LucusStackAllocator.cpp */,
+				7A958AF32454D1B90074A438 /* LucusModuleAllocator.h */,
+				7A958AEF2454D1B90074A438 /* LucusModuleAllocator.cpp */,
+			);
+			name = "lucus-memory";
+			path = "../../src/lucus-memory";
 			sourceTree = "<group>";
 		};
 		7AA498D424027C38009C1ED7 /* Resources */ = {
@@ -690,10 +723,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		7A885DAA243B37C000EC2E74 /* libtinyxml2.a */ = {
+		7A885DAA243B37C000EC2E74 /* libtinyxml2-osx.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libtinyxml2.a;
+			path = "libtinyxml2-osx.a";
 			remoteRef = 7A885DA9243B37C000EC2E74 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -769,6 +802,7 @@
 				7AA498F42413BA7F009C1ED7 /* LucusWorld.cpp in Sources */,
 				7A0C0DCB23F1E84200DE0B7D /* LucusRenderSystem.cpp in Sources */,
 				7ADF914023E6D07A0094C83D /* main.mm in Sources */,
+				7A958AFC2454D1B90074A438 /* LucusMemory.cpp in Sources */,
 				7A324B7423FBBCDA000C49DB /* LucusMetalWindow.mm in Sources */,
 				7A324B7D23FFA976000C49DB /* LucusFileSystem.cpp in Sources */,
 				7AA498FE2413BAA0009C1ED7 /* LucusScene.cpp in Sources */,
@@ -789,6 +823,8 @@
 				7A0C0DE223F3CAB500DE0B7D /* LucusMetalView.mm in Sources */,
 				7AA498F22413BA7F009C1ED7 /* LucusActor.cpp in Sources */,
 				7AA498EA2413BA7F009C1ED7 /* LucusCameraComponent.cpp in Sources */,
+				7A958AF82454D1B90074A438 /* LucusMemoryManager.cpp in Sources */,
+				7A958AFE2454D1B90074A438 /* LucusModuleAllocator.cpp in Sources */,
 				7AA4991C2416A2A6009C1ED7 /* DefaultShader.metal in Sources */,
 				7AA4992B2416A2B3009C1ED7 /* LucusMath.cpp in Sources */,
 				7AA498F02413BA7F009C1ED7 /* LucusMeshComponent.cpp in Sources */,
@@ -800,6 +836,7 @@
 				7A885DD2243B8FF700EC2E74 /* LucusResourceManager.cpp in Sources */,
 				7A324B7823FBBCEA000C49DB /* LucusRenderWindow.cpp in Sources */,
 				7A324B7223FBBCDA000C49DB /* LucusMetalDevice.mm in Sources */,
+				7A958AFA2454D1B90074A438 /* LucusStackAllocator.cpp in Sources */,
 				7AA498EE2413BA7F009C1ED7 /* LucusComponent.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -819,6 +856,7 @@
 				7AA498F52413BA7F009C1ED7 /* LucusWorld.cpp in Sources */,
 				7A0C0DDD23F338BC00DE0B7D /* host.cpp in Sources */,
 				7A0C0DE123F3CAAF00DE0B7D /* LucusMetalView.mm in Sources */,
+				7A958AFD2454D1B90074A438 /* LucusMemory.cpp in Sources */,
 				7A324B7523FBBCDA000C49DB /* LucusMetalWindow.mm in Sources */,
 				7A324B7E23FFA976000C49DB /* LucusFileSystem.cpp in Sources */,
 				7AA498FF2413BAA0009C1ED7 /* LucusScene.cpp in Sources */,
@@ -839,6 +877,8 @@
 				7A0C0DC723F1E83600DE0B7D /* LucusCore.cpp in Sources */,
 				7AA498F32413BA7F009C1ED7 /* LucusActor.cpp in Sources */,
 				7AA498EB2413BA7F009C1ED7 /* LucusCameraComponent.cpp in Sources */,
+				7A958AF92454D1B90074A438 /* LucusMemoryManager.cpp in Sources */,
+				7A958AFF2454D1B90074A438 /* LucusModuleAllocator.cpp in Sources */,
 				7AA4991D2416A2A6009C1ED7 /* DefaultShader.metal in Sources */,
 				7AA4992C2416A2B3009C1ED7 /* LucusMath.cpp in Sources */,
 				7AA498F12413BA7F009C1ED7 /* LucusMeshComponent.cpp in Sources */,
@@ -850,6 +890,7 @@
 				7A885DD3243B8FF700EC2E74 /* LucusResourceManager.cpp in Sources */,
 				7A324B7923FBBCEA000C49DB /* LucusRenderWindow.cpp in Sources */,
 				7A324B7323FBBCDA000C49DB /* LucusMetalDevice.mm in Sources */,
+				7A958AFB2454D1B90074A438 /* LucusStackAllocator.cpp in Sources */,
 				7AA498EF2413BA7F009C1ED7 /* LucusComponent.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -884,7 +925,12 @@
 				);
 				MTL_HEADER_SEARCH_PATHS = "$PROJECT_DIR/../../src/lucus-render $PROJECT_DIR/../../src/lucus-sim $PROJECT_DIR/../../src/lucus-core";
 				MTL_PREPROCESSOR_DEFINITIONS = "TARGET_METAL TARGET_METAL_COMPILER";
-				OTHER_CFLAGS = "";
+				OTHER_CFLAGS = (
+					"-include",
+					"\"MacPlatform.h\"",
+					"-include",
+					"\"platforms.h\"",
+				);
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 			};
 			name = Debug;
@@ -903,7 +949,12 @@
 				);
 				MTL_HEADER_SEARCH_PATHS = "$PROJECT_DIR/../../src/lucus-render $PROJECT_DIR/../../src/lucus-sim $PROJECT_DIR/../../src/lucus-core";
 				MTL_PREPROCESSOR_DEFINITIONS = "TARGET_METAL TARGET_METAL_COMPILER";
-				OTHER_CFLAGS = "";
+				OTHER_CFLAGS = (
+					"-include",
+					"\"MacPlatform.h\"",
+					"-include",
+					"\"platforms.h\"",
+				);
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 			};
 			name = Release;
@@ -1119,10 +1170,7 @@
 				MTL_FAST_MATH = YES;
 				MTL_HEADER_SEARCH_PATHS = $inherited;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_CFLAGS = (
-					"-include",
-					"\"MacPlatform.h\"",
-				);
+				OTHER_CFLAGS = $inherited;
 				PRODUCT_BUNDLE_IDENTIFIER = org.razielsun.LucusGame;
 				PRODUCT_NAME = LucusGame;
 				SDKROOT = macosx;
@@ -1193,10 +1241,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				MTL_HEADER_SEARCH_PATHS = $inherited;
-				OTHER_CFLAGS = (
-					"-include",
-					"\"MacPlatform.h\"",
-				);
+				OTHER_CFLAGS = $inherited;
 				PRODUCT_BUNDLE_IDENTIFIER = org.razielsun.LucusGame;
 				PRODUCT_NAME = LucusGame;
 				SDKROOT = macosx;

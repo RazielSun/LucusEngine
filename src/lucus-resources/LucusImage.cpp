@@ -7,6 +7,8 @@
 //
 
 #include "LucusCore.h"
+#include "LucusFileSystem.h"
+#include "LucusImageFormatManager.h"
 #include "LucusImage.h"
 #include "LucusImageFormat.h"
 

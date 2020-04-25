@@ -62,8 +62,9 @@
 	#include <unistd.h>
 // #endif
 
-// #include <assert.h>
-//#include <ctype.h>
+#include <assert.h>
+#include <ctype.h>
+#include <stddef.h>
 // #include <errno.h>
 // #include <float.h>
 // #include <math.h>
@@ -78,7 +79,8 @@
 #ifdef __cplusplus
 	// #include <algorithm>
 	// #include <cstdio>
-	// #include <cstdlib>
+	#include <cstdlib>
+	#include <utility>
 	// #include <fstream>
 	// #include <map>
 	// #include <set>

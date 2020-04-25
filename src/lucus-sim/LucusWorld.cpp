@@ -7,6 +7,7 @@
 
 #include "LucusWorld.h"
 #include "LucusCore.h"
+#include "LucusResourceManager.h"
 #include "LucusRenderSystem.h"
 #include "LucusScene.h"
 #include "LucusActor.h"

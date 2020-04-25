@@ -12,7 +12,8 @@
 using namespace LucusEngine;
 
 MemoryManager::MemoryManager() :
-	modulesAllocator(10_MB)
+	moduleAllocator(10_MB),
+    stackAllocator(10_MB)
 {
 	//
 }
