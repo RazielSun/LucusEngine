@@ -6,11 +6,12 @@
 //
 
 #include "LucusMatrix.h"
+#include "LucusMemory.h"
 #include "LucusMath.h"
 #include "LucusVector.h"
 #include "LucusQuaternion.h"
-#include <cstring>
-#include <math.h>
+// #include <cstring>
+// #include <math.h>
 
 using namespace LucusEngine;
 
@@ -23,12 +24,14 @@ const FMatrix4x4 FMatrix4x4::Identity {
 
 FMatrix4x4::FMatrix4x4()
 {
-    memset(_m, 0, sizeof(_m));
+    // memset(_m, 0, sizeof(_m));
+    Memory::MemSet(_m, 0, sizeof(_m));
 }
 
 FMatrix4x4::FMatrix4x4(const FMatrix4x4& mtx)
 {
-    memcpy(_m, mtx._m, sizeof(_m));
+    // memcpy(_m, mtx._m, sizeof(_m));
+    Memory::MemCpy(_m, mtx._m, sizeof(_m));
 }
 
 FMatrix4x4::FMatrix4x4(const float array[])
@@ -114,7 +117,8 @@ void FMatrix4x4::RotateAround(const FVector3& axis, float rad)
     float y = N.y;
     float z = N.z;
 
-    memset(_m, 0, sizeof(_m));
+    // memset(_m, 0, sizeof(_m));
+    Memory::MemSet(_m, 0, sizeof(_m));
 
     m[0][0] = x * x * CI + C;
     m[0][1] = x * y * CI - z * S;

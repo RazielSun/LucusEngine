@@ -10,13 +10,13 @@
 #include "LucusTypes.h"
 #include "LucusSingleton.h"
 
-#include "LucusFileSystem.h"
-#include "LucusResourceManager.h"
-#include "LucusImageFormatManager.h"
-#include "LucusMeshFormatManager.h"
-
 namespace LucusEngine
 {
+    class MemoryManager;
+    class FileSystem;
+    class ResourceManager;
+    class ImageFormatManager;
+    class MeshFormatManager;
     class World;
     class RenderSystem;
     class TimeManager;
@@ -43,6 +43,7 @@ namespace LucusEngine
         static Core& Get();
         static Core* GetPtr();
         
+        static MemoryManager* GetMemoryManager();
         static FileSystem* GetFileSystem();
         static ResourceManager* GetResourceMgr();
         static ImageFormatManager* GetImageFormatMgr();
@@ -52,14 +53,16 @@ namespace LucusEngine
 
 	protected:
         bool mIsActive = false;
-		
-        RenderSystem* mActiveRenderSystem;
+
+        MemoryManager* mMemoryManager;
         
         FileSystem* mFileSystem;
         ResourceManager* mResourceManager;
         ImageFormatManager* mImageFormatManager;
         MeshFormatManager* mMeshFormatManager;
         TimeManager* mTimeManager;
+
+        RenderSystem* mActiveRenderSystem;
         World* mWorld;
         
     protected:

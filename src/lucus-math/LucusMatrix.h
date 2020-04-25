@@ -42,7 +42,7 @@ namespace LucusEngine
 	                float m41, float m42, float m43, float m44
 	               );
 	    
-	 #if defined(TARGET_METAL)
+ #if defined(TARGET_METAL)
 	    matrix_float4x4 GetNative() const {
 	        // for sid_matrix float4x4 -> float4 columns[4]
 	        return (matrix_float4x4) {{
@@ -53,7 +53,7 @@ namespace LucusEngine
 	        }};
 	        
 	    }
-	#elif defined(TARGET_DX12)
+#elif defined(TARGET_DX12)
 		DirectX::XMFLOAT4X4 GetNative() const {
 			return { 
 				m[0][0], m[0][1], m[0][2], m[0][3],
@@ -62,7 +62,7 @@ namespace LucusEngine
 				m[3][0], m[3][1], m[3][2], m[3][3]
 			};
 		}
-	#endif
+#endif
 	    
 	    static FMatrix4x4 RightHandProjectionMatrix(float aspect, float nearZ, float farZ, float fov);
 	    

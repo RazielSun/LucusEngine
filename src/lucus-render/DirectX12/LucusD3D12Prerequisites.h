@@ -29,7 +29,7 @@ using Microsoft::WRL::ComPtr;
 #include <algorithm>
 #include <exception>
 #include <fstream>
-#include <memory>
+// #include <memory>
 #include <stdexcept>
 #include <vector>
 

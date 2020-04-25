@@ -1,8 +1,15 @@
 
 #include "LucusCore.h"
+#include "LucusMemoryManager.h"
+
+#include "LucusFileSystem.h"
+#include "LucusResourceManager.h"
+#include "LucusImageFormatManager.h"
+#include "LucusMeshFormatManager.h"
+#include "LucusTimeManager.h"
+
 #include "LucusRenderSystem.h"
 #include "LucusWorld.h"
-#include "LucusTimeManager.h"
 
 using namespace LucusEngine;
 
@@ -31,20 +38,34 @@ Core::~Core()
 
 void Core::LoadModules()
 {
-    mFileSystem = new FileSystem();
-    mResourceManager = new ResourceManager();
-    mImageFormatManager = new ImageFormatManager();
-    mMeshFormatManager = new MeshFormatManager();
-    mTimeManager = new TimeManager();
+    mMemoryManager = new MemoryManager();
+
+    mFileSystem = mMemoryManager->NewOnModule<FileSystem>();
+    mResourceManager = mMemoryManager->NewOnModule<ResourceManager>();
+    mImageFormatManager = mMemoryManager->NewOnModule<ImageFormatManager>();
+    mMeshFormatManager = mMemoryManager->NewOnModule<MeshFormatManager>();
+    mTimeManager = mMemoryManager->NewOnModule<TimeManager>();
+    // mFileSystem = new FileSystem();
+    // mResourceManager = new ResourceManager();
+    // mImageFormatManager = new ImageFormatManager();
+    // mMeshFormatManager = new MeshFormatManager();
+    // mTimeManager = new TimeManager();
 }
 
 void Core::UnloadModules()
 {
-    delete mFileSystem;
-    delete mResourceManager;
-    delete mImageFormatManager;
-    delete mMeshFormatManager;
-    delete mTimeManager;
+    mFileSystem->~FileSystem();
+    mResourceManager->~ResourceManager();
+    mImageFormatManager->~ImageFormatManager();
+    mMeshFormatManager->~MeshFormatManager();
+    mTimeManager->~TimeManager();
+    // delete mFileSystem;
+    // delete mResourceManager;
+    // delete mImageFormatManager;
+    // delete mMeshFormatManager;
+    // delete mTimeManager;
+
+    delete mMemoryManager;
 }
 
 Core& Core::Get()

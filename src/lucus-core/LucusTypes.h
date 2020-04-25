@@ -8,6 +8,9 @@
 #ifndef _LUCUS_ENGINE_TYPES_H
 #define _LUCUS_ENGINE_TYPES_H
 
+using Size = size_t;
+using PtrInt = uintptr_t;
+
 typedef const char      cc8;
 
 typedef unsigned char   u8;
