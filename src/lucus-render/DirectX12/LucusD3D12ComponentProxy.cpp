@@ -11,8 +11,6 @@
 #include "LucusImage.h"
 #include "LucusD3D12Device.h"
 
-#include <wchar.h>
-
 using namespace DX;
 
 using namespace LucusEngine;

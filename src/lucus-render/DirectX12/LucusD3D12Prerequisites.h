@@ -12,9 +12,11 @@
 
 #include <wrl.h>
 
+#include <wchar.h>
+
 using Microsoft::WRL::ComPtr;
 
-#include <dxgi1_4.h>
+#include <dxgi1_6.h>
 #include <d3d12.h>
 // #include <DirectXColors.h>
 
@@ -26,14 +28,8 @@ using Microsoft::WRL::ComPtr;
  #include <dxgidebug.h>
  #endif
 
-#include <algorithm>
-#include <exception>
-#include <fstream>
-// #include <memory>
+#include <memory>
 #include <stdexcept>
-#include <vector>
-
-#include <stdio.h>
 
 #include <stdint.h>
 
@@ -41,9 +37,7 @@ using Microsoft::WRL::ComPtr;
 
 // Use triple buffering.
 // TODO: move from this
-static const u32 c_frameCount = 3;	
-
-#include "LucusMath.h"
+static const u32 c_frameCount = 3;
 
 namespace DX
 {

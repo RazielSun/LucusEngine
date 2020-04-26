@@ -11,8 +11,8 @@
 #include "LucusMeshFormat.h"
 #include "LucusVertexTypes.h"
 #include "LucusMesh.h"
+
 #include <fbxsdk.h>
-#include <vector>
 
 namespace LucusEngine
 {

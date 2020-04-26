@@ -10,7 +10,6 @@
 
 #include "LucusTypes.h"
 #include "LucusVector.h"
-#include <unordered_map>
 
 namespace LucusEngine
 {

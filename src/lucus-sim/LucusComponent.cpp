@@ -7,8 +7,6 @@
 
 #include "LucusComponent.h"
 
-#include <string.h>
-
 using namespace LucusEngine;
 
 Component::Component()

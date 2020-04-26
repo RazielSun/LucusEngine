@@ -9,8 +9,6 @@
 #ifndef _LUCUS_ENGINE_IMAGE_FORMAT_TGA_H
 #define _LUCUS_ENGINE_IMAGE_FORMAT_TGA_H
 
-#include <fstream>
-
 #include "LucusImageFormat.h"
 
 namespace LucusEngine

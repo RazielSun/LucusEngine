@@ -57,37 +57,39 @@
 
 // #endif
 
-// #ifndef MOAI_OS_WINDOWS
-	// #define MOAI_HAS_UNISTD
+#ifndef LUCUS_ENGINE_OS_WINDOWS
+	#define LUCUS_ENGINE_HAS_UNISTD
 	#include <unistd.h>
-// #endif
+#endif
 
 #include <assert.h>
 #include <ctype.h>
 #include <stddef.h>
+#include <math.h>
 // #include <errno.h>
 // #include <float.h>
-// #include <math.h>
 // #include <stdarg.h>
-// #include <stdio.h>
+#include <stdio.h>
 // #include <stdlib.h>
-// #include <string.h>
+#include <string.h>
 // #include <time.h>
 // #include <signal.h>
 // #include <setjmp.h>
 
 #ifdef __cplusplus
-	// #include <algorithm>
+	#include <algorithm>
 	// #include <cstdio>
 	#include <cstdlib>
 	#include <utility>
-	// #include <fstream>
+	#include <fstream>
+	#include <exception>
 	// #include <map>
+	#include <unordered_map>
 	// #include <set>
-	// #include <string>
- 	// #include <iostream>
+	#include <string>
+ 	#include <iostream>
 	// #include <sstream>
-	// #include <vector>
+	#include <vector>
 #endif
 
 #endif	/* _LUCUS_ENGINE_PLATFORMS_H */

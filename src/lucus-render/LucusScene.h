@@ -9,7 +9,6 @@
 #define _LUCUS_ENGINE_SCENE_H
 
 #include "LucusTypes.h"
-#include <vector>
 
 namespace LucusEngine
 {

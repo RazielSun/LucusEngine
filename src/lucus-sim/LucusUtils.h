@@ -9,7 +9,6 @@
 #define _LUCUS_ENGINE_UTILS_H
 
 #include "LucusTypes.h"
-#include <algorithm>
 #include <cctype>
 
 namespace LucusEngine

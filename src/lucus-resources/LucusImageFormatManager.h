@@ -11,7 +11,6 @@
 #include "LucusTypes.h"
 #include "LucusUtils.h"
 #include "LucusImageFormat.h"
-#include <unordered_map>
 
 namespace LucusEngine
 {

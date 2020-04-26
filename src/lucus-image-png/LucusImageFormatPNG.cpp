@@ -6,16 +6,10 @@
 //  Copyright © 2020 Alexander Kardakov. All rights reserved.
 //
 
-
-
-
-
 #include "LucusImageFormatPNG.h"
 #include "LucusImage.h"
 
 #include <png.h>
-
-#include <iostream>
 
 using namespace LucusEngine;
 

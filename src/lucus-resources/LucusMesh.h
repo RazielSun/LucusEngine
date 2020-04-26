@@ -9,7 +9,6 @@
 #define _LUCUS_ENGINE_MESH_H
 
 #include "LucusVertexTypes.h"
-#include <vector>
 
 namespace LucusEngine
 {

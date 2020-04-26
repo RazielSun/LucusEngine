@@ -9,7 +9,6 @@
 #define _LUCUS_ENGINE_WORLD_H
 
 #include "LucusTypes.h"
-#include <vector>
 
 namespace tinyxml2
 {

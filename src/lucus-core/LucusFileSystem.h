@@ -9,8 +9,6 @@
 #define _LUCUS_ENGINE_FILESYSTEM_H
 
 #include "LucusTypes.h"
-#include <vector>
-#include <string>
 
 namespace LucusEngine
 {

@@ -8,7 +8,6 @@
 #ifndef _LUCUS_ENGINE_WINDOW_H
 #define _LUCUS_ENGINE_WINDOW_H
 
-#include <vector>
 #include "LucusTypes.h"
 #include "LucusViewport.h"
 

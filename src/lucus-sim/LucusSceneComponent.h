@@ -13,7 +13,6 @@
 #include "LucusQuaternion.h"
 #include "LucusMatrix.h"
 #include "LucusTransform.h"
-#include <vector>
 
 namespace LucusEngine
 {

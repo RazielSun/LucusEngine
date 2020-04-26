@@ -6,8 +6,6 @@
 //  Copyright © 2020 Alexander Kardakov. All rights reserved.
 //
 
-#include <iostream>
-
 #include "LucusImageFormatTGA.h"
 #include "LucusImage.h"
 

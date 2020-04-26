@@ -7,12 +7,11 @@
 //
 
 #include "LucusCore.h"
+#include "LucusMemory.h"
 #include "LucusFileSystem.h"
 #include "LucusImageFormatManager.h"
 #include "LucusImage.h"
 #include "LucusImageFormat.h"
-
-#include <string> // for memcpy char
 
 using namespace LucusEngine;
 
@@ -51,7 +50,7 @@ void Image::Load24(u32 width, u32 height, char* pixelData, u32 pixelDataSize)
     mWidth = width;
     mHeight = height;
     u32 newPixelDataSize = width * height * 4;
-    mBitmap = new char[newPixelDataSize];
+    mBitmap = new char[newPixelDataSize]; // todo: memory leak if bitmap is created
     
     for (int j = 0; j < height; ++j)
     {
@@ -74,7 +73,7 @@ void Image::LoadIndexed(u32 width, u32 height, char* indexes, u32* pallete, u32 
     mHeight = height;
     
     u32 pixelDataSize = width * height * 4;
-    mBitmap = new char[pixelDataSize];
+    mBitmap = new char[pixelDataSize]; // todo: memory leak if bitmap is created
     
     for (int j = 0; j < height; ++j)
     {
@@ -93,6 +92,6 @@ void Image::LoadIndexed(u32 width, u32 height, char* indexes, u32* pallete, u32 
 
 void Image::ReadData(char* pixelData, u32 pixelDataSize)
 {
-    mBitmap = new char[pixelDataSize];
-    memcpy(mBitmap, pixelData, pixelDataSize);
+    mBitmap = new char[pixelDataSize]; // todo: memory leak if bitmap is created
+    Memory::MemCpy(mBitmap, pixelData, pixelDataSize);
 }

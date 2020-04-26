@@ -11,12 +11,11 @@
 #include "LucusScene.h"
 
 // temp
+#include "Metal/MTLVertexDescriptor.h"
 
 #include "LucusMesh.h"
 #include "LucusCameraComponent.h"
 #include "LucusMeshComponent.h"
-#include "Metal/MTLVertexDescriptor.h"
-
 
 using namespace LucusEngine;
 

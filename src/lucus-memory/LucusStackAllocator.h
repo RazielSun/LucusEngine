@@ -26,6 +26,7 @@ namespace LucusEngine
 		T* New(Args&&...);
 
 		void* Alloc(size_t size, u8 alignment);
+		void Free(size_t marker);
 
 		size_t GetMarker() const { return mMarker; }
 

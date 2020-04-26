@@ -9,8 +9,6 @@
 #ifndef _LUCUS_ENGINE_IMAGE_FORMAT_PNG_H
 #define _LUCUS_ENGINE_IMAGE_FORMAT_PNG_H
 
-#include <fstream>
-
 #include "LucusImageFormat.h"
 
 namespace LucusEngine

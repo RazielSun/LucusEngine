@@ -13,9 +13,6 @@
 #include "LucusD3D12Device.h"
 #include "LucusD3D12Window.h"
 
-// temp
-// #include "LucusMesh.h"
-
 namespace LucusEngine
 {
     class D3D12RenderSystem: public RenderSystem
@@ -70,27 +67,6 @@ namespace LucusEngine
 		HANDLE											mFenceEvent;
 
 		bool											mReady;
-
-
-
-		float radians;
-
-		
-		// TEST CB
-		//Microsoft::WRL::ComPtr<ID3D12Resource>          mConstantBuffer = nullptr;
-		//u8*												mMappedDataAddress = nullptr;
-		//bool mCBVready = false;
-
-        // // App resources.
-	    // Microsoft::WRL::ComPtr<ID3D12Resource>          mVertexBuffer;
-		// D3D12_VERTEX_BUFFER_VIEW                        mVertexBufferView;
-		// Microsoft::WRL::ComPtr<ID3D12Resource>          mIndexBuffer;
-		// D3D12_INDEX_BUFFER_VIEW							mIndexBufferView;
-		// u32												mIndexCount;
-
-		// App temp resources
-		// bool mResourceCreated;
-		// Mesh* mMesh;
 	    
     };
 }
