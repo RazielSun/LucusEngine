@@ -10,6 +10,9 @@
 
 #include "LucusTypes.h"
 
+#include "LucusCore.h"
+#include "LucusMemoryManager.h"
+
 namespace LucusEngine
 {
     class RenderSystem;
@@ -30,5 +33,11 @@ void AKUSetRenderSystem(LucusEngine::RenderSystem* system);
 void AKUChangeViewportSize(u32 width, u32 height);
 
 void AKUChangeWorkingDir(char const* path);
+
+template<class T>
+T* AKUCreateModule()
+{
+	return LucusEngine::Core::GetMemoryManager()->NewOnModule<T>();
+}
 
 #endif /* _LUCUS_ENGINE_HOST_H */

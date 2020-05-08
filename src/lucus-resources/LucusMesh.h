@@ -9,6 +9,8 @@
 #define _LUCUS_ENGINE_MESH_H
 
 #include "LucusVertexTypes.h"
+#include "LucusResource.h"
+#include "LucusPtr.h"
 
 namespace LucusEngine
 {
@@ -21,11 +23,8 @@ namespace LucusEngine
     typedef std::vector<TriangleIndex> VectorIndices;
     typedef std::vector<SimpleVertex> VectorVertices;
 
-    class Mesh
-    {
-        VectorVertices mVertices;
-        VectorIndices mIndices;
-        
+    class Mesh : public Resource
+    {   
     public:
         Mesh();
         virtual ~Mesh();
@@ -36,7 +35,13 @@ namespace LucusEngine
         
         VectorIndices* GetIndices() { return &mIndices; }
         VectorVertices* GetVertices() { return &mVertices; }
+
+    private:
+        VectorVertices mVertices;
+        VectorIndices mIndices;
     };
+
+    typedef Ptr<Mesh> MeshPtr;
 }
 
 #endif /* _LUCUS_ENGINE_MESH_H */

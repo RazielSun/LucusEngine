@@ -69,7 +69,7 @@ void MeshComponent::SetMesh(cc8* meshName)
         mMesh = nullptr;
     }
     
-    mMesh = new Mesh();
+    mMesh = MeshPtr(new Mesh());
     mMesh->Load(meshName);
 }
 
@@ -81,16 +81,16 @@ void MeshComponent::SetImage(cc8* imageName)
         mImage = nullptr;
     }
     
-    mImage = new Image();
+    mImage = ImagePtr(new Image());
     mImage->Load(imageName);
 }
 
 Mesh* MeshComponent::GetMesh()
 {
-    return mMesh;
+    return mMesh.Get();
 }
 
 Image* MeshComponent::GetImage()
 {
-    return mImage;
+    return mImage.Get();
 }

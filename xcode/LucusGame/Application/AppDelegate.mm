@@ -90,7 +90,7 @@ static AppDelegate* mInstance = nil;
     [Window makeKeyAndOrderFront:self];
     
     // Create Metal Render System
-    LucusEngine::MetalRenderSystem* renderSystem = new LucusEngine::MetalRenderSystem();
+    LucusEngine::MetalRenderSystem* renderSystem = AKUCreateModule<LucusEngine::MetalRenderSystem>();
     
     // Create Window
     LucusEngine::RenderWindow* window = renderSystem->CreateRenderWindow((u32)width, (u32)height);
@@ -104,7 +104,7 @@ static AppDelegate* mInstance = nil;
     
     // Start Loop
 //    AKUStartCoreLoop();
-    AKUCreateWorld(new GameWorld());
+    AKUCreateWorld(AKUCreateModule<GameWorld>());
 //    AKURun();
 }
 

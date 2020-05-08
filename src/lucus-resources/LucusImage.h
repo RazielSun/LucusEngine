@@ -10,10 +10,12 @@
 #define _LUCUS_ENGINE_IMAGE_H
 
 #include "LucusTypes.h"
+#include "LucusResource.h"
+#include "LucusPtr.h"
 
 namespace LucusEngine
 {
-    class Image
+    class Image : public Resource
     {
     protected:
         u32 mWidth;
@@ -39,6 +41,8 @@ namespace LucusEngine
     protected:
         void ReadData(char* pixelData, u32 pixelDataSize);
     };
+
+    typedef Ptr<Image> ImagePtr;
 }
 
 #endif /* _LUCUS_ENGINE_IMAGE_H */

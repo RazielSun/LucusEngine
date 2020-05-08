@@ -6,9 +6,8 @@
 //
 
 #include "host.h"
-#include "LucusCore.h"
 #include "LucusFileSystem.h"
-#include "LucusWorld.h"
+// #include "LucusWorld.h"
 
 void AKUCoreCreate()
 {

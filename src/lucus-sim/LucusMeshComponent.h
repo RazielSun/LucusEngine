@@ -32,8 +32,8 @@ namespace LucusEngine
         Image* GetImage();
 
     protected:
-    	Mesh* mMesh;
-        Image* mImage;
+    	MeshPtr mMesh;
+        ImagePtr mImage;
     };
 }
 
