@@ -78,6 +78,11 @@ Core* Core::GetPtr()
     return mInstance;
 }
 
+MemoryManager* Core::GetMemoryManager()
+{
+    return Core::Get().mMemoryManager;
+}
+
 FileSystem* Core::GetFileSystem()
 {
     return Core::Get().mFileSystem;

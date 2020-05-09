@@ -12,7 +12,7 @@ using namespace LucusEngine;
 
 Resource::~Resource()
 {
-	std::assert(counter == 0);
+	assert(counter == 0);
 }
 
 void Resource::AddRef()

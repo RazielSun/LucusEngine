@@ -6,8 +6,7 @@
 //
 
 #include "LucusMeshComponent.h"
-#include "LucusMesh.h"
-#include "LucusImage.h"
+
 
 #include "tinyxml2.h"
 
@@ -30,17 +29,18 @@ MeshComponent::MeshComponent(cc8* meshName, cc8* imageName) : MeshComponent(mesh
 
 MeshComponent::~MeshComponent()
 {
-    if (nullptr != mMesh)
-    {
-        delete mMesh;
-        mMesh = nullptr;
-    }
-    
-    if (nullptr != mImage)
-    {
-        delete mImage;
-        mImage = nullptr;
-    }
+// Use Smart Pointers for deleting resources
+//    if (nullptr != mMesh)
+//    {
+//        delete mMesh;
+//        mMesh = nullptr;
+//    }
+//
+//    if (nullptr != mImage)
+//    {
+//        delete mImage;
+//        mImage = nullptr;
+//    }
 }
 
 void MeshComponent::Init(const tinyxml2::XMLElement* data)
@@ -63,11 +63,11 @@ void MeshComponent::Init(const tinyxml2::XMLElement* data)
 
 void MeshComponent::SetMesh(cc8* meshName)
 {
-    if (nullptr != mMesh)
-    {
-        delete mMesh;
-        mMesh = nullptr;
-    }
+//    if (nullptr != mMesh)
+//    {
+//        delete mMesh;
+//        mMesh = nullptr;
+//    }
     
     mMesh = MeshPtr(new Mesh());
     mMesh->Load(meshName);
@@ -75,11 +75,11 @@ void MeshComponent::SetMesh(cc8* meshName)
 
 void MeshComponent::SetImage(cc8* imageName)
 {
-    if (nullptr != mImage)
-    {
-        delete mImage;
-        mImage = nullptr;
-    }
+//    if (nullptr != mImage)
+//    {
+//        delete mImage;
+//        mImage = nullptr;
+//    }
     
     mImage = ImagePtr(new Image());
     mImage->Load(imageName);

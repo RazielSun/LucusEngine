@@ -9,12 +9,11 @@
 #define _LUCUS_ENGINE_MESH_COMPONENT_H
 
 #include "LucusSceneComponent.h"
+#include "LucusMesh.h"
+#include "LucusImage.h"
 
 namespace LucusEngine
 {
-	class Mesh;
-    class Image;
-
     class MeshComponent : public SceneComponent
     {
     public:
