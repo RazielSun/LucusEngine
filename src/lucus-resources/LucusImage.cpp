@@ -6,12 +6,14 @@
 //  Copyright © 2020 Alexander Kardakov. All rights reserved.
 //
 
-#include "LucusCore.h"
-#include "LucusMemory.h"
-#include "LucusFileSystem.h"
-#include "LucusImageFormatManager.h"
 #include "LucusImage.h"
-#include "LucusImageFormat.h"
+
+#include "LucusMemory.h"
+
+// #include "LucusCore.h"
+// #include "LucusFileSystem.h"
+// #include "LucusImageFormatManager.h"
+// #include "LucusImageFormat.h"
 
 using namespace LucusEngine;
 
@@ -28,15 +30,15 @@ Image::Image(u32 width, u32 height, char* pixelData, u32 pixelDataSize) : mWidth
     ReadData(pixelData, pixelDataSize);
 }
 
-void Image::Load( cc8* name )
-{
-    std::string formatName = Core::GetFileSystem()->GetFileFormat( name );
-    ImageFormat* imageFormat = Core::GetImageFormatMgr()->FindFormat( formatName.c_str() );
-    if (nullptr != imageFormat)
-    {
-        imageFormat->LoadImage(this, Core::GetFileSystem()->GetAssetPath(name).c_str());
-    }
-}
+// void Image::Load( cc8* name )
+// {
+//     std::string formatName = Core::GetFileSystem()->GetFileFormat( name );
+//     ImageFormat* imageFormat = Core::GetImageFormatMgr()->FindFormat( formatName.c_str() );
+//     if (nullptr != imageFormat)
+//     {
+//         imageFormat->LoadImage(this, Core::GetFileSystem()->GetAssetPath(name).c_str());
+//     }
+// }
 
 void Image::Load(u32 width, u32 height, char* pixelData, u32 pixelDataSize)
 {

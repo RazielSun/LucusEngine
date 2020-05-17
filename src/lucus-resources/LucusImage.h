@@ -28,7 +28,7 @@ namespace LucusEngine
         
         Image(u32 width, u32 height, char* pixelData, u32 pixelDataSize);
         
-        void Load( cc8* name );
+        // void Load( cc8* name );
         void Load(u32 width, u32 height, char* pixelData, u32 pixelDataSize);
         void Load24(u32 width, u32 height, char* pixelData, u32 pixelDataSize);
         void LoadIndexed(u32 width, u32 height, char* indexes, u32* pallete, u32 palleteSize);

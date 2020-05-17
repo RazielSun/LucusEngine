@@ -6,7 +6,8 @@
 //
 
 #include "LucusMeshComponent.h"
-
+#include "LucusCore.h"
+#include "LucusResourceManager.h"
 
 #include "tinyxml2.h"
 
@@ -69,8 +70,14 @@ void MeshComponent::SetMesh(cc8* meshName)
 //        mMesh = nullptr;
 //    }
     
-    mMesh = MeshPtr(new Mesh());
-    mMesh->Load(meshName);
+    // mMesh = MeshPtr(new Mesh());
+    // mMesh->Load(meshName);
+
+    ResourceManager* mgr = Core::GetResourceMgr();
+    if (nullptr != mgr)
+    {
+        mMesh = mgr->GetMesh(meshName);
+    }
 }
 
 void MeshComponent::SetImage(cc8* imageName)
@@ -81,8 +88,14 @@ void MeshComponent::SetImage(cc8* imageName)
 //        mImage = nullptr;
 //    }
     
-    mImage = ImagePtr(new Image());
-    mImage->Load(imageName);
+    // mImage = ImagePtr(new Image());
+    // mImage->Load(imageName);
+
+    ResourceManager* mgr = Core::GetResourceMgr();
+    if (nullptr != mgr)
+    {
+        mImage = mgr->GetImage(imageName);
+    }
 }
 
 Mesh* MeshComponent::GetMesh()

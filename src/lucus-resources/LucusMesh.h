@@ -29,7 +29,7 @@ namespace LucusEngine
         Mesh();
         virtual ~Mesh();
         
-        void Load( cc8* name );
+        // void Load( cc8* name );
         void SetIndices(VectorIndices& indices);
         void SetVertices(VectorVertices& vertices);
         

@@ -45,6 +45,22 @@ namespace LucusEngine
             }
             return hash;
         }
+
+        // from Internet
+        static u32 HashString( cc8* str )
+        {
+            u32 hash = 0x811c9dc5;
+            u32 prime = 0x1000193;
+
+            for(size_t i = 0; i < strlen(str); ++i)
+            {
+                u8 value = str[i];
+                hash = hash ^ value;
+                hash *= prime;
+            }
+
+            return hash;
+        }
     };
 }
 
