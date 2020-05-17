@@ -57,6 +57,9 @@
     <Filter Include="Assets\Levels">
       <UniqueIdentifier>{c123cd5d-995b-4167-b26c-3e01f038dd67}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lucus-memory">
+      <UniqueIdentifier>{708a13ae-1a07-41e4-89f3-4561731ad1e9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\lucus-core\host.cpp">
@@ -173,6 +176,24 @@
     </ClCompile>
     <ClCompile Include="..\..\..\src\lucus-render\LucusSceneComponentProxy.cpp">
       <Filter>lucus-render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-resources\LucusResource.cpp">
+      <Filter>lucus-resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-memory\LucusMemory.cpp">
+      <Filter>lucus-memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-memory\LucusMemoryManager.cpp">
+      <Filter>lucus-memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-memory\LucusModuleAllocator.cpp">
+      <Filter>lucus-memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-memory\LucusPtr.cpp">
+      <Filter>lucus-memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-memory\LucusStackAllocator.cpp">
+      <Filter>lucus-memory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -313,6 +334,24 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\lucus-render\LucusSceneComponentProxy.h">
       <Filter>lucus-render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-resources\LucusResource.h">
+      <Filter>lucus-resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-memory\LucusMemory.h">
+      <Filter>lucus-memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-memory\LucusMemoryManager.h">
+      <Filter>lucus-memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-memory\LucusModuleAllocator.h">
+      <Filter>lucus-memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-memory\LucusPtr.h">
+      <Filter>lucus-memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-memory\LucusStackAllocator.h">
+      <Filter>lucus-memory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

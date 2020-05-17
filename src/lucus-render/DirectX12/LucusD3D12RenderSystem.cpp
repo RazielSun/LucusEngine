@@ -4,6 +4,7 @@
 #include "LucusD3D12ComponentProxy.h"
 #include "LucusScene.h"
 #include "LucusCore.h"
+#include "LucusFileSystem.h"
 
 #include "LucusCameraComponent.h"
 #include "LucusMeshComponent.h"
@@ -15,7 +16,8 @@ using namespace LucusEngine;
 D3D12RenderSystem::D3D12RenderSystem() :
     mDevice(this),
     mCurrentFrame(0),
-	mReady(false)
+	mReady(false),
+	mWindow(nullptr)
 {
 }
 

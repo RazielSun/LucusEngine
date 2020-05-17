@@ -158,12 +158,12 @@
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>
       </PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\tinyxml2;$(ProjectDir)..\..\..\3rdparty\libpng;$(ProjectDir)..\..\..\3rdparty\zlib;$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-image-tga;$(ProjectDir)..\..\..\src\lucus-image-png;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-resources;$(ProjectDir)..\..\..\src\lucus-math;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir)..\..\..\src\lucus-common;$(ProjectDir)..\..\..\game\src;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\tinyxml2;$(ProjectDir)..\..\..\3rdparty\libpng;$(ProjectDir)..\..\..\3rdparty\zlib;$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-image-tga;$(ProjectDir)..\..\..\src\lucus-image-png;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-resources;$(ProjectDir)..\..\..\src\lucus-memory;$(ProjectDir)..\..\..\src\lucus-math;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir)..\..\..\src\lucus-common;$(ProjectDir)..\..\..\game\src;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <PreprocessorDefinitions>TARGET_DX12;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TARGET_DX12;LUCUS_ENGINE_OS_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <LanguageStandard>stdcpp14</LanguageStandard>
-      <ForcedIncludeFiles>windows/WindowsPlatform.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles>platforms.h;windows/WindowsPlatform.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
@@ -178,12 +178,12 @@
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>
       </PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\tinyxml2;$(ProjectDir)..\..\..\3rdparty\libpng;$(ProjectDir)..\..\..\3rdparty\zlib;$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-image-tga;$(ProjectDir)..\..\..\src\lucus-image-png;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-resources;$(ProjectDir)..\..\..\src\lucus-math;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir)..\..\..\src\lucus-common;$(ProjectDir)..\..\..\game\src;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\tinyxml2;$(ProjectDir)..\..\..\3rdparty\libpng;$(ProjectDir)..\..\..\3rdparty\zlib;$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-image-tga;$(ProjectDir)..\..\..\src\lucus-image-png;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-resources;$(ProjectDir)..\..\..\src\lucus-memory;$(ProjectDir)..\..\..\src\lucus-math;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir)..\..\..\src\lucus-common;$(ProjectDir)..\..\..\game\src;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <PreprocessorDefinitions>TARGET_DX12;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TARGET_DX12;LUCUS_ENGINE_OS_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <LanguageStandard>stdcpp14</LanguageStandard>
-      <ForcedIncludeFiles>windows/WindowsPlatform.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles>platforms.h;windows/WindowsPlatform.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
@@ -198,12 +198,12 @@
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>
       </PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\tinyxml2;$(ProjectDir)..\..\..\3rdparty\libpng;$(ProjectDir)..\..\..\3rdparty\zlib;$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-image-tga;$(ProjectDir)..\..\..\src\lucus-image-png;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-resources;$(ProjectDir)..\..\..\src\lucus-math;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir)..\..\..\src\lucus-common;$(ProjectDir)..\..\..\game\src;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\tinyxml2;$(ProjectDir)..\..\..\3rdparty\libpng;$(ProjectDir)..\..\..\3rdparty\zlib;$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-image-tga;$(ProjectDir)..\..\..\src\lucus-image-png;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-resources;$(ProjectDir)..\..\..\src\lucus-memory;$(ProjectDir)..\..\..\src\lucus-math;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir)..\..\..\src\lucus-common;$(ProjectDir)..\..\..\game\src;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <PreprocessorDefinitions>TARGET_DX12;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TARGET_DX12;LUCUS_ENGINE_OS_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <LanguageStandard>stdcpp14</LanguageStandard>
-      <ForcedIncludeFiles>windows/WindowsPlatform.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles>platforms.h;windows/WindowsPlatform.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
@@ -218,12 +218,12 @@
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>
       </PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\tinyxml2;$(ProjectDir)..\..\..\3rdparty\libpng;$(ProjectDir)..\..\..\3rdparty\zlib;$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-image-tga;$(ProjectDir)..\..\..\src\lucus-image-png;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-resources;$(ProjectDir)..\..\..\src\lucus-math;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir)..\..\..\src\lucus-common;$(ProjectDir)..\..\..\game\src;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\tinyxml2;$(ProjectDir)..\..\..\3rdparty\libpng;$(ProjectDir)..\..\..\3rdparty\zlib;$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-image-tga;$(ProjectDir)..\..\..\src\lucus-image-png;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-resources;$(ProjectDir)..\..\..\src\lucus-memory;$(ProjectDir)..\..\..\src\lucus-math;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir)..\..\..\src\lucus-common;$(ProjectDir)..\..\..\game\src;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <PreprocessorDefinitions>TARGET_DX12;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TARGET_DX12;LUCUS_ENGINE_OS_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <LanguageStandard>stdcpp14</LanguageStandard>
-      <ForcedIncludeFiles>windows/WindowsPlatform.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles>platforms.h;windows/WindowsPlatform.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -238,12 +238,12 @@
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>
       </PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\tinyxml2;$(ProjectDir)..\..\..\3rdparty\libpng;$(ProjectDir)..\..\..\3rdparty\zlib;$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-image-tga;$(ProjectDir)..\..\..\src\lucus-image-png;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-resources;$(ProjectDir)..\..\..\src\lucus-math;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir)..\..\..\src\lucus-common;$(ProjectDir)..\..\..\game\src;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\tinyxml2;$(ProjectDir)..\..\..\3rdparty\libpng;$(ProjectDir)..\..\..\3rdparty\zlib;$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-image-tga;$(ProjectDir)..\..\..\src\lucus-image-png;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-resources;$(ProjectDir)..\..\..\src\lucus-memory;$(ProjectDir)..\..\..\src\lucus-math;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir)..\..\..\src\lucus-common;$(ProjectDir)..\..\..\game\src;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <PreprocessorDefinitions>TARGET_DX12;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TARGET_DX12;LUCUS_ENGINE_OS_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <LanguageStandard>stdcpp14</LanguageStandard>
-      <ForcedIncludeFiles>windows/WindowsPlatform.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles>platforms.h;windows/WindowsPlatform.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -258,12 +258,12 @@
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>
       </PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\tinyxml2;$(ProjectDir)..\..\..\3rdparty\libpng;$(ProjectDir)..\..\..\3rdparty\zlib;$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-image-tga;$(ProjectDir)..\..\..\src\lucus-image-png;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-resources;$(ProjectDir)..\..\..\src\lucus-math;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir)..\..\..\src\lucus-common;$(ProjectDir)..\..\..\game\src;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\tinyxml2;$(ProjectDir)..\..\..\3rdparty\libpng;$(ProjectDir)..\..\..\3rdparty\zlib;$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-image-tga;$(ProjectDir)..\..\..\src\lucus-image-png;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-resources;$(ProjectDir)..\..\..\src\lucus-memory;$(ProjectDir)..\..\..\src\lucus-math;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir)..\..\..\src\lucus-common;$(ProjectDir)..\..\..\game\src;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <PreprocessorDefinitions>TARGET_DX12;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TARGET_DX12;LUCUS_ENGINE_OS_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <LanguageStandard>stdcpp14</LanguageStandard>
-      <ForcedIncludeFiles>windows/WindowsPlatform.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles>platforms.h;windows/WindowsPlatform.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -278,12 +278,12 @@
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>
       </PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\tinyxml2;$(ProjectDir)..\..\..\3rdparty\libpng;$(ProjectDir)..\..\..\3rdparty\zlib;$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-image-tga;$(ProjectDir)..\..\..\src\lucus-image-png;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-resources;$(ProjectDir)..\..\..\src\lucus-math;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir)..\..\..\src\lucus-common;$(ProjectDir)..\..\..\game\src;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\tinyxml2;$(ProjectDir)..\..\..\3rdparty\libpng;$(ProjectDir)..\..\..\3rdparty\zlib;$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-image-tga;$(ProjectDir)..\..\..\src\lucus-image-png;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-resources;$(ProjectDir)..\..\..\src\lucus-memory;$(ProjectDir)..\..\..\src\lucus-math;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir)..\..\..\src\lucus-common;$(ProjectDir)..\..\..\game\src;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <PreprocessorDefinitions>TARGET_DX12;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TARGET_DX12;LUCUS_ENGINE_OS_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <LanguageStandard>stdcpp14</LanguageStandard>
-      <ForcedIncludeFiles>windows/WindowsPlatform.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles>platforms.h;windows/WindowsPlatform.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -298,12 +298,12 @@
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>
       </PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\tinyxml2;$(ProjectDir)..\..\..\3rdparty\libpng;$(ProjectDir)..\..\..\3rdparty\zlib;$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-image-tga;$(ProjectDir)..\..\..\src\lucus-image-png;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-resources;$(ProjectDir)..\..\..\src\lucus-math;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir)..\..\..\src\lucus-common;$(ProjectDir)..\..\..\game\src;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\tinyxml2;$(ProjectDir)..\..\..\3rdparty\libpng;$(ProjectDir)..\..\..\3rdparty\zlib;$(ProjectDir)..\..\..\3rdparty\fbx-sdk-uwp\include;$(ProjectDir)..\..\..\3rdparty\d3d12;$(ProjectDir)..\..\..\src\lucus-sim;$(ProjectDir)..\..\..\src\lucus-image-tga;$(ProjectDir)..\..\..\src\lucus-image-png;$(ProjectDir)..\..\..\src\lucus-mesh-fbx;$(ProjectDir)..\..\..\src\lucus-render;$(ProjectDir)..\..\..\src\lucus-resources;$(ProjectDir)..\..\..\src\lucus-memory;$(ProjectDir)..\..\..\src\lucus-math;$(ProjectDir)..\..\..\src\lucus-core;$(ProjectDir)..\..\..\src\lucus-common;$(ProjectDir)..\..\..\game\src;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <PreprocessorDefinitions>TARGET_DX12;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TARGET_DX12;LUCUS_ENGINE_OS_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <LanguageStandard>stdcpp14</LanguageStandard>
-      <ForcedIncludeFiles>windows/WindowsPlatform.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles>platforms.h;windows/WindowsPlatform.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -338,6 +338,11 @@
     <ClInclude Include="..\..\..\src\lucus-math\LucusRotator.h" />
     <ClInclude Include="..\..\..\src\lucus-math\LucusVector.h" />
     <ClInclude Include="..\..\..\src\lucus-math\LucusVertexTypes.h" />
+    <ClInclude Include="..\..\..\src\lucus-memory\LucusMemory.h" />
+    <ClInclude Include="..\..\..\src\lucus-memory\LucusMemoryManager.h" />
+    <ClInclude Include="..\..\..\src\lucus-memory\LucusModuleAllocator.h" />
+    <ClInclude Include="..\..\..\src\lucus-memory\LucusPtr.h" />
+    <ClInclude Include="..\..\..\src\lucus-memory\LucusStackAllocator.h" />
     <ClInclude Include="..\..\..\src\lucus-mesh-fbx\LucusMeshFormatFBX.h" />
     <ClInclude Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12ComponentProxy.h" />
     <ClInclude Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12Device.h" />
@@ -356,6 +361,7 @@
     <ClInclude Include="..\..\..\src\lucus-resources\LucusMesh.h" />
     <ClInclude Include="..\..\..\src\lucus-resources\LucusMeshFormat.h" />
     <ClInclude Include="..\..\..\src\lucus-resources\LucusMeshFormatManager.h" />
+    <ClInclude Include="..\..\..\src\lucus-resources\LucusResource.h" />
     <ClInclude Include="..\..\..\src\lucus-resources\LucusResourceManager.h" />
     <ClInclude Include="..\..\..\src\lucus-sim\LucusActor.h" />
     <ClInclude Include="..\..\..\src\lucus-sim\LucusCameraComponent.h" />
@@ -381,6 +387,11 @@
     <ClCompile Include="..\..\..\src\lucus-math\LucusQuaternion.cpp" />
     <ClCompile Include="..\..\..\src\lucus-math\LucusRotator.cpp" />
     <ClCompile Include="..\..\..\src\lucus-math\LucusVector.cpp" />
+    <ClCompile Include="..\..\..\src\lucus-memory\LucusMemory.cpp" />
+    <ClCompile Include="..\..\..\src\lucus-memory\LucusMemoryManager.cpp" />
+    <ClCompile Include="..\..\..\src\lucus-memory\LucusModuleAllocator.cpp" />
+    <ClCompile Include="..\..\..\src\lucus-memory\LucusPtr.cpp" />
+    <ClCompile Include="..\..\..\src\lucus-memory\LucusStackAllocator.cpp" />
     <ClCompile Include="..\..\..\src\lucus-mesh-fbx\LucusMeshFormatFBX.cpp" />
     <ClCompile Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12ComponentProxy.cpp" />
     <ClCompile Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12Device.cpp" />
@@ -397,6 +408,7 @@
     <ClCompile Include="..\..\..\src\lucus-resources\LucusMesh.cpp" />
     <ClCompile Include="..\..\..\src\lucus-resources\LucusMeshFormat.cpp" />
     <ClCompile Include="..\..\..\src\lucus-resources\LucusMeshFormatManager.cpp" />
+    <ClCompile Include="..\..\..\src\lucus-resources\LucusResource.cpp" />
     <ClCompile Include="..\..\..\src\lucus-resources\LucusResourceManager.cpp" />
     <ClCompile Include="..\..\..\src\lucus-sim\LucusActor.cpp" />
     <ClCompile Include="..\..\..\src\lucus-sim\LucusCameraComponent.cpp" />

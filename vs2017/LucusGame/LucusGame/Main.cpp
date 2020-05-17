@@ -46,16 +46,6 @@ namespace LucusEngine
             CoreApplication::Suspending += ref new EventHandler<SuspendingEventArgs^>(this, &ViewProvider::OnSuspending);
 
             CoreApplication::Resuming += ref new EventHandler<Platform::Object^>(this, &ViewProvider::OnResuming);
-
-            AKUCoreCreate();
-			AKUModulesCreate();
-
-			AKUChangeWorkingDir("");
-
-            D3D12RenderSystem* renderSystem = new D3D12RenderSystem();
-            m_renderSystem = renderSystem;
-
-            AKUSetRenderSystem(static_cast<RenderSystem*>(renderSystem));
         }
 
 		virtual void SetWindow(CoreWindow^ window)
@@ -73,20 +63,25 @@ namespace LucusEngine
             currentDisplayInformation->OrientationChanged += ref new TypedEventHandler<DisplayInformation^, Object^>(this, &ViewProvider::OnOrientationChanged);
 
             DisplayInformation::DisplayContentsInvalidated += ref new TypedEventHandler<DisplayInformation^, Object^>(this, &ViewProvider::OnDisplayContentsInvalidated);
-
-			//window->
-            
-			if (m_renderSystem)
-			{
-				m_renderSystem->SetCoreWindow(window);
-			}
-
-			//AKURun();
-			AKUCreateWorld(new GameWorld());
         }
 
 		virtual void Load(Platform::String^ entryPoint)
         {
+			AKUCoreCreate();
+			AKUModulesCreate();
+
+			AKUChangeWorkingDir("");
+
+			m_renderSystem = AKUCreateModule<D3D12RenderSystem>();
+			AKUSetRenderSystem(static_cast<RenderSystem*>(m_renderSystem));
+
+			if (m_renderSystem)
+			{
+				m_renderSystem->SetCoreWindow(CoreWindow::GetForCurrentThread());
+			}
+
+			//AKURun();
+			AKUCreateWorld(AKUCreateModule<GameWorld>());
         }
 
 		virtual void Run()
