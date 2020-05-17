@@ -59,7 +59,7 @@ MeshPtr ResourceManager::GetMesh(cc8* name)
 			return it->second;
 		}
 	}
-	return MeshPtr;
+	return MeshPtr();
 }
 
 ImagePtr ResourceManager::GetImage(cc8* name) 
@@ -78,7 +78,7 @@ ImagePtr ResourceManager::GetImage(cc8* name)
 			return it->second;
 		}
 	}
-	return ImagePtr;
+	return ImagePtr();
 }
 
 bool ResourceManager::LoadMesh(cc8* name) 

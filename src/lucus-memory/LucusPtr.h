@@ -65,9 +65,9 @@ namespace LucusEngine
 			ReleaseRef();
 		}
 
-		T* operator->() { return mPtr; }
-		T& operator*() { return *mPtr; }
-		T* Get() { return mPtr; }
+		T* operator->() const { return mPtr; }
+		T& operator*() const { return *mPtr; }
+		T* Get() const { return mPtr; }
 
 		void Reset()
 		{
