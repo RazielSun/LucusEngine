@@ -20,6 +20,7 @@ namespace LucusEngine
     class World;
     class RenderSystem;
     class TimeManager;
+    class LuaState;
 
 	class Core : public Singleton<Core>
 	{
@@ -61,6 +62,7 @@ namespace LucusEngine
         ImageFormatManager* mImageFormatManager;
         MeshFormatManager* mMeshFormatManager;
         TimeManager* mTimeManager;
+        LuaState* mLuaState;
 
         RenderSystem* mActiveRenderSystem;
         World* mWorld;

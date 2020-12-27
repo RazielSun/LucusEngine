@@ -7,6 +7,7 @@
 #include "LucusImageFormatManager.h"
 #include "LucusMeshFormatManager.h"
 #include "LucusTimeManager.h"
+#include "LucusLuaState.h"
 
 #include "LucusRenderSystem.h"
 #include "LucusWorld.h"
@@ -45,6 +46,7 @@ void Core::LoadModules()
     mImageFormatManager = mMemoryManager->NewOnModule<ImageFormatManager>();
     mMeshFormatManager = mMemoryManager->NewOnModule<MeshFormatManager>();
     mTimeManager = mMemoryManager->NewOnModule<TimeManager>();
+    mLuaState = mMemoryManager->NewOnModule<LuaState>();
     // mFileSystem = new FileSystem();
     // mResourceManager = new ResourceManager();
     // mImageFormatManager = new ImageFormatManager();
@@ -59,6 +61,7 @@ void Core::UnloadModules()
     mImageFormatManager->~ImageFormatManager();
     mMeshFormatManager->~MeshFormatManager();
     mTimeManager->~TimeManager();
+    mLuaState->~LuaState();
     // delete mFileSystem;
     // delete mResourceManager;
     // delete mImageFormatManager;
@@ -168,5 +171,10 @@ void Core::CreateWorld(World* world)
     if (nullptr != mWorld)
     {
         mWorld->InitWorld();
+    }
+    
+    if (nullptr != mLuaState)
+    {
+        mLuaState->Do();
     }
 }

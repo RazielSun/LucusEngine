@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7A885DAF243B385900EC2E74 /* tinyxml2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A885DAD243B385800EC2E74 /* tinyxml2.cpp */; };
-		7A885DB0243B385900EC2E74 /* tinyxml2.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A885DAE243B385800EC2E74 /* tinyxml2.h */; };
 		7A885DCE243B38BA00EC2E74 /* tinyxml2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A885DAD243B385800EC2E74 /* tinyxml2.cpp */; };
 /* End PBXBuildFile section */
 
@@ -82,7 +81,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A885DB0243B385900EC2E74 /* tinyxml2.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
