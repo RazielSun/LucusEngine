@@ -15,9 +15,6 @@ Transform::Transform() :
 //	mRotationEuler(FVector3::Zero),
 	mScale(FVector3::One),
 	mModelMatrix(FMatrix4x4::Identity),
-	mTranslateMatrix(FMatrix4x4::Identity),
-	mRotateMatrix(FMatrix4x4::Identity),
-	mScaleMatrix(FMatrix4x4::Identity),
     mIsDirty(true)
 {
 }
@@ -27,9 +24,6 @@ Transform::Transform(FVector3 Location, FQuaternion Rotation, FVector3 Scale) :
     mRotation(Rotation),
     mScale(Scale),
     mModelMatrix(FMatrix4x4::Identity),
-    mTranslateMatrix(FMatrix4x4::Identity),
-    mRotateMatrix(FMatrix4x4::Identity),
-    mScaleMatrix(FMatrix4x4::Identity),
     mIsDirty(true)
 {
     UpdateMatrices();
@@ -104,20 +98,31 @@ void Transform::SetScale(const FVector3& vec)
 	mScale = vec;
 }
 
-void Transform::UpdateRotateMatrix(const FVector3& axis, float angle)
-{
-	mRotateMatrix.RotateAround(axis, angle);
-    mIsDirty = true;
-}
+//void Transform::UpdateRotateMatrix(const FVector3& axis, float angle)
+//{
+//	mRotateMatrix.RotateAround(axis, angle);
+//    mIsDirty = true;
+//}
 
 void Transform::UpdateMatrices()
 {
     if (mIsDirty)
     {
         mIsDirty = false;
-        mTranslateMatrix.SetTranslate(mLocation);
-        mRotateMatrix.SetRotate(mRotation);
-        mScaleMatrix.SetScale(mScale);
-        mModelMatrix = mTranslateMatrix * mRotateMatrix * mScaleMatrix;
+        FMatrix4x4 TranslateMatrix(FMatrix4x4::Identity);
+        TranslateMatrix.SetTranslate(mLocation);
+        
+        FMatrix4x4 RotateMatrix(FMatrix4x4::Identity);
+        RotateMatrix.SetRotate(mRotation);
+        
+        FMatrix4x4 ScaleMatrix(FMatrix4x4::Identity);
+        ScaleMatrix.SetScale(mScale);
+
+        mModelMatrix = TranslateMatrix * RotateMatrix * ScaleMatrix;
     }
+}
+
+void Transform::SetCachedWorldMatrix(const FMatrix4x4& mtx)
+{
+    mCachedWorldMatrix = mtx;
 }

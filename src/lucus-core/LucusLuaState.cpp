@@ -26,10 +26,22 @@ LuaState::~LuaState()
 
 void LuaState::Do()
 {
-    int r = luaL_dofile(_rawLua, Core::GetFileSystem()->GetAssetPath("Assets/Scripts/test.lua").c_str());
+    int r = luaL_dofile(_rawLua, Core::GetFileSystem()->GetAssetPath("Assets/Scripts/main.lua").c_str());
     if (r != LUA_OK)
     {
         const char* msg = lua_tostring(_rawLua, -1);
         std::cout << "[C++] Lua error! " << msg << std::endl;
     }
 }
+
+//template <class T>
+//void LuaRegisterGlobal(LucusEngine::LuaState* state)
+//{
+//    //
+//}
+//
+//template <class T>
+//void LuaRegisterClass(LucusEngine::LuaState* state)
+//{
+//    //
+//}

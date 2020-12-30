@@ -56,10 +56,10 @@ void SceneComponent::AttachTo(SceneComponent* parent)
 
 void SceneComponent::Detach()
 {
-	if (mParent != nullptr)
+	if (mParent)
 	{
 		mParent->RemoveChild(this);
-		mParent = nullptr;
+		mParent.Reset();
 	}
 }
 
@@ -67,7 +67,8 @@ void SceneComponent::AddChild(SceneComponent* child)
 {
 	if (child != nullptr)
 	{
-		mChildren.push_back(child);
+		Ptr<SceneComponent> childPtr(child);
+		mChildren.push_back(childPtr);
 	}
 }
 
@@ -76,13 +77,20 @@ void SceneComponent::RemoveChild(SceneComponent* child)
 	// remove child
 }
 
-FMatrix4x4 SceneComponent::GetModelMatrix()
+void SceneComponent::UpdateCachedModelMatrix()
 {
 	mTransform.UpdateMatrices();
-	if (mParent == nullptr)
+	if (mParent)
 	{
-		return mTransform.GetModelMatrix();
+		mTransform.SetCachedWorldMatrix(mTransform.GetModelMatrix());
 	}
+	else
+	{
+		mTransform.SetCachedWorldMatrix(mTransform.GetModelMatrix() * mParent->GetModelMatrix());
+	}
+}
 
-	return mTransform.GetModelMatrix() * mParent->GetModelMatrix();
+FMatrix4x4 SceneComponent::GetModelMatrix() const
+{
+	return mTransform.GetCachedWorldMatrix();
 }

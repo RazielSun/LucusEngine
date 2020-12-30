@@ -24,7 +24,9 @@ namespace LucusEngine
         
         virtual RenderWindow* CreateRenderWindow(u32 width, u32 height) = 0;
         virtual void CreateBuffers() = 0;
-        virtual void Render() = 0;
+        
+        virtual void PreRender();
+        virtual void Render() const;
         
         virtual void ChangeViewportSize(u32 width, u32 height);
 
@@ -35,6 +37,7 @@ namespace LucusEngine
         // RenderWindow* mWindow;
 
         Scene* mScene;
+        bool bSceneEnabled;
 	};
 }
 

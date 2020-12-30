@@ -8,29 +8,22 @@
 #ifndef _LUCUS_ENGINE_CAMERA_COMPONENT_H
 #define _LUCUS_ENGINE_CAMERA_COMPONENT_H
 
-#include "LucusMatrix.h"
+
 #include "LucusSceneComponent.h"
+#include "LucusICamera.h"
 
 namespace LucusEngine
 {
-    class Viewport;
-
-    class CameraComponent : public SceneComponent
+    class CameraComponent : public SceneComponent, public ICamera
     {
     public:
         CameraComponent();
         virtual ~CameraComponent();
-
-        void UpdateProjectionMatrix(const Viewport& viewport);
         
-        const FMatrix4x4& GetProjMatrix() const { return mProj; }
+        virtual const FMatrix4x4& GetProjMatrix() const override;
+        virtual const FMatrix4x4& GetViewMatrix() const override;
 
-    protected:
-        FMatrix4x4 mProj;
-
-        float mFOV;
-        float mNearZ;
-        float mFarZ;
+        virtual void UpdateProjMatrix(const Viewport& viewport) override;
     };
 }
 

@@ -9,42 +9,45 @@
 #define _LUCUS_ENGINE_ACTOR_H
 
 #include "LucusTypes.h"
-#include "LucusSceneComponent.h"
+#include "LucusLuaObject.h"
+#include "LucusPtr.h"
 
 namespace LucusEngine
 {
     class World;
-//    class SceneComponent;
+    class SceneComponent;
 
-    class Actor
+    using SceneComponentPtr = Ptr<SceneComponent>;
+
+    class Actor : public LuaObject
     {
     public:
         Actor();
-        Actor(World* world);
         virtual ~Actor();
 
         virtual void Tick(float deltaSeconds);
-        
-        void SetRootComponent(SceneComponent* component);
+
+        void SetWorld(World* world);
         
         template <class T>
         void SetRootComponent(T* component);
         
         SceneComponent* GetRootComponent();
+        
+        virtual void BindLuaFunctions(lua_State* lua) override;
 
     protected:
         void AddComponentToScene(SceneComponent* component);
 
     protected:
-    	SceneComponent* RootComponent;
+    	SceneComponentPtr mRootComponent;
         
         World* mWorld;
+    public:
+        static const char className[];
+        
+        static int _setRootComponent(lua_State* lua);
     };
-    
-    template <class T>
-    void Actor::SetRootComponent(T* component) {
-        SetRootComponent(dynamic_cast<SceneComponent*>(component));
-    }
 }
 
 #endif /* _LUCUS_ENGINE_ACTOR_H */

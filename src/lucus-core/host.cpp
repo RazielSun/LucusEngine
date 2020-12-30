@@ -6,6 +6,8 @@
 //
 
 #include "host.h"
+#include "LucusCore.h"
+#include "LucusRenderCore.h"
 #include "LucusFileSystem.h"
 // #include "LucusWorld.h"
 
@@ -24,14 +26,33 @@ void AKUCoreDestroy()
     }
 }
 
-void AKUStartCoreLoop()
+void AKUCreateRenderSystem(u32 width, u32 height)
+{
+    LucusEngine::RenderSystem* system = CreateRenderSystem(width, height);
+    LucusEngine::Core* core = LucusEngine::Core::GetPtr();
+    if (core != nullptr)
+    {
+        core->SetRenderSystem(system);
+    }
+}
+
+void AKURun()
 {
     LucusEngine::Core* core = LucusEngine::Core::GetPtr();
     if (core != nullptr)
     {
-        core->StartCoreLoop();
+        core->Run();
     }
 }
+
+// void AKUStartCoreLoop()
+// {
+//     LucusEngine::Core* core = LucusEngine::Core::GetPtr();
+//     if (core != nullptr)
+//     {
+//         core->StartCoreLoop();
+//     }
+// }
 
 void AKUTick()
 {
@@ -42,23 +63,23 @@ void AKUTick()
     }
 }
 
-void AKUCreateWorld(LucusEngine::World* world)
-{
-    LucusEngine::Core* core = LucusEngine::Core::GetPtr();
-    if (core != nullptr)
-    {
-        core->CreateWorld(world);
-    }
-}
-
-void AKUSetRenderSystem(LucusEngine::RenderSystem* system)
-{
-    LucusEngine::Core* core = LucusEngine::Core::GetPtr();
-    if (core != nullptr)
-    {
-        core->SetRenderSystem(system);
-    }
-}
+//void AKUCreateWorld(LucusEngine::World* world)
+//{
+//    LucusEngine::Core* core = LucusEngine::Core::GetPtr();
+//    if (core != nullptr)
+//    {
+//        core->CreateWorld(world);
+//    }
+//}
+//
+//void AKUSetRenderSystem(LucusEngine::RenderSystem* system)
+//{
+//    LucusEngine::Core* core = LucusEngine::Core::GetPtr();
+//    if (core != nullptr)
+//    {
+//        core->SetRenderSystem(system);
+//    }
+//}
 
 void AKUChangeViewportSize(u32 width, u32 height)
 {

@@ -9,7 +9,7 @@
 #define _LUCUS_ENGINE_MESH_H
 
 #include "LucusVertexTypes.h"
-#include "LucusResource.h"
+#include "LucusObject.h"
 #include "LucusPtr.h"
 
 namespace LucusEngine
@@ -23,7 +23,7 @@ namespace LucusEngine
     typedef std::vector<TriangleIndex> VectorIndices;
     typedef std::vector<SimpleVertex> VectorVertices;
 
-    class Mesh : public Resource
+    class Mesh : public Object
     {   
     public:
         Mesh();

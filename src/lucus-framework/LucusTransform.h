@@ -42,8 +42,11 @@ namespace LucusEngine
         const FVector3& GetScale() const { return mScale; }
 
         void UpdateMatrices();
-        void UpdateRotateMatrix(const FVector3& axis, float angle);
+//        void UpdateRotateMatrix(const FVector3& axis, float angle);
         const FMatrix4x4& GetModelMatrix() const { return mModelMatrix; }
+
+        const FMatrix4x4& GetCachedWorldMatrix() const { return mCachedWorldMatrix; }
+        void SetCachedWorldMatrix(const FMatrix4x4& mtx);
 
     protected:
     	FVector3 mLocation;
@@ -54,9 +57,7 @@ namespace LucusEngine
         bool mIsDirty;
 
     	FMatrix4x4 mModelMatrix;
-        FMatrix4x4 mTranslateMatrix;
-        FMatrix4x4 mRotateMatrix;
-        FMatrix4x4 mScaleMatrix;
+        FMatrix4x4 mCachedWorldMatrix;
     };
 }
 

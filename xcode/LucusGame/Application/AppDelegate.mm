@@ -9,9 +9,6 @@
 
 #include "host.h"
 #include "modules.h"
-#include "GameWorld.h"
-#include "LucusMetalRenderSystem.h"
-#include "LucusMetalWindow.h"
 
 static AppDelegate* mInstance = nil;
 
@@ -76,6 +73,7 @@ static AppDelegate* mInstance = nil;
     
     AKUChangeWorkingDir([[[NSBundle mainBundle] resourcePath] UTF8String]);
     
+    // Hardcode
     NSUInteger width = 1280;
     NSUInteger height = 720;
     
@@ -90,22 +88,10 @@ static AppDelegate* mInstance = nil;
     [Window makeKeyAndOrderFront:self];
     
     // Create Metal Render System
-    LucusEngine::MetalRenderSystem* renderSystem = AKUCreateModule<LucusEngine::MetalRenderSystem>();
+    AKUCreateRenderSystem((u32)width, (u32)height);
     
-    // Create Window
-    LucusEngine::RenderWindow* window = renderSystem->CreateRenderWindow((u32)width, (u32)height);
-    LucusEngine::MetalWindow* metalWindow = static_cast<LucusEngine::MetalWindow*>(window);
-//    metalWindow->SetWindow();
-    
-    [RootView addSubview:metalWindow->mView];
-    
-    // Setup RenderSystem
-    AKUSetRenderSystem(static_cast<LucusEngine::RenderSystem*>(renderSystem));
-    
-    // Start Loop
-//    AKUStartCoreLoop();
-    AKUCreateWorld(AKUCreateModule<GameWorld>());
-//    AKURun();
+    // Create World & Start Loop
+    AKURun();
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender

@@ -19,7 +19,9 @@ namespace LucusEngine
     class SceneComponent;
     class SceneComponentProxy;
 
-    typedef std::vector<SceneComponent*> ChildrenVector;
+    typedef Ptr<SceneComponent> SceneComponentPtr;
+
+    typedef std::vector<SceneComponentPtr> ChildrenVector;
     typedef ChildrenVector::iterator ChildIt;
 
     class SceneComponent : public Component
@@ -47,7 +49,8 @@ namespace LucusEngine
         u32 GetNumChildren() const;
         SceneComponent* GetParent() const; // create inline function?
 
-        FMatrix4x4 GetModelMatrix();
+        void UpdateCachedModelMatrix();
+        FMatrix4x4 GetModelMatrix() const;
 
     protected:
 //    	FVector3 mLocation;
@@ -55,7 +58,7 @@ namespace LucusEngine
 //        FVector3 mScale;
 
         ChildrenVector mChildren;
-        SceneComponent* mParent;
+        SceneComponentPtr mParent;
         
         Transform mTransform;
     };
@@ -72,7 +75,7 @@ namespace LucusEngine
 
     FORCEINLINE SceneComponent* SceneComponent::GetParent() const
     {
-        return mParent;
+        return mParent.Get();
     }
 }
 

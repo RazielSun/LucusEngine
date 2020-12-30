@@ -10,11 +10,7 @@
 
 using namespace LucusEngine;
 
-CameraComponent::CameraComponent() :
-	mProj(FMatrix4x4::Identity),
-	mFOV(65),
-	mNearZ(0.1f),
-	mFarZ(1000.0f)
+CameraComponent::CameraComponent()
 {
 }
 
@@ -23,7 +19,17 @@ CameraComponent::~CameraComponent()
     //
 }
 
-void CameraComponent::UpdateProjectionMatrix(const Viewport& viewport)
+const FMatrix4x4& CameraComponent::GetProjMatrix() const
 {
-    mProj = FMatrix4x4::RightHandProjectionMatrix(viewport.GetAspectRatio(), mNearZ, mFarZ, mFOV);
+	return mProjMtx;
+}
+
+const FMatrix4x4& CameraComponent::GetViewMatrix() const
+{
+	return GetModelMatrix();
+}
+
+void CameraComponent::UpdateProjMatrix(const Viewport& viewport)
+{
+    mProjMtx = FMatrix4x4::RightHandProjectionMatrix(viewport.GetAspectRatio(), mNearZ, mFarZ, mFOV);
 }

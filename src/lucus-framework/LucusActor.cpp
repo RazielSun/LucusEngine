@@ -8,15 +8,15 @@
 #include "LucusActor.h"
 #include "LucusWorld.h"
 #include "LucusScene.h"
+#include "LucusSceneComponent.h"
+
+#include <iostream>
 
 using namespace LucusEngine;
 
-Actor::Actor() : RootComponent(nullptr)
-{
-    //
-}
+const char Actor::className[] = "Actor";
 
-Actor::Actor(World* world) : mWorld(world)
+Actor::Actor() : mWorld(nullptr)
 {
     //
 }
@@ -25,28 +25,34 @@ Actor::~Actor()
 {
     if (nullptr != mWorld)
     {
-        mWorld->Scene->RemoveSceneComponent(RootComponent);
+        mWorld->Scene->RemoveSceneComponent(mRootComponent.Get());
     }
 }
 
 void Actor::Tick(float deltaSeconds)
 {
-    if (nullptr != RootComponent)
+    if (mRootComponent)
     {
-        RootComponent->Tick(deltaSeconds);
+        mRootComponent->Tick(deltaSeconds);
     }
 }
 
-void Actor::SetRootComponent(SceneComponent* component)
+void Actor::SetWorld(World* world)
 {
-    RootComponent = component;
+    mWorld = world;
+    // Do some stuff
+}
 
-    AddComponentToScene(RootComponent);
+template <class T>
+void Actor::SetRootComponent(T* component)
+{
+    mRootComponent = Ptr<SceneComponent>(component);
+    AddComponentToScene(mRootComponent.Get());
 }
 
 SceneComponent* Actor::GetRootComponent()
 {
-    return RootComponent;
+    return mRootComponent.Get();
 }
 
 void Actor::AddComponentToScene(SceneComponent* component)
@@ -56,10 +62,26 @@ void Actor::AddComponentToScene(SceneComponent* component)
         mWorld->Scene->AddSceneComponent(component);
 
         const ChildrenVector& children = component->GetChildren();
-        for (auto* child : children)
+        for (auto& child : children)
         {
-            AddComponentToScene(child);
+            AddComponentToScene(child.Get());
             // mWorld->Scene->AddSceneComponent(component);
         }
     }
+}
+
+void Actor::BindLuaFunctions(lua_State* lua)
+{
+    const luaL_Reg reg_table[] = {
+        { "SetRootComponent", _setRootComponent },
+        { 0, 0 }
+    };
+    luaL_setfuncs(lua, reg_table, 0);
+    lua_pushvalue(lua, -1);
+}
+
+int Actor::_setRootComponent(lua_State* lua)
+{
+    std::cout << "[C++] Actor SetRootComponent called.\n";
+    return 0;
 }

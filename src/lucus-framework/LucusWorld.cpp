@@ -12,12 +12,16 @@
 #include "LucusScene.h"
 #include "LucusActor.h"
 #include "LucusComponent.h"
+
 #include "LucusCameraComponent.h"
 #include "LucusMeshComponent.h"
 
 #include "tinyxml2.h"
+#include <iostream>
 
 using namespace LucusEngine;
+
+const char World::className[] = "World";
 
 World::World()
 {
@@ -43,12 +47,12 @@ void World::InitWorld()
     	system->AllocateScene(this);
     }
     
-    this->InitActors();
-    
-    if (system)
-    {
-        system->CreateBuffers();
-    }
+//    this->InitActors();
+//
+//    if (system)
+//    {
+//        system->CreateBuffers();
+//    }
 }
 
 void World::InitActors()
@@ -94,24 +98,27 @@ void World::Tick(float deltaSeconds)
 
 Actor* World::SpawnActor()
 {
-    Actor* actor = new Actor(this);
-    mActors.push_back(actor);
-	return actor;
+//    Actor* actor = new Actor(this);
+//    mActors.push_back(actor);
+//	return actor;
+    return nullptr;
 }
 
 Actor* World::SpawnActor(const tinyxml2::XMLElement* data)
 {
-    Actor* actor = new Actor(this);
+//    Actor* actor = new Actor(this);
+//    
+//    const tinyxml2::XMLElement* rootComData = data->FirstChildElement("Component");
+//    LucusEngine::Component* com = CreateComponent(rootComData);
+//    
+//    LucusEngine::SceneComponent* rootSceneCom = dynamic_cast<LucusEngine::SceneComponent*>(com);
+//    actor->SetRootComponent(rootSceneCom);
+//    
+////    std::cout << actorData->Name() << " " << rootComData->Attribute("type") << std::endl;
+//    mActors.push_back(actor);
+//    return actor;
     
-    const tinyxml2::XMLElement* rootComData = data->FirstChildElement("Component");
-    LucusEngine::Component* com = CreateComponent(rootComData);
-    
-    LucusEngine::SceneComponent* rootSceneCom = dynamic_cast<LucusEngine::SceneComponent*>(com);
-    actor->SetRootComponent(rootSceneCom);
-    
-//    std::cout << actorData->Name() << " " << rootComData->Attribute("type") << std::endl;
-    mActors.push_back(actor);
-    return actor;
+    return nullptr;
 }
 
 Component* World::GetComponent(cc8* name)
@@ -159,4 +166,20 @@ Component* World::CreateComponent(const tinyxml2::XMLElement* data)
 bool World::CompareNames(cc8* name, cc8* component)
 {
     return strncmp(name, component, strlen(component)) == 0;
+}
+
+void World::BindLuaFunctions(lua_State* lua)
+{
+    const luaL_Reg reg_table[] = {
+        { "AddActor", _addActor },
+        { 0, 0 }
+    };
+    luaL_setfuncs(lua, reg_table, 0);
+    lua_pushvalue(lua, -1);
+}
+
+int World::_addActor(lua_State* lua)
+{
+    std::cout << "[C++] World _addActor called.\n";
+    return 0;
 }

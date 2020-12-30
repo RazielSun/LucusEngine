@@ -32,11 +32,11 @@ namespace LucusEngine
         void UnloadModules();
         
         void SetRenderSystem(RenderSystem* system);
+        void CreateWorld();
         
         void ChangeViewportSize(u32 width, u32 height);
         
-        void StartCoreLoop();
-        void CreateWorld(World* world);
+        void Run();
         
         void Tick();
         
@@ -70,6 +70,7 @@ namespace LucusEngine
     protected:
         float mTimeStep;
         u32 mMaxStepSim;
+        bool bTickTime;
 	};
 }
 

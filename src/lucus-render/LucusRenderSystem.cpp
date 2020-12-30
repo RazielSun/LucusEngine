@@ -5,7 +5,7 @@
 
 using namespace LucusEngine;
 
-RenderSystem::RenderSystem()
+RenderSystem::RenderSystem() : mScene(nullptr), bSceneEnabled(false)
 {
 	//
 }
@@ -17,13 +17,17 @@ RenderSystem::~RenderSystem()
 
 void RenderSystem::AllocateScene(World* world)
 {
-	if (world)
+	if (world != nullptr)
 	{
 		Scene* scene = new Scene(world);
 
 		world->Scene = scene;
 
 		mScene = scene;
+        
+        CreateBuffers();
+        
+        bSceneEnabled = true;
 	}
 }
 
@@ -33,4 +37,14 @@ void RenderSystem::ChangeViewportSize(u32 width, u32 height)
     {
         (*it)->GetViewport().ChangeSize(width, height);
     }
+}
+
+void RenderSystem::PreRender()
+{
+    //
+}
+
+void RenderSystem::Render() const
+{
+    //
 }

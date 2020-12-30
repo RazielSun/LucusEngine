@@ -13,6 +13,8 @@
 namespace LucusEngine
 {
 	class World;
+    class ICamera;
+
 	class SceneComponent;
 	class CameraComponent;
 	class MeshComponent;
@@ -21,11 +23,10 @@ namespace LucusEngine
     {
     protected:
     	World* mWorld;
-    
-    public:
-    	// List of components
-    	std::vector<MeshComponent*> MeshComps;
-    	CameraComponent* CameraComp;
+        
+        std::vector<ICamera*> mCameras;
+        ICamera* mDefaultCam;
+        int CurrentCameraIndex;
 
     public:
         Scene(World* world);
@@ -33,6 +34,15 @@ namespace LucusEngine
 
         void AddSceneComponent(SceneComponent* );
         void RemoveSceneComponent(SceneComponent* );
+
+        ICamera* GetCamera() const;
+    
+    public:
+            // List of components
+            std::vector<MeshComponent*> MeshComps;
+    //        CameraComponent* CameraComp;
+            
+            
     };
 }
 

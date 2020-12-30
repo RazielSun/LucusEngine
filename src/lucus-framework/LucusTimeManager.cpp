@@ -14,18 +14,18 @@ TimeManager::TimeManager() :
     mDeltaSeconds(0.0f),
     mUnusedSeconds(0.0f)
 {
-    mLastTime = mClock.now();
+    Reset();
 }
-
 //    mFrameCounter(0),
-//    mElapsedSeconds(0.0)
-//{
-//
-//}
 
 TimeManager::~TimeManager()
 {
     //
+}
+
+void TimeManager::Reset()
+{
+    mLastTime = mClock.now();
 }
 
 void TimeManager::UpdateTime()

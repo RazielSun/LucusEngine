@@ -9,6 +9,7 @@
 #define _LUCUS_ENGINE_WORLD_H
 
 #include "LucusTypes.h"
+#include "LucusLuaObject.h"
 
 namespace tinyxml2
 {
@@ -24,7 +25,7 @@ namespace LucusEngine
     typedef std::vector<Actor*> ActorArray;
     typedef ActorArray::iterator ActorIterator;
 
-    class World
+    class World : LuaObject
     {
     public:
         World();
@@ -42,6 +43,7 @@ namespace LucusEngine
         Actor* SpawnActor(const tinyxml2::XMLElement*);
         // Actor* SpawnActor();
         
+        virtual void BindLuaFunctions(lua_State* lua) override;
         
     protected:
         virtual Component* GetComponent(cc8* name);
@@ -51,6 +53,11 @@ namespace LucusEngine
 
     protected:
     	ActorArray mActors;
+
+    public:
+        static const char className[];
+        
+        static int _addActor(lua_State* lua);
     };
 }
 

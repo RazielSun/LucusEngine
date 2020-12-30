@@ -68,6 +68,7 @@ namespace LucusEngine
 		T* operator->() const { return mPtr; }
 		T& operator*() const { return *mPtr; }
 		T* Get() const { return mPtr; }
+		operator bool() { return !IsNull(); }
 
 		void Reset()
 		{

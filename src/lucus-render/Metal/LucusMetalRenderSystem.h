@@ -25,7 +25,9 @@ namespace LucusEngine
         
         virtual RenderWindow* CreateRenderWindow(u32 width, u32 height) override;
         virtual void CreateBuffers() override;
-        virtual void Render() override;
+        
+        virtual void PreRender() override;
+        virtual void Render() const override;
         
     protected:
         MetalWindow* mWindow;

@@ -1,26 +1,26 @@
 //
-//  LucusResource.h
+//  LucusObject.cpp
 //  LucusGame
 //
-//  Created by Alexander Kardakov on 08/05/2020.
+//  Created by Alexander Kardakov on 28/12/2020.
 //  Copyright © 2020 Alexander Kardakov. All rights reserved.
 //
 
-#include "LucusResource.h"
+#include "LucusObject.h"
 
 using namespace LucusEngine;
 
-Resource::~Resource()
+Object::~Object()
 {
 	assert(counter == 0);
 }
 
-void Resource::AddRef()
+void Object::AddRef()
 {
 	counter++;
 }
 
-void Resource::ReleaseRef()
+void Object::ReleaseRef()
 {
 	counter--;
 	if (counter == 0)

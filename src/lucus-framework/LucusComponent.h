@@ -9,6 +9,8 @@
 #define _LUCUS_ENGINE_COMPONENT_H
 
 #include "LucusTypes.h"
+#include "LucusObject.h"
+#include "LucusPtr.h"
 
 namespace tinyxml2
 {
@@ -17,7 +19,7 @@ namespace tinyxml2
 
 namespace LucusEngine
 {
-    class Component
+    class Component : public Object
     {
     public:
         Component();

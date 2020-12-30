@@ -8,9 +8,14 @@
 #include "LucusMeshFormatManager.h"
 #include "LucusTimeManager.h"
 #include "LucusLuaState.h"
+#include "LucusLuaFactory.h"
 
 #include "LucusRenderSystem.h"
 #include "LucusWorld.h"
+
+#include "LucusActor.h"
+
+#include <cmath>
 
 using namespace LucusEngine;
 
@@ -18,7 +23,8 @@ template<> Core* Singleton<Core>::mInstance = nullptr;
 
 Core::Core() :
     mTimeStep(1.0f / 60.0f),
-    mMaxStepSim(5)
+    mMaxStepSim(5),
+    bTickTime(false)
 {
     LoadModules();
 }
@@ -130,51 +136,75 @@ void Core::ChangeViewportSize(u32 width, u32 height)
     }
 }
 
+void Core::Run()
+{
+    CreateWorld();
+    
+    if (mLuaState != nullptr)
+    {
+        mLuaState->Do();
+    }
+    
+    bTickTime = true;
+}
+
 void Core::Tick()
 {
-    mTimeManager->UpdateTime();
-    float deltaSeconds = mTimeManager->GetDeltaSeconds();
-    
-    for (u32 i = 0; i < mMaxStepSim && deltaSeconds > mTimeStep; ++i)
+    if (bTickTime)
     {
-        mWorld->Tick(mTimeStep);
-        deltaSeconds -= mTimeStep;
-    }
-    
-    // calculate how close or far we are from the next timestep
-//    auto alpha = (float) lag.count() / timestep.count();
-//    auto interpolated_state = interpolate(current_state, previous_state, alpha);
-    if (mActiveRenderSystem != nullptr)
-    {
-        mActiveRenderSystem->Render();
-    }
-    
-    mTimeManager->SetUnusedSeconds(deltaSeconds);
-}
-
-void Core::StartCoreLoop()
-{
-    mIsActive = true;
-    
-    while(mIsActive)
-    {
+        mTimeManager->UpdateTime();
+        float deltaSeconds = mTimeManager->GetDeltaSeconds();
+        
+        if (mWorld != nullptr)
+        {
+            for (u32 i = 0; i < mMaxStepSim && deltaSeconds > mTimeStep; ++i)
+            {
+                mWorld->Tick(mTimeStep);
+                deltaSeconds -= mTimeStep;
+            }
+        }
+        else
+        {
+            float val = std::fmodf(deltaSeconds, mTimeStep);
+            deltaSeconds -= static_cast<int>(val)*mTimeStep;
+        }
+        
+        
+        // calculate how close or far we are from the next timestep
+    //    auto alpha = (float) lag.count() / timestep.count();
+    //    auto interpolated_state = interpolate(current_state, previous_state, alpha);
         if (mActiveRenderSystem != nullptr)
         {
+            mActiveRenderSystem->PreRender();
             mActiveRenderSystem->Render();
         }
+        
+        mTimeManager->SetUnusedSeconds(deltaSeconds);
     }
+    
 }
 
-void Core::CreateWorld(World* world)
+//void Core::StartCoreLoop()
+//{
+//    mIsActive = true;
+//
+//    while(mIsActive)
+//    {
+//        if (mActiveRenderSystem != nullptr)
+//        {
+//            mActiveRenderSystem->Render();
+//        }
+//    }
+//}
+
+void Core::CreateWorld()
 {
-    mWorld = world;
+    mWorld = mMemoryManager->NewOnModule<World>();
     if (nullptr != mWorld)
     {
         mWorld->InitWorld();
-    }
-    
-    if (nullptr != mLuaState)
-    {
-        mLuaState->Do();
+        LuaFactory<World>::RegisterGlobal(mLuaState, mWorld);
+        LuaFactory<Actor>::RegisterClass(mLuaState);
+        //        LuaRegisterGlobal<LucusEngine::Core>(*mLuaState);
     }
 }

@@ -21,6 +21,7 @@ namespace LucusEngine
         TimeManager();
         ~TimeManager();
         
+        void Reset();
         void UpdateTime();
         float GetDeltaSeconds();
         float GetElapsedSeconds();

@@ -9,12 +9,13 @@
 #include "LucusRenderTypes.h"
 #include "LucusMetalComponentProxy.h"
 #include "LucusScene.h"
+#include "LucusICamera.h"
 
 // temp
 #include "Metal/MTLVertexDescriptor.h"
 
 #include "LucusMesh.h"
-#include "LucusCameraComponent.h"
+// #include "LucusCameraComponent.h"
 #include "LucusMeshComponent.h"
 
 using namespace LucusEngine;
@@ -45,12 +46,12 @@ void MetalRenderSystem::CreateBuffers()
     mWindow->mView.sampleCount = 1; // No MSAA
     
     // Create Assets
-    for (auto* component : mScene->MeshComps) {
-        MetalComponentProxy* proxy = new MetalComponentProxy(&mDevice);
-        proxy->CreateBuffers(component->GetMesh());
-        proxy->CreateTexture(component->GetImage());
-        component->Proxy = proxy;
-    }
+//    for (auto* component : mScene->MeshComps) {
+//        MetalComponentProxy* proxy = new MetalComponentProxy(&mDevice);
+//        proxy->CreateBuffers(component->GetMesh());
+//        proxy->CreateTexture(component->GetImage());
+//        component->Proxy = proxy;
+//    }
     
     MTLVertexDescriptor* vertexDescr = [[MTLVertexDescriptor alloc] init];
     vertexDescr.attributes[0].format = MTLVertexFormatFloat3;
@@ -92,68 +93,80 @@ void MetalRenderSystem::CreateBuffers()
     
     mDSState = [mDevice.mDevice newDepthStencilStateWithDescriptor:depthStencilDescriptor];
 }
-        
-void MetalRenderSystem::Render()
-{
-    // Update Uniforms
-    Uniforms uniforms;
-    CameraComponent* cameraCom = mScene->CameraComp;
-    cameraCom->UpdateProjectionMatrix(mWindow->GetViewport());
-    uniforms.PROJ_MATRIX = cameraCom->GetProjMatrix().GetNative();
-    uniforms.VIEW_MATRIX = cameraCom->GetModelMatrix().GetNative(); //GetTransform().GetModelMatrix().GetNative();
-    
-    for (auto* component : mScene->MeshComps) {
-        // component->GetTransform().UpdateMatrices();
-        component->Proxy->UpdateUniforms(uniforms, component);// component->GetTransform());
-    }
-    
-    // Start Frame
-    mWindow->mCurrentDrawable = [mWindow->mMetalLayer nextDrawable];
-    if (mWindow->mCurrentDrawable != nil)
-    {
-        id<MTLCommandBuffer> commandBuffer = [mDevice.mCommandQueue commandBuffer];
-        
-        // Create custom render pass descriptor
-        MTLRenderPassDescriptor *descriptor = [[MTLRenderPassDescriptor alloc] init];
-        descriptor.colorAttachments[0].texture = mWindow->mCurrentDrawable.texture;
-        descriptor.colorAttachments[0].clearColor = MTLClearColorMake(1, 0, 0, 1);
-        descriptor.colorAttachments[0].storeAction = MTLStoreActionStore;
-        descriptor.colorAttachments[0].loadAction = MTLLoadActionClear;
-        descriptor.depthAttachment.texture = mWindow->mView.depthStencilTexture;
-        descriptor.depthAttachment.storeAction = MTLStoreActionStore;
-        descriptor.depthAttachment.loadAction = MTLLoadActionClear;
-        descriptor.depthAttachment.clearDepth = 1.0f;
-        descriptor.stencilAttachment.texture = mWindow->mView.depthStencilTexture;
-        descriptor.stencilAttachment.storeAction = MTLStoreActionStore;
-        descriptor.stencilAttachment.loadAction = MTLLoadActionClear;
-        descriptor.stencilAttachment.clearStencil = 0;
-        
-        if (descriptor != nil)
-        {
-            id<MTLRenderCommandEncoder> renderEncoder = [commandBuffer renderCommandEncoderWithDescriptor:descriptor];
-            renderEncoder.label = @"MyRenderEncoder";
-            
-            [renderEncoder setFrontFacingWinding:MTLWindingCounterClockwise];//MTLWindingClockwise
-            [renderEncoder setCullMode:MTLCullModeBack];
-            
-            [renderEncoder setRenderPipelineState:mPipelineState];
-            [renderEncoder setDepthStencilState:mDSState];
-            
-            for (auto* component : mScene->MeshComps) {
-                static_cast<MetalComponentProxy*>(component->Proxy)->DrawIndexed(renderEncoder);
-            }
 
-            [renderEncoder endEncoding];
-            
-            [commandBuffer presentDrawable:mWindow->mCurrentDrawable];
+void MetalRenderSystem::PreRender()
+{
+    RenderSystem::PreRender();
+
+    ICamera* camera = mScene->GetCamera();
+    camera->UpdateProjMatrix(mWindow->GetViewport());
+}
+        
+void MetalRenderSystem::Render() const
+{
+    RenderSystem::Render();
+    
+    if (bSceneEnabled)
+    {
+        // Update Uniforms
+        Uniforms uniforms;
+        ICamera* camera = mScene->GetCamera();
+        uniforms.PROJ_MATRIX = camera->GetProjMatrix().GetNative();
+        uniforms.VIEW_MATRIX = camera->GetViewMatrix().GetNative(); //GetTransform().GetModelMatrix().GetNative();
+        
+        for (auto* component : mScene->MeshComps) {
+            // component->GetTransform().UpdateMatrices();
+            component->Proxy->UpdateUniforms(uniforms, component);// component->GetTransform());
         }
         
-        [commandBuffer commit];
+        // Start Frame
+        mWindow->mCurrentDrawable = [mWindow->mMetalLayer nextDrawable];
+        if (mWindow->mCurrentDrawable != nil)
+        {
+            id<MTLCommandBuffer> commandBuffer = [mDevice.mCommandQueue commandBuffer];
+            
+            // Create custom render pass descriptor
+            MTLRenderPassDescriptor *descriptor = [[MTLRenderPassDescriptor alloc] init];
+            descriptor.colorAttachments[0].texture = mWindow->mCurrentDrawable.texture;
+            descriptor.colorAttachments[0].clearColor = MTLClearColorMake(1, 0, 0, 1);
+            descriptor.colorAttachments[0].storeAction = MTLStoreActionStore;
+            descriptor.colorAttachments[0].loadAction = MTLLoadActionClear;
+            descriptor.depthAttachment.texture = mWindow->mView.depthStencilTexture;
+            descriptor.depthAttachment.storeAction = MTLStoreActionStore;
+            descriptor.depthAttachment.loadAction = MTLLoadActionClear;
+            descriptor.depthAttachment.clearDepth = 1.0f;
+            descriptor.stencilAttachment.texture = mWindow->mView.depthStencilTexture;
+            descriptor.stencilAttachment.storeAction = MTLStoreActionStore;
+            descriptor.stencilAttachment.loadAction = MTLLoadActionClear;
+            descriptor.stencilAttachment.clearStencil = 0;
+            
+            if (descriptor != nil)
+            {
+                id<MTLRenderCommandEncoder> renderEncoder = [commandBuffer renderCommandEncoderWithDescriptor:descriptor];
+                renderEncoder.label = @"MyRenderEncoder";
+                
+                [renderEncoder setFrontFacingWinding:MTLWindingCounterClockwise];//MTLWindingClockwise
+                [renderEncoder setCullMode:MTLCullModeBack];
+                
+                [renderEncoder setRenderPipelineState:mPipelineState];
+                [renderEncoder setDepthStencilState:mDSState];
+                
+                for (auto* component : mScene->MeshComps) {
+                    static_cast<MetalComponentProxy*>(component->Proxy)->DrawIndexed(renderEncoder);
+                }
+
+                [renderEncoder endEncoding];
+                
+                [commandBuffer presentDrawable:mWindow->mCurrentDrawable];
+            }
+            
+            [commandBuffer commit];
+        }
+        else
+        {
+            // frame aborted
+        }
+        
+        mWindow->mCurrentDrawable = nil;
     }
-    else
-    {
-        // frame aborted
-    }
-    
-    mWindow->mCurrentDrawable = nil;
 }
