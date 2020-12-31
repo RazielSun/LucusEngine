@@ -92,6 +92,8 @@ void SceneComponent::UpdateCachedModelMatrix()
 
 void SceneComponent::BindLuaFunctions(lua_State* lua)
 {
+    LuaObject::BindLuaFunctions(lua);
+    
     const luaL_Reg reg_table[] = {
         { "AddChild", _addChild },
         { "RemoveChild", _removeChild },

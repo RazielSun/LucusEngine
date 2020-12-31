@@ -36,5 +36,5 @@ void CameraComponent::UpdateProjMatrix(const Viewport& viewport)
 
 void CameraComponent::BindLuaFunctions(lua_State* lua)
 {
-    //
+    SceneComponent::BindLuaFunctions(lua);
 }

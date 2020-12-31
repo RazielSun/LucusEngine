@@ -19,7 +19,16 @@ namespace LucusEngine
     class LuaObject : public Object
     {
     public:
+        LuaObject();
+        ~LuaObject();
+        
+        DECL_LUA_OBJECT(LuaObject)
+        
+    public:
         virtual void BindLuaFunctions(lua_State* lua);
+    
+    public:
+        static int _getClassName(lua_State* L);
     };
 }
 

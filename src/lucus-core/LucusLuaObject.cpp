@@ -10,7 +10,28 @@
 
 using namespace LucusEngine;
 
-void LuaObject::BindLuaFunctions(lua_State* lua)
+LuaObject::LuaObject()
 {
     //
+}
+
+LuaObject::~LuaObject()
+{
+    //
+}
+
+void LuaObject::BindLuaFunctions(lua_State* lua)
+{
+    const luaL_Reg reg_table[] = {
+        { "GetClassName", _getClassName },
+        { 0, 0 }
+    };
+    luaL_setfuncs(lua, reg_table, 0);
+    lua_pushvalue(lua, -1);
+}
+
+
+int LuaObject::_getClassName(lua_State* L)
+{
+    return 0;
 }

@@ -36,5 +36,5 @@ void SpringArmComponent::Tick(float deltaSeconds)
 
 void SpringArmComponent::BindLuaFunctions(lua_State* lua)
 {
-    //
+    SceneComponent::BindLuaFunctions(lua);
 }

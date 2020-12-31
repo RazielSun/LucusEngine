@@ -110,6 +110,8 @@ Image* MeshComponent::GetImage()
 
 void MeshComponent::BindLuaFunctions(lua_State* lua)
 {
+    SceneComponent::BindLuaFunctions(lua);
+    
     const luaL_Reg reg_table[] = {
         { "SetMesh", _setMesh },
         { "SetImage", _setImage },

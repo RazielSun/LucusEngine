@@ -70,6 +70,8 @@ void Actor::AddComponentToScene(SceneComponent* component)
 
 void Actor::BindLuaFunctions(lua_State* lua)
 {
+    LuaObject::BindLuaFunctions(lua);
+    
     const luaL_Reg reg_table[] = {
         { "SetRootComponent", _setRootComponent },
         { 0, 0 }
