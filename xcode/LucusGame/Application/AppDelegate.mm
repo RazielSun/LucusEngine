@@ -89,6 +89,10 @@ static AppDelegate* mInstance = nil;
     
     // Create Metal Render System
     AKUCreateRenderSystem((u32)width, (u32)height);
+    // Create World
+    AKUCreateWorld();
+    // Create Lua
+    AKUCreateLua();
     
     // Create World & Start Loop
     AKURun();

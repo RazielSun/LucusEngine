@@ -14,8 +14,6 @@
 
 using namespace LucusEngine;
 
-const char Actor::className[] = "Actor";
-
 Actor::Actor() : mWorld(nullptr)
 {
     //

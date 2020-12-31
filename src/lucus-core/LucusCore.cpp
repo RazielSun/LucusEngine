@@ -13,7 +13,7 @@
 #include "LucusRenderSystem.h"
 #include "LucusWorld.h"
 
-#include "LucusActor.h"
+#include "lua_bind.h"
 
 #include <cmath>
 
@@ -136,15 +136,29 @@ void Core::ChangeViewportSize(u32 width, u32 height)
     }
 }
 
+void Core::CreateWorld()
+{
+    mWorld = mMemoryManager->NewOnModule<World>();
+    if (nullptr != mWorld)
+    {
+        mWorld->InitWorld();
+    }
+}
+
+void Core::CreateLua()
+{
+    InitLua();
+    mLuaState->Do();
+}
+
+void Core::InitLua()
+{
+    if (mWorld) LuaFactory<World>::RegisterGlobal(mLuaState, mWorld);
+    BindLua(mLuaState);
+}
+
 void Core::Run()
 {
-    CreateWorld();
-    
-    if (mLuaState != nullptr)
-    {
-        mLuaState->Do();
-    }
-    
     bTickTime = true;
 }
 
@@ -182,29 +196,4 @@ void Core::Tick()
         mTimeManager->SetUnusedSeconds(deltaSeconds);
     }
     
-}
-
-//void Core::StartCoreLoop()
-//{
-//    mIsActive = true;
-//
-//    while(mIsActive)
-//    {
-//        if (mActiveRenderSystem != nullptr)
-//        {
-//            mActiveRenderSystem->Render();
-//        }
-//    }
-//}
-
-void Core::CreateWorld()
-{
-    mWorld = mMemoryManager->NewOnModule<World>();
-    if (nullptr != mWorld)
-    {
-        mWorld->InitWorld();
-        LuaFactory<World>::RegisterGlobal(mLuaState, mWorld);
-        LuaFactory<Actor>::RegisterClass(mLuaState);
-        //        LuaRegisterGlobal<LucusEngine::Core>(*mLuaState);
-    }
 }

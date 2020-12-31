@@ -22,6 +22,8 @@ namespace LucusEngine
         MeshComponent(cc8* meshName, cc8* imageName);
         virtual ~MeshComponent();
         
+        DECL_LUA_OBJECT(MeshComponent)
+        
         virtual void Init(const tinyxml2::XMLElement*) override;
         
         void SetMesh(cc8* meshName);
@@ -33,6 +35,13 @@ namespace LucusEngine
     protected:
     	MeshPtr mMesh;
         ImagePtr mImage;
+    
+    public:
+        virtual void BindLuaFunctions(lua_State* lua) override;
+        
+    public:
+        static int _setMesh(lua_State* L);
+        static int _setImage(lua_State* L);
     };
 }
 

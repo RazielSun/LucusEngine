@@ -1,6 +1,6 @@
 //
 //  host.hpp
-//  LucusGame macOS
+//  LucusGame
 //
 //  Created by Alexander Kardakov on 11/02/2020.
 //
@@ -10,28 +10,17 @@
 
 #include "LucusTypes.h"
 
-namespace LucusEngine
-{
-    class RenderSystem;
-    class World;
-}
-
 void AKUCoreCreate();
 void AKUCoreDestroy();
 
 void AKUCreateRenderSystem(u32 width, u32 height);
+void AKUCreateWorld();
+void AKUCreateLua();
 
 void AKURun();
-// void AKUStartCoreLoop();
 void AKUTick();
-//void AKUUpdate();
-//void AKURender();
 
-// void AKUCreateWorld(LucusEngine::World* world);
-
-// void AKUSetRenderSystem(LucusEngine::RenderSystem* system);
 void AKUChangeViewportSize(u32 width, u32 height);
-
 void AKUChangeWorkingDir(char const* path);
 
 #endif /* _LUCUS_ENGINE_HOST_H */

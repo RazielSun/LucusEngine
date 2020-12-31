@@ -9,7 +9,7 @@
 #define _LUCUS_ENGINE_COMPONENT_H
 
 #include "LucusTypes.h"
-#include "LucusObject.h"
+#include "LucusLuaObject.h"
 #include "LucusPtr.h"
 
 namespace tinyxml2
@@ -19,7 +19,7 @@ namespace tinyxml2
 
 namespace LucusEngine
 {
-    class Component : public Object
+    class Component : public LuaObject
     {
     public:
         Component();
@@ -32,6 +32,8 @@ namespace LucusEngine
     protected:
         bool Compare(cc8* name, cc8* other);
     };
+
+    using ComponentPtr = Ptr<Component>;
 }
 
 #endif /* _LUCUS_ENGINE_COMPONENT_H */

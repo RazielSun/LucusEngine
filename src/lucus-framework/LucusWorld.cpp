@@ -21,8 +21,6 @@
 
 using namespace LucusEngine;
 
-const char World::className[] = "World";
-
 World::World()
 {
 }

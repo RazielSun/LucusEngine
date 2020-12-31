@@ -33,3 +33,8 @@ void CameraComponent::UpdateProjMatrix(const Viewport& viewport)
 {
     mProjMtx = FMatrix4x4::RightHandProjectionMatrix(viewport.GetAspectRatio(), mNearZ, mFarZ, mFOV);
 }
+
+void CameraComponent::BindLuaFunctions(lua_State* lua)
+{
+    //
+}

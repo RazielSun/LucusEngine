@@ -16,6 +16,8 @@ public:
 	RotatedMeshComponent();
     RotatedMeshComponent(cc8* meshName, cc8* imageName) : MeshComponent(meshName, imageName) {}
 	virtual ~RotatedMeshComponent();
+    
+    DECL_LUA_OBJECT(RotatedMeshComponent)
 
 	virtual void Tick(float deltaSeconds) override;
 

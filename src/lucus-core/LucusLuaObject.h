@@ -11,13 +11,13 @@
 #include "LucusObject.h"
 #include "LucusLuaState.h"
 
+#define DECL_LUA_OBJECT(type)                       \
+cc8* GetTypeName() const { return #type; }
+
 namespace LucusEngine
 {
     class LuaObject : public Object
     {
-    private:
-        static int _ctor(lua_State* lua);
-
     public:
         virtual void BindLuaFunctions(lua_State* lua);
     };

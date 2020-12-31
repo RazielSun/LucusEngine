@@ -30,6 +30,8 @@ namespace LucusEngine
         SceneComponent();
         virtual ~SceneComponent();
         
+        DECL_LUA_OBJECT(SceneComponent)
+        
         virtual void Init(const tinyxml2::XMLElement*) override;
         
         virtual void Tick(float deltaSeconds) override;
@@ -50,17 +52,21 @@ namespace LucusEngine
         SceneComponent* GetParent() const; // create inline function?
 
         void UpdateCachedModelMatrix();
-        FMatrix4x4 GetModelMatrix() const;
+        const FMatrix4x4& GetModelMatrix() const { return mTransform.GetCachedWorldMatrix(); } // inline implicitly
 
     protected:
-//    	FVector3 mLocation;
-//        FQuaternion mRotation;
-//        FVector3 mScale;
-
         ChildrenVector mChildren;
         SceneComponentPtr mParent;
         
         Transform mTransform;
+        
+    public:
+        virtual void BindLuaFunctions(lua_State* lua) override;
+        
+    public:
+        static int _addChild(lua_State* L);
+        static int _removeChild(lua_State* L);
+        static int _attachTo(lua_State* L);
     };
 
     FORCEINLINE const ChildrenVector& SceneComponent::GetChildren() const

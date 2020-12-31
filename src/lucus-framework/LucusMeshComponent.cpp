@@ -107,3 +107,24 @@ Image* MeshComponent::GetImage()
 {
     return mImage.Get();
 }
+
+void MeshComponent::BindLuaFunctions(lua_State* lua)
+{
+    const luaL_Reg reg_table[] = {
+        { "SetMesh", _setMesh },
+        { "SetImage", _setImage },
+        { 0, 0 }
+    };
+    luaL_setfuncs(lua, reg_table, 0);
+    lua_pushvalue(lua, -1);
+}
+    
+int MeshComponent::_setMesh(lua_State* L)
+{
+    return 0;
+}
+
+int MeshComponent::_setImage(lua_State* L)
+{
+    return 0;
+}

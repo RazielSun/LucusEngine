@@ -30,6 +30,8 @@ namespace LucusEngine
     public:
         World();
         virtual ~World();
+        
+        DECL_LUA_OBJECT(World)
 
         void InitWorld();
         virtual void InitActors();
@@ -55,8 +57,6 @@ namespace LucusEngine
     	ActorArray mActors;
 
     public:
-        static const char className[];
-        
         static int _addActor(lua_State* lua);
     };
 }

@@ -33,12 +33,16 @@ namespace LucusEngine
         
         void SetRenderSystem(RenderSystem* system);
         void CreateWorld();
+        void CreateLua();
         
         void ChangeViewportSize(u32 width, u32 height);
         
         void Run();
         
         void Tick();
+
+    protected:
+        void InitLua();
         
     public:
         static Core& Get();

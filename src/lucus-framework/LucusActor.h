@@ -24,6 +24,8 @@ namespace LucusEngine
     public:
         Actor();
         virtual ~Actor();
+        
+        DECL_LUA_OBJECT(Actor)
 
         virtual void Tick(float deltaSeconds);
 
@@ -43,9 +45,8 @@ namespace LucusEngine
     	SceneComponentPtr mRootComponent;
         
         World* mWorld;
-    public:
-        static const char className[];
         
+    public:
         static int _setRootComponent(lua_State* lua);
     };
 }

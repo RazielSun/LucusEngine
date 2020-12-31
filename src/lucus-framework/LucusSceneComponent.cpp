@@ -90,7 +90,29 @@ void SceneComponent::UpdateCachedModelMatrix()
 	}
 }
 
-FMatrix4x4 SceneComponent::GetModelMatrix() const
+void SceneComponent::BindLuaFunctions(lua_State* lua)
 {
-	return mTransform.GetCachedWorldMatrix();
+    const luaL_Reg reg_table[] = {
+        { "AddChild", _addChild },
+        { "RemoveChild", _removeChild },
+        { "AttachTo", _attachTo },
+        { 0, 0 }
+    };
+    luaL_setfuncs(lua, reg_table, 0);
+    lua_pushvalue(lua, -1);
+}
+
+int SceneComponent::_addChild(lua_State* L)
+{
+    return 0;
+}
+
+int SceneComponent::_removeChild(lua_State* L)
+{
+    return 0;
+}
+
+int SceneComponent::_attachTo(lua_State* L)
+{
+    return 0;
 }

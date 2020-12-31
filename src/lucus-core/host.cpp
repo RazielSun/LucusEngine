@@ -1,6 +1,6 @@
 //
 //  host.cpp
-//  LucusGame macOS
+//  LucusGame
 //
 //  Created by Alexander Kardakov on 11/02/2020.
 //
@@ -9,7 +9,6 @@
 #include "LucusCore.h"
 #include "LucusRenderCore.h"
 #include "LucusFileSystem.h"
-// #include "LucusWorld.h"
 
 void AKUCoreCreate()
 {
@@ -36,6 +35,24 @@ void AKUCreateRenderSystem(u32 width, u32 height)
     }
 }
 
+void AKUCreateWorld()
+{
+    LucusEngine::Core* core = LucusEngine::Core::GetPtr();
+    if (core != nullptr)
+    {
+        core->CreateWorld();
+    }
+}
+
+void AKUCreateLua()
+{
+    LucusEngine::Core* core = LucusEngine::Core::GetPtr();
+    if (core != nullptr)
+    {
+        core->CreateLua();
+    }
+}
+
 void AKURun()
 {
     LucusEngine::Core* core = LucusEngine::Core::GetPtr();
@@ -45,15 +62,6 @@ void AKURun()
     }
 }
 
-// void AKUStartCoreLoop()
-// {
-//     LucusEngine::Core* core = LucusEngine::Core::GetPtr();
-//     if (core != nullptr)
-//     {
-//         core->StartCoreLoop();
-//     }
-// }
-
 void AKUTick()
 {
     LucusEngine::Core* core = LucusEngine::Core::GetPtr();
@@ -62,24 +70,6 @@ void AKUTick()
         core->Tick();
     }
 }
-
-//void AKUCreateWorld(LucusEngine::World* world)
-//{
-//    LucusEngine::Core* core = LucusEngine::Core::GetPtr();
-//    if (core != nullptr)
-//    {
-//        core->CreateWorld(world);
-//    }
-//}
-//
-//void AKUSetRenderSystem(LucusEngine::RenderSystem* system)
-//{
-//    LucusEngine::Core* core = LucusEngine::Core::GetPtr();
-//    if (core != nullptr)
-//    {
-//        core->SetRenderSystem(system);
-//    }
-//}
 
 void AKUChangeViewportSize(u32 width, u32 height)
 {

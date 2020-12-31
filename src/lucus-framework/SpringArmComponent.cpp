@@ -34,3 +34,7 @@ void SpringArmComponent::Tick(float deltaSeconds)
 //     mTransform.Rotate(axis, angle);
 }
 
+void SpringArmComponent::BindLuaFunctions(lua_State* lua)
+{
+    //
+}

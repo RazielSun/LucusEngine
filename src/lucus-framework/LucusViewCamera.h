@@ -18,6 +18,8 @@ namespace LucusEngine
     public:
         ViewCamera();
         virtual ~ViewCamera();
+        
+        DECL_LUA_OBJECT(ViewCamera)
 
         virtual void UpdateProjMatrix(const Viewport& viewport) override;
         

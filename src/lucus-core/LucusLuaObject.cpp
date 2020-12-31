@@ -10,11 +10,6 @@
 
 using namespace LucusEngine;
 
-int LuaObject::_ctor(lua_State* lua)
-{
-    return 0;
-}
-
 void LuaObject::BindLuaFunctions(lua_State* lua)
 {
     //
