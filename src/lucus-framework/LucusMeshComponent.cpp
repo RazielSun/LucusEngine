@@ -8,6 +8,7 @@
 #include "LucusMeshComponent.h"
 #include "LucusCore.h"
 #include "LucusResourceManager.h"
+#include "LucusLuaStack.h"
 
 #include "tinyxml2.h"
 
@@ -123,10 +124,24 @@ void MeshComponent::BindLuaFunctions(lua_State* lua)
     
 int MeshComponent::_setMesh(lua_State* L)
 {
+    LuaStack stack(L);
+    MeshComponent* comp = stack.GetLuaObject<MeshComponent>(1);
+    cc8* meshName = stack.GetValue<cc8*>(2, "");
+    if (comp != nullptr)
+    {
+        comp->SetMesh(meshName);
+    }
     return 0;
 }
 
 int MeshComponent::_setImage(lua_State* L)
 {
+    LuaStack stack(L);
+    MeshComponent* comp = stack.GetLuaObject<MeshComponent>(1);
+    cc8* imageName = stack.GetValue<cc8*>(2, "");
+    if (comp != nullptr)
+    {
+        comp->SetImage(imageName);
+    }
     return 0;
 }

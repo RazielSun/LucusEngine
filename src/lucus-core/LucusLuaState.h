@@ -27,9 +27,4 @@ namespace LucusEngine
     };
 }
 
-//template <class T>
-//void LuaRegisterGlobal(LucusEngine::LuaState* state);
-//template <class T>
-//void LuaRegisterClass(LucusEngine::LuaState* state);
-
 #endif /* _LUCUS_ENGINE_LUASTATE_H */

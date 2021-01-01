@@ -34,14 +34,3 @@ void LuaState::Do()
     }
 }
 
-//template <class T>
-//void LuaRegisterGlobal(LucusEngine::LuaState* state)
-//{
-//    //
-//}
-//
-//template <class T>
-//void LuaRegisterClass(LucusEngine::LuaState* state)
-//{
-//    //
-//}

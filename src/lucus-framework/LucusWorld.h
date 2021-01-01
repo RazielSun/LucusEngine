@@ -10,6 +10,7 @@
 
 #include "LucusTypes.h"
 #include "LucusLuaObject.h"
+#include "LucusPtr.h"
 
 namespace tinyxml2
 {
@@ -22,7 +23,9 @@ namespace LucusEngine
 	class Actor;
     class Component;
 
-    typedef std::vector<Actor*> ActorArray;
+    using ActorPtr = Ptr<Actor>;
+
+    typedef std::vector<ActorPtr> ActorArray;
     typedef ActorArray::iterator ActorIterator;
 
     class World : LuaObject
@@ -38,12 +41,16 @@ namespace LucusEngine
         void LoadActors(cc8* path);
 
         void Tick(float deltaSeconds);
+        void LateTick();
 
         Scene* Scene;
 
         Actor* SpawnActor();
         Actor* SpawnActor(const tinyxml2::XMLElement*);
         // Actor* SpawnActor();
+        
+        void AddActor(Actor* actor);
+        void RemoveActor(Actor* actor);
         
         virtual void BindLuaFunctions(lua_State* lua) override;
         

@@ -100,6 +100,22 @@ void MetalRenderSystem::PreRender()
 
     ICamera* camera = mScene->GetCamera();
     camera->UpdateProjMatrix(mWindow->GetViewport());
+
+    // Udpate Scene Pendings
+    for (auto* component : mScene->PendingComponents)
+    {
+        MeshComponent* meshComp = dynamic_cast<MeshComponent*>(component);
+        if (meshComp != nullptr)
+        {
+            MetalComponentProxy* proxy = new MetalComponentProxy(&mDevice);
+            proxy->CreateBuffers(meshComp->GetMesh());
+            proxy->CreateTexture(meshComp->GetImage());
+            meshComp->Proxy = proxy;
+            proxy->Component = component;
+            mScene->Proxies.push_back(proxy);
+        }
+    }
+    mScene->PendingComponents.clear();
 }
         
 void MetalRenderSystem::Render() const
@@ -114,9 +130,14 @@ void MetalRenderSystem::Render() const
         uniforms.PROJ_MATRIX = camera->GetProjMatrix().GetNative();
         uniforms.VIEW_MATRIX = camera->GetViewMatrix().GetNative(); //GetTransform().GetModelMatrix().GetNative();
         
-        for (auto* component : mScene->MeshComps) {
+        // for (auto* component : mScene->MeshComps) {
             // component->GetTransform().UpdateMatrices();
-            component->Proxy->UpdateUniforms(uniforms, component);// component->GetTransform());
+            // component->Proxy->UpdateUniforms(uniforms, component);// component->GetTransform());
+        // }
+
+        for (auto* proxy : mScene->Proxies)
+        {
+            proxy->UpdateUniforms(uniforms, proxy->Component);
         }
         
         // Start Frame
@@ -151,8 +172,13 @@ void MetalRenderSystem::Render() const
                 [renderEncoder setRenderPipelineState:mPipelineState];
                 [renderEncoder setDepthStencilState:mDSState];
                 
-                for (auto* component : mScene->MeshComps) {
-                    static_cast<MetalComponentProxy*>(component->Proxy)->DrawIndexed(renderEncoder);
+                // for (auto* component : mScene->MeshComps) {
+                //     static_cast<MetalComponentProxy*>(component->Proxy)->DrawIndexed(renderEncoder);
+                // }
+
+                for (auto* proxy : mScene->Proxies)
+                {
+                    static_cast<MetalComponentProxy*>(proxy)->DrawIndexed(renderEncoder);
                 }
 
                 [renderEncoder endEncoding];

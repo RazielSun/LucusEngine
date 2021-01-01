@@ -9,6 +9,7 @@
 #include "LucusWorld.h"
 #include "LucusScene.h"
 #include "LucusSceneComponent.h"
+#include "LucusLuaStack.h"
 
 #include <iostream>
 
@@ -35,6 +36,14 @@ void Actor::Tick(float deltaSeconds)
     }
 }
 
+void Actor::LateTick()
+{
+    if (mRootComponent)
+    {
+        mRootComponent->LateTick();
+    }
+}
+
 void Actor::SetWorld(World* world)
 {
     mWorld = world;
@@ -45,7 +54,7 @@ template <class T>
 void Actor::SetRootComponent(T* component)
 {
     mRootComponent = Ptr<SceneComponent>(component);
-    AddComponentToScene(mRootComponent.Get());
+    // AddComponentToScene(mRootComponent.Get());
 }
 
 SceneComponent* Actor::GetRootComponent()
@@ -80,8 +89,15 @@ void Actor::BindLuaFunctions(lua_State* lua)
     lua_pushvalue(lua, -1);
 }
 
-int Actor::_setRootComponent(lua_State* lua)
+int Actor::_setRootComponent(lua_State* L)
 {
-    std::cout << "[C++] Actor SetRootComponent called.\n";
+    LuaStack stack(L);
+    Actor* actor = stack.GetLuaObject<Actor>(1);
+    SceneComponent* comp = stack.GetLuaObject<SceneComponent>(2);
+    if (actor != nullptr && comp != nullptr)
+    {
+        std::cout << "[C++] Actor SetRootComponent called.\n";
+        actor->SetRootComponent(comp);
+    }
     return 0;
 }

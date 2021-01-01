@@ -28,6 +28,7 @@ namespace LucusEngine
         virtual void Init(const tinyxml2::XMLElement*) = 0;
 
         virtual void Tick(float deltaSeconds) = 0;
+        virtual void LateTick() = 0;
         
     protected:
         bool Compare(cc8* name, cc8* other);

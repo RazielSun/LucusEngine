@@ -24,6 +24,8 @@ namespace LucusEngine
         SceneComponentProxy();
         ~SceneComponentProxy();
         
+        SceneComponent* Component;
+        
         virtual void CreateBuffers(Mesh* mesh) = 0;
         virtual void CreateTexture(Image* image) = 0;
         virtual void UpdateUniforms(const Uniforms& uniforms, SceneComponent* component) = 0;

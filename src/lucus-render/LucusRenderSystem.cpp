@@ -2,6 +2,8 @@
 #include "LucusRenderSystem.h"
 #include "LucusWorld.h"
 #include "LucusScene.h"
+#include "LucusSceneComponentProxy.h"
+#include "LucusSceneComponent.h"
 
 using namespace LucusEngine;
 
@@ -41,7 +43,7 @@ void RenderSystem::ChangeViewportSize(u32 width, u32 height)
 
 void RenderSystem::PreRender()
 {
-    //
+    // TODO from scene components to proxy
 }
 
 void RenderSystem::Render() const

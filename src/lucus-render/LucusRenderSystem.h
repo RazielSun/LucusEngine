@@ -13,32 +13,33 @@
 
 namespace LucusEngine
 {
-	class World;
-	class Scene;
+        class World;
+        class Scene;
+        // class SceneComponentProxy;
 
-	class RenderSystem
-	{
-	public:
-		RenderSystem();
-		virtual ~RenderSystem();
-        
-        virtual RenderWindow* CreateRenderWindow(u32 width, u32 height) = 0;
-        virtual void CreateBuffers() = 0;
-        
-        virtual void PreRender();
-        virtual void Render() const;
-        
-        virtual void ChangeViewportSize(u32 width, u32 height);
+        class RenderSystem
+        {
+        public:
+                RenderSystem();
+                virtual ~RenderSystem();
 
-        void AllocateScene(World* world);
+                virtual RenderWindow *CreateRenderWindow(u32 width, u32 height) = 0;
+                virtual void CreateBuffers() = 0;
 
-	protected:
-        RenderWindowVector mWindows;
-        // RenderWindow* mWindow;
+                virtual void PreRender();
+                virtual void Render() const;
 
-        Scene* mScene;
-        bool bSceneEnabled;
-	};
+                virtual void ChangeViewportSize(u32 width, u32 height);
+
+                void AllocateScene(World *world);
+
+        protected:
+                RenderWindowVector mWindows;
+                // RenderWindow* mWindow;
+
+                Scene *mScene;
+                bool bSceneEnabled;
+        };
 }
 
 #endif //_LUCUS_ENGINE_RENDER_SYSTEM_H

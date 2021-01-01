@@ -16,8 +16,10 @@ namespace LucusEngine
     class ICamera;
 
 	class SceneComponent;
-	class CameraComponent;
-	class MeshComponent;
+	// class CameraComponent;
+	// class MeshComponent;
+
+    class SceneComponentProxy;
 
     class Scene
     {
@@ -27,6 +29,8 @@ namespace LucusEngine
         std::vector<ICamera*> mCameras;
         ICamera* mDefaultCam;
         int CurrentCameraIndex;
+
+        
 
     public:
         Scene(World* world);
@@ -38,8 +42,12 @@ namespace LucusEngine
         ICamera* GetCamera() const;
     
     public:
+        std::vector<SceneComponent*> PendingComponents;
+        std::vector<SceneComponent*> RemoveComponents;
+        std::vector<SceneComponentProxy*> Proxies;
+
             // List of components
-            std::vector<MeshComponent*> MeshComps;
+            // std::vector<MeshComponent*> MeshComps;
     //        CameraComponent* CameraComp;
             
             

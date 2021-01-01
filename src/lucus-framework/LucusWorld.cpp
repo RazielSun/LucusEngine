@@ -10,6 +10,7 @@
 #include "LucusResourceManager.h"
 #include "LucusRenderSystem.h"
 #include "LucusScene.h"
+#include "LucusLuaStack.h"
 #include "LucusActor.h"
 #include "LucusComponent.h"
 
@@ -87,6 +88,14 @@ void World::Tick(float deltaSeconds)
     }
 }
 
+void World::LateTick()
+{
+    for (ActorIterator it = mActors.begin(); it != mActors.end(); it++)
+    {
+        (*it)->LateTick();
+    }
+}
+
 // World* World::CreateWorld()
 // {
 // 	World* world = new World();
@@ -117,6 +126,38 @@ Actor* World::SpawnActor(const tinyxml2::XMLElement* data)
 //    return actor;
     
     return nullptr;
+}
+
+void World::AddActor(Actor* actor)
+{
+    if (actor != nullptr)
+    {
+        bool founded = false;
+        ActorIterator it = mActors.begin();
+        while (it != mActors.end())
+        {
+            if (it->Get() == actor)
+            {
+                founded = true;
+                break;
+            }
+            it++;
+        }
+        if (!founded)
+        {
+            auto data = Ptr<Actor>(actor);
+            mActors.push_back(data);
+            if (Scene != nullptr)
+            {
+                Scene->AddSceneComponent(data->GetRootComponent());
+            }
+        }
+    }
+}
+
+void World::RemoveActor(Actor* actor)
+{
+    //
 }
 
 Component* World::GetComponent(cc8* name)
@@ -178,6 +219,14 @@ void World::BindLuaFunctions(lua_State* lua)
 
 int World::_addActor(lua_State* lua)
 {
-    std::cout << "[C++] World _addActor called.\n";
+    LuaStack stack(lua);
+    World* world = stack.GetLuaObject<World>(1);
+    Actor* actor = stack.GetLuaObject<Actor>(2);
+    if (world != nullptr && actor != nullptr)
+    {
+        std::cout << "[C++] World _addActor called.\n";
+        std::cout << "[C++] World " << world << ", Actor " << actor << ".\n";
+        world->AddActor(actor);
+    }
     return 0;
 }

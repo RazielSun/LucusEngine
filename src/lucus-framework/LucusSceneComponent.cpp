@@ -7,6 +7,7 @@
 
 #include "LucusSceneComponent.h"
 #include "LucusSceneComponentProxy.h"
+#include "LucusLuaStack.h"
 
 #include "tinyxml2.h"
 
@@ -42,52 +43,67 @@ void SceneComponent::Init(const tinyxml2::XMLElement* data)
 
 void SceneComponent::Tick(float deltaSeconds)
 {
-	//
+    ChildIt it = mChildren.begin();
+    for (;it != mChildren.end(); ++it)
+    {
+        (*it)->Tick(deltaSeconds);
+    }
+}
+
+void SceneComponent::LateTick()
+{
+    UpdateCachedModelMatrix();
+
+    ChildIt it = mChildren.begin();
+    for (;it != mChildren.end(); ++it)
+    {
+        (*it)->LateTick();
+    }
 }
 
 void SceneComponent::AttachTo(SceneComponent* parent)
 {
-	if (parent != nullptr)
-	{
-		parent->AddChild(this);
-		mParent = parent;
-	}
+    if (parent != nullptr)
+    {
+        parent->AddChild(this);
+        mParent = parent;
+    }
 }
 
 void SceneComponent::Detach()
 {
-	if (mParent)
-	{
-		mParent->RemoveChild(this);
-		mParent.Reset();
-	}
+    if (mParent)
+    {
+        mParent->RemoveChild(this);
+        mParent.Reset();
+    }
 }
 
 void SceneComponent::AddChild(SceneComponent* child)
 {
-	if (child != nullptr)
-	{
-		Ptr<SceneComponent> childPtr(child);
-		mChildren.push_back(childPtr);
-	}
+    if (child != nullptr)
+    {
+        Ptr<SceneComponent> childPtr(child);
+        mChildren.push_back(childPtr);
+    }
 }
 
 void SceneComponent::RemoveChild(SceneComponent* child)
 {
-	// remove child
+    // remove child
 }
 
 void SceneComponent::UpdateCachedModelMatrix()
 {
-	mTransform.UpdateMatrices();
-	if (mParent)
-	{
-		mTransform.SetCachedWorldMatrix(mTransform.GetModelMatrix());
-	}
-	else
-	{
-		mTransform.SetCachedWorldMatrix(mTransform.GetModelMatrix() * mParent->GetModelMatrix());
-	}
+    mTransform.UpdateMatrices();
+    if (mParent.IsNull())
+    {
+        mTransform.SetCachedWorldMatrix(mTransform.GetModelMatrix());
+    }
+    else
+    {
+        mTransform.SetCachedWorldMatrix(mTransform.GetModelMatrix() * mParent->GetModelMatrix());
+    }
 }
 
 void SceneComponent::BindLuaFunctions(lua_State* lua)
@@ -98,6 +114,7 @@ void SceneComponent::BindLuaFunctions(lua_State* lua)
         { "AddChild", _addChild },
         { "RemoveChild", _removeChild },
         { "AttachTo", _attachTo },
+        { "SetLocation", _setLocation },
         { 0, 0 }
     };
     luaL_setfuncs(lua, reg_table, 0);
@@ -106,6 +123,13 @@ void SceneComponent::BindLuaFunctions(lua_State* lua)
 
 int SceneComponent::_addChild(lua_State* L)
 {
+    LuaStack stack(L);
+    SceneComponent* parent = stack.GetLuaObject<SceneComponent>(1);
+    SceneComponent* child = stack.GetLuaObject<SceneComponent>(2);
+    if (parent != nullptr && child != nullptr)
+    {
+        parent->AddChild(child);
+    }
     return 0;
 }
 
@@ -116,5 +140,19 @@ int SceneComponent::_removeChild(lua_State* L)
 
 int SceneComponent::_attachTo(lua_State* L)
 {
+    return 0;
+}
+
+int SceneComponent::_setLocation(lua_State* L)
+{
+    LuaStack stack(L);
+    SceneComponent* comp = stack.GetLuaObject<SceneComponent>(1);
+    float x = stack.GetValue<float>(2, 0.f);
+    float y = stack.GetValue<float>(3, 0.f);
+    float z = stack.GetValue<float>(4, 0.f);
+    if (comp != nullptr)
+    {
+        comp->mTransform.SetLocation(x, y, z);
+    }
     return 0;
 }

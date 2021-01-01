@@ -28,6 +28,7 @@ namespace LucusEngine
         DECL_LUA_OBJECT(Actor)
 
         virtual void Tick(float deltaSeconds);
+        virtual void LateTick();
 
         void SetWorld(World* world);
         
@@ -47,7 +48,7 @@ namespace LucusEngine
         World* mWorld;
         
     public:
-        static int _setRootComponent(lua_State* lua);
+        static int _setRootComponent(lua_State* L);
     };
 }
 

@@ -35,6 +35,7 @@ namespace LucusEngine
         virtual void Init(const tinyxml2::XMLElement*) override;
         
         virtual void Tick(float deltaSeconds) override;
+        virtual void LateTick() override;
         
         SceneComponentProxy* Proxy;
         //        virtual ComponentProxy* CreateProxy();
@@ -67,6 +68,7 @@ namespace LucusEngine
         static int _addChild(lua_State* L);
         static int _removeChild(lua_State* L);
         static int _attachTo(lua_State* L);
+        static int _setLocation(lua_State* L);
     };
 
     FORCEINLINE const ChildrenVector& SceneComponent::GetChildren() const

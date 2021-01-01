@@ -8,11 +8,11 @@
 #ifndef _LUCUS_ENGINE_LUA_FACTORY_H
 #define _LUCUS_ENGINE_LUA_FACTORY_H
 
+#include "LucusLuaState.h"
+#include "LucusLuaStack.h"
 #include <iostream>
 #include <sstream>
 #include <string.h>
-
-#include "LucusLuaState.h"
 
 namespace LucusEngine
 {
@@ -27,6 +27,7 @@ namespace LucusEngine
         static int _tostring(lua_State* L);
         static int _gc(lua_State* L);
     };
+
 
     template <class T>
     void LuaFactory<T>::RegisterClass(LuaState* state)
@@ -65,7 +66,7 @@ namespace LucusEngine
     template <class T>
     int LuaFactory<T>::_ctor(lua_State* L)
     {
-//        std::cout << "[C++] call ctor " << typeid(T).name() << std::endl;
+    //        std::cout << "[C++] call ctor " << typeid(T).name() << std::endl;
         T* object = new T();
         lua_newtable(L);
         lua_newtable(L);
@@ -88,37 +89,27 @@ namespace LucusEngine
     template <class T>
     int LuaFactory<T>::_tostring(lua_State* L)
     {
-        if (lua_getmetatable(L, -1))
+        LuaStack stack(L);
+        T* ptr = stack.GetLuaObject<T>(1);
+        if (ptr != nullptr)
         {
-            lua_pushstring(L, "__object");
-            lua_gettable(L, -2);
-            if (lua_isuserdata(L, -1))
-            {
-                T* ptr = static_cast<T*>(lua_touserdata(L, -1));
-                std::stringstream s;
-                s << "<"<< ptr->GetTypeName() << "(" << ptr << ")>";
-                std::string fmt = s.str();
-                lua_pushstring(L, fmt.c_str());
-            }
+            std::stringstream s;
+            s << "<"<< ptr->GetTypeName() << "(" << ptr << ")>";
+            stack.Push(s.str());
+            return 1;
         }
+        stack.Push("<Wrong object>");
         return 1;
     }
 
     template <class T>
     int LuaFactory<T>::_gc(lua_State* L)
     {
-        if (lua_getmetatable(L, -1))
+        LuaStack stack(L);
+        T* ptr = stack.GetLuaObject<T>(1);
+        if (ptr != nullptr)
         {
-            lua_pushstring(L, "__object");
-            lua_gettable(L, -2);
-            if (lua_isuserdata(L, -1))
-            {
-                T* ptr = static_cast<T*>(lua_touserdata(L, -1));
-                if (ptr != nullptr)
-                {
-                    ptr->ReleaseRef();
-                }
-            }
+            ptr->ReleaseRef();
         }
         return 0;
     }

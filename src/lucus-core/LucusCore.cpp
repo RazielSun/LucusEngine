@@ -182,6 +182,8 @@ void Core::Tick()
             float val = std::fmodf(deltaSeconds, mTimeStep);
             deltaSeconds -= static_cast<int>(val)*mTimeStep;
         }
+
+        mWorld->LateTick();
         
         
         // calculate how close or far we are from the next timestep
