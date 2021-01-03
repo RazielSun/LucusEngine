@@ -32,8 +32,6 @@ namespace LucusEngine
         
         DECL_LUA_OBJECT(SceneComponent)
         
-        virtual void Init(const tinyxml2::XMLElement*) override;
-        
         virtual void Tick(float deltaSeconds) override;
         virtual void LateTick() override;
         

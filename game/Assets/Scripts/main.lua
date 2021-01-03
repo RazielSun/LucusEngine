@@ -30,11 +30,11 @@ print("[LUA] default libs loaded: "..math.sin(1))
 -- end
 
 function GetImage( name )
-    return "Assets/textures/" .. name
+    return name
 end
 
 function GetMesh( name )
-    return "Assets/meshes/"..name..".fbx"
+    return name..".fbx"
 end
 
 function SpawnCamera( Location )

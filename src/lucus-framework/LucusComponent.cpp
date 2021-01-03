@@ -18,8 +18,3 @@ Component::~Component()
 {
     //
 }
-
-bool Component::Compare(cc8* name, cc8* other)
-{
-    return strncmp(name, other, strlen(other)) == 0;
-}

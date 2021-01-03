@@ -19,7 +19,7 @@ namespace LucusEngine
         LuaState();
         ~LuaState();
         
-        void Do();
+        void RunScript(cc8* path);
 
         lua_State* GetRawLua() const { return _rawLua; }
     private:

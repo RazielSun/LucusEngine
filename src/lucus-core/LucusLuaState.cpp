@@ -24,9 +24,9 @@ LuaState::~LuaState()
     lua_close(_rawLua);
 }
 
-void LuaState::Do()
+void LuaState::RunScript(cc8* path)
 {
-    int r = luaL_dofile(_rawLua, Core::GetFileSystem()->GetAssetPath("Assets/Scripts/main.lua").c_str());
+    int r = luaL_dofile(_rawLua, Core::GetFileSystem()->GetScriptPath(path).c_str());
     if (r != LUA_OK)
     {
         const char* msg = lua_tostring(_rawLua, -1);

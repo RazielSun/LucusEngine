@@ -9,8 +9,6 @@
 #include "LucusSceneComponentProxy.h"
 #include "LucusLuaStack.h"
 
-#include "tinyxml2.h"
-
 using namespace LucusEngine;
 
 SceneComponent::SceneComponent() :
@@ -24,21 +22,6 @@ SceneComponent::SceneComponent() :
 SceneComponent::~SceneComponent()
 {
     //
-}
-
-void SceneComponent::Init(const tinyxml2::XMLElement* data)
-{
-    // Super Init for Component
-    
-    const tinyxml2::XMLElement* locData = data->FirstChildElement("Location");
-    if (locData)
-    {
-        float x, y, z;
-        locData->QueryAttribute("x", &x);
-        locData->QueryAttribute("y", &y);
-        locData->QueryAttribute("z", &z);
-        mTransform.SetLocation(x, y, z);
-    }
 }
 
 void SceneComponent::Tick(float deltaSeconds)

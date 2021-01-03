@@ -35,15 +35,51 @@ void FileSystem::ChangeWorkingDir(char const* path)
 
 std::string FileSystem::GetAssetPath( cc8* name )
 {
+    return GetAssetPath("", name);
+}
+
+std::string FileSystem::GetAssetPath( cc8* folder, cc8* name )
+{
     std::string fullPath;
-    
-    if (name)
+
+    fullPath.append(mWorkingDir);
+    if (folder && strlen(folder) > 0)
     {
-        fullPath.append(mWorkingDir);
-        fullPath.append(name);
+        std::string buffer;
+        if (folder[0] == '/')
+        {
+            char folder_tmp[100];
+            strncpy(folder_tmp, folder+1, strlen(folder));
+            buffer.append(folder_tmp);
+        }
+        else
+        {
+            buffer.append(folder);
+        }
+        if (buffer.length() > 0 && buffer[buffer.length() - 1] != '/')
+        {
+            buffer.push_back('/');
+        }
+        fullPath.append(buffer);
     }
+    if (name) fullPath.append(name);
     
     return fullPath;
+}
+
+std::string FileSystem::GetScriptPath( cc8* name )
+{
+    return GetAssetPath("Assets/Scripts/", name);
+}
+
+std::string FileSystem::GetMeshPath( cc8* name )
+{
+    return GetAssetPath("Assets/Meshes/", name);
+}
+
+std::string FileSystem::GetTexturePath( cc8* name )
+{
+    return GetAssetPath("Assets/Textures/", name);
 }
 
 std::string FileSystem::GetFileFormat( cc8* name )

@@ -33,7 +33,9 @@ namespace LucusEngine
         
         void SetRenderSystem(RenderSystem* system);
         void CreateWorld();
+
         void CreateLua();
+        void RunLua(cc8* path);
         
         void ChangeViewportSize(u32 width, u32 height);
         

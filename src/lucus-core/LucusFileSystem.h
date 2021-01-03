@@ -22,6 +22,12 @@ namespace LucusEngine
         void ChangeWorkingDir(char const* path);
         
         std::string GetAssetPath( cc8* name );
+        std::string GetAssetPath( cc8* folder, cc8* name );
+
+        std::string GetScriptPath( cc8* name );
+        std::string GetMeshPath( cc8* name );
+        std::string GetTexturePath( cc8* name );
+        
         std::string GetFileFormat( cc8* name );
         
         std::vector<u8> ReadData( cc8* name ) noexcept(false);

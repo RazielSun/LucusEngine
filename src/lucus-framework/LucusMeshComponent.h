@@ -24,8 +24,6 @@ namespace LucusEngine
         
         DECL_LUA_OBJECT(MeshComponent)
         
-        virtual void Init(const tinyxml2::XMLElement*) override;
-        
         void SetMesh(cc8* meshName);
         void SetImage(cc8* imageName);
         

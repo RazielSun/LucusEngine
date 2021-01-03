@@ -12,11 +12,6 @@
 #include "LucusLuaObject.h"
 #include "LucusPtr.h"
 
-namespace tinyxml2
-{
-    class XMLElement;
-}
-
 namespace LucusEngine
 {
 	class Scene;
@@ -37,28 +32,16 @@ namespace LucusEngine
         DECL_LUA_OBJECT(World)
 
         void InitWorld();
-        virtual void InitActors();
-        void LoadActors(cc8* path);
 
         void Tick(float deltaSeconds);
         void LateTick();
 
         Scene* Scene;
-
-        Actor* SpawnActor();
-        Actor* SpawnActor(const tinyxml2::XMLElement*);
-        // Actor* SpawnActor();
         
         void AddActor(Actor* actor);
         void RemoveActor(Actor* actor);
         
         virtual void BindLuaFunctions(lua_State* lua) override;
-        
-    protected:
-        virtual Component* GetComponent(cc8* name);
-        Component* CreateComponent(const tinyxml2::XMLElement*);
-        
-        bool CompareNames(cc8* name, cc8* component);
 
     protected:
     	ActorArray mActors;

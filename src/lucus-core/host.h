@@ -16,6 +16,7 @@ void AKUCoreDestroy();
 void AKUCreateRenderSystem(u32 width, u32 height);
 void AKUCreateWorld();
 void AKUCreateLua();
+void AKURunLua(cc8* path);
 
 void AKURun();
 void AKUTick();

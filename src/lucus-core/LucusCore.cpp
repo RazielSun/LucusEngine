@@ -52,7 +52,7 @@ void Core::LoadModules()
     mImageFormatManager = mMemoryManager->NewOnModule<ImageFormatManager>();
     mMeshFormatManager = mMemoryManager->NewOnModule<MeshFormatManager>();
     mTimeManager = mMemoryManager->NewOnModule<TimeManager>();
-    mLuaState = mMemoryManager->NewOnModule<LuaState>();
+    
     // mFileSystem = new FileSystem();
     // mResourceManager = new ResourceManager();
     // mImageFormatManager = new ImageFormatManager();
@@ -67,7 +67,11 @@ void Core::UnloadModules()
     mImageFormatManager->~ImageFormatManager();
     mMeshFormatManager->~MeshFormatManager();
     mTimeManager->~TimeManager();
-    mLuaState->~LuaState();
+
+//    if (mLuaState) mLuaState->~LuaState();
+//    if (mActiveRenderSystem) mActiveRenderSystem->~RenderSystem();
+//    if (mWorld) mWorld->~World();
+
     // delete mFileSystem;
     // delete mResourceManager;
     // delete mImageFormatManager;
@@ -147,8 +151,16 @@ void Core::CreateWorld()
 
 void Core::CreateLua()
 {
-    InitLua();
-    mLuaState->Do();
+    mLuaState = mMemoryManager->NewOnModule<LuaState>();
+    if (nullptr != mLuaState)
+    {
+        InitLua();
+    }
+}
+
+void Core::RunLua(cc8* path)
+{
+    mLuaState->RunScript(path);
 }
 
 void Core::InitLua()

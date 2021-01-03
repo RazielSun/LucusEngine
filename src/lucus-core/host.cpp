@@ -53,6 +53,15 @@ void AKUCreateLua()
     }
 }
 
+void AKURunLua(cc8* path)
+{
+    LucusEngine::Core* core = LucusEngine::Core::GetPtr();
+    if (core != nullptr)
+    {
+        core->RunLua(path);
+    }
+}
+
 void AKURun()
 {
     LucusEngine::Core* core = LucusEngine::Core::GetPtr();

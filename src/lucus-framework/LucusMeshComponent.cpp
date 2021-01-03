@@ -10,8 +10,6 @@
 #include "LucusResourceManager.h"
 #include "LucusLuaStack.h"
 
-#include "tinyxml2.h"
-
 using namespace LucusEngine;
 
 MeshComponent::MeshComponent() : mMesh(nullptr), mImage(nullptr)
@@ -43,24 +41,6 @@ MeshComponent::~MeshComponent()
 //        delete mImage;
 //        mImage = nullptr;
 //    }
-}
-
-void MeshComponent::Init(const tinyxml2::XMLElement* data)
-{
-    SceneComponent::Init(data);
-    
-    for(const tinyxml2::XMLElement* asset = data->FirstChildElement("Asset");
-        asset;
-        asset = asset->NextSiblingElement("Asset"))
-    {
-        cc8* AssetType = asset->Attribute("type");
-        if (Compare(AssetType, "Mesh")) {
-            SetMesh(asset->Attribute("path"));
-        }
-        else if (Compare(AssetType, "Image")) {
-            SetImage(asset->Attribute("path"));
-        }
-    }
 }
 
 void MeshComponent::SetMesh(cc8* meshName)

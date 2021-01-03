@@ -84,6 +84,7 @@ static AppDelegate* mInstance = nil;
     RootVC.view = RootView;
     
     Window = [NSWindow windowWithContentViewController:RootVC];
+    // Hardcode
     Window.title = @"Lucus Game";
     [Window makeKeyAndOrderFront:self];
     
@@ -91,8 +92,9 @@ static AppDelegate* mInstance = nil;
     AKUCreateRenderSystem((u32)width, (u32)height);
     // Create World
     AKUCreateWorld();
-    // Create Lua
+    // Create & Run Lua
     AKUCreateLua();
+    AKURunLua("main.lua");
     
     // Create World & Start Loop
     AKURun();

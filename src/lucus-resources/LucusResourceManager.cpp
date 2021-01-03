@@ -88,7 +88,7 @@ bool ResourceManager::LoadMesh(cc8* name)
     if (nullptr != meshFormat)
     {
     	Mesh* mesh = new Mesh();
-        meshFormat->LoadMesh(mesh, Core::GetFileSystem()->GetAssetPath(name).c_str());
+        meshFormat->LoadMesh(mesh, Core::GetFileSystem()->GetMeshPath(name).c_str());
         mMeshes.emplace(Utils::HashString(name), mesh);
         return true;
     }
@@ -102,7 +102,7 @@ bool ResourceManager::LoadImage(cc8* name)
     if (nullptr != imageFormat)
     {
     	Image* image = new Image();
-        imageFormat->LoadImage(image, Core::GetFileSystem()->GetAssetPath(name).c_str());
+        imageFormat->LoadImage(image, Core::GetFileSystem()->GetTexturePath(name).c_str());
         mImages.emplace(Utils::HashString(name), image);
         return true;
     }
