@@ -68,6 +68,7 @@ namespace LucusEngine
         static int _addChild(lua_State* L);
         static int _removeChild(lua_State* L);
         static int _attachTo(lua_State* L);
+        static int _detach(lua_State* L);
         static int _setLocation(lua_State* L);
     };
 

@@ -114,6 +114,7 @@ void SceneComponent::BindLuaFunctions(lua_State* lua)
         { "AddChild", _addChild },
         { "RemoveChild", _removeChild },
         { "AttachTo", _attachTo },
+        { "Detach", _detach },
         { "SetLocation", _setLocation },
         { 0, 0 }
     };
@@ -128,7 +129,7 @@ int SceneComponent::_addChild(lua_State* L)
     SceneComponent* child = stack.GetLuaObject<SceneComponent>(2);
     if (parent != nullptr && child != nullptr)
     {
-        parent->AddChild(child);
+        child->AttachTo(parent);
     }
     return 0;
 }
@@ -139,6 +140,11 @@ int SceneComponent::_removeChild(lua_State* L)
 }
 
 int SceneComponent::_attachTo(lua_State* L)
+{
+    return 0;
+}
+
+int SceneComponent::_detach(lua_State* L)
 {
     return 0;
 }
