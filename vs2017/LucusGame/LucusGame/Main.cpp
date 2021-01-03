@@ -4,8 +4,6 @@
 
 #include "host.h"
 #include "modules.h"
-#include "DirectX12/LucusD3D12RenderSystem.h"
-#include "GameWorld.h"
 
 #include <ppltasks.h>
 
@@ -20,8 +18,6 @@ using namespace Windows::Foundation;
 using namespace Windows::Graphics::Display;
 
 using Microsoft::WRL::ComPtr;
-
-
 
 namespace LucusEngine
 {
@@ -72,16 +68,19 @@ namespace LucusEngine
 
 			AKUChangeWorkingDir("");
 
-			m_renderSystem = AKUCreateModule<D3D12RenderSystem>();
-			AKUSetRenderSystem(static_cast<RenderSystem*>(m_renderSystem));
+			// Create Metal Render System
+            u32 width = 1280;
+            u32 height = 720;
+            AKUCreateRenderSystem(width, height);
 
-			if (m_renderSystem)
-			{
-				m_renderSystem->SetCoreWindow(CoreWindow::GetForCurrentThread());
-			}
-
-			//AKURun();
-			AKUCreateWorld(AKUCreateModule<GameWorld>());
+            // Create World
+            AKUCreateWorld();
+            // Create & Run Lua
+            AKUCreateLua();
+            AKURunLua("main.lua");
+            
+            // Create World & Start Loop
+            AKURun();
         }
 
 		virtual void Run()
@@ -119,8 +118,6 @@ namespace LucusEngine
 
 		virtual void Uninitialize()
         {
-			m_renderSystem = nullptr;
-
             AKUCoreDestroy();
         }
 
@@ -225,8 +222,6 @@ namespace LucusEngine
 // 	}
 // 	return m_deviceResources;
 // }
-
-        LucusEngine::D3D12RenderSystem* m_renderSystem;
 
 		bool m_windowClosed;
 		bool m_windowVisible;

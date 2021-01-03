@@ -5,9 +5,8 @@
 #include "LucusScene.h"
 #include "LucusCore.h"
 #include "LucusFileSystem.h"
+#include "LucusICamera.h"
 
-#include "LucusCameraComponent.h"
-#include "LucusMeshComponent.h"
 #include <DirectXMath.h>
 
 using namespace DX;
@@ -39,29 +38,29 @@ RenderWindow* D3D12RenderSystem::CreateRenderWindow(u32 width, u32 height)
 void D3D12RenderSystem::CreateBuffers()
 {
 	// Create descriptor heaps.
-	{
-		// first try without frames
-		u32 count = static_cast<u32>(mScene->MeshComps.size());// *c_frameCount;
-		D3D12_DESCRIPTOR_HEAP_DESC descriptorCBHeapDesc = {};
-		// Allocate a heap for descriptors:
-		descriptorCBHeapDesc.NumDescriptors = count;
-		descriptorCBHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
-		descriptorCBHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
-		descriptorCBHeapDesc.NodeMask = 0;
-		ThrowIfFailed(mDevice.mD3D12Device->CreateDescriptorHeap(&descriptorCBHeapDesc, IID_PPV_ARGS(&mDescriptorCBHeap)));
-		mDescriptorCBHeap->SetName(L"Descriptor CB Heap");
-		mDescriptorCBSize = mDevice.mD3D12Device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+	// {
+	// 	// first try without frames
+	// 	u32 count = static_cast<u32>(mScene->MeshComps.size());// *c_frameCount;
+	// 	D3D12_DESCRIPTOR_HEAP_DESC descriptorCBHeapDesc = {};
+	// 	// Allocate a heap for descriptors:
+	// 	descriptorCBHeapDesc.NumDescriptors = count;
+	// 	descriptorCBHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
+	// 	descriptorCBHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
+	// 	descriptorCBHeapDesc.NodeMask = 0;
+	// 	ThrowIfFailed(mDevice.mD3D12Device->CreateDescriptorHeap(&descriptorCBHeapDesc, IID_PPV_ARGS(&mDescriptorCBHeap)));
+	// 	mDescriptorCBHeap->SetName(L"Descriptor CB Heap");
+	// 	mDescriptorCBSize = mDevice.mD3D12Device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
 
-		 // Describe and create a shader resource view (SRV) heap for the texture.
-        D3D12_DESCRIPTOR_HEAP_DESC descriptorSRHeapDesc = {};
-        descriptorSRHeapDesc.NumDescriptors = count;
-        descriptorSRHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
-        descriptorSRHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
-		descriptorSRHeapDesc.NodeMask = 0;
-		ThrowIfFailed(mDevice.mD3D12Device->CreateDescriptorHeap(&descriptorSRHeapDesc, IID_PPV_ARGS(&mDescriptorSRHeap)));
-		mDescriptorSRHeap->SetName(L"Descriptor SR Heap");
-		mDescriptorSRSize = mDevice.mD3D12Device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
-	}
+	// 	 // Describe and create a shader resource view (SRV) heap for the texture.
+    //     D3D12_DESCRIPTOR_HEAP_DESC descriptorSRHeapDesc = {};
+    //     descriptorSRHeapDesc.NumDescriptors = count;
+    //     descriptorSRHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
+    //     descriptorSRHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
+	// 	descriptorSRHeapDesc.NodeMask = 0;
+	// 	ThrowIfFailed(mDevice.mD3D12Device->CreateDescriptorHeap(&descriptorSRHeapDesc, IID_PPV_ARGS(&mDescriptorSRHeap)));
+	// 	mDescriptorSRHeap->SetName(L"Descriptor SR Heap");
+	// 	mDescriptorSRSize = mDevice.mD3D12Device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+	// }
 
 	// Prepare device resources
 	auto commandAllocator = mDevice.mCommandAllocators[mCurrentFrame];
@@ -72,37 +71,37 @@ void D3D12RenderSystem::CreateBuffers()
 	commandList->Reset(commandAllocator.Get(), nullptr);
 
 	// Create Assets
-	u32 idx = 0;
-    for (auto* component : mScene->MeshComps) {
-        D3D12ComponentProxy* proxy = new D3D12ComponentProxy(&mDevice);
-        proxy->CreateBuffers(component->GetMesh());
-		proxy->CreateTexture(component->GetImage());
-        component->Proxy = proxy;
+	// u32 idx = 0;
+    // for (auto* component : mScene->MeshComps) {
+    //     D3D12ComponentProxy* proxy = new D3D12ComponentProxy(&mDevice);
+    //     proxy->CreateBuffers(component->GetMesh());
+	// 	proxy->CreateTexture(component->GetImage());
+    //     component->Proxy = proxy;
 
-		// View for buffers
-		const u32 constantBufferSize = sizeof(Uniforms);
-		D3D12_CONSTANT_BUFFER_VIEW_DESC constantBufferViewDesc = {};
-		constantBufferViewDesc.BufferLocation = proxy->mConstantBuffer->GetGPUVirtualAddress();
-		constantBufferViewDesc.SizeInBytes = constantBufferSize;
+	// 	// View for buffers
+	// 	const u32 constantBufferSize = sizeof(Uniforms);
+	// 	D3D12_CONSTANT_BUFFER_VIEW_DESC constantBufferViewDesc = {};
+	// 	constantBufferViewDesc.BufferLocation = proxy->mConstantBuffer->GetGPUVirtualAddress();
+	// 	constantBufferViewDesc.SizeInBytes = constantBufferSize;
 
-		// Offset to the object cbv in the descriptor heap.
-		int heapIndex = idx;//frameIndex * objCount + i;
-		auto handle = CD3DX12_CPU_DESCRIPTOR_HANDLE(mDescriptorCBHeap->GetCPUDescriptorHandleForHeapStart());
-		handle.Offset(heapIndex, mDescriptorCBSize);
-		mDevice.mD3D12Device->CreateConstantBufferView(&constantBufferViewDesc, handle);
+	// 	// Offset to the object cbv in the descriptor heap.
+	// 	int heapIndex = idx;//frameIndex * objCount + i;
+	// 	auto handle = CD3DX12_CPU_DESCRIPTOR_HANDLE(mDescriptorCBHeap->GetCPUDescriptorHandleForHeapStart());
+	// 	handle.Offset(heapIndex, mDescriptorCBSize);
+	// 	mDevice.mD3D12Device->CreateConstantBufferView(&constantBufferViewDesc, handle);
 
-		// Describe and create a SRV for the texture.
-		D3D12_SHADER_RESOURCE_VIEW_DESC textureViewDesc = {};
-		textureViewDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
-		textureViewDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
-		textureViewDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
-		textureViewDesc.Texture2D.MipLevels = 1;
-		auto handleSR = CD3DX12_CPU_DESCRIPTOR_HANDLE(mDescriptorSRHeap->GetCPUDescriptorHandleForHeapStart());
-		handleSR.Offset(heapIndex, mDescriptorSRSize);
-		mDevice.mD3D12Device->CreateShaderResourceView(proxy->mTexture.Get(), &textureViewDesc, handleSR);
+	// 	// Describe and create a SRV for the texture.
+	// 	D3D12_SHADER_RESOURCE_VIEW_DESC textureViewDesc = {};
+	// 	textureViewDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
+	// 	textureViewDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
+	// 	textureViewDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
+	// 	textureViewDesc.Texture2D.MipLevels = 1;
+	// 	auto handleSR = CD3DX12_CPU_DESCRIPTOR_HANDLE(mDescriptorSRHeap->GetCPUDescriptorHandleForHeapStart());
+	// 	handleSR.Offset(heapIndex, mDescriptorSRSize);
+	// 	mDevice.mD3D12Device->CreateShaderResourceView(proxy->mTexture.Get(), &textureViewDesc, handleSR);
 
-		idx++;
-    }
+	// 	idx++;
+    // }
 
 	// Close the command list and execute it to begin the vertex/index buffer copy into the GPU's default heap.
 	DX::ThrowIfFailed(commandList->Close());
@@ -115,21 +114,29 @@ void D3D12RenderSystem::CreateBuffers()
 	mReady = true;
 }
 
-void D3D12RenderSystem::Render()
+void D3D12RenderSystem::PreRender()
 {
+	RenderSystem::PreRender();
+
+    ICamera* camera = mScene->GetCamera();
+    camera->UpdateProjMatrix(mWindow->GetViewport());
+}
+
+void D3D12RenderSystem::Render() const
+{
+	RenderSystem::Render();
+
 	if (!mReady) return;
 
 	// Update Uniforms
 	Uniforms uniforms;
-	CameraComponent* cameraCom = mScene->CameraComp;
-	cameraCom->UpdateProjectionMatrix(mWindow->GetViewport());
 
+	ICamera* camera = mScene->GetCamera();
 	// This sample makes use of a right-handed coordinate system using row-major matrices.
 	// Projection
-	uniforms.PROJ_MATRIX = cameraCom->GetProjMatrix().GetNative();
-
+	uniforms.PROJ_MATRIX = camera->GetProjMatrix().GetNative();
 	// View
-	uniforms.VIEW_MATRIX = cameraCom->GetModelMatrix().GetNative();
+	uniforms.VIEW_MATRIX = camera->GetViewMatrix().GetNative();
 
 	// Eye is at (0,0.7,1.5), looking at point (0,-0.1,0) with the up-vector along the y-axis.
 	//static const DirectX::XMVECTORF32 eye = { 0.0f, 0.7f, 1.5f, 0.0f };
@@ -145,10 +152,10 @@ void D3D12RenderSystem::Render()
 	//component->GetTransform().UpdateModelMatrix();
 	//uniforms.MODEL_MATRIX = component->GetTransform().GetModelMatrix().GetNative();
 
-	for (auto* component : mScene->MeshComps) {
-		//component->GetTransform().UpdateModelMatrix();
-		component->Proxy->UpdateUniforms(uniforms, component);
-	}
+	// for (auto* component : mScene->MeshComps) {
+	// 	//component->GetTransform().UpdateModelMatrix();
+	// 	component->Proxy->UpdateUniforms(uniforms, component);
+	// }
 
 	// Start Frame
 
@@ -218,33 +225,37 @@ void D3D12RenderSystem::Render()
 	// // Draw
 	//commandList->DrawInstanced(6, 1, 0, 0);
 
-	u32 idx = 0;
-	for (auto* component : mScene->MeshComps) {
-		if (component->Proxy)
-		{
-			D3D12ComponentProxy* proxy = static_cast<D3D12ComponentProxy*>(component->Proxy);
-			if (proxy)
-			{
-				// Offset to the CBV in the descriptor heap for this object and for this frame resource.
-				UINT cbvIndex = idx; //mCurrFrameResourceIndex * (UINT)mOpaqueRitems.size() + ri->ObjCBIndex;
-				//auto cbvHandle = CD3DX12_GPU_DESCRIPTOR_HANDLE(mDescriptorCBHeap->GetGPUDescriptorHandleForHeapStart());
-				//cbvHandle.Offset(cbvIndex, mDescriptorCBSize);
-				//commandList->SetGraphicsRootDescriptorTable(0, cbvHandle);
 
-				commandList->SetGraphicsRootConstantBufferView(0, proxy->mConstantBuffer->GetGPUVirtualAddress());
 
-				auto srvHandle = CD3DX12_GPU_DESCRIPTOR_HANDLE(mDescriptorSRHeap->GetGPUDescriptorHandleForHeapStart());
-				srvHandle.Offset(cbvIndex, mDescriptorSRSize);
-				commandList->SetGraphicsRootDescriptorTable(1, srvHandle);
+	// u32 idx = 0;
+	// for (auto* component : mScene->MeshComps) {
+	// 	if (component->Proxy)
+	// 	{
+	// 		D3D12ComponentProxy* proxy = static_cast<D3D12ComponentProxy*>(component->Proxy);
+	// 		if (proxy)
+	// 		{
+	// 			// Offset to the CBV in the descriptor heap for this object and for this frame resource.
+	// 			UINT cbvIndex = idx; //mCurrFrameResourceIndex * (UINT)mOpaqueRitems.size() + ri->ObjCBIndex;
+	// 			//auto cbvHandle = CD3DX12_GPU_DESCRIPTOR_HANDLE(mDescriptorCBHeap->GetGPUDescriptorHandleForHeapStart());
+	// 			//cbvHandle.Offset(cbvIndex, mDescriptorCBSize);
+	// 			//commandList->SetGraphicsRootDescriptorTable(0, cbvHandle);
+
+	// 			commandList->SetGraphicsRootConstantBufferView(0, proxy->mConstantBuffer->GetGPUVirtualAddress());
+
+	// 			auto srvHandle = CD3DX12_GPU_DESCRIPTOR_HANDLE(mDescriptorSRHeap->GetGPUDescriptorHandleForHeapStart());
+	// 			srvHandle.Offset(cbvIndex, mDescriptorSRSize);
+	// 			commandList->SetGraphicsRootDescriptorTable(1, srvHandle);
 				
-				// for textures
-				// commandList->SetGraphicsRootDescriptorTable(0, m_srvHeap->GetGPUDescriptorHandleForHeapStart());
+	// 			// for textures
+	// 			// commandList->SetGraphicsRootDescriptorTable(0, m_srvHeap->GetGPUDescriptorHandleForHeapStart());
 
-				proxy->DrawIndexed(commandList);
-			}
-		}
-		idx++;
-    }
+	// 			proxy->DrawIndexed(commandList);
+	// 		}
+	// 	}
+	// 	idx++;
+    // }
+
+
 
 	// Transition render target into correct state to present.
 	{
@@ -301,7 +312,7 @@ void D3D12RenderSystem::WaitForGpu()
 }
 
 // Prepare to render the next frame.
-void D3D12RenderSystem::MoveToNextFrame()
+void D3D12RenderSystem::MoveToNextFrame() const
 {
     // Schedule a Signal command in the queue.
     const UINT64 currentFenceValue = mFenceValues[mCurrentFrame];

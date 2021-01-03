@@ -21,7 +21,7 @@ namespace LucusEngine
         explicit LuaStack(lua_State* lua);
         ~LuaStack();
 
-        u32 GetTop();
+        int GetTop();
         bool IsType(int idx, int type);
 
         template <class T>

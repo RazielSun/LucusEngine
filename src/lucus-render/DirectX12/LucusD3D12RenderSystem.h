@@ -23,14 +23,16 @@ namespace LucusEngine
 
         virtual RenderWindow* CreateRenderWindow(u32 width, u32 height) override;
         virtual void CreateBuffers() override;
-        virtual void Render() override;
+
+        virtual void PreRender() override;
+        virtual void Render() const override;
         
         virtual void ChangeViewportSize(u32 width, u32 height) override;
 
         // void Tick();
         
         void WaitForGpu();
-        void MoveToNextFrame();
+        void MoveToNextFrame() const;
 
         void CreateDevice();
         void CreateDeviceDependentResources();
@@ -47,7 +49,7 @@ namespace LucusEngine
     private:
         Microsoft::WRL::ComPtr<ID3D12RootSignature>     mRootSignature;
 
-        u32											    mCurrentFrame;
+        mutable u32									    mCurrentFrame;
 
         //
         Microsoft::WRL::ComPtr<ID3D12PipelineState>     mPipelineState;
@@ -63,7 +65,7 @@ namespace LucusEngine
 
         // // CPU/GPU Synchronization.
 		Microsoft::WRL::ComPtr<ID3D12Fence>				mFence;
-		UINT64											mFenceValues[c_frameCount];
+		mutable UINT64									mFenceValues[c_frameCount];
 		HANDLE											mFenceEvent;
 
 		bool											mReady;

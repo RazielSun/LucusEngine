@@ -21,9 +21,9 @@ LuaStack::~LuaStack()
     //
 }
 
-u32 LuaStack::GetTop()
+int LuaStack::GetTop()
 {
-    return static_cast<u32>(lua_gettop(mLua));
+    return lua_gettop(mLua);
 }
 
 bool LuaStack::IsType(int idx, int type)

@@ -14,9 +14,6 @@
     <Filter Include="lucus-render\DirectX12">
       <UniqueIdentifier>{b47ed00b-f4a4-4b3e-83c7-1833050790e8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="lucus-sim">
-      <UniqueIdentifier>{17856899-df62-4e8a-90e9-7eb725789cd5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="d3d12">
       <UniqueIdentifier>{53a294a5-ba88-44f4-9a82-079a9d53e5c8}</UniqueIdentifier>
     </Filter>
@@ -43,9 +40,6 @@
     <Filter Include="lucus-image-png">
       <UniqueIdentifier>{eab2d6ab-346d-4532-9947-fdf3cb8cb786}</UniqueIdentifier>
     </Filter>
-    <Filter Include="game">
-      <UniqueIdentifier>{b06d29f3-6c56-48df-895f-a19f31fc794e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Assets\Meshes">
       <UniqueIdentifier>{180b1ff4-64b4-40b0-97f8-c2f6a16f468c}</UniqueIdentifier>
       <Extensions>fbx</Extensions>
@@ -60,14 +54,11 @@
     <Filter Include="lucus-memory">
       <UniqueIdentifier>{708a13ae-1a07-41e4-89f3-4561731ad1e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lucus-framework">
+      <UniqueIdentifier>{17856899-df62-4e8a-90e9-7eb725789cd5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\src\lucus-core\host.cpp">
-      <Filter>lucus-core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\lucus-core\LucusCore.cpp">
-      <Filter>lucus-core</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\lucus-render\LucusRenderSystem.cpp">
       <Filter>lucus-render</Filter>
     </ClCompile>
@@ -84,9 +75,6 @@
     <ClCompile Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12Window.cpp">
       <Filter>lucus-render\DirectX12</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\lucus-core\LucusFileSystem.cpp">
-      <Filter>lucus-core</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\lucus-mesh-fbx\LucusMeshFormatFBX.cpp">
       <Filter>lucus-mesh-fbx</Filter>
     </ClCompile>
@@ -101,27 +89,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\src\lucus-math\LucusMath.cpp">
       <Filter>lucus-math</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\lucus-sim\LucusActor.cpp">
-      <Filter>lucus-sim</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\lucus-sim\LucusCameraComponent.cpp">
-      <Filter>lucus-sim</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\lucus-sim\LucusComponent.cpp">
-      <Filter>lucus-sim</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\lucus-sim\LucusMeshComponent.cpp">
-      <Filter>lucus-sim</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\lucus-sim\LucusTimeManager.cpp">
-      <Filter>lucus-sim</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\lucus-sim\LucusTransform.cpp">
-      <Filter>lucus-sim</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\lucus-sim\LucusWorld.cpp">
-      <Filter>lucus-sim</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\lucus-render\LucusScene.cpp">
       <Filter>lucus-render</Filter>
@@ -159,26 +126,11 @@
     <ClCompile Include="..\..\..\src\lucus-math\LucusVector.cpp">
       <Filter>lucus-math</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\lucus-sim\LucusSceneComponent.cpp">
-      <Filter>lucus-sim</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\lucus-resources\LucusResourceManager.cpp">
       <Filter>lucus-resources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\game\src\GameWorld.cpp">
-      <Filter>game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\game\src\RotatedMeshComponent.cpp">
-      <Filter>game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\game\src\SpringArmComponent.cpp">
-      <Filter>game</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\lucus-render\LucusSceneComponentProxy.cpp">
       <Filter>lucus-render</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\lucus-resources\LucusResource.cpp">
-      <Filter>lucus-resources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\lucus-memory\LucusMemory.cpp">
       <Filter>lucus-memory</Filter>
@@ -189,26 +141,77 @@
     <ClCompile Include="..\..\..\src\lucus-memory\LucusModuleAllocator.cpp">
       <Filter>lucus-memory</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\lucus-memory\LucusPtr.cpp">
-      <Filter>lucus-memory</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\lucus-memory\LucusStackAllocator.cpp">
       <Filter>lucus-memory</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-framework\LucusActor.cpp">
+      <Filter>lucus-framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-framework\LucusCameraComponent.cpp">
+      <Filter>lucus-framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-framework\LucusComponent.cpp">
+      <Filter>lucus-framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-framework\LucusICamera.cpp">
+      <Filter>lucus-framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-framework\LucusMeshComponent.cpp">
+      <Filter>lucus-framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-framework\LucusSceneComponent.cpp">
+      <Filter>lucus-framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-framework\LucusTimeManager.cpp">
+      <Filter>lucus-framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-framework\LucusTransform.cpp">
+      <Filter>lucus-framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-framework\LucusViewCamera.cpp">
+      <Filter>lucus-framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-framework\LucusWorld.cpp">
+      <Filter>lucus-framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-framework\RotatedMeshComponent.cpp">
+      <Filter>lucus-framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-framework\SpringArmComponent.cpp">
+      <Filter>lucus-framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-core\host.cpp">
+      <Filter>lucus-core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-core\lua_bind.cpp">
+      <Filter>lucus-core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-core\LucusCore.cpp">
+      <Filter>lucus-core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-core\LucusFileSystem.cpp">
+      <Filter>lucus-core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-core\LucusLuaObject.cpp">
+      <Filter>lucus-core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-core\LucusLuaStack.cpp">
+      <Filter>lucus-core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-core\LucusLuaState.cpp">
+      <Filter>lucus-core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-core\LucusObject.cpp">
+      <Filter>lucus-core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-core\LucusPtr.cpp">
+      <Filter>lucus-core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\lucus-render\DirectX12\LucusRenderCoreD3D12.cpp">
+      <Filter>lucus-render\DirectX12</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\src\lucus-core\host.h">
-      <Filter>lucus-core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\lucus-core\LucusCore.h">
-      <Filter>lucus-core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\lucus-core\LucusSingleton.h">
-      <Filter>lucus-core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\lucus-core\LucusTypes.h">
-      <Filter>lucus-core</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\lucus-render\LucusRenderSystem.h">
       <Filter>lucus-render</Filter>
     </ClInclude>
@@ -230,15 +233,6 @@
     <ClInclude Include="..\..\..\src\lucus-render\DirectX12\LucusD3D12Window.h">
       <Filter>lucus-render\DirectX12</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\lucus-sim\LucusUtils.h">
-      <Filter>lucus-sim</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\lucus-core\LucusFileSystem.h">
-      <Filter>lucus-core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\lucus-core\modules.h">
-      <Filter>lucus-core</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\lucus-mesh-fbx\LucusMeshFormatFBX.h">
       <Filter>lucus-mesh-fbx</Filter>
     </ClInclude>
@@ -253,27 +247,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\lucus-math\LucusMath.h">
       <Filter>lucus-math</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\lucus-sim\LucusActor.h">
-      <Filter>lucus-sim</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\lucus-sim\LucusCameraComponent.h">
-      <Filter>lucus-sim</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\lucus-sim\LucusComponent.h">
-      <Filter>lucus-sim</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\lucus-sim\LucusMeshComponent.h">
-      <Filter>lucus-sim</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\lucus-sim\LucusTimeManager.h">
-      <Filter>lucus-sim</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\lucus-sim\LucusTransform.h">
-      <Filter>lucus-sim</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\lucus-sim\LucusWorld.h">
-      <Filter>lucus-sim</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\lucus-render\LucusRenderTypes.h">
       <Filter>lucus-render</Filter>
@@ -317,26 +290,11 @@
     <ClInclude Include="..\..\..\src\lucus-math\LucusVertexTypes.h">
       <Filter>lucus-math</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\lucus-sim\LucusSceneComponent.h">
-      <Filter>lucus-sim</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\lucus-resources\LucusResourceManager.h">
       <Filter>lucus-resources</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\game\src\GameWorld.h">
-      <Filter>game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\game\src\RotatedMeshComponent.h">
-      <Filter>game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\game\src\SpringArmComponent.h">
-      <Filter>game</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\lucus-render\LucusSceneComponentProxy.h">
       <Filter>lucus-render</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\lucus-resources\LucusResource.h">
-      <Filter>lucus-resources</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\lucus-memory\LucusMemory.h">
       <Filter>lucus-memory</Filter>
@@ -347,11 +305,86 @@
     <ClInclude Include="..\..\..\src\lucus-memory\LucusModuleAllocator.h">
       <Filter>lucus-memory</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\lucus-memory\LucusPtr.h">
-      <Filter>lucus-memory</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\lucus-memory\LucusStackAllocator.h">
       <Filter>lucus-memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-framework\LucusActor.h">
+      <Filter>lucus-framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-framework\LucusCameraComponent.h">
+      <Filter>lucus-framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-framework\LucusComponent.h">
+      <Filter>lucus-framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-framework\LucusICamera.h">
+      <Filter>lucus-framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-framework\LucusMeshComponent.h">
+      <Filter>lucus-framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-framework\LucusSceneComponent.h">
+      <Filter>lucus-framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-framework\LucusTimeManager.h">
+      <Filter>lucus-framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-framework\LucusTransform.h">
+      <Filter>lucus-framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-framework\LucusUtils.h">
+      <Filter>lucus-framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-framework\LucusViewCamera.h">
+      <Filter>lucus-framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-framework\LucusWorld.h">
+      <Filter>lucus-framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-framework\RotatedMeshComponent.h">
+      <Filter>lucus-framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-framework\SpringArmComponent.h">
+      <Filter>lucus-framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-core\host.h">
+      <Filter>lucus-core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-core\lua_bind.h">
+      <Filter>lucus-core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-core\LucusCore.h">
+      <Filter>lucus-core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-core\LucusFileSystem.h">
+      <Filter>lucus-core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-core\LucusLuaFactory.h">
+      <Filter>lucus-core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-core\LucusLuaObject.h">
+      <Filter>lucus-core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-core\LucusLuaStack.h">
+      <Filter>lucus-core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-core\LucusLuaState.h">
+      <Filter>lucus-core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-core\LucusObject.h">
+      <Filter>lucus-core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-core\LucusPtr.h">
+      <Filter>lucus-core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-core\LucusSingleton.h">
+      <Filter>lucus-core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-core\LucusTypes.h">
+      <Filter>lucus-core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\lucus-core\modules.h">
+      <Filter>lucus-core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
