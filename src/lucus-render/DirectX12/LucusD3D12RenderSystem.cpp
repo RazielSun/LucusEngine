@@ -38,29 +38,29 @@ RenderWindow* D3D12RenderSystem::CreateRenderWindow(u32 width, u32 height)
 void D3D12RenderSystem::CreateBuffers()
 {
 	// Create descriptor heaps.
-	// {
-	// 	// first try without frames
-	// 	u32 count = static_cast<u32>(mScene->MeshComps.size());// *c_frameCount;
-	// 	D3D12_DESCRIPTOR_HEAP_DESC descriptorCBHeapDesc = {};
-	// 	// Allocate a heap for descriptors:
-	// 	descriptorCBHeapDesc.NumDescriptors = count;
-	// 	descriptorCBHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
-	// 	descriptorCBHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
-	// 	descriptorCBHeapDesc.NodeMask = 0;
-	// 	ThrowIfFailed(mDevice.mD3D12Device->CreateDescriptorHeap(&descriptorCBHeapDesc, IID_PPV_ARGS(&mDescriptorCBHeap)));
-	// 	mDescriptorCBHeap->SetName(L"Descriptor CB Heap");
-	// 	mDescriptorCBSize = mDevice.mD3D12Device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+	 {
+	 	// first try without frames
+		u32 count = 1;// static_cast<u32>(mScene->MeshComps.size());// *c_frameCount;
+	 	D3D12_DESCRIPTOR_HEAP_DESC descriptorCBHeapDesc = {};
+	 	// Allocate a heap for descriptors:
+	 	descriptorCBHeapDesc.NumDescriptors = count;
+	 	descriptorCBHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
+	 	descriptorCBHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
+	 	descriptorCBHeapDesc.NodeMask = 0;
+	 	ThrowIfFailed(mDevice.mD3D12Device->CreateDescriptorHeap(&descriptorCBHeapDesc, IID_PPV_ARGS(&mDescriptorCBHeap)));
+	 	mDescriptorCBHeap->SetName(L"Descriptor CB Heap");
+	 	mDescriptorCBSize = mDevice.mD3D12Device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
 
-	// 	 // Describe and create a shader resource view (SRV) heap for the texture.
-    //     D3D12_DESCRIPTOR_HEAP_DESC descriptorSRHeapDesc = {};
-    //     descriptorSRHeapDesc.NumDescriptors = count;
-    //     descriptorSRHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
-    //     descriptorSRHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
-	// 	descriptorSRHeapDesc.NodeMask = 0;
-	// 	ThrowIfFailed(mDevice.mD3D12Device->CreateDescriptorHeap(&descriptorSRHeapDesc, IID_PPV_ARGS(&mDescriptorSRHeap)));
-	// 	mDescriptorSRHeap->SetName(L"Descriptor SR Heap");
-	// 	mDescriptorSRSize = mDevice.mD3D12Device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
-	// }
+	 	 // Describe and create a shader resource view (SRV) heap for the texture.
+         D3D12_DESCRIPTOR_HEAP_DESC descriptorSRHeapDesc = {};
+         descriptorSRHeapDesc.NumDescriptors = count;
+         descriptorSRHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
+         descriptorSRHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
+	 	descriptorSRHeapDesc.NodeMask = 0;
+	 	ThrowIfFailed(mDevice.mD3D12Device->CreateDescriptorHeap(&descriptorSRHeapDesc, IID_PPV_ARGS(&mDescriptorSRHeap)));
+	 	mDescriptorSRHeap->SetName(L"Descriptor SR Heap");
+	 	mDescriptorSRSize = mDevice.mD3D12Device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+	 }
 
 	// Prepare device resources
 	auto commandAllocator = mDevice.mCommandAllocators[mCurrentFrame];

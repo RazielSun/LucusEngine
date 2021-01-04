@@ -7,38 +7,187 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lapi.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lauxlib.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lbaselib.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lcode.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lcorolib.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lctype.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\ldblib.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\ldebug.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\ldo.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\ldump.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lfunc.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lgc.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\linit.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\liolib.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\llex.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lmathlib.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lmem.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\loadlib.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lobject.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lopcodes.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\loslib.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lparser.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lstate.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lstring.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lstrlib.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\ltable.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\ltablib.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\ltm.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lua.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\luac.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lutf8lib.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lvm.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lzio.c" />
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lapi.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lauxlib.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lbaselib.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lcode.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lcorolib.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lctype.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\ldblib.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\ldebug.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\ldo.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\ldump.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lfunc.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lgc.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\linit.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\liolib.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\llex.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lmathlib.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lmem.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\loadlib.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lobject.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lopcodes.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\loslib.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lparser.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lstate.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lstring.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lstrlib.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\ltable.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\ltablib.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\ltm.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lundump.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lutf8lib.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lvm.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lzio.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lua.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lapi.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lauxlib.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lcode.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lctype.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\ldebug.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\ldo.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lfunc.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lgc.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\ljumptab.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\llex.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\llimits.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lmem.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lobject.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lopcodes.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lopnames.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lparser.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lprefix.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lstate.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lstring.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\ltable.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\ltm.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\luaconf.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lualib.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lundump.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lvm.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lzio.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lua.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

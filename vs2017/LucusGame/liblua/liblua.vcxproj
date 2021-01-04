@@ -56,10 +56,39 @@
     <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\ltablib.c" />
     <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\ltm.c" />
     <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lua.c" />
-    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\luac.c" />
+    <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lundump.c" />
     <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lutf8lib.c" />
     <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lvm.c" />
     <ClCompile Include="..\..\..\3rdparty\lua-5.4.2\src\lzio.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lapi.h" />
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lauxlib.h" />
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lcode.h" />
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lctype.h" />
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\ldebug.h" />
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\ldo.h" />
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lfunc.h" />
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lgc.h" />
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\ljumptab.h" />
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\llex.h" />
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\llimits.h" />
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lmem.h" />
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lobject.h" />
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lopcodes.h" />
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lopnames.h" />
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lparser.h" />
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lprefix.h" />
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lstate.h" />
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lstring.h" />
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\ltable.h" />
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\ltm.h" />
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lua.h" />
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\luaconf.h" />
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lualib.h" />
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lundump.h" />
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lvm.h" />
+    <ClInclude Include="..\..\..\3rdparty\lua-5.4.2\src\lzio.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{700d8bf4-ab9e-44a9-b6b7-2b0d331ee2b9}</ProjectGuid>
@@ -167,7 +196,7 @@
       </SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\lua-5.4.2\src;$(ProjectDir)..\..\..\src\lucus-common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <PrecompiledHeaderFile />
       <CompileAs>CompileAsC</CompileAs>
@@ -179,6 +208,10 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
     </Link>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -188,7 +221,7 @@
       <SDLCheck>
       </SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\lua-5.4.2\src;$(ProjectDir)..\..\..\src\lucus-common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <PrecompiledHeaderFile />
       <CompileAs>CompileAsC</CompileAs>
@@ -200,6 +233,10 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
     </Link>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|arm'">
     <ClCompile>
@@ -209,7 +246,7 @@
       <SDLCheck>
       </SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\lua-5.4.2\src;$(ProjectDir)..\..\..\src\lucus-common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <PrecompiledHeaderFile />
       <CompileAs>CompileAsC</CompileAs>
@@ -221,6 +258,10 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
     </Link>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|arm'">
     <ClCompile>
@@ -230,7 +271,7 @@
       <SDLCheck>
       </SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\lua-5.4.2\src;$(ProjectDir)..\..\..\src\lucus-common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <PrecompiledHeaderFile />
       <CompileAs>CompileAsC</CompileAs>
@@ -242,6 +283,10 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
     </Link>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -252,7 +297,7 @@
       </SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\lua-5.4.2\src;$(ProjectDir)..\..\..\src\lucus-common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <PrecompiledHeaderFile />
       <CompileAs>CompileAsC</CompileAs>
@@ -264,6 +309,10 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
     </Link>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -273,7 +322,7 @@
       <SDLCheck>
       </SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\3rdparty\lua-5.4.2\src;$(ProjectDir)..\..\..\src\lucus-common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <PrecompiledHeaderFile />
       <CompileAs>CompileAsC</CompileAs>
@@ -285,6 +334,10 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
     </Link>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
