@@ -48,14 +48,14 @@
       <UniqueIdentifier>{3de35cba-d855-4f48-9deb-171f2075da05}</UniqueIdentifier>
       <Extensions>bmp;fbx;gif;jpg;jpeg;tga;tiff;tif;png</Extensions>
     </Filter>
-    <Filter Include="Assets\Levels">
-      <UniqueIdentifier>{c123cd5d-995b-4167-b26c-3e01f038dd67}</UniqueIdentifier>
-    </Filter>
     <Filter Include="lucus-memory">
       <UniqueIdentifier>{708a13ae-1a07-41e4-89f3-4561731ad1e9}</UniqueIdentifier>
     </Filter>
     <Filter Include="lucus-framework">
       <UniqueIdentifier>{17856899-df62-4e8a-90e9-7eb725789cd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Scripts">
+      <UniqueIdentifier>{0bb0724d-4b4c-4ec7-a672-91c481c6061b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -430,6 +430,9 @@
     <None Include="Assets\meshes\cube.fbx">
       <Filter>Assets\Meshes</Filter>
     </None>
+    <None Include="Assets\Scripts\main.lua">
+      <Filter>Assets\Scripts</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\..\..\src\lucus-resources\shaders\DirectX12\SimplePixelShader.hlsl">
@@ -438,10 +441,5 @@
     <FxCompile Include="..\..\..\src\lucus-resources\shaders\DirectX12\SimpleVertexShader.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="Assets\Levels\level0.xml">
-      <Filter>Assets\Levels</Filter>
-    </Xml>
   </ItemGroup>
 </Project>
