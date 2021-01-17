@@ -13,10 +13,12 @@
 void AKUCoreCreate();
 void AKUCoreDestroy();
 
+void AKUGetApplicationSize(u32& width, u32& height);
+void AKUGetApplicationTitle(std::string& title);
+
 void AKUCreateRenderSystem(u32 width, u32 height);
-void AKUCreateWorld();
+//void AKUCreateWorld();
 void AKUCreateLua();
-void AKURunLua(cc8* path);
 
 void AKURun();
 void AKUTick();

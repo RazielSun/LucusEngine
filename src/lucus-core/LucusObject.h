@@ -14,18 +14,20 @@ namespace LucusEngine
 {
     class Object
     {
-	protected:
-        Object() : counter(0) {}
-		Object(const Object& copy) : counter(0) {}
-		Object& operator=(const Object& rhs) { return *this; }
-		virtual ~Object();
+    protected:
+        Object() = default;
+        Object(const Object& copy) = default;
+        Object& operator=(const Object& rhs) = default;
+        virtual ~Object();
+
+        u32 GetRefCount() { return counter; }
 
     public:
-		void AddRef();
-		void ReleaseRef();
+        void AddRef();
+        void ReleaseRef();
 
-	private:
-		mutable u32 counter;
+    private:
+        mutable std::atomic<u32> counter { 0 };
 
     };
 }

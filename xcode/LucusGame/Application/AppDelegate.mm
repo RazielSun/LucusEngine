@@ -71,11 +71,14 @@ static AppDelegate* mInstance = nil;
     // Init Modules
     AKUModulesCreate();
     
+    // Set Working Dir
     AKUChangeWorkingDir([[[NSBundle mainBundle] resourcePath] UTF8String]);
     
-    // Hardcode
-    NSUInteger width = 1280;
-    NSUInteger height = 720;
+    // Create & Run Lua
+    AKUCreateLua();
+    
+    u32 width, height;
+    AKUGetApplicationSize(width, height);
     
     CGRect frame = CGRectMake(0, 0, width, height);
     RootView = [[NSView alloc] initWithFrame:frame];
@@ -83,20 +86,19 @@ static AppDelegate* mInstance = nil;
     RootVC = [[NSViewController alloc] init];
     RootVC.view = RootView;
     
+    std::string title;
+    AKUGetApplicationTitle(title);
+    
     Window = [NSWindow windowWithContentViewController:RootVC];
-    // Hardcode
-    Window.title = @"Lucus Game";
+    Window.title = [NSString stringWithUTF8String:title.c_str()];
     [Window makeKeyAndOrderFront:self];
     
     // Create Metal Render System
-    AKUCreateRenderSystem((u32)width, (u32)height);
+    AKUCreateRenderSystem(width, height);
     // Create World
-    AKUCreateWorld();
-    // Create & Run Lua
-    AKUCreateLua();
-    AKURunLua("main.lua");
+//    AKUCreateWorld();
     
-    // Create World & Start Loop
+    // Init game and start loop
     AKURun();
 }
 

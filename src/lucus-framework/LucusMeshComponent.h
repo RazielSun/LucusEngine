@@ -17,12 +17,10 @@ namespace LucusEngine
     class MeshComponent : public SceneComponent
     {
     public:
-        MeshComponent();
-        MeshComponent(cc8* meshName);
-        MeshComponent(cc8* meshName, cc8* imageName);
-        virtual ~MeshComponent();
-        
-        DECL_LUA_OBJECT(MeshComponent)
+        MeshComponent() noexcept;
+        MeshComponent(cc8* meshName) noexcept;
+        MeshComponent(cc8* meshName, cc8* imageName) noexcept;
+        virtual ~MeshComponent() noexcept;
         
         void SetMesh(cc8* meshName);
         void SetImage(cc8* imageName);
@@ -33,13 +31,6 @@ namespace LucusEngine
     protected:
     	MeshPtr mMesh;
         ImagePtr mImage;
-    
-    public:
-        virtual void BindLuaFunctions(lua_State* lua) override;
-        
-    public:
-        static int _setMesh(lua_State* L);
-        static int _setImage(lua_State* L);
     };
 }
 

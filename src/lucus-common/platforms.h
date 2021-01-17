@@ -90,6 +90,7 @@
  	#include <iostream>
 	// #include <sstream>
 	#include <vector>
+	#include <atomic>
 #endif
 
 #endif	/* _LUCUS_ENGINE_PLATFORMS_H */

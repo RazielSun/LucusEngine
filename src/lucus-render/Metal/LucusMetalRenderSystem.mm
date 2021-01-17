@@ -97,25 +97,28 @@ void MetalRenderSystem::CreateBuffers()
 void MetalRenderSystem::PreRender()
 {
     RenderSystem::PreRender();
-
-    ICamera* camera = mScene->GetCamera();
-    camera->UpdateProjMatrix(mWindow->GetViewport());
-
-    // Udpate Scene Pendings
-    for (auto* component : mScene->PendingComponents)
+    
+    if (mScene != nullptr)
     {
-        MeshComponent* meshComp = dynamic_cast<MeshComponent*>(component);
-        if (meshComp != nullptr)
+        ICamera* camera = mScene->GetCamera();
+        camera->UpdateProjMatrix(mWindow->GetViewport());
+
+        // Udpate Scene Pendings
+        for (auto* component : mScene->PendingComponents)
         {
-            MetalComponentProxy* proxy = new MetalComponentProxy(&mDevice);
-            proxy->CreateBuffers(meshComp->GetMesh());
-            proxy->CreateTexture(meshComp->GetImage());
-            meshComp->Proxy = proxy;
-            proxy->Component = component;
-            mScene->Proxies.push_back(proxy);
+            MeshComponent* meshComp = dynamic_cast<MeshComponent*>(component);
+            if (meshComp != nullptr)
+            {
+                MetalComponentProxy* proxy = new MetalComponentProxy(&mDevice);
+                proxy->CreateBuffers(meshComp->GetMesh());
+                proxy->CreateTexture(meshComp->GetImage());
+                meshComp->Proxy = proxy;
+                proxy->Component = component;
+                mScene->Proxies.push_back(proxy);
+            }
         }
+        mScene->PendingComponents.clear();
     }
-    mScene->PendingComponents.clear();
 }
         
 void MetalRenderSystem::Render() const

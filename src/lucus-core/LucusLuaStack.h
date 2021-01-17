@@ -9,26 +9,35 @@
 #define _LUCUS_ENGINE_LUASTACK_H
 
 #include "LucusTypes.h"
-#include "LucusLuaState.h"
-#include <iostream>
-#include <string.h>
+
+#include "lua_module.h"
 
 namespace LucusEngine
 {
     class LuaStack
     {
     public:
-        explicit LuaStack(lua_State* lua);
-        ~LuaStack();
+        explicit LuaStack(lua_State* L) : mLua(L) {}
 
         int GetTop();
         bool IsType(int idx, int type);
 
         template <class T>
         T* GetLuaObject(int idx);
-
+        
+        void CallTop(int num = 0, int ret = 0);
+        void Call(int idx, int num = 0, int ret = 0);
+        
+        void Push(float value);
         void Push(cc8* str);
         void Push(const std::string& str);
+
+        void PushGlobalTable(cc8* str);
+        void PushValueByName(cc8* str, int idx = -1);
+
+        void Copy(int idx);
+
+        void Pop(int n = 1);
 
         template <class T>
         T GetValue(int idx, T def);
@@ -62,6 +71,7 @@ namespace LucusEngine
 
     template <> cc8* LuaStack::GetValue(int idx, cc8* def);
     template <> float LuaStack::GetValue(int idx, float def);
+    template <> u32 LuaStack::GetValue(int idx, u32 def);
 }
 
 #endif /* _LUCUS_ENGINE_LUASTACK_H */

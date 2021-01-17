@@ -15,12 +15,12 @@
 
 using namespace LucusEngine;
 
-Actor::Actor() : mWorld(nullptr)
+Actor::Actor() noexcept : mWorld(nullptr) 
 {
     //
 }
 
-Actor::~Actor()
+Actor::~Actor() noexcept
 {
     if (nullptr != mWorld)
     {
@@ -77,27 +77,27 @@ void Actor::AddComponentToScene(SceneComponent* component)
     }
 }
 
-void Actor::BindLuaFunctions(lua_State* lua)
-{
-    LuaObject::BindLuaFunctions(lua);
+// void Actor::BindLuaFunctions(lua_State* lua)
+// {
+//     LuaObject::BindLuaFunctions(lua);
     
-    const luaL_Reg reg_table[] = {
-        { "SetRootComponent", _setRootComponent },
-        { 0, 0 }
-    };
-    luaL_setfuncs(lua, reg_table, 0);
-    lua_pushvalue(lua, -1);
-}
+//     const luaL_Reg reg_table[] = {
+//         { "SetRootComponent", _setRootComponent },
+//         { 0, 0 }
+//     };
+//     luaL_setfuncs(lua, reg_table, 0);
+//     lua_pushvalue(lua, -1);
+// }
 
-int Actor::_setRootComponent(lua_State* L)
-{
-    LuaStack stack(L);
-    Actor* actor = stack.GetLuaObject<Actor>(1);
-    SceneComponent* comp = stack.GetLuaObject<SceneComponent>(2);
-    if (actor != nullptr && comp != nullptr)
-    {
-        std::cout << "[C++] Actor SetRootComponent called.\n";
-        actor->SetRootComponent(comp);
-    }
-    return 0;
-}
+// int Actor::_setRootComponent(lua_State* L)
+// {
+//     LuaStack stack(L);
+//     Actor* actor = stack.GetLuaObject<Actor>(1);
+//     SceneComponent* comp = stack.GetLuaObject<SceneComponent>(2);
+//     if (actor != nullptr && comp != nullptr)
+//     {
+//         std::cout << "[C++] Actor SetRootComponent called.\n";
+//         actor->SetRootComponent(comp);
+//     }
+//     return 0;
+// }

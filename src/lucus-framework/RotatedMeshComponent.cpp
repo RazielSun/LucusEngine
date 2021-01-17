@@ -7,16 +7,6 @@
 
 #include "RotatedMeshComponent.h"
 
-RotatedMeshComponent::RotatedMeshComponent()
-{
-	//
-}
-
-RotatedMeshComponent::~RotatedMeshComponent()
-{
-	//
-}
-
 void RotatedMeshComponent::Tick(float deltaSeconds)
 {
     angle += 1.0f * deltaSeconds;

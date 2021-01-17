@@ -19,9 +19,9 @@ namespace LucusEngine
     class Transform
     {
     public:
-        Transform();
-        Transform(FVector3 Location, FQuaternion Rotation, FVector3 Scale);
-        ~Transform();
+        Transform() noexcept;
+        Transform(FVector3 Location, FQuaternion Rotation, FVector3 Scale) noexcept;
+        ~Transform() noexcept;
 
         void SetLocation(float x, float y, float z);
         void SetLocation(const FVector3& vec);

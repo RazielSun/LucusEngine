@@ -14,10 +14,7 @@
 class SpringArmComponent : public LucusEngine::SceneComponent
 {
 public:
-    SpringArmComponent();
-    virtual ~SpringArmComponent();
-    
-    DECL_LUA_OBJECT(SpringArmComponent)
+    SpringArmComponent() noexcept;
 
     virtual void Tick(float deltaSeconds) override;
 
@@ -27,9 +24,6 @@ protected:
 
     //f for Test
     LucusEngine::FRotator mRotation;
-    
-public:
-    virtual void BindLuaFunctions(lua_State* lua) override;
 };
 
 #endif /* _SPRING_ARM_COMPONENT_H */

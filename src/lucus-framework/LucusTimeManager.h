@@ -18,8 +18,7 @@ namespace LucusEngine
     class TimeManager
     {
     public:
-        TimeManager();
-        ~TimeManager();
+        TimeManager() noexcept;
         
         void Reset();
         void UpdateTime();

@@ -9,7 +9,10 @@
 #define _LUCUS_ENGINE_LUASTATE_H
 
 #include "LucusTypes.h"
-#include "lua.hpp"
+#include "LucusLuaStack.h"
+#include "LucusLuaReference.h"
+
+#include "lua_module.h"
 
 namespace LucusEngine
 {
@@ -19,11 +22,17 @@ namespace LucusEngine
         LuaState();
         ~LuaState();
         
+        void Init();
+        void Tick(float deltaSeconds);
+        
         void RunScript(cc8* path);
 
-        lua_State* GetRawLua() const { return _rawLua; }
+        lua_State* GetRawLua() const { return mRawLua; }
+        
     private:
-        lua_State* _rawLua;
+        lua_State* mRawLua;
+        LuaStack mStack;
+        LuaReference mUpdateRef;
     };
 }
 

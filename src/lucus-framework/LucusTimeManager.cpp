@@ -9,18 +9,12 @@
 
 using namespace LucusEngine;
 
-TimeManager::TimeManager() :
+TimeManager::TimeManager() noexcept :
     mElapsedSeconds(0.0f),
     mDeltaSeconds(0.0f),
     mUnusedSeconds(0.0f)
 {
     Reset();
-}
-//    mFrameCounter(0),
-
-TimeManager::~TimeManager()
-{
-    //
 }
 
 void TimeManager::Reset()

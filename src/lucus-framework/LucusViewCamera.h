@@ -8,18 +8,15 @@
 #ifndef _LUCUS_ENGINE_VIEW_CAMERA_H
 #define _LUCUS_ENGINE_VIEW_CAMERA_H
 
-#include "LucusLuaObject.h"
+#include "LucusObject.h"
 #include "LucusICamera.h"
 
 namespace LucusEngine
 {
-    class ViewCamera : public LuaObject, public ICamera
+    class ViewCamera : public Object, public ICamera
     {
     public:
-        ViewCamera();
-        virtual ~ViewCamera();
-        
-        DECL_LUA_OBJECT(ViewCamera)
+        ViewCamera() noexcept;
 
         virtual void UpdateProjMatrix(const Viewport& viewport) override;
         

@@ -17,7 +17,13 @@ namespace LucusEngine
     class ICamera
     {
     public:
-        ICamera();
+        ICamera():
+            mProjMtx(FMatrix4x4::Identity),
+            mFOV(65),
+            mNearZ(0.1f),
+            mFarZ(1000.0f)
+        {
+        }
 
         virtual const FMatrix4x4& GetProjMatrix() const = 0;
         virtual const FMatrix4x4& GetViewMatrix() const = 0;

@@ -126,6 +126,19 @@ TimeManager* Core::GetTimeManager()
     return Core::Get().mTimeManager;
 }
 
+template <> MemoryManager* Core::GetModule<MemoryManager>() { return Core::Get().mMemoryManager; }
+template <> FileSystem* Core::GetModule<FileSystem>() { return Core::Get().mFileSystem; }
+template <> ResourceManager* Core::GetModule<ResourceManager>() { return Core::Get().mResourceManager; }
+
+template <> ImageFormatManager* Core::GetModule<ImageFormatManager>() { return Core::Get().mImageFormatManager; }
+template <> MeshFormatManager* Core::GetModule<MeshFormatManager>() { return Core::Get().mMeshFormatManager; }
+
+template <> LuaState* Core::GetModule<LuaState>() { return Core::Get().mLuaState; }
+template <> TimeManager* Core::GetModule<TimeManager>() { return Core::Get().mTimeManager; }
+
+template <> World* Core::GetModule<World>() { return Core::Get().mWorld; }
+template <> RenderSystem* Core::GetModule<RenderSystem>() { return Core::Get().mActiveRenderSystem; }
+
 void Core::SetRenderSystem(RenderSystem* system)
 {
     mActiveRenderSystem = system;
@@ -154,23 +167,16 @@ void Core::CreateLua()
     mLuaState = mMemoryManager->NewOnModule<LuaState>();
     if (nullptr != mLuaState)
     {
-        InitLua();
+        mLuaState->RunScript("main.lua");
+        //    if (mWorld) LuaFactory<World>::RegisterGlobal(mLuaState, mWorld);
+        //    BindLua(mLuaState);
     }
-}
-
-void Core::RunLua(cc8* path)
-{
-    mLuaState->RunScript(path);
-}
-
-void Core::InitLua()
-{
-    if (mWorld) LuaFactory<World>::RegisterGlobal(mLuaState, mWorld);
-    BindLua(mLuaState);
 }
 
 void Core::Run()
 {
+    mLuaState->Init();
+    // Run init func lua
     bTickTime = true;
 }
 
@@ -185,6 +191,7 @@ void Core::Tick()
         {
             for (u32 i = 0; i < mMaxStepSim && deltaSeconds > mTimeStep; ++i)
             {
+                mLuaState->Tick(mTimeStep);
                 mWorld->Tick(mTimeStep);
                 deltaSeconds -= mTimeStep;
             }
@@ -194,8 +201,9 @@ void Core::Tick()
             float val = std::fmodf(deltaSeconds, mTimeStep);
             deltaSeconds -= static_cast<int>(val)*mTimeStep;
         }
-
-        mWorld->LateTick();
+        
+        if (mWorld != nullptr)
+            mWorld->LateTick();
         
         
         // calculate how close or far we are from the next timestep

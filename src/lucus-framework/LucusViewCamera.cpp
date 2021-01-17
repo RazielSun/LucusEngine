@@ -10,14 +10,9 @@
 
 using namespace LucusEngine;
 
-ViewCamera::ViewCamera() :
+ViewCamera::ViewCamera() noexcept :
     mModelMtx(FMatrix4x4::Identity)
 {
-}
-
-ViewCamera::~ViewCamera()
-{
-    //
 }
 
 const FMatrix4x4& ViewCamera::GetProjMatrix() const

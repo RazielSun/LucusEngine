@@ -7,14 +7,9 @@
 
 #include "SpringArmComponent.h"
 
-SpringArmComponent::SpringArmComponent() :
+SpringArmComponent::SpringArmComponent() noexcept :
 	mSpeed(30.0f),
 	mRotation()
-{
-    //
-}
-
-SpringArmComponent::~SpringArmComponent()
 {
     //
 }
@@ -34,7 +29,7 @@ void SpringArmComponent::Tick(float deltaSeconds)
 //     mTransform.Rotate(axis, angle);
 }
 
-void SpringArmComponent::BindLuaFunctions(lua_State* lua)
-{
-    SceneComponent::BindLuaFunctions(lua);
-}
+// void SpringArmComponent::BindLuaFunctions(lua_State* lua)
+// {
+//     SceneComponent::BindLuaFunctions(lua);
+// }

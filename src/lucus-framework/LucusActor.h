@@ -9,7 +9,7 @@
 #define _LUCUS_ENGINE_ACTOR_H
 
 #include "LucusTypes.h"
-#include "LucusLuaObject.h"
+#include "LucusObject.h"
 #include "LucusPtr.h"
 
 namespace LucusEngine
@@ -19,13 +19,11 @@ namespace LucusEngine
 
     using SceneComponentPtr = Ptr<SceneComponent>;
 
-    class Actor : public LuaObject
+    class Actor : public Object
     {
     public:
-        Actor();
-        virtual ~Actor();
-        
-        DECL_LUA_OBJECT(Actor)
+        Actor() noexcept;
+        virtual ~Actor() noexcept;
 
         virtual void Tick(float deltaSeconds);
         virtual void LateTick();
@@ -36,8 +34,6 @@ namespace LucusEngine
         void SetRootComponent(T* component);
         
         SceneComponent* GetRootComponent();
-        
-        virtual void BindLuaFunctions(lua_State* lua) override;
 
     protected:
         void AddComponentToScene(SceneComponent* component);
@@ -47,8 +43,8 @@ namespace LucusEngine
         
         World* mWorld;
         
-    public:
-        static int _setRootComponent(lua_State* L);
+    // public:
+        // static int _setRootComponent(lua_State* L);
     };
 }
 

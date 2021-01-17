@@ -9,17 +9,14 @@
 #define _LUCUS_ENGINE_COMPONENT_H
 
 #include "LucusTypes.h"
-#include "LucusLuaObject.h"
+#include "LucusObject.h"
 #include "LucusPtr.h"
 
 namespace LucusEngine
 {
-    class Component : public LuaObject
+    class Component : public Object
     {
     public:
-        Component();
-        virtual ~Component();
-
         virtual void Tick(float deltaSeconds) = 0;
         virtual void LateTick() = 0;
     };

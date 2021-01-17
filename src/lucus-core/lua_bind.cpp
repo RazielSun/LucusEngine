@@ -24,13 +24,13 @@ using namespace LucusEngine;
 
 void BindLua(LuaState* state)
 {
-    LuaFactory<Actor>::RegisterClass(state);
-    LuaFactory<ViewCamera>::RegisterClass(state);
-
-    LuaFactory<SceneComponent>::RegisterClass(state);
-    LuaFactory<CameraComponent>::RegisterClass(state);
-    LuaFactory<MeshComponent>::RegisterClass(state);
-
-    LuaFactory<SpringArmComponent>::RegisterClass(state);
-    LuaFactory<RotatedMeshComponent>::RegisterClass(state);
+//    LuaFactory<Actor>::RegisterClass(state);
+//    LuaFactory<ViewCamera>::RegisterClass(state);
+//
+//    LuaFactory<SceneComponent>::RegisterClass(state);
+//    LuaFactory<CameraComponent>::RegisterClass(state);
+//    LuaFactory<MeshComponent>::RegisterClass(state);
+//
+//    LuaFactory<SpringArmComponent>::RegisterClass(state);
+//    LuaFactory<RotatedMeshComponent>::RegisterClass(state);
 }

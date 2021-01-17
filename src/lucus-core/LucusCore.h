@@ -42,9 +42,6 @@ namespace LucusEngine
         void Run();
         
         void Tick();
-
-    protected:
-        void InitLua();
         
     public:
         static Core& Get();
@@ -57,6 +54,9 @@ namespace LucusEngine
         static MeshFormatManager* GetMeshFormatMgr();
         static RenderSystem* GetRenderSystem();
         static TimeManager* GetTimeManager();
+        
+        template <class T>
+        static T* GetModule();
 
 	protected:
         bool mIsActive = false;
@@ -65,19 +65,37 @@ namespace LucusEngine
         
         FileSystem* mFileSystem;
         ResourceManager* mResourceManager;
+        
+        // TODO: move to resource
         ImageFormatManager* mImageFormatManager;
         MeshFormatManager* mMeshFormatManager;
+
         TimeManager* mTimeManager;
         LuaState* mLuaState;
 
-        RenderSystem* mActiveRenderSystem;
-        World* mWorld;
+        RenderSystem* mActiveRenderSystem = nullptr;
+        World* mWorld = nullptr;
         
     protected:
         float mTimeStep;
         u32 mMaxStepSim;
         bool bTickTime;
 	};
+
+    template <> MemoryManager* Core::GetModule<MemoryManager>();
+    template <> FileSystem* Core::GetModule<FileSystem>();
+    template <> ResourceManager* Core::GetModule<ResourceManager>();
+
+    template <> ImageFormatManager* Core::GetModule<ImageFormatManager>();
+    template <> MeshFormatManager* Core::GetModule<MeshFormatManager>();
+
+    template <> LuaState* Core::GetModule<LuaState>();
+    template <> TimeManager* Core::GetModule<TimeManager>();
+
+    template <> World* Core::GetModule<World>();
+    template <> RenderSystem* Core::GetModule<RenderSystem>();
+
+    template <> void* Core::GetModule<void>() = delete;
 }
 
 #endif //_LUCUS_ENGINE_CORE_H

@@ -12,10 +12,6 @@ namespace LucusEngine
 	template<class T>
 	class Singleton
 	{
-	private:
-		Singleton( const Singleton<T> &) {}
-		Singleton& operator=( const Singleton<T> &) {}
-
 	protected:
 		static T* mInstance;
 
@@ -25,6 +21,8 @@ namespace LucusEngine
 			// assert(mInstance == nullptr);
 			mInstance = static_cast< T* >( this );
 		}
+		Singleton( const Singleton<T> &) = delete;
+		Singleton& operator=( const Singleton<T> &) = delete;
 
 		~Singleton()
 		{

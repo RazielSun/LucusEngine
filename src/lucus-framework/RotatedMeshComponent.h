@@ -13,11 +13,8 @@
 class RotatedMeshComponent : public LucusEngine::MeshComponent
 {
 public:
-	RotatedMeshComponent();
-    RotatedMeshComponent(cc8* meshName, cc8* imageName) : MeshComponent(meshName, imageName) {}
-	virtual ~RotatedMeshComponent();
-    
-    DECL_LUA_OBJECT(RotatedMeshComponent)
+	RotatedMeshComponent() noexcept = default;
+    RotatedMeshComponent(cc8* meshName, cc8* imageName) noexcept : MeshComponent(meshName, imageName) {}
 
 	virtual void Tick(float deltaSeconds) override;
 

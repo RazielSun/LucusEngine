@@ -9,7 +9,7 @@
 
 using namespace LucusEngine;
 
-Transform::Transform() :
+Transform::Transform() noexcept :
 	mLocation(FVector3::Zero),
 	mRotation(FQuaternion::Identity),
 //	mRotationEuler(FVector3::Zero),
@@ -19,7 +19,7 @@ Transform::Transform() :
 {
 }
 
-Transform::Transform(FVector3 Location, FQuaternion Rotation, FVector3 Scale) :
+Transform::Transform(FVector3 Location, FQuaternion Rotation, FVector3 Scale) noexcept :
     mLocation(Location),
     mRotation(Rotation),
     mScale(Scale),
@@ -29,7 +29,7 @@ Transform::Transform(FVector3 Location, FQuaternion Rotation, FVector3 Scale) :
     UpdateMatrices();
 }
 
-Transform::~Transform()
+Transform::~Transform() noexcept
 {
     //
 }

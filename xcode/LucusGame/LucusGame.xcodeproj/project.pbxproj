@@ -31,16 +31,10 @@
 		7A324B8F24013515000C49DB /* LucusMeshFormatFBX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A324B8C24013515000C49DB /* LucusMeshFormatFBX.cpp */; };
 		7A3FB444259A6570008F2CD2 /* LucusRenderCoreMetal.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7A3FB443259A6570008F2CD2 /* LucusRenderCoreMetal.mm */; };
 		7A3FB445259A6570008F2CD2 /* LucusRenderCoreMetal.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7A3FB443259A6570008F2CD2 /* LucusRenderCoreMetal.mm */; };
-		7A3FB44F259C6AB1008F2CD2 /* LucusPtr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A3FB447259C6AB0008F2CD2 /* LucusPtr.cpp */; };
-		7A3FB450259C6AB1008F2CD2 /* LucusPtr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A3FB447259C6AB0008F2CD2 /* LucusPtr.cpp */; };
 		7A3FB453259C6AB1008F2CD2 /* LucusObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A3FB44A259C6AB0008F2CD2 /* LucusObject.cpp */; };
 		7A3FB454259C6AB1008F2CD2 /* LucusObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A3FB44A259C6AB0008F2CD2 /* LucusObject.cpp */; };
-		7A3FB455259C6AB1008F2CD2 /* LucusLuaObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A3FB44D259C6AB0008F2CD2 /* LucusLuaObject.cpp */; };
-		7A3FB456259C6AB1008F2CD2 /* LucusLuaObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A3FB44D259C6AB0008F2CD2 /* LucusLuaObject.cpp */; };
 		7A3FB459259C9F1B008F2CD2 /* LucusViewCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A3FB458259C9F1A008F2CD2 /* LucusViewCamera.cpp */; };
 		7A3FB45A259C9F1B008F2CD2 /* LucusViewCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A3FB458259C9F1A008F2CD2 /* LucusViewCamera.cpp */; };
-		7A3FB45C259CA0C9008F2CD2 /* LucusICamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A3FB45B259CA0C9008F2CD2 /* LucusICamera.cpp */; };
-		7A3FB45D259CA0C9008F2CD2 /* LucusICamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A3FB45B259CA0C9008F2CD2 /* LucusICamera.cpp */; };
 		7A3FB460259E2E97008F2CD2 /* lua_bind.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A3FB45F259E2E97008F2CD2 /* lua_bind.cpp */; };
 		7A3FB461259E2E97008F2CD2 /* lua_bind.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A3FB45F259E2E97008F2CD2 /* lua_bind.cpp */; };
 		7A3FB466259E2EA3008F2CD2 /* RotatedMeshComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A3FB462259E2EA2008F2CD2 /* RotatedMeshComponent.cpp */; };
@@ -49,6 +43,8 @@
 		7A3FB469259E2EA3008F2CD2 /* SpringArmComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A3FB464259E2EA3008F2CD2 /* SpringArmComponent.cpp */; };
 		7A3FB46D259F7923008F2CD2 /* LucusLuaStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A3FB46A259F7922008F2CD2 /* LucusLuaStack.cpp */; };
 		7A3FB46E259F7923008F2CD2 /* LucusLuaStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A3FB46A259F7922008F2CD2 /* LucusLuaStack.cpp */; };
+		7A3FB47125B41833008F2CD2 /* LucusLuaReference.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A3FB46F25B41832008F2CD2 /* LucusLuaReference.cpp */; };
+		7A3FB47225B41833008F2CD2 /* LucusLuaReference.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A3FB46F25B41832008F2CD2 /* LucusLuaReference.cpp */; };
 		7A884A442438E8C000EC2E74 /* LucusVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A884A402438E8C000EC2E74 /* LucusVector.cpp */; };
 		7A884A452438E8C000EC2E74 /* LucusVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A884A402438E8C000EC2E74 /* LucusVector.cpp */; };
 		7A884A462438E8C000EC2E74 /* LucusQuaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A884A412438E8C000EC2E74 /* LucusQuaternion.cpp */; };
@@ -77,8 +73,6 @@
 		7AA498EB2413BA7F009C1ED7 /* LucusCameraComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA498E02413BA7F009C1ED7 /* LucusCameraComponent.cpp */; };
 		7AA498EC2413BA7F009C1ED7 /* LucusTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA498E12413BA7F009C1ED7 /* LucusTransform.cpp */; };
 		7AA498ED2413BA7F009C1ED7 /* LucusTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA498E12413BA7F009C1ED7 /* LucusTransform.cpp */; };
-		7AA498EE2413BA7F009C1ED7 /* LucusComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA498E32413BA7F009C1ED7 /* LucusComponent.cpp */; };
-		7AA498EF2413BA7F009C1ED7 /* LucusComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA498E32413BA7F009C1ED7 /* LucusComponent.cpp */; };
 		7AA498F02413BA7F009C1ED7 /* LucusMeshComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA498E42413BA7F009C1ED7 /* LucusMeshComponent.cpp */; };
 		7AA498F12413BA7F009C1ED7 /* LucusMeshComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA498E42413BA7F009C1ED7 /* LucusMeshComponent.cpp */; };
 		7AA498F22413BA7F009C1ED7 /* LucusActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA498E52413BA7F009C1ED7 /* LucusActor.cpp */; };
@@ -242,16 +236,12 @@
 		7A3FB43C259A6555008F2CD2 /* LucusRenderCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusRenderCore.h; sourceTree = "<group>"; };
 		7A3FB443259A6570008F2CD2 /* LucusRenderCoreMetal.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LucusRenderCoreMetal.mm; sourceTree = "<group>"; };
 		7A3FB446259C6AA2008F2CD2 /* LucusICamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusICamera.h; sourceTree = "<group>"; };
-		7A3FB447259C6AB0008F2CD2 /* LucusPtr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LucusPtr.cpp; sourceTree = "<group>"; };
 		7A3FB448259C6AB0008F2CD2 /* LucusObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusObject.h; sourceTree = "<group>"; };
 		7A3FB44A259C6AB0008F2CD2 /* LucusObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LucusObject.cpp; sourceTree = "<group>"; };
 		7A3FB44B259C6AB0008F2CD2 /* LucusPtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusPtr.h; sourceTree = "<group>"; };
-		7A3FB44C259C6AB0008F2CD2 /* LucusLuaObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusLuaObject.h; sourceTree = "<group>"; };
-		7A3FB44D259C6AB0008F2CD2 /* LucusLuaObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LucusLuaObject.cpp; sourceTree = "<group>"; };
 		7A3FB44E259C6AB0008F2CD2 /* LucusLuaFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusLuaFactory.h; sourceTree = "<group>"; };
 		7A3FB457259C9F1A008F2CD2 /* LucusViewCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusViewCamera.h; sourceTree = "<group>"; };
 		7A3FB458259C9F1A008F2CD2 /* LucusViewCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LucusViewCamera.cpp; sourceTree = "<group>"; };
-		7A3FB45B259CA0C9008F2CD2 /* LucusICamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LucusICamera.cpp; sourceTree = "<group>"; };
 		7A3FB45E259E2E96008F2CD2 /* lua_bind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua_bind.h; sourceTree = "<group>"; };
 		7A3FB45F259E2E97008F2CD2 /* lua_bind.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lua_bind.cpp; sourceTree = "<group>"; };
 		7A3FB462259E2EA2008F2CD2 /* RotatedMeshComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RotatedMeshComponent.cpp; sourceTree = "<group>"; };
@@ -260,6 +250,9 @@
 		7A3FB465259E2EA3008F2CD2 /* SpringArmComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpringArmComponent.h; sourceTree = "<group>"; };
 		7A3FB46A259F7922008F2CD2 /* LucusLuaStack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LucusLuaStack.cpp; sourceTree = "<group>"; };
 		7A3FB46C259F7922008F2CD2 /* LucusLuaStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusLuaStack.h; sourceTree = "<group>"; };
+		7A3FB46F25B41832008F2CD2 /* LucusLuaReference.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LucusLuaReference.cpp; sourceTree = "<group>"; };
+		7A3FB47025B41833008F2CD2 /* LucusLuaReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusLuaReference.h; sourceTree = "<group>"; };
+		7A3FB47325B439F7008F2CD2 /* lua_module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua_module.h; sourceTree = "<group>"; };
 		7A884A3B2438E8BF00EC2E74 /* LucusVertexTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusVertexTypes.h; sourceTree = "<group>"; };
 		7A884A3E2438E8BF00EC2E74 /* LucusQuaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusQuaternion.h; sourceTree = "<group>"; };
 		7A884A3F2438E8C000EC2E74 /* LucusVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusVector.h; sourceTree = "<group>"; };
@@ -290,7 +283,6 @@
 		7AA498E02413BA7F009C1ED7 /* LucusCameraComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LucusCameraComponent.cpp; sourceTree = "<group>"; };
 		7AA498E12413BA7F009C1ED7 /* LucusTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LucusTransform.cpp; sourceTree = "<group>"; };
 		7AA498E22413BA7F009C1ED7 /* LucusComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusComponent.h; sourceTree = "<group>"; };
-		7AA498E32413BA7F009C1ED7 /* LucusComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LucusComponent.cpp; sourceTree = "<group>"; };
 		7AA498E42413BA7F009C1ED7 /* LucusMeshComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LucusMeshComponent.cpp; sourceTree = "<group>"; };
 		7AA498E52413BA7F009C1ED7 /* LucusActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LucusActor.cpp; sourceTree = "<group>"; };
 		7AA498E62413BA7F009C1ED7 /* LucusTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusTransform.h; sourceTree = "<group>"; };
@@ -378,16 +370,16 @@
 		7A0C0DC223F1E83600DE0B7D /* lucus-core */ = {
 			isa = PBXGroup;
 			children = (
+				7A3FB47325B439F7008F2CD2 /* lua_module.h */,
+				7A3FB46F25B41832008F2CD2 /* LucusLuaReference.cpp */,
+				7A3FB47025B41833008F2CD2 /* LucusLuaReference.h */,
 				7A3FB46A259F7922008F2CD2 /* LucusLuaStack.cpp */,
 				7A3FB46C259F7922008F2CD2 /* LucusLuaStack.h */,
 				7A3FB45F259E2E97008F2CD2 /* lua_bind.cpp */,
 				7A3FB45E259E2E96008F2CD2 /* lua_bind.h */,
 				7A3FB44E259C6AB0008F2CD2 /* LucusLuaFactory.h */,
-				7A3FB44D259C6AB0008F2CD2 /* LucusLuaObject.cpp */,
-				7A3FB44C259C6AB0008F2CD2 /* LucusLuaObject.h */,
 				7A3FB44A259C6AB0008F2CD2 /* LucusObject.cpp */,
 				7A3FB448259C6AB0008F2CD2 /* LucusObject.h */,
-				7A3FB447259C6AB0008F2CD2 /* LucusPtr.cpp */,
 				7A3FB44B259C6AB0008F2CD2 /* LucusPtr.h */,
 				7A324B94240137C4000C49DB /* modules.h */,
 				7A0C0DDC23F338BC00DE0B7D /* host.h */,
@@ -461,7 +453,6 @@
 				7A3FB463259E2EA2008F2CD2 /* RotatedMeshComponent.h */,
 				7A3FB464259E2EA3008F2CD2 /* SpringArmComponent.cpp */,
 				7A3FB465259E2EA3008F2CD2 /* SpringArmComponent.h */,
-				7A3FB45B259CA0C9008F2CD2 /* LucusICamera.cpp */,
 				7A3FB458259C9F1A008F2CD2 /* LucusViewCamera.cpp */,
 				7A3FB457259C9F1A008F2CD2 /* LucusViewCamera.h */,
 				7A3FB446259C6AA2008F2CD2 /* LucusICamera.h */,
@@ -472,7 +463,6 @@
 				7AA498DE2413BA7E009C1ED7 /* LucusCameraComponent.h */,
 				7AA498E02413BA7F009C1ED7 /* LucusCameraComponent.cpp */,
 				7AA498E22413BA7F009C1ED7 /* LucusComponent.h */,
-				7AA498E32413BA7F009C1ED7 /* LucusComponent.cpp */,
 				7AA498DF2413BA7E009C1ED7 /* LucusMeshComponent.h */,
 				7AA498E42413BA7F009C1ED7 /* LucusMeshComponent.cpp */,
 				7AA498E62413BA7F009C1ED7 /* LucusTransform.h */,
@@ -886,8 +876,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A3FB444259A6570008F2CD2 /* LucusRenderCoreMetal.mm in Sources */,
-				7A3FB455259C6AB1008F2CD2 /* LucusLuaObject.cpp in Sources */,
 				7AA498FC2413BAA0009C1ED7 /* LucusSceneComponentProxy.cpp in Sources */,
+				7A3FB47125B41833008F2CD2 /* LucusLuaReference.cpp in Sources */,
 				7AA499302416A737009C1ED7 /* LucusMetalComponentProxy.mm in Sources */,
 				7AA499002413BAA0009C1ED7 /* LucusViewport.cpp in Sources */,
 				7A324B5B23F5CEF8000C49DB /* AppDelegate.mm in Sources */,
@@ -925,7 +915,6 @@
 				7A958AFE2454D1B90074A438 /* LucusModuleAllocator.cpp in Sources */,
 				7A3FB453259C6AB1008F2CD2 /* LucusObject.cpp in Sources */,
 				7AA4991C2416A2A6009C1ED7 /* DefaultShader.metal in Sources */,
-				7A3FB45C259CA0C9008F2CD2 /* LucusICamera.cpp in Sources */,
 				7AA4992B2416A2B3009C1ED7 /* LucusMath.cpp in Sources */,
 				7AA498F02413BA7F009C1ED7 /* LucusMeshComponent.cpp in Sources */,
 				7AFAF0A725987A9100984BE3 /* LucusImage.cpp in Sources */,
@@ -937,9 +926,7 @@
 				7A885DD2243B8FF700EC2E74 /* LucusResourceManager.cpp in Sources */,
 				7A324B7823FBBCEA000C49DB /* LucusRenderWindow.cpp in Sources */,
 				7A324B7223FBBCDA000C49DB /* LucusMetalDevice.mm in Sources */,
-				7A3FB44F259C6AB1008F2CD2 /* LucusPtr.cpp in Sources */,
 				7A958AFA2454D1B90074A438 /* LucusStackAllocator.cpp in Sources */,
-				7AA498EE2413BA7F009C1ED7 /* LucusComponent.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -948,8 +935,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A3FB445259A6570008F2CD2 /* LucusRenderCoreMetal.mm in Sources */,
-				7A3FB456259C6AB1008F2CD2 /* LucusLuaObject.cpp in Sources */,
 				7AA498FD2413BAA0009C1ED7 /* LucusSceneComponentProxy.cpp in Sources */,
+				7A3FB47225B41833008F2CD2 /* LucusLuaReference.cpp in Sources */,
 				7AA499312416A737009C1ED7 /* LucusMetalComponentProxy.mm in Sources */,
 				7AA499012413BAA0009C1ED7 /* LucusViewport.cpp in Sources */,
 				7A0C0DCC23F1E84200DE0B7D /* LucusRenderSystem.cpp in Sources */,
@@ -987,7 +974,6 @@
 				7A958AFF2454D1B90074A438 /* LucusModuleAllocator.cpp in Sources */,
 				7A3FB454259C6AB1008F2CD2 /* LucusObject.cpp in Sources */,
 				7AA4991D2416A2A6009C1ED7 /* DefaultShader.metal in Sources */,
-				7A3FB45D259CA0C9008F2CD2 /* LucusICamera.cpp in Sources */,
 				7AA4992C2416A2B3009C1ED7 /* LucusMath.cpp in Sources */,
 				7AA498F12413BA7F009C1ED7 /* LucusMeshComponent.cpp in Sources */,
 				7AFAF0A825987A9100984BE3 /* LucusImage.cpp in Sources */,
@@ -999,9 +985,7 @@
 				7A885DD3243B8FF700EC2E74 /* LucusResourceManager.cpp in Sources */,
 				7A324B7923FBBCEA000C49DB /* LucusRenderWindow.cpp in Sources */,
 				7A324B7323FBBCDA000C49DB /* LucusMetalDevice.mm in Sources */,
-				7A3FB450259C6AB1008F2CD2 /* LucusPtr.cpp in Sources */,
 				7A958AFB2454D1B90074A438 /* LucusStackAllocator.cpp in Sources */,
-				7AA498EF2413BA7F009C1ED7 /* LucusComponent.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
