@@ -17,7 +17,13 @@ namespace LucusEngine
     public:
         LuaReference();
         LuaReference(lua_State* L);
+        LuaReference(LuaReference&& other) noexcept;
         ~LuaReference() noexcept;
+
+        LuaReference(const LuaReference& other) = delete;
+        LuaReference& operator=(const LuaReference& other) = delete;
+
+        LuaReference& operator=(LuaReference&& other) noexcept;
         
         void Ref(lua_State* L);
         void Unref();

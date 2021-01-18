@@ -11,44 +11,43 @@
 
 using namespace LucusEngine;
 
-LuaReference::LuaReference() : mRef(LUA_REFNIL), mLua(NULL)
+LuaReference::LuaReference() : mRef(LUA_NOREF), mLua(nullptr)
 {
 }
 
-LuaReference::LuaReference(lua_State* L)
+LuaReference::LuaReference(lua_State* L) : mLua(L),  mRef(luaL_ref(L, LUA_REGISTRYINDEX))
 {
-    Ref(L);
+}
+
+LuaReference::LuaReference(LuaReference&& other) noexcept
+{
+    mLua = other.mLua;
+    mRef = other.mRef;
+    other.mRef = LUA_NOREF;
 }
 
 LuaReference::~LuaReference() noexcept
 {
-    Unref();
-}
-
-void LuaReference::Ref(lua_State* L)
-{
-    Unref();
-    mLua = L;
-    if (mLua)
-    {
-        mRef = luaL_ref(mLua, LUA_REGISTRYINDEX);
-    }
-}
-void LuaReference::Unref()
-{
-    if (mLua && IsValid())
+    if (IsValid())
     {
         luaL_unref(mLua, LUA_REGISTRYINDEX, mRef);
-        mRef = LUA_REFNIL;
-        mLua = NULL;
+        mRef = LUA_NOREF;
+        mLua = nullptr;
     }
+}
+
+LuaReference& LuaReference::operator=(LuaReference&& other) noexcept
+{
+    std::swap(mLua, other.mLua);
+    std::swap(mRef, other.mRef);
+    return *this;
 }
 
 void LuaReference::Push() const
 {
     if (mLua)
     {
-        if (mRef != LUA_REFNIL)
+        if (mRef != LUA_NOREF)
         {
             lua_rawgeti(mLua, LUA_REGISTRYINDEX, mRef);
         }
@@ -61,5 +60,5 @@ void LuaReference::Push() const
 
 bool LuaReference::IsValid() const
 {
-    return mRef != LUA_REFNIL;
+    return mLua != nullptr && mRef != LUA_NOREF;
 }

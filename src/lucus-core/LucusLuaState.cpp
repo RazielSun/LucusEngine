@@ -30,7 +30,7 @@ void LuaState::Init()
 
     mStack.PushValueByName(LUCUS_LUA_MAIN_UPDATE_METHOD);
     mStack.Copy(-1);
-    mUpdateRef.Ref(mRawLua);
+    mUpdateRef = LuaReference(mRawLua);
     mStack.Pop(2);
 }
 

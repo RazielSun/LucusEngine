@@ -78,6 +78,7 @@ namespace LucusEngine
     template <class T>
     void LuaFactory<T>::RegisterGlobal(LuaState* state, cc8* className)
     {
+        
         // lua_State* L = state->GetRawLua();
         // lua_newtable(L);
         // lua_newtable(L);

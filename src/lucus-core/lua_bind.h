@@ -11,8 +11,8 @@
 namespace LucusEngine
 {
     class LuaState;
-}
 
-void BindLua(LucusEngine::LuaState* state);
+    extern void BindLua(LuaState* state);
+}
 
 #endif /* _LUCUS_ENGINE_LUA_BIND_H */

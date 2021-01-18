@@ -168,8 +168,8 @@ void Core::CreateLua()
     if (nullptr != mLuaState)
     {
         mLuaState->RunScript("main.lua");
+        BindLua(mLuaState);
         //    if (mWorld) LuaFactory<World>::RegisterGlobal(mLuaState, mWorld);
-        //    BindLua(mLuaState);
     }
 }
 
