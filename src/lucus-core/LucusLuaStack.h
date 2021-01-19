@@ -50,21 +50,12 @@ namespace LucusEngine
     T* LuaStack::GetLuaObject(int idx)
     {
         if (GetTop() < idx) return nullptr;
-        if (IsType(idx, LUA_TTABLE))
+        if (IsType(idx, LUA_TUSERDATA))
         {
-            if (lua_getmetatable(mLua, idx))
-            {
-                lua_pushstring(mLua, "__object");
-                lua_gettable(mLua, -2);
-                
-                if (IsType(-1, LUA_TLIGHTUSERDATA))
-                {
-                    T* ptr = static_cast<T*>(lua_touserdata(mLua, -1));
-                    lua_pop(mLua, 2);
-                    return ptr;
-                }
-                lua_pop(mLua, 2);
-            }
+            lua_pushvalue(mLua, idx);
+            T** pptr = static_cast<T**>(lua_touserdata(mLua, -1));
+            lua_pop(mLua, 1);
+            return *pptr;
         }
         return nullptr;
     }

@@ -136,7 +136,7 @@ template <> MeshFormatManager* Core::GetModule<MeshFormatManager>() { return Cor
 template <> LuaState* Core::GetModule<LuaState>() { return Core::Get().mLuaState; }
 template <> TimeManager* Core::GetModule<TimeManager>() { return Core::Get().mTimeManager; }
 
-template <> World* Core::GetModule<World>() { return Core::Get().mWorld; }
+//template <> World* Core::GetModule<World>() { return Core::Get().mWorld; }
 template <> RenderSystem* Core::GetModule<RenderSystem>() { return Core::Get().mActiveRenderSystem; }
 
 void Core::SetRenderSystem(RenderSystem* system)
@@ -153,14 +153,35 @@ void Core::ChangeViewportSize(u32 width, u32 height)
     }
 }
 
-void Core::CreateWorld()
+// void Core::CreateWorld()
+// {
+//     mWorld = mMemoryManager->NewOnModule<World>();
+//     if (nullptr != mWorld)
+//     {
+//         mWorld->InitWorld();
+//     }
+// }
+
+void Core::SetWorld(World* world)
 {
-    mWorld = mMemoryManager->NewOnModule<World>();
-    if (nullptr != mWorld)
+    if (world != nullptr)
     {
-        mWorld->InitWorld();
+        mWorld = world;
+        if (mWorld)
+        {
+            mWorld->InitWorld();
+        }
+    }
+    else
+    {
+        mWorld.Reset();
     }
 }
+
+//World* Core::GetWorld() const
+//{
+//    return mWorld.Get();
+//}
 
 void Core::CreateLua()
 {
@@ -187,7 +208,7 @@ void Core::Tick()
         mTimeManager->UpdateTime();
         float deltaSeconds = mTimeManager->GetDeltaSeconds();
         
-        if (mWorld != nullptr)
+        if (mWorld)
         {
             for (u32 i = 0; i < mMaxStepSim && deltaSeconds > mTimeStep; ++i)
             {
@@ -202,7 +223,7 @@ void Core::Tick()
             deltaSeconds -= static_cast<int>(val)*mTimeStep;
         }
         
-        if (mWorld != nullptr)
+        if (mWorld)
             mWorld->LateTick();
         
         

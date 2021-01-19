@@ -16,8 +16,8 @@ namespace LucusEngine
     {
     protected:
         Object() = default;
-        Object(const Object& copy) = default;
-        Object& operator=(const Object& rhs) = default;
+        Object(const Object& copy) {}
+        Object& operator=(const Object& rhs) { return *this; }
         virtual ~Object();
 
         u32 GetRefCount() { return counter; }

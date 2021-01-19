@@ -25,6 +25,7 @@ void Object::ReleaseRef()
 	counter--;
 	if (counter == 0)
 	{
+		// TODO: call deallocator - default or custom
 		delete this;
 	}
 }

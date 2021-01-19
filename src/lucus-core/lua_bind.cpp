@@ -22,6 +22,8 @@
 
 #include "wrap_Core.h"
 
+#include "wrap_World.h"
+
 using namespace LucusEngine;
 
 namespace LucusEngine
@@ -29,6 +31,8 @@ namespace LucusEngine
     void BindLua(LuaState* state)
     {
         InitializeCore(state);
+        
+        InitializeWorld(state);
     //    LuaFactory<Actor>::RegisterClass(state);
     //    LuaFactory<ViewCamera>::RegisterClass(state);
     //

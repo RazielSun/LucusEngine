@@ -9,6 +9,7 @@
 #define _LUCUS_ENGINE_WORLD_H
 
 #include "LucusTypes.h"
+#include "LucusObject.h"
 #include "LucusPtr.h"
 
 namespace LucusEngine
@@ -22,7 +23,7 @@ namespace LucusEngine
     typedef std::vector<ActorPtr> ActorArray;
     typedef ActorArray::iterator ActorIterator;
 
-    class World
+    class World : public Object
     {
     public:
         World() noexcept;
@@ -41,6 +42,8 @@ namespace LucusEngine
     protected:
     	ActorArray mActors;
     };
+
+    using WorldPtr = Ptr<World>;
 }
 
 #endif /* _LUCUS_ENGINE_WORLD_H */

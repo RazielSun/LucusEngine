@@ -8,6 +8,7 @@
 #define _LUCUS_ENGINE_CORE_H
 
 #include "LucusTypes.h"
+#include "LucusPtr.h"
 #include "LucusSingleton.h"
 
 namespace LucusEngine
@@ -22,6 +23,8 @@ namespace LucusEngine
     class TimeManager;
     class LuaState;
 
+    using WorldPtr = Ptr<World>;
+
 	class Core : public Singleton<Core>
 	{
 	public:
@@ -32,7 +35,9 @@ namespace LucusEngine
         void UnloadModules();
         
         void SetRenderSystem(RenderSystem* system);
-        void CreateWorld();
+        // void CreateWorld();
+        void SetWorld(World* world);
+//        World* GetWorld() const;
 
         void CreateLua();
         void RunLua(cc8* path);
@@ -74,7 +79,7 @@ namespace LucusEngine
         LuaState* mLuaState;
 
         RenderSystem* mActiveRenderSystem = nullptr;
-        World* mWorld = nullptr;
+        WorldPtr mWorld;
         
     protected:
         float mTimeStep;
@@ -92,7 +97,7 @@ namespace LucusEngine
     template <> LuaState* Core::GetModule<LuaState>();
     template <> TimeManager* Core::GetModule<TimeManager>();
 
-    template <> World* Core::GetModule<World>();
+//    template <> World* Core::GetModule<World>();
     template <> RenderSystem* Core::GetModule<RenderSystem>();
 
     template <> void* Core::GetModule<void>() = delete;

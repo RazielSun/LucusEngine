@@ -13,13 +13,11 @@
 #include "LucusLuaStack.h"
 #include "LucusActor.h"
 
-#include <iostream>
-
 using namespace LucusEngine;
 
-World::World() noexcept
-{
-}
+ World::World() noexcept
+ {
+ }
 
 World::~World() noexcept
 {

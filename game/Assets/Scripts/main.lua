@@ -11,6 +11,8 @@ lucus = {}
 
 lucus.init = function()
     print("[LUA] lucus init called")
+    local world = lucus.world()
+    lucus.core.world = world
 end
 
 lucus.tick = function(dt)

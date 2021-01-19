@@ -10,6 +10,9 @@
 using namespace LucusEngine;
 
 #define LUCUS_LUA_CORE_MODULE "core"
+#define WORLD_PROPERTY "world"
+
+#define IS_PROPERTY(value, property) (strcmp(value, property) == 0)
 
 // void World::BindLuaFunctions(lua_State* lua)
 // {
@@ -56,7 +59,12 @@ static int core_index(lua_State* L)
     LuaStack stack(L);
     Core* core = stack.GetLuaObject<Core>(1);
     auto property = stack.GetValue<cc8*>(2, "none");
-    std::cout << "[C++] core_index[ " << property << " ]\n";
+    if (IS_PROPERTY(property, WORLD_PROPERTY))
+    {
+        // TODO: Push Ref
+        // core->GetWorld()
+        std::cout << "[C++] core_index[ " << property << " ]\n";
+    }
     return 0;
 }
 
@@ -67,7 +75,11 @@ static int core_newindex(lua_State* L)
     Core* core = stack.GetLuaObject<Core>(1);
     auto property = stack.GetValue<cc8*>(2, "none");
     World* world = stack.GetLuaObject<World>(3);
-    std::cout << "[C++] core_newindex[ " << property << " ] = " << world << std::endl;
+    if (IS_PROPERTY(property, WORLD_PROPERTY))
+    {
+        std::cout << "[C++] core_newindex[ " << property << " ] = " << world << std::endl;
+        core->SetWorld(world);
+    }
     return 0;
 }
 
