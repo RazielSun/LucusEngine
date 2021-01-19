@@ -22,15 +22,19 @@ namespace LucusEngine
 
     #define ADD_METATABLE(L, name, methods, meta) \
     luaL_newmetatable(L, name); \
-    luaL_setfuncs(L, methods, 0); \
     luaL_setfuncs(L, meta, 0); \
+    lua_newtable(L); \
+    luaL_setfuncs(L, methods, 0); \
+    lua_setfield(L, -2, "__index"); \
     lua_pop(L, 1);
 
     #define ADD_INH_METATABLE(L, name, base_methods, methods, meta) \
     luaL_newmetatable(L, name); \
+    luaL_setfuncs(L, meta, 0); \
+    lua_newtable(L); \
     luaL_setfuncs(L, base_methods, 0); \
     luaL_setfuncs(L, methods, 0); \
-    luaL_setfuncs(L, meta, 0); \
+    lua_setfield(L, -2, "__index"); \
     lua_pop(L, 1);
 
     #define SET_METATABLE(L, name) \

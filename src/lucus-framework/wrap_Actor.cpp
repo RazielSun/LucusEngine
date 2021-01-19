@@ -37,7 +37,6 @@ static int actor_ctor(lua_State* L)
 }
 
 static const luaL_Reg actor_meta[] = {
-    { "__index", &LuaObject<Actor>::index },
     { "__gc", &LuaObject<Actor>::destructor },
     { 0, 0 }
 };

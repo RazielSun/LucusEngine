@@ -8,7 +8,6 @@
 #include "LucusMeshFormatManager.h"
 #include "LucusTimeManager.h"
 #include "LucusLuaState.h"
-#include "LucusLuaFactory.h"
 
 #include "LucusRenderSystem.h"
 #include "LucusWorld.h"
@@ -188,7 +187,9 @@ void Core::CreateLua()
     mLuaState = mMemoryManager->NewOnModule<LuaState>();
     if (nullptr != mLuaState)
     {
+        mLuaState->Init();
         mLuaState->RunScript("main.lua");
+        mLuaState->BindFunctions();
         BindLua(mLuaState);
         //    if (mWorld) LuaFactory<World>::RegisterGlobal(mLuaState, mWorld);
     }
@@ -196,7 +197,8 @@ void Core::CreateLua()
 
 void Core::Run()
 {
-    mLuaState->Init();
+    mLuaState->Run();
+    
     // Run init func lua
     bTickTime = true;
 }

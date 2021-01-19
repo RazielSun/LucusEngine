@@ -7,7 +7,6 @@ application = {
     title = "Lucus Test Game"
 }
 
-lucus = {}
 updater = {}
 
 function create_world()

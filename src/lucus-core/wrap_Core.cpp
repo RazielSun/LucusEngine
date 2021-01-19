@@ -1,7 +1,6 @@
 
 #include "wrap_Core.h"
 #include "LucusLuaState.h"
-#include "LucusLuaFactory.h"
 #include "LucusLuaStack.h"
 
 #include "LucusCore.h"

@@ -24,14 +24,26 @@ LuaState::~LuaState()
 void LuaState::Init()
 {
     mStack.PushGlobalTable(LUCUS_LUA_MAIN_MODULE);
+}
+
+void LuaState::BindFunctions()
+{
+    mStack.PushGlobalTable(LUCUS_LUA_MAIN_MODULE);
     mStack.PushValueByName(LUCUS_LUA_MAIN_INIT_METHOD);
-    mStack.CallTop();
+    mStack.Copy(-1);
+    mInitRef = LuaReference(mRawLua);
     mStack.Pop();
 
     mStack.PushValueByName(LUCUS_LUA_MAIN_UPDATE_METHOD);
     mStack.Copy(-1);
     mUpdateRef = LuaReference(mRawLua);
     mStack.Pop(2);
+}
+
+void LuaState::Run()
+{
+    mInitRef.Push();
+    mStack.CallTop();
 }
 
 void LuaState::Tick(float deltaSeconds)

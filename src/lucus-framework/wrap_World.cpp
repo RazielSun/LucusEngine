@@ -56,7 +56,6 @@ static int world_ctor(lua_State* L)
 // }
 
 static const luaL_Reg world_meta[] = {
-    { "__index", &LuaObject<World>::index },
     { "__gc", &LuaObject<World>::destructor },
     { 0, 0 }
 };

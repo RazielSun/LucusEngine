@@ -23,15 +23,19 @@ namespace LucusEngine
         ~LuaState();
         
         void Init();
+        void BindFunctions();
+        void Run();
+
         void Tick(float deltaSeconds);
         
         void RunScript(cc8* path);
 
-        lua_State* GetRawLua() const { return mRawLua; }
+        lua_State* GetRawLua() const noexcept { return mRawLua; }
         
     private:
         lua_State* mRawLua;
         LuaStack mStack;
+        LuaReference mInitRef;
         LuaReference mUpdateRef;
     };
 }

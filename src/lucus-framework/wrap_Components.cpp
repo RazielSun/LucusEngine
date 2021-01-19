@@ -6,14 +6,12 @@
 #include "LucusSceneComponent.h"
 #include "LucusMeshComponent.h"
 #include "LucusCameraComponent.h"
-#include "SpringArmComponent.h"
 
 using namespace LucusEngine;
 
 #define LUCUS_LUA_SCENE_COMPONENT_CLASS "SceneComponent"
 #define LUCUS_LUA_MESH_COMPONENT_CLASS "MeshComponent"
 #define LUCUS_LUA_CAMERA_COMPONENT_CLASS "CameraComponent"
-#define LUCUS_LUA_SPRING_ARM_COMPONENT_CLASS "SpringArmComponent"
 
 static int SceneComponent_addChild(lua_State* L)
 {
@@ -91,7 +89,6 @@ static int sceneComponent_ctor(lua_State* L)
 }
 
 static const luaL_Reg sceneComponent_meta[] = {
-    { "__index", &LuaObject<SceneComponent>::index },
     { "__gc", &LuaObject<SceneComponent>::destructor },
     { 0, 0 }
 };
@@ -135,7 +132,6 @@ static int meshComponent_ctor(lua_State* L)
 }
 
 static const luaL_Reg meshComponent_meta[] = {
-    { "__index", &LuaObject<MeshComponent>::index },
     { "__gc", &LuaObject<MeshComponent>::destructor },
     { 0, 0 }
 };
@@ -149,22 +145,7 @@ static int cameraComponent_ctor(lua_State* L)
 }
 
 static const luaL_Reg cameraComponent_meta[] = {
-    { "__index", &LuaObject<CameraComponent>::index },
     { "__gc", &LuaObject<CameraComponent>::destructor },
-    { 0, 0 }
-};
-
-static int springArmComponent_ctor(lua_State* L)
-{
-    // if (lua_gettop(L) != 1) return -1; // ?
-    SpringArmComponent* comp = LuaObject<SpringArmComponent>::constructor(L);
-    SET_METATABLE(L, LUCUS_LUA_SPRING_ARM_COMPONENT_CLASS)
-    return 1;
-}
-
-static const luaL_Reg springArmComponent_meta[] = {
-    { "__index", &LuaObject<SpringArmComponent>::index },
-    { "__gc", &LuaObject<SpringArmComponent>::destructor },
     { 0, 0 }
 };
 
@@ -178,12 +159,10 @@ namespace LucusEngine
         ADD_CTOR(L, LUCUS_LUA_SCENE_COMPONENT_CLASS, sceneComponent_ctor);
         ADD_CTOR(L, LUCUS_LUA_MESH_COMPONENT_CLASS, meshComponent_ctor);
         ADD_CTOR(L, LUCUS_LUA_CAMERA_COMPONENT_CLASS, cameraComponent_ctor);
-        ADD_CTOR(L, LUCUS_LUA_SPRING_ARM_COMPONENT_CLASS, springArmComponent_ctor);
 
         ADD_METATABLE(L, LUCUS_LUA_SCENE_COMPONENT_CLASS, sceneComponent_methods, sceneComponent_meta);
         ADD_INH_METATABLE(L, LUCUS_LUA_MESH_COMPONENT_CLASS, sceneComponent_methods, meshComponent_methods, meshComponent_meta);
         ADD_METATABLE(L, LUCUS_LUA_CAMERA_COMPONENT_CLASS, sceneComponent_methods, cameraComponent_meta);
-        ADD_METATABLE(L, LUCUS_LUA_SPRING_ARM_COMPONENT_CLASS, sceneComponent_methods, springArmComponent_meta);
 
         // lua_pop(L, 4); // meta
         lua_pop(L, 1); // global
