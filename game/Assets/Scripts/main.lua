@@ -8,74 +8,59 @@ application = {
 }
 
 lucus = {}
+updater = {}
+
+function create_world()
+    local world = lucus.World()
+    lucus.core.world = world
+    return world
+end
+
+function create_camera( location )
+    local root = lucus.SceneComponent()
+    local camera = lucus.CameraComponent()
+    camera:SetLocation( table.unpack(location or {0,0,0}) )
+    root:AddChild(camera)
+    local actor = lucus.Actor()
+    actor:SetRootComponent(root)
+    local function create_rotator()
+        local speed = 30.0
+        local yaw = 0.0
+        return function(dt)
+            local newyaw = yaw + speed * dt
+            if newyaw > 360.0 then newyaw = newyaw - 360 end
+            if newyaw < -360.0 then newyaw = newyaw + 360 end
+            root:SetRotation(0, 0, newyaw)
+            yaw = newyaw
+        end
+    end
+    table.insert(updater, create_rotator())
+    return actor
+end
+
+function create_mesh_actor( mesh, image, location )
+    local meshComp = lucus.MeshComponent()
+    meshComp:SetMesh(mesh)
+    meshComp:SetImage(image)
+    meshComp:SetLocation( table.unpack(location or { 0, 0, 0 }) )
+    local actor = lucus.Actor()
+    actor:SetRootComponent(meshComp)
+    return actor, meshComp
+end
 
 lucus.init = function()
     print("[LUA] lucus init called")
-    local world = lucus.world()
-    lucus.core.world = world
+    local world = create_world()
+
+    local camera = create_camera({0, 0, -3}); world:AddActor(camera);
+    local actor1 = create_mesh_actor("cube.fbx", "test-image.tga"); world:AddActor(actor1);
+    local actor2 = create_mesh_actor("cube.fbx", "checker.png", { 1, 0, 0 }); world:AddActor(actor2);
+    local actor3 = create_mesh_actor("cube.fbx", "checker-map.png", { -1, 0, 0 }); world:AddActor(actor3);
 end
 
 lucus.tick = function(dt)
-    print("[LUA] lucus tick "..dt)
+    -- print("[LUA] lucus tick "..dt)
+    for _, func in ipairs(updater) do
+        func(dt)
+    end
 end
-
--- if World then
---     local rootComp = nil
---     if SceneComponent then
---         rootComp = SceneComponent()
---         print("[LUA] rootComp = " .. tostring(rootComp))
---         rootComp:SetLocation(0, 0, 3)
---     end
---     local meshComp = nil
---     if MeshComponent then
---         meshComp = MeshComponent()
---         print("[LUA] meshComp = " .. tostring(meshComp))
---         meshComp:SetMesh("Assets/meshes/cube.fbx")
---         meshComp:SetImage("Assets/textures/test-image.tga")
---         if rootComp then
---             rootComp:AddChild(meshComp)
---         end
---     end
---     local actor = nil
---     if Actor then
---         actor = Actor()
---         print("[LUA] actor = " .. tostring(actor))
---         actor:SetRootComponent(rootComp)
---     end
---     World:AddActor(actor)
--- end
-
--- function GetImage( name )
---     return name
--- end
-
--- function GetMesh( name )
---     return name..".fbx"
--- end
-
--- function SpawnCamera( Location )
---     local root = SpringArmComponent()
---     local camera = CameraComponent()
---     camera:SetLocation( table.unpack(Location))
---     root:AddChild(camera)
---     local actor = Actor()
---     actor:SetRootComponent(root)
---     World:AddActor(actor)
--- end
-
--- function SpawnActor( Component, Mesh, Image, Location )
---     local Create = Component or MeshComponent
---     local mesh = Create()
---     mesh:SetMesh(GetMesh(Mesh))
---     mesh:SetImage(GetImage(Image))
---     local Loc = Location or { 0, 0, 0 }
---     mesh:SetLocation( table.unpack(Loc) )
---     local actor = Actor()
---     actor:SetRootComponent(mesh)
---     World:AddActor(actor)
--- end
-
--- SpawnCamera({0, 0, -3})
--- SpawnActor(nil, "cube", "test-image.tga")
--- SpawnActor(RotatedMeshComponent, "cube", "checker.png", { 1, 0, 0 })
--- SpawnActor(nil, "cube", "checker-map.png", { -1, 0, 0 })

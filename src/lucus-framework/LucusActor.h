@@ -46,6 +46,8 @@ namespace LucusEngine
     // public:
         // static int _setRootComponent(lua_State* L);
     };
+
+    template <> void Actor::SetRootComponent(SceneComponent* component);
 }
 
 #endif /* _LUCUS_ENGINE_ACTOR_H */

@@ -50,6 +50,12 @@ void Actor::SetWorld(World* world)
     // Do some stuff
 }
 
+template <>
+void Actor::SetRootComponent(SceneComponent* component)
+{
+    mRootComponent = Ptr<SceneComponent>(component);
+}
+
 template <class T>
 void Actor::SetRootComponent(T* component)
 {

@@ -16,13 +16,13 @@ SpringArmComponent::SpringArmComponent() noexcept :
 
 void SpringArmComponent::Tick(float deltaSeconds)
 {
-	float yaw = mRotation.yaw + mSpeed * deltaSeconds;
-	if (yaw > 180.0f)
-		yaw -= 360.0f;
-	if (yaw <= -180.0f)
-		yaw += 360.0f;
-    mRotation.yaw = yaw;
-	mTransform.SetRotation(mRotation);
+//	float yaw = mRotation.yaw + mSpeed * deltaSeconds;
+//	if (yaw > 180.0f)
+//		yaw -= 360.0f;
+//	if (yaw <= -180.0f)
+//		yaw += 360.0f;
+//    mRotation.yaw = yaw;
+//	mTransform.SetRotation(mRotation);
     
 //     angle += 1.0f * deltaSeconds;
 //     LucusEngine::FVector3 axis(0.0f, 1.0f, 0.0f);

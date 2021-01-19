@@ -1,62 +1,59 @@
 
 #include "wrap_Actor.h"
 #include "LucusLuaState.h"
-#include "LucusLuaFactory.h"
+#include "LucusLuaObject.h"
 
 #include "LucusActor.h"
+#include "LucusSceneComponent.h"
 
 using namespace LucusEngine;
 
-#define LUA_LIB_NAME "lucus"
-#define LUA_TYPE_NAME_ACTOR "actor"
+#define LUCUS_LUA_ACTOR_CLASS "Actor"
 
-// void Actor::BindLuaFunctions(lua_State* lua)
-// {
-//     LuaObject::BindLuaFunctions(lua);
-    
-    
-//     luaL_setfuncs(lua, reg_table, 0);
-//     lua_pushvalue(lua, -1);
-// }
-
-static int _setRootComponent(lua_State* L)
+static int Actor_setRootComponent(lua_State* L)
 {
     LuaStack stack(L);
     Actor* actor = stack.GetLuaObject<Actor>(1);
     SceneComponent* comp = stack.GetLuaObject<SceneComponent>(2);
-    if (actor != nullptr && comp != nullptr)
+    if (actor && comp)
     {
-        std::cout << "[C++] Actor SetRootComponent called.\n";
+        // std::cout << "[C++] Actor SetRootComponent called.\n";
         actor->SetRootComponent(comp);
     }
     return 0;
 }
 
-static luaL_Reg Actor_methods[] = {
-    { "SetRootComponent", _setRootComponent },
+static const luaL_Reg actor_methods[] = {
+    { "SetRootComponent", Actor_setRootComponent },
     { 0, 0 }
 };
 
-static luaL_Reg Actor_meta[] = {
-    { "__gc", LuaFactory<Actor>::_gc },
-    { 0, 0 }
-};
-
-void InitializeActor(LuaState* state)
+static int actor_ctor(lua_State* L)
 {
-    // const u32 total_count = 1;
-    // struct
-    // {
-    //     cc8* Name;
-    //     const luaL_Reg* Methods;
-    //     const luaL_Reg* Meta;
-    // } types[total_count] = {
-    //     { , Actor_methods, Actor_meta }
-    // };
-    // for (u32 i = 0; i < total_count; i++)
-    // {
-    //     ::Re
-    // }
-    LuaFactory<Actor>::RegisterUserClass(state, LUA_TYPE_NAME_ACTOR, LUA_LIB_NAME);
-    // RegisterUserMetatable(state, LUA_TYPE_NAME_ACTOR, Actor_methods, Actor_meta);
+    // if (lua_gettop(L) != 1) return -1; // ?
+    Actor* actor = LuaObject<Actor>::constructor(L);
+    SET_METATABLE(L, LUCUS_LUA_ACTOR_CLASS)
+    return 1;
+}
+
+static const luaL_Reg actor_meta[] = {
+    { "__index", &LuaObject<Actor>::index },
+    { "__gc", &LuaObject<Actor>::destructor },
+    { 0, 0 }
+};
+
+namespace LucusEngine
+{
+    void InitializeActor(LuaState* state)
+    {
+        lua_State* L = state->GetRawLua();
+
+        LUA_NAMESPACE(L, LUCUS_LUA_MAIN_MODULE);
+        ADD_CTOR(L, LUCUS_LUA_ACTOR_CLASS, actor_ctor);
+
+        ADD_METATABLE(L, LUCUS_LUA_ACTOR_CLASS, actor_methods, actor_meta);
+
+        // lua_pop(L, 1); // meta
+        lua_pop(L, 1); // global
+    }
 }
