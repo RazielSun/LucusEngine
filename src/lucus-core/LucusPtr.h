@@ -34,6 +34,11 @@ namespace LucusEngine
 		{
 			AddRef();
 		}
+        
+        Ptr(Ptr<T>&& rhs)
+        {
+            std::swap(mPtr, rhs.mPtr);
+        }
 
 		Ptr<T>& operator=(const Ptr<T>& rhs)
 		{
@@ -59,6 +64,19 @@ namespace LucusEngine
 
 			return *this;
 		}
+        
+        Ptr<T>& operator=(Ptr<T>&& rhs)
+        {
+            std::swap(mPtr, rhs.mPtr);
+            return *this;
+        }
+        
+        template<class U>
+        Ptr<T>& operator=(Ptr<U>&& rhs)
+        {
+            std::swap(mPtr, rhs.mPtr);
+            return *this;
+        }
 
 		~Ptr()
 		{
