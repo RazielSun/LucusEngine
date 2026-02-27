@@ -28,11 +28,11 @@ MetalRenderSystem::~MetalRenderSystem()
 {
 }
 
-RenderWindow* MetalRenderSystem::CreateRenderWindow(u32 width, u32 height)
+RenderWindow* MetalRenderSystem::CreateRenderWindow(const std::string& title, u32 width, u32 height)
 {
     mDevice.Init();
     
-    mWindow = new MetalWindow(width, height, &mDevice);
+    mWindow = new MetalWindow(title, width, height, &mDevice);
     
     mWindows.push_back(static_cast<RenderWindow*>(mWindow));
     

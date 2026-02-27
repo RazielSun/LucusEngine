@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A225E872F471B14009B2953 /* libfbxsdk.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3A225E862F471B14009B2953 /* libfbxsdk.dylib */; };
 		7A0C0DC623F1E83600DE0B7D /* LucusCore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A0C0DC423F1E83600DE0B7D /* LucusCore.cpp */; };
 		7A0C0DC723F1E83600DE0B7D /* LucusCore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A0C0DC423F1E83600DE0B7D /* LucusCore.cpp */; };
 		7A0C0DCB23F1E84200DE0B7D /* LucusRenderSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A0C0DCA23F1E84200DE0B7D /* LucusRenderSystem.cpp */; };
@@ -71,8 +72,6 @@
 		7A958AFE2454D1B90074A438 /* LucusModuleAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A958AEF2454D1B90074A438 /* LucusModuleAllocator.cpp */; };
 		7A958AFF2454D1B90074A438 /* LucusModuleAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A958AEF2454D1B90074A438 /* LucusModuleAllocator.cpp */; };
 		7AA498D1240249C1009C1ED7 /* libfbxsdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA498D0240249C0009C1ED7 /* libfbxsdk.a */; };
-		7AA498DC240458A3009C1ED7 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 7AA498DB240458A3009C1ED7 /* Assets */; };
-		7AA498DD240458A3009C1ED7 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 7AA498DB240458A3009C1ED7 /* Assets */; };
 		7AA498EA2413BA7F009C1ED7 /* LucusCameraComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA498E02413BA7F009C1ED7 /* LucusCameraComponent.cpp */; };
 		7AA498EB2413BA7F009C1ED7 /* LucusCameraComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA498E02413BA7F009C1ED7 /* LucusCameraComponent.cpp */; };
 		7AA498EC2413BA7F009C1ED7 /* LucusTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA498E12413BA7F009C1ED7 /* LucusTransform.cpp */; };
@@ -210,7 +209,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3A225E832F4719CF009B2953 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				3A225E872F471B14009B2953 /* libfbxsdk.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		3A225E842F471A44009B2953 /* libfbxsdk.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfbxsdk.dylib; path = "../../3rdparty/fbx-sdk-osx/lib/clang/release/libfbxsdk.dylib"; sourceTree = "<group>"; };
+		3A225E862F471B14009B2953 /* libfbxsdk.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfbxsdk.dylib; path = "../../3rdparty/fbx-sdk-osx/lib/clang/debug/libfbxsdk.dylib"; sourceTree = "<group>"; };
 		7A0C0DC323F1E83600DE0B7D /* LucusCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusCore.h; sourceTree = "<group>"; };
 		7A0C0DC423F1E83600DE0B7D /* LucusCore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LucusCore.cpp; sourceTree = "<group>"; };
 		7A0C0DC523F1E83600DE0B7D /* LucusSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusSingleton.h; sourceTree = "<group>"; };
@@ -285,7 +299,6 @@
 		7A958AF32454D1B90074A438 /* LucusModuleAllocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusModuleAllocator.h; sourceTree = "<group>"; };
 		7AA498D0240249C0009C1ED7 /* libfbxsdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfbxsdk.a; path = "../../3rdparty/fbx-sdk-osx/lib/clang/debug/libfbxsdk.a"; sourceTree = "<group>"; };
 		7AA498D324027673009C1ED7 /* LucusUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LucusUtils.h; sourceTree = "<group>"; };
-		7AA498DB240458A3009C1ED7 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = Resources/Assets; sourceTree = "<group>"; };
 		7AA498DE2413BA7E009C1ED7 /* LucusCameraComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusCameraComponent.h; sourceTree = "<group>"; };
 		7AA498DF2413BA7E009C1ED7 /* LucusMeshComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LucusMeshComponent.h; sourceTree = "<group>"; };
 		7AA498E02413BA7F009C1ED7 /* LucusCameraComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LucusCameraComponent.cpp; sourceTree = "<group>"; };
@@ -502,6 +515,8 @@
 		7A83AE8523E6C3DE002E161C = {
 			isa = PBXGroup;
 			children = (
+				3A225E842F471A44009B2953 /* libfbxsdk.dylib */,
+				3A225E862F471B14009B2953 /* libfbxsdk.dylib */,
 				7AFAF0B925987B3D00984BE3 /* lua.xcodeproj */,
 				7A885DA4243B37BF00EC2E74 /* tinyxml2.xcodeproj */,
 				7AB2ACE02427547B0008C88D /* zlib.xcodeproj */,
@@ -550,7 +565,6 @@
 		7AA498D424027C38009C1ED7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				7AA498DB240458A3009C1ED7 /* Assets */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -738,6 +752,8 @@
 				7ADF912023E6CA810094C83D /* Sources */,
 				7ADF912123E6CA810094C83D /* Frameworks */,
 				7ADF912223E6CA810094C83D /* Resources */,
+				3A225E832F4719CF009B2953 /* CopyFiles */,
+				3A225F232F471F93009B2953 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -868,7 +884,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7AA498DC240458A3009C1ED7 /* Assets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -876,11 +891,30 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7AA498DD240458A3009C1ED7 /* Assets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3A225F232F471F93009B2953 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nset -e\n\nASSETS_SRC=\"${SRCROOT}/../../game/Assets\"\nASSETS_DST=\"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Assets\"\n\nrm -rf \"$ASSETS_DST\"\nditto \"$ASSETS_SRC\" \"$ASSETS_DST\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7ADF910A23E6CA810094C83D /* Sources */ = {
@@ -1252,11 +1286,13 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = C7KPBPZ9WD;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1290,6 +1326,10 @@
 				OTHER_CFLAGS = $inherited;
 				PRODUCT_BUNDLE_IDENTIFIER = org.razielsun.LucusGame;
 				PRODUCT_NAME = LucusGame;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = YES;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = YES;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -1327,11 +1367,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = C7KPBPZ9WD;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1361,6 +1401,9 @@
 				OTHER_CFLAGS = $inherited;
 				PRODUCT_BUNDLE_IDENTIFIER = org.razielsun.LucusGame;
 				PRODUCT_NAME = LucusGame;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = YES;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = YES;
 				SDKROOT = macosx;
 			};
 			name = Release;

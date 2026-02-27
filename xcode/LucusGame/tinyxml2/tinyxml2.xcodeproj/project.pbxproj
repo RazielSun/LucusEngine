@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7A885DAF243B385900EC2E74 /* tinyxml2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A885DAD243B385800EC2E74 /* tinyxml2.cpp */; };
-		7A885DCE243B38BA00EC2E74 /* tinyxml2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A885DAD243B385800EC2E74 /* tinyxml2.cpp */; };
+		3A225E802F4718FB009B2953 /* tinyxml2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A225E7F2F4718FB009B2953 /* tinyxml2.cpp */; };
+		3A225E812F4718FB009B2953 /* tinyxml2.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A225E7E2F4718FB009B2953 /* tinyxml2.h */; };
+		3A225E822F4718FB009B2953 /* tinyxml2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A225E7F2F4718FB009B2953 /* tinyxml2.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,9 +25,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3A225E7E2F4718FB009B2953 /* tinyxml2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = tinyxml2.h; path = ../../../../3rdparty/tinyxml2/tinyxml2.h; sourceTree = "<group>"; };
+		3A225E7F2F4718FB009B2953 /* tinyxml2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = tinyxml2.cpp; path = ../../../../3rdparty/tinyxml2/tinyxml2.cpp; sourceTree = "<group>"; };
 		7A885D9D243B37BF00EC2E74 /* libtinyxml2-osx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libtinyxml2-osx.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7A885DAD243B385800EC2E74 /* tinyxml2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tinyxml2.cpp; path = ../../../../3rdparty/tinyxml2/tinyxml2.cpp; sourceTree = "<group>"; };
-		7A885DAE243B385800EC2E74 /* tinyxml2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tinyxml2.h; path = ../../../../3rdparty/tinyxml2/tinyxml2.h; sourceTree = "<group>"; };
 		7A885DC2243B389D00EC2E74 /* libtinyxml2-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libtinyxml2-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -48,10 +49,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A225E7D2F4718E2009B2953 /* tinyxml2 */ = {
+			isa = PBXGroup;
+			children = (
+				3A225E7E2F4718FB009B2953 /* tinyxml2.h */,
+				3A225E7F2F4718FB009B2953 /* tinyxml2.cpp */,
+			);
+			path = tinyxml2;
+			sourceTree = "<group>";
+		};
 		7A885D94243B37BF00EC2E74 = {
 			isa = PBXGroup;
 			children = (
-				7A885DAC243B37C600EC2E74 /* tinyxml2 */,
+				3A225E7D2F4718E2009B2953 /* tinyxml2 */,
 				7A885D9E243B37BF00EC2E74 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -65,15 +75,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7A885DAC243B37C600EC2E74 /* tinyxml2 */ = {
-			isa = PBXGroup;
-			children = (
-				7A885DAD243B385800EC2E74 /* tinyxml2.cpp */,
-				7A885DAE243B385800EC2E74 /* tinyxml2.h */,
-			);
-			path = tinyxml2;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -81,6 +82,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A225E812F4718FB009B2953 /* tinyxml2.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,7 +164,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A885DAF243B385900EC2E74 /* tinyxml2.cpp in Sources */,
+				3A225E802F4718FB009B2953 /* tinyxml2.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,7 +172,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A885DCE243B38BA00EC2E74 /* tinyxml2.cpp in Sources */,
+				3A225E822F4718FB009B2953 /* tinyxml2.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

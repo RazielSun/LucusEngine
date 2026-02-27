@@ -15,6 +15,6 @@ namespace LucusEngine
 	class RenderSystem;
 }
 
-LucusEngine::RenderSystem* CreateRenderSystem(u32 width, u32 height);
+LucusEngine::RenderSystem* CreateRenderSystem(const std::string& title, u32 width, u32 height);
 
 #endif //_LUCUS_ENGINE_RENDER_CORE_H

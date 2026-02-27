@@ -34,6 +34,7 @@ function create_camera( location )
         end
     end
     table.insert(updater, create_rotator())
+    print("[LUA] lucus create_camera created")
     return actor
 end
 

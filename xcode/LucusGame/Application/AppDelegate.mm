@@ -80,21 +80,11 @@ static AppDelegate* mInstance = nil;
     u32 width, height;
     AKUGetApplicationSize(width, height);
     
-    CGRect frame = CGRectMake(0, 0, width, height);
-    RootView = [[NSView alloc] initWithFrame:frame];
-    
-    RootVC = [[NSViewController alloc] init];
-    RootVC.view = RootView;
-    
     std::string title;
     AKUGetApplicationTitle(title);
     
-    Window = [NSWindow windowWithContentViewController:RootVC];
-    Window.title = [NSString stringWithUTF8String:title.c_str()];
-    [Window makeKeyAndOrderFront:self];
-    
     // Create Metal Render System
-    AKUCreateRenderSystem(width, height);
+    AKUCreateRenderSystem(title, width, height);
     // Create World
 //    AKUCreateWorld();
     

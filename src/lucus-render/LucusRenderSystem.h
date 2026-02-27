@@ -23,7 +23,7 @@ namespace LucusEngine
                 RenderSystem();
                 virtual ~RenderSystem();
 
-                virtual RenderWindow *CreateRenderWindow(u32 width, u32 height) = 0;
+                virtual RenderWindow *CreateRenderWindow(const std::string& title, u32 width, u32 height) = 0;
                 virtual void CreateBuffers() = 0;
 
                 virtual void PreRender();

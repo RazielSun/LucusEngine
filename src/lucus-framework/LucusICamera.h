@@ -24,6 +24,8 @@ namespace LucusEngine
             mFarZ(1000.0f)
         {
         }
+        
+        virtual ~ICamera() {}
 
         virtual const FMatrix4x4& GetProjMatrix() const = 0;
         virtual const FMatrix4x4& GetViewMatrix() const = 0;

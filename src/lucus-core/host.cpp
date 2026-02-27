@@ -57,9 +57,9 @@ void AKUGetApplicationTitle(std::string& title)
     }
 }
 
-void AKUCreateRenderSystem(u32 width, u32 height)
+void AKUCreateRenderSystem(const std::string& title, u32 width, u32 height)
 {
-    LucusEngine::RenderSystem* system = CreateRenderSystem(width, height);
+    LucusEngine::RenderSystem* system = CreateRenderSystem(title, width, height);
     LucusEngine::Core* core = LucusEngine::Core::GetPtr();
     if (core != nullptr)
     {

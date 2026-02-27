@@ -9,11 +9,22 @@
 
 using namespace LucusEngine;
 
-MetalWindow::MetalWindow(u32 width, u32 height, MetalDevice* device) : RenderWindow(width, height)
+MetalWindow::MetalWindow(const std::string& title, u32 width, u32 height, MetalDevice* device) : RenderWindow(width, height)
 {
     @autoreleasepool {
         CGRect frame = CGRectMake(0, 0, width, height);
+        mRootView = [[NSView alloc] initWithFrame:frame];
+        
+        mViewController = [[NSViewController alloc] init];
+        mViewController.view = mRootView;
+        
+        mWindow = [NSWindow windowWithContentViewController:mViewController];
+        mWindow.title = [NSString stringWithUTF8String:title.c_str()];
+        
+        [mWindow makeKeyAndOrderFront:nil];
+        
         mView = [[MetalView alloc] initWithFrame:frame device:device->mDevice];
+        [mRootView addSubview:mView];
         
         mMetalLayer = (CAMetalLayer*)mView.layer;
     }

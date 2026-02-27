@@ -16,7 +16,7 @@ void AKUCoreDestroy();
 void AKUGetApplicationSize(u32& width, u32& height);
 void AKUGetApplicationTitle(std::string& title);
 
-void AKUCreateRenderSystem(u32 width, u32 height);
+void AKUCreateRenderSystem(const std::string& title, u32 width, u32 height);
 //void AKUCreateWorld();
 void AKUCreateLua();
 

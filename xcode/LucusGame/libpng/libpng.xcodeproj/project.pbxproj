@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A225E6D2F471879009B2953 /* palette_neon_intrinsics.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A225E6B2F471879009B2953 /* palette_neon_intrinsics.c */; };
+		3A225E6E2F471879009B2953 /* filter_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = 3A225E692F471879009B2953 /* filter_neon.S */; };
+		3A225E6F2F471879009B2953 /* filter_neon_intrinsics.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A225E6A2F471879009B2953 /* filter_neon_intrinsics.c */; };
+		3A225E702F471879009B2953 /* arm_init.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A225E682F471879009B2953 /* arm_init.c */; };
+		3A225E712F471879009B2953 /* palette_neon_intrinsics.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A225E6B2F471879009B2953 /* palette_neon_intrinsics.c */; };
+		3A225E722F471879009B2953 /* filter_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = 3A225E692F471879009B2953 /* filter_neon.S */; };
+		3A225E732F471879009B2953 /* filter_neon_intrinsics.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A225E6A2F471879009B2953 /* filter_neon_intrinsics.c */; };
+		3A225E742F471879009B2953 /* arm_init.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A225E682F471879009B2953 /* arm_init.c */; };
+		3A225E782F4718A8009B2953 /* filter_sse2_intrinsics.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A225E752F4718A8009B2953 /* filter_sse2_intrinsics.c */; };
+		3A225E792F4718A8009B2953 /* intel_init.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A225E762F4718A8009B2953 /* intel_init.c */; };
+		3A225E7A2F4718A8009B2953 /* filter_sse2_intrinsics.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A225E752F4718A8009B2953 /* filter_sse2_intrinsics.c */; };
+		3A225E7B2F4718A8009B2953 /* intel_init.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A225E762F4718A8009B2953 /* intel_init.c */; };
 		7AB2AD25242755880008C88D /* pngpread.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AB2AD0F242755870008C88D /* pngpread.c */; };
 		7AB2AD26242755880008C88D /* png.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AB2AD10242755870008C88D /* png.c */; };
 		7AB2AD27242755880008C88D /* pngread.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AB2AD11242755870008C88D /* pngread.c */; };
@@ -54,6 +66,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3A225E682F471879009B2953 /* arm_init.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = arm_init.c; sourceTree = "<group>"; };
+		3A225E692F471879009B2953 /* filter_neon.S */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.asm; path = filter_neon.S; sourceTree = "<group>"; };
+		3A225E6A2F471879009B2953 /* filter_neon_intrinsics.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = filter_neon_intrinsics.c; sourceTree = "<group>"; };
+		3A225E6B2F471879009B2953 /* palette_neon_intrinsics.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = palette_neon_intrinsics.c; sourceTree = "<group>"; };
+		3A225E752F4718A8009B2953 /* filter_sse2_intrinsics.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = filter_sse2_intrinsics.c; sourceTree = "<group>"; };
+		3A225E762F4718A8009B2953 /* intel_init.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = intel_init.c; sourceTree = "<group>"; };
 		7AB2AC93242753F60008C88D /* libpng-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libpng-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AB2AD0F242755870008C88D /* pngpread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngpread.c; path = ../../../../3rdparty/libpng/pngpread.c; sourceTree = "<group>"; };
 		7AB2AD10242755870008C88D /* png.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = png.c; path = ../../../../3rdparty/libpng/png.c; sourceTree = "<group>"; };
@@ -98,6 +116,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A225E6C2F471879009B2953 /* arm */ = {
+			isa = PBXGroup;
+			children = (
+				3A225E682F471879009B2953 /* arm_init.c */,
+				3A225E692F471879009B2953 /* filter_neon.S */,
+				3A225E6A2F471879009B2953 /* filter_neon_intrinsics.c */,
+				3A225E6B2F471879009B2953 /* palette_neon_intrinsics.c */,
+			);
+			name = arm;
+			path = ../../../../3rdparty/libpng/arm;
+			sourceTree = "<group>";
+		};
+		3A225E772F4718A8009B2953 /* intel */ = {
+			isa = PBXGroup;
+			children = (
+				3A225E752F4718A8009B2953 /* filter_sse2_intrinsics.c */,
+				3A225E762F4718A8009B2953 /* intel_init.c */,
+			);
+			name = intel;
+			path = ../../../../3rdparty/libpng/intel;
+			sourceTree = "<group>";
+		};
 		7AB2AC8A242753F60008C88D = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +158,8 @@
 		7AB2AC95242753F60008C88D /* libpng */ = {
 			isa = PBXGroup;
 			children = (
+				3A225E772F4718A8009B2953 /* intel */,
+				3A225E6C2F471879009B2953 /* arm */,
 				7AB2AD10242755870008C88D /* png.c */,
 				7AB2AD1C242755870008C88D /* png.h */,
 				7AB2AD22242755880008C88D /* pngconf.h */,
@@ -246,7 +288,13 @@
 				7AB2AD27242755880008C88D /* pngread.c in Sources */,
 				7AB2AD2E242755880008C88D /* pngrio.c in Sources */,
 				7AB2AD34242755880008C88D /* pngmem.c in Sources */,
+				3A225E7A2F4718A8009B2953 /* filter_sse2_intrinsics.c in Sources */,
+				3A225E7B2F4718A8009B2953 /* intel_init.c in Sources */,
 				7AB2AD33242755880008C88D /* pngwtran.c in Sources */,
+				3A225E6D2F471879009B2953 /* palette_neon_intrinsics.c in Sources */,
+				3A225E6E2F471879009B2953 /* filter_neon.S in Sources */,
+				3A225E6F2F471879009B2953 /* filter_neon_intrinsics.c in Sources */,
+				3A225E702F471879009B2953 /* arm_init.c in Sources */,
 				7AB2AD29242755880008C88D /* pngget.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,7 +317,13 @@
 				7AB2AD5624275A210008C88D /* pngget.c in Sources */,
 				7AB2AD5924275A210008C88D /* pngread.c in Sources */,
 				7AB2AD5C24275A210008C88D /* pngrutil.c in Sources */,
+				3A225E782F4718A8009B2953 /* filter_sse2_intrinsics.c in Sources */,
+				3A225E792F4718A8009B2953 /* intel_init.c in Sources */,
 				7AB2AD6224275A210008C88D /* pngwtran.c in Sources */,
+				3A225E712F471879009B2953 /* palette_neon_intrinsics.c in Sources */,
+				3A225E722F471879009B2953 /* filter_neon.S in Sources */,
+				3A225E732F471879009B2953 /* filter_neon_intrinsics.c in Sources */,
+				3A225E742F471879009B2953 /* arm_init.c in Sources */,
 				7AB2AD5B24275A210008C88D /* pngrtran.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

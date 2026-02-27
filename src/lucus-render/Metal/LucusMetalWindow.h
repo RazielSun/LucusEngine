@@ -23,7 +23,7 @@ namespace LucusEngine
     class MetalWindow: public RenderWindow
     {
     public:
-        MetalWindow(u32 width, u32 height, MetalDevice* device);
+        MetalWindow(const std::string& title, u32 width, u32 height, MetalDevice* device);
         virtual ~MetalWindow();
         
 //        virtual void ChangeViewportSize(u32 width, u32 height) override;
@@ -38,6 +38,7 @@ namespace LucusEngine
         UIWindow *mWindow;
         UIViewController *mViewController;
 #elif defined(TARGET_OSX)
+        NSView* mRootView;
         NSViewController* mViewController;
         NSWindow* mWindow;
 #endif

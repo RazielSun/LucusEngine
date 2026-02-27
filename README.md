@@ -4,12 +4,18 @@ Custom game engine for own education
 IsettaEngine, MOAI SDK, Unreal Engine, OGRE3D
 
 ## Engine structure
-### 3rdparty
-fbx-sdk-osx: 2018.1 - DOWNLOAD FROM
-fbx-sdk-uwp: 2019.5 - DOWNLOAD FROM
 
-libpng osx:- static libs (need to compile from source)[https://github.com/glennrp/libpng]
-zlib osx: - static libs (need to compile from source)[https://github.com/madler/zlib]
+### 3rdparty
+
+#### FBX SDK
+- fbx-sdk-osx: 2018.1 - DOWNLOAD FROM and put it in 3rdparty/ folder
+- fbx-sdk-uwp: 2019.5 - DOWNLOAD FROM and put it in 3rdparty/ folder
+
+#### PNG
+osx:- static libs (need to compile from source)[https://github.com/glennrp/libpng]
+
+#### Zlib
+osx: - static libs (need to compile from source)[https://github.com/madler/zlib]
 
 ### game
 Assets - folder with assets, for xcode/vs2017 projects need to copy from Assets to:

@@ -23,7 +23,7 @@ namespace LucusEngine
 		MetalRenderSystem();
 		virtual ~MetalRenderSystem();
         
-        virtual RenderWindow* CreateRenderWindow(u32 width, u32 height) override;
+        virtual RenderWindow* CreateRenderWindow(const std::string& title, u32 width, u32 height) override;
         virtual void CreateBuffers() override;
         
         virtual void PreRender() override;
