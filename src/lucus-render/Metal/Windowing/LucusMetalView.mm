@@ -20,18 +20,12 @@
         [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
 #elif defined(TARGET_OSX)
         [self setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
-        [self setDelegate:self];
 #endif
     }
     return self;
 }
 
 - (void)renderInView
-{
-    AKUTick();
-}
-
-- (void)drawInMTKView:(MTKView *)view
 {
     AKUTick();
 }

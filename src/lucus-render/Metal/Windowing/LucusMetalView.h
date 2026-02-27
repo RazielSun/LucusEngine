@@ -10,7 +10,7 @@
 
 #import <MetalKit/MTKView.h>
 
-@interface MetalView : MTKView <MTKViewDelegate>
+@interface MetalView : MTKView
 
 - (nonnull instancetype)initWithFrame:(CGRect)frameRect device:(nullable id<MTLDevice>)device;
 
